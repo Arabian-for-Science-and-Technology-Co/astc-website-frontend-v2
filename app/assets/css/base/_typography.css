@@ -2,7 +2,7 @@
 
 /* Variable Font (Main) */
 @font-face {
-  font-family: 'Zarid';
+  font-family: '29LT Zarid Sans AL';
   src: url('../../Fonts/29LT Zarid Sans AL-Desktop-VAR-WOFF2-OTF/29LTZaridSansALVF.woff2')
     format('woff2-variations');
   font-weight: 100 900;
@@ -13,7 +13,7 @@
 
 /* Variable Slanted */
 @font-face {
-  font-family: 'Zarid';
+  font-family: '29LT Zarid Sans AL';
   src: url('../../Fonts/29LT Zarid Sans AL-Desktop-VAR-WOFF2-OTF/29LTZaridSansALVF-Slanted.woff2')
     format('woff2-variations');
   font-weight: 100 900;
@@ -22,23 +22,22 @@
 }
 
 /* Static Fallback (Optional) */
-/* @font-face {
+@font-face {
   font-family: 'Zarid-Fallback';
   src: url('../../Fonts/29LT Zarid Sans AL-Desktop-VAR-WOFF2-OTF/29LTZaridSansAL-Regular.woff2')
     format('woff2');
   font-weight: 400;
   font-display: swap;
-} */
+}
 
- 
- :root {
-    --font-zarid: 'Zarid', 'Zarid-Fallback', system-ui, sans-serif;
-  }
+:root {
+  font-family: '29LT Zarid Sans AL', 'Zarid-Fallback', system-ui, sans-serif;
+}
 
-  html {
-    font-family: 'Zarid', 'Zarid-Fallback', system-ui, sans-serif;
-    @apply font-zarid; /* Now uses Tailwind's configured font stack */
-    /* Better Arabic rendering */
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-  }
+html {
+  font-family: '29LT Zarid Sans AL', 'Zarid-Fallback', system-ui, sans-serif;
+  /* Now uses Tailwind's configured font stack */
+  /* Better Arabic rendering */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}

@@ -1,23 +1,36 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
 
- 
- *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
 
-  html {
-    /* -webkit-text-size-adjust: 100%; */
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  body {
-    margin: 0;
-    /* line-height: 1.5; */
-  }
-
-  img {
-    max-width: 100%;
-    display: block;
-  }
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,p {
+  font: inherit;
+}

@@ -13,6 +13,3 @@ html {
     scroll-padding-top: 4rem;
   }
 
-  body {
-    @apply bg-background text-foreground antialiased;
-  }

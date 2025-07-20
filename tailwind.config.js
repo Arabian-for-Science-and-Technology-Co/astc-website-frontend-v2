@@ -1,5 +1,8 @@
 module.exports = {
   // prefix: 'tw-', // Add a 'tw-' prefix to all TailwindCSS classes
+  corePlugins: {
+    preflight: false // Disable Tailwind's base reset
+  },
   content: [
     './components/**/*.{vue,js,ts}',
     './layouts/**/*.vue',
