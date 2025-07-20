@@ -37,7 +37,7 @@
 
   html {
     font-family: 'Zarid', 'Zarid-Fallback', system-ui, sans-serif;
-    @apply font-zarid; /* Now uses Tailwind's configured font stack */
+    /* @apply font-zarid; Now uses Tailwind's configured font stack */
     /* Better Arabic rendering */
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;

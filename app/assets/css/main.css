@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 
 
 @import './base/_reset.css';
@@ -12,3 +10,6 @@
 @import './config/_breakpoints.css';
 
 /* @import './utilities/_mixins.css'; */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
