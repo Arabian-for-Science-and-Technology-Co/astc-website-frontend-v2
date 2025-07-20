@@ -35,7 +35,7 @@
       </div>
     </article>
     <article class="me-[69px] ms-[66px]">
-      <h2 class="text-[24px] font-semibold leading-[25px] tracking-[1%] text-[#465AE5]">
+      <h2 class="text-[24px] font-[600] leading-[25px] tracking-[1%] text-[#465AE5]">
         Now Introducing
       </h2>
       <div
