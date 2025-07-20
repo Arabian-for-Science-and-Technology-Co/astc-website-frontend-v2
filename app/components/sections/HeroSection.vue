@@ -35,14 +35,14 @@
       </div>
     </article>
     <article class="me-[69px] ms-[66px]">
-      <h2 class="text-[24px] font-[500] leading-[25px] tracking-[1%] text-[#465AE5]">
+      <h2 class="text-[24px] font-semibold leading-[25px] tracking-[1%] text-[#465AE5]">
         Now Introducing
       </h2>
       <div
-        class="mt-2 flex items-center justify-between py-1.5 text-[52px] font-[400] leading-[49px] tracking-[1%] text-[#465AE5]"
+        class="mt-2 flex items-center justify-between py-1.5 text-[52px] font-[300] leading-[49px] tracking-[1%] text-[#465AE5]"
       >
-        <h3 class="font-[400] ">New Strategy. New Identity. New Website.</h3>
-        <h3 class="font-[400] ">Soon</h3>
+        <h3 class=" ">New Strategy. New Identity. New Website.</h3>
+        <h3 class=" ">Soon</h3>
       </div>
       <div class="mt-4 py-1">
         <div class="flex flex-col gap-[9px]">
