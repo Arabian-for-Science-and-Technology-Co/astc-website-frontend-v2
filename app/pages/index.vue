@@ -7,4 +7,7 @@
 
 <script setup>
 // Auto-imports components from components/sections
+definePageMeta({
+  layout: "default",
+});
 </script>
