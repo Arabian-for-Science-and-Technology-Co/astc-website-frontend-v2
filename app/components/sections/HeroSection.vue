@@ -45,7 +45,7 @@
         Now Introducing
       </h2>
 
-      <div class="mt-[5px] flex items-end justify-between xl:mt-[8px] xl:items-center">
+      <div class="my-component">
         <h3
           class="m-0 max-w-[150px] text-[30px] font-normal leading-[105%] tracking-[0.3px] xl:max-w-none xl:text-[40px] xl:font-light xl:leading-[95%] xl:tracking-[0.52px] 2xl:text-[52px]"
         >
@@ -65,4 +65,15 @@
   </section>
 </template>
 
-<script setup></script>
+<script setup>
+
+</script>
+<style>
+.my-component {
+  @apply mt-[5px] flex items-end justify-between;
+
+  @screen xl {
+    @apply mt-[8px] items-center;
+  }
+}
+</style>
