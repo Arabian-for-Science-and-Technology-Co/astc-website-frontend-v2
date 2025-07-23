@@ -14,4 +14,14 @@
     scrollbar-width: thin;
     scrollbar-color: theme('colors.gray.400') transparent;
   }
+  
+  .app-container {
+    padding-left: 19px;
+    padding-right: 18px;
+
+    @media (min-width: 1280px) {
+      padding-left: 65px;
+      padding-right: 64px;
+    }
+  }
 }

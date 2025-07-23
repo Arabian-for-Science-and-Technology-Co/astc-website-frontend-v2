@@ -1,85 +1,68 @@
 <template>
-  <section class="flex h-screen flex-col">
-    <article :class="['relative w-full pt-[59px]', 'xl:h-[661px] xl:pt-[150px]']">
-      <video autoplay muted loop id="myVideo" :class="['absolute top-0 -z-20 w-full']">
+  <section
+    class="font-zarid app-container flex h-[100svh] w-full flex-col justify-between gap-0 overflow-y-auto overflow-x-hidden text-[#465ae5] xl:gap-[50px] 2xl:justify-start 2xl:gap-0"
+  >
+    <article class="relative w-full pt-[58px] xl:h-fit xl:pt-[58px] 2xl:h-[661px] 2xl:pt-[150px]">
+      <video
+        autoplay
+        muted
+        loop
+        id="myVideo"
+        class="absolute left-1/2 top-0 -z-20 max-h-screen w-[150%] -translate-x-1/2 xl:w-full"
+      >
         <source src="~/assets/Animation/main_head.mp4" type="video/mp4" />
       </video>
+
       <div
-        :class="[
-          'relative flex w-full flex-col flex-wrap items-center gap-[39px]',
-          '2xl:flex-row 2xl:flex-nowrap 2xl:items-start 2xl:gap-[338.1px] 2xl:ps-[157px]'
-        ]"
+        class="relative flex w-full flex-col flex-wrap items-center justify-start gap-[39px] xl:flex-row xl:flex-nowrap xl:items-start xl:justify-center xl:gap-[100px] xl:ps-0 2xl:justify-start 2xl:gap-[338.1px] 2xl:ps-[93px]"
       >
-        <div :class="['!h-[55px] !w-[106px]', 'xl:!h-[209px] xl:!w-[400.09px]']">
+        <div
+          class="mb-0 h-[55px] w-[106px] xl:h-[150px] xl:w-[300px] 2xl:mb-[12px] 2xl:h-[209px] 2xl:w-[400.09px]"
+        >
           <ASCLogoMainIcon class="h-full w-full" />
         </div>
 
-        <h2
-          :class="[
-            'mt-[39px] w-full max-w-[763px] text-center text-[30px] font-[400] leading-[105%] tracking-[0.3px] text-[#18264A]',
-            'xl:mt-[calc(272px-150px)] xl:whitespace-nowrap xl:text-start xl:text-[52px] xl:font-[300] xl:leading-[95%] xl:tracking-[1%]'
-          ]"
-        >
+        <h2 class="mt-0 flex flex-col items-center gap-[18px] xl:gap-0 xl:self-end 2xl:items-start">
           <span
-            :class="[
-              'text-[30px] font-[400] leading-[105%] tracking-[0.3px] text-[#18264A]',
-              'xl:text-[52px] xl:font-[300] xl:leading-[95%] xl:tracking-[1%]'
-            ]"
+            class="inline-block w-[300px] text-center text-[30px] font-normal leading-[105%] tracking-[0.3px] text-[#18264a] xl:w-auto xl:text-start xl:text-[40px] xl:font-light xl:leading-[95%] xl:tracking-[0.52px] 2xl:text-[52px]"
           >
             Arabian for Science and Technology Co.
           </span>
 
-          <br />
-          <span class="mt-4 block font-[500]"> Innovate Local. Impact Global. </span>
+          <span
+            class="inline-block w-[200px] text-center text-[30px] font-semibold leading-[105%] tracking-[0.3px] text-[#18264a] xl:w-auto xl:text-start xl:text-[40px] xl:font-medium xl:leading-[95%] xl:tracking-[0.52px] 2xl:text-[52px]"
+          >
+            Innovate Local. Impact Global.
+          </span>
         </h2>
       </div>
     </article>
-    <article class="me-[69px] ms-[66px]">
-      <h2 class="text-[24px] font-[600] leading-[25px] tracking-[1%] text-[#465AE5]">
+
+    <article class="mb-[47.52px] mt-[96px] xl:mb-[10px] xl:mt-[20px] 2xl:mb-[69.07px] 2xl:mt-0">
+      <h2
+        class="text-[18px] font-semibold leading-[105%] tracking-[0.18px] xl:text-[24px] xl:tracking-[0.24px]"
+      >
         Now Introducing
       </h2>
-      <div
-        class="mt-2 flex items-center justify-between py-1.5 text-[52px] font-[300] leading-[49px] tracking-[1%] text-[#465AE5]"
-      >
-        <h3 class=" ">New Strategy. New Identity. New Website.</h3>
-        <h3 class=" ">Soon</h3>
+
+      <div class="mt-[5px] flex items-end justify-between xl:mt-[8px] xl:items-center">
+        <h3
+          class="m-0 max-w-[150px] text-[30px] font-normal leading-[105%] tracking-[0.3px] xl:max-w-none xl:text-[40px] xl:font-light xl:leading-[95%] xl:tracking-[0.52px] 2xl:text-[52px]"
+        >
+          New Strategy. New Identity. New Website.
+        </h3>
+        <h3
+          class="m-0 text-[30px] font-normal leading-[105%] tracking-[0.3px] xl:text-[40px] xl:font-light xl:leading-[95%] xl:tracking-[0.52px] 2xl:text-[52px]"
+        >
+          Soon
+        </h3>
       </div>
-      <div class="mt-4 py-1">
-        <div class="flex flex-col gap-[9px]">
-          <AnimatedDots v-for="i in 13" :delay="0" />
-        </div>
-        <!-- <div class="lottie-container">
-          <LottieAnimation
-            :animation-data="saudiVisionAnimation"
-            :loop="true"
-            :autoplay="true"
-            width="1"
-            height="fit-content"
-            class="text-[#6F80F5]"
-            color="#00ff00"
-          />
-        </div> -->
-      </div>
+
+      <ClientOnly>
+        <AnimatedGridsSection />
+      </ClientOnly>
     </article>
   </section>
 </template>
 
-<script setup>
-import Container from '~/components/layout/Container.vue'
-import ASCLogoMain from '~/assets/Icons/ASC_Logo_Main.svg'
-import saudiVisionAnimation from '~/assets/Animation/saudi_vision_progressbar.json'
-const animationData = ref(null) // Your animation JSON data
-
-async function loadAnimation() {
-  const response = await fetch('~/assets/Animation/saudi_vision_progressbar.json')
-  animationData.value = await response.json()
-}
-
-loadAnimation()
-</script>
-<style scoped>
-.lottie-container {
-  margin: 0 auto;
-  max-width: 600px;
-}
-</style>
+<script setup></script>

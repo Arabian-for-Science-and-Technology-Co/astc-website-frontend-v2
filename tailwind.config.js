@@ -10,7 +10,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      sans: ['Zarid', 'Zarid-Fallback', 'system-ui', ' sans-serif'] // Override default sans
+      zarid: ['Zarid', 'Zarid-Fallback', 'system-ui', ' sans-serif']
     },
     extend: {
       colors: {

@@ -8,7 +8,8 @@ export default function() {
     breakpoint.value = 
       width < 640 ? 'sm' : 
       width < 768 ? 'md' : 
-      width < 1024 ? 'lg' : 'xl'
+      width < 1024 ? 'lg' : 
+      width < 1280 ? 'xl' : '2xl'
   }
 
   onMounted(() => {

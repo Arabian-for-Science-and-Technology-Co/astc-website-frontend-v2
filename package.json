@@ -12,8 +12,6 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
-    "@lottiefiles/vue-lottie-player": "^1.1.0",
-    "lottie-web": "^5.13.0",
     "nuxt": "^4.0.0",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1"
