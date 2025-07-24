@@ -57,7 +57,7 @@
           Soon
         </h3>
       </div>
-
+      <h1>{{ $t('form.ok') }}</h1>
       <ClientOnly>
         <AnimatedGridsSection />
       </ClientOnly>
@@ -65,9 +65,7 @@
   </section>
 </template>
 
-<script setup>
-
-</script>
+<script setup></script>
 <style>
 .my-component {
   @apply mt-[5px] flex items-end justify-between;

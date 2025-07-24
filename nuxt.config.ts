@@ -1,10 +1,10 @@
 // nuxt.config.ts
 export default defineNuxtConfig({
-  compatibilityDate: "2025-07-15",
+  compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-   head: {
+  head: {
     script: [
-      { 
+      {
         src: 'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js',
         defer: true
       }
@@ -18,21 +18,35 @@ export default defineNuxtConfig({
     //     config.plugins.push(vuetify({ autoImport: true }));
     //   });
     // },
-    "@nuxtjs/tailwindcss",
+    '@nuxtjs/tailwindcss',
     'nuxt-svgo',
+    '@nuxtjs/i18n'
   ],
-  tailwindcss: {
-    cssPath: "~/assets/css/main.css",
-    configPath: "~/tailwind.config.js",
+  i18n: {
+    locales: [
+      { code: 'en', iso: 'en-US', file: 'locales/en.json', name: 'English' },
+      { code: 'ar', iso: 'ar-AR', file: 'locales/ar.json', name: 'العربية', dir: 'rtl' }
+    ],
+    defaultLocale: 'en',
+    strategy: 'no_prefix',
+    langDir: '',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected'
+    }
   },
-   svgo: {
-    autoImportPath: "./assets/icons/", // Path to your SVG folder
-     componentPrefix: 'Svgo', // Matches our component name
-    dts: true ,// Enable TypeScript support
+  tailwindcss: {
+    cssPath: '~/assets/css/main.css',
+    configPath: '~/tailwind.config.js'
+  },
+  svgo: {
+    autoImportPath: './assets/icons/', // Path to your SVG folder
+    componentPrefix: 'Svgo', // Matches our component name
+    dts: true // Enable TypeScript support
   },
   //----------------------for auto imports----------------------
   imports: {
-    autoImport: true,
+    autoImport: true
     // dirs: [
     //   // Only auto-import from these directories
     //   "composables",
@@ -42,31 +56,35 @@ export default defineNuxtConfig({
   },
   components: [
     {
-      path: "~/components",
+      path: '~/components',
       pathPrefix: false, // Important for section imports
-      extensions: [".vue"],
-    },
+      extensions: ['.vue']
+    }
   ],
   // ignore: ["pages/**/_*"],
-  
-//----------------------others----------------------
+
+  //----------------------others----------------------
   experimental: {
-    componentIslands: true,
+    componentIslands: true
   },
   vue: {
     compilerOptions: {
-      isCustomElement: (tag) => tag.includes("-"),
-    },
+      isCustomElement: (tag) => tag.includes('-')
+    }
   },
-
+  runtimeConfig: {
+    public: {
+      BASE_URL: process.env.BASE_URL
+    }
+  },
   // Add this typescript configuration
   typescript: {
     shim: false,
     typeCheck: false, // Disable if you don't need runtime type checking
     tsConfig: {
       compilerOptions: {
-        types: ["@nuxt/types", "@nuxtjs/tailwindcss"],
-      },
-    },
-  },
-});
+        types: ['@nuxt/types', '@nuxtjs/tailwindcss']
+      }
+    }
+  }
+})
