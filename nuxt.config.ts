@@ -24,12 +24,13 @@ export default defineNuxtConfig({
   ],
   i18n: {
     locales: [
-      { code: 'en', iso: 'en-US', file: 'locales/en.json', name: 'English' },
-      { code: 'ar', iso: 'ar-AR', file: 'locales/ar.json', name: 'العربية', dir: 'rtl' }
+      { code: 'en', iso: 'en-US', file: 'en.js', name: 'English' },
+      { code: 'ar', iso: 'ar-AR', file: 'ar.js', name: 'العربية', dir: 'rtl' }
     ],
     defaultLocale: 'en',
     strategy: 'no_prefix',
-    langDir: '',
+    restructureDir:'app',
+    langDir: 'locales',
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'i18n_redirected'
