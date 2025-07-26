@@ -1,20 +1,20 @@
 <template>
   <section
-    class="font-zarid app-container flex h-[100svh] w-full flex-col justify-between gap-0 overflow-y-auto overflow-x-hidden text-[#465ae5] xl:gap-[50px] 2xl:justify-start 2xl:gap-0"
+    class="app-container flex h-[100svh] w-full flex-col justify-between gap-0 overflow-y-auto overflow-x-hidden font-zarid text-[#465ae5] xl:gap-[50px] 2xl:justify-start 2xl:gap-0"
   >
-    <article class="relative w-full pt-[58px] xl:h-fit xl:pt-[58px] 2xl:h-[661px] 2xl:pt-[150px]">
+    <article class="relative w-full pt-[58px] xl:h-fit xl:pt-[58px] 2xl:h-[661px] 2xl:pt-[243px]">
       <video
         autoplay
         muted
         loop
         id="myVideo"
-        class="absolute left-1/2 top-0 -z-20 max-h-screen w-[150%] -translate-x-1/2 xl:w-full"
+        class="-z-5 absolute left-1/2 top-0 max-h-screen w-[150%] -translate-x-1/2 xl:w-full"
       >
         <source src="~/assets/Animation/main_head.mp4" type="video/mp4" />
       </video>
 
       <div
-        class="relative flex w-full flex-col flex-wrap items-center justify-start gap-[39px] xl:flex-row xl:flex-nowrap xl:items-start xl:justify-center xl:gap-[100px] xl:ps-0 2xl:justify-start 2xl:gap-[338.1px] 2xl:ps-[93px]"
+        class="relative flex w-full flex-col flex-wrap items-center justify-start gap-[39px] xl:flex-row xl:flex-nowrap xl:items-start xl:justify-center xl:gap-[100px] 2xl:justify-start 2xl:gap-[338.1px]"
       >
         <div
           class="mb-0 h-[55px] w-[106px] xl:h-[150px] xl:w-[300px] 2xl:mb-[12px] 2xl:h-[209px] 2xl:w-[400.09px]"
