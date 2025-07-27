@@ -4,7 +4,9 @@
       <StaticGride v-for="i in 14" :delay="0" :smallDotPosition="smallDotPosition" />
     </div>
     <div class="animated-grid">
-      <EqualizerAnimation />
+      <ClientOnly>
+        <EqualizerAnimation />
+      </ClientOnly>
     </div>
   </div>
 </template>

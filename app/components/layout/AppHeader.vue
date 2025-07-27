@@ -1,15 +1,23 @@
 <template>
-  <section class="app-container z-40 bg-transparent h-fit w-full top-[38px] fixed flex items-center justify-between">
-    <article class="flex items-center gap-[30px]">
+  <section
+    :class="[
+      'app-container fixed top-[0px] z-40 flex h-fit w-full items-center justify-between transition-colors duration-300',
+      hasScrolled ? 'bg-white py-[20px] shadow-md' : 'bg-transparent pt-[38px]'
+    ]"
+  >
+    <article v-if="!hasScrolled" class="flex items-center gap-[30px]">
       <VisionLogoIcon />
-      <h3 class="text-[#A9AEB8] text-xl max-w-[210px] not-italic font-normal leading-[100%] tracking-[0.2px]">
+      <h3
+        class=" text-xl font-normal not-italic leading-[100%] tracking-[0.2px] text-[#A9AEB8]"
+      >
         Every Saudi must get involved
-        <!-- <br /> -->
+        <br />
         for a better future
       </h3>
     </article>
-    <article class="flex items-center gap-[40px]">
-      <LanguageSwitcher />
+
+    <article class="ms-auto flex items-center gap-[40px]">
+      <LanguageSwitcher v-if="!hasScrolled" />
       <Tabs v-model="selected" :tabs="tabs" />
     </article>
   </section>
@@ -26,5 +34,19 @@ const tabs = [
 const selected = ref(null)
 watch(selected, () => {
   console.log('selected', selected.value)
+})
+
+const hasScrolled = ref(false)
+
+const handleScroll = () => {
+  hasScrolled.value = window.scrollY > 10
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', handleScroll)
 })
 </script>

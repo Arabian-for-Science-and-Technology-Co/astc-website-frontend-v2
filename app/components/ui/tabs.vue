@@ -10,11 +10,13 @@
       @click="() => onTabChange(tab)"
       :class="[
         'relative flex h-full items-center text-nowrap rounded-xl border-none px-[20px] capitalize',
-        tab.value == modelValue?.value && 'bg-[#010101] text-white'
+        tab.value == modelValue?.value && 'bg-[#010101] text-white',
+        btnClass
       ]"
     >
       {{ tab.label }}
-      <span v-if="tab.isNew" class="absolute end-[7px] top-[7px] h-2 w-2 rounded-full bg-[#0ADF0A]"> </span>
+      <span v-if="tab.isNew" class="absolute end-[7px] top-[7px] h-2 w-2 rounded-full bg-[#0ADF0A]">
+      </span>
     </button>
   </div>
 </template>
@@ -22,7 +24,8 @@
 <script setup>
 const props = defineProps({
   tabs: { type: Array, required: true },
-  modelValue: { type: [Object, null], required: true }
+  modelValue: { type: [Object, null], required: true },
+  btnClass: { type: String }
 })
 const emits = defineEmits(['update:modelValue'])
 

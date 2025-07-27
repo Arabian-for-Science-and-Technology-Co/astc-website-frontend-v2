@@ -1,6 +1,8 @@
 <template>
   <div>
     <HeroSection />
+    <NewsSection />
+    
   </div>
 </template>
 

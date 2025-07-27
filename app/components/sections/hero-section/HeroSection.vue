@@ -1,14 +1,16 @@
 <template>
   <section
-    class="app-container flex h-[100svh] w-full flex-col justify-between gap-0 overflow-y-auto overflow-x-hidden font-zarid text-[#465ae5] xl:gap-[50px] 2xl:justify-start 2xl:gap-0"
+    class="app-container flex min-h-[100svh] w-full flex-col justify-between gap-0 overflow-y-auto overflow-x-hidden font-zarid text-[#465ae5] xl:gap-[50px] 2xl:justify-start 2xl:gap-0"
   >
-    <article class="relative w-full pt-[58px] xl:h-fit xl:pt-[58px] 2xl:h-[661px] 2xl:pt-[243px]">
+    <article
+      class="relative z-10 w-full pt-[58px] xl:h-fit xl:pt-[58px] 2xl:h-[665px] 2xl:pt-[243px]"
+    >
       <video
         autoplay
         muted
         loop
         id="myVideo"
-        class="-z-5 absolute left-1/2 top-0 max-h-screen w-[150%] -translate-x-1/2 xl:w-full"
+        class="absolute left-1/2 top-0 -z-10 max-h-screen w-[150%] -translate-x-1/2 xl:w-full"
       >
         <source src="~/assets/Animation/main_head.mp4" type="video/mp4" />
       </video>
@@ -38,40 +40,11 @@
       </div>
     </article>
 
-    <article class="mb-[47.52px] mt-[96px] xl:mb-[10px] xl:mt-[20px] 2xl:mb-[69.07px] 2xl:mt-0">
-      <h2
-        class="text-[18px] font-semibold leading-[105%] tracking-[0.18px] xl:text-[24px] xl:tracking-[0.24px]"
-      >
-        Now Introducing
-      </h2>
-
-      <div class="my-component">
-        <h3
-          class="m-0 max-w-[150px] text-[30px] font-normal leading-[105%] tracking-[0.3px] xl:max-w-none xl:text-[40px] xl:font-light xl:leading-[95%] xl:tracking-[0.52px] 2xl:text-[52px]"
-        >
-          New Strategy. New Identity. New Website.
-        </h3>
-        <h3
-          class="m-0 text-[30px] font-normal leading-[105%] tracking-[0.3px] xl:text-[40px] xl:font-light xl:leading-[95%] xl:tracking-[0.52px] 2xl:text-[52px]"
-        >
-          Soon
-        </h3>
-      </div>
-      <h1>{{ $t('form.ok') }}</h1>
-      <ClientOnly>
-        <AnimatedGridsSection />
-      </ClientOnly>
+    <article class="relative z-10">
+      <ServicesSlider />
     </article>
   </section>
 </template>
 
 <script setup></script>
-<style>
-.my-component {
-  @apply mt-[5px] flex items-end justify-between;
-
-  @screen xl {
-    @apply mt-[8px] items-center;
-  }
-}
-</style>
+<style></style>
