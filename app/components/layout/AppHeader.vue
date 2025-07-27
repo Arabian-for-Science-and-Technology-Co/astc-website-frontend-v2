@@ -1,25 +1,25 @@
 <template>
   <section
     :class="[
-      'app-container fixed top-[0px] z-40 flex h-fit w-full items-center justify-between transition-colors duration-300',
-      hasScrolled ? 'bg-white py-[20px] shadow-md' : 'bg-transparent pt-[38px]'
+      'app-container absolute z-40 flex h-fit w-full items-center justify-between bg-transparent transition-colors duration-300',
+      'pt-[38px]'
     ]"
   >
-    <article v-if="!hasScrolled" class="flex items-center gap-[30px]">
+    <article class="flex items-center gap-[30px]">
       <VisionLogoIcon />
-      <h3
-        class=" text-xl font-normal not-italic leading-[100%] tracking-[0.2px] text-[#A9AEB8]"
-      >
+      <h3 class="text-xl font-normal not-italic leading-[100%] tracking-[0.2px] text-[#A9AEB8]">
         Every Saudi must get involved
         <br />
         for a better future
       </h3>
     </article>
-
-    <article class="ms-auto flex items-center gap-[40px]">
-      <LanguageSwitcher v-if="!hasScrolled" />
-      <Tabs v-model="selected" :tabs="tabs" />
-    </article>
+    <ClientOnly>
+      <article class="flex items-center gap-[40px]">
+        <LanguageSwitcher />
+        <div :style="{ width: tabsRef?.containerWidth + 'px' }"></div>
+        <Tabs ref="tabsRef" class="fixed end-[--pl]" v-model="selected" :tabs="tabs" />
+      </article>
+    </ClientOnly>
   </section>
 </template>
 
@@ -32,21 +32,6 @@ const tabs = [
   { label: 'Contact', value: 'Contact' }
 ]
 const selected = ref(null)
-watch(selected, () => {
-  console.log('selected', selected.value)
-})
 
-const hasScrolled = ref(false)
-
-const handleScroll = () => {
-  hasScrolled.value = window.scrollY > 10
-}
-
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('scroll', handleScroll)
-})
+const tabsRef = ref(null)
 </script>

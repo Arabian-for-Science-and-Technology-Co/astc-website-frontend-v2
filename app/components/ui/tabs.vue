@@ -1,5 +1,6 @@
 <template>
   <div
+    ref="containerRef"
     :class="[
       'flex h-[68px] w-fit gap-[2px] rounded-3xl bg-[#F0F0F0] px-[14px] py-[13px] text-center text-xl font-normal not-italic leading-[105%] tracking-[0.2px] text-black backdrop-blur-[10px] transition-all'
     ]"
@@ -29,12 +30,34 @@ const props = defineProps({
 })
 const emits = defineEmits(['update:modelValue'])
 
+const containerRef = ref(null)
+const containerWidth = ref(0)
+
 const onTabChange = (tab) => {
   emits('update:modelValue', tab)
 }
 
-// const route = useRoute()
-// const router = useRouter()
-</script>
+const updateWidth = () => {
+  if (containerRef.value) {
+    containerWidth.value = containerRef.value.offsetWidth
+    console.log('Current container width:', containerWidth.value)
+    // Use the width value here for any logic you need
+  }
+}
 
-<style lang="scss" scoped></style>
+onMounted(() => {
+  updateWidth()
+
+  const resizeObserver = new ResizeObserver(updateWidth)
+  if (containerRef.value) {
+    resizeObserver.observe(containerRef.value)
+  }
+
+  onBeforeUnmount(() => {
+    resizeObserver.disconnect()
+  })
+})
+defineExpose({
+  containerWidth
+});
+</script>

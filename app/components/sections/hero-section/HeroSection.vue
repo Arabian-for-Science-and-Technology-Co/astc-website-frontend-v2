@@ -1,6 +1,6 @@
 <template>
   <section
-    class="app-container flex min-h-[100svh] w-full flex-col justify-between gap-0 overflow-y-auto overflow-x-hidden font-zarid text-[#465ae5] xl:gap-[50px] 2xl:justify-start 2xl:gap-0"
+    class="app-container flex min-h-[100svh] w-full flex-col justify-between gap-0 overflow-y-auto overflow-x-hidden font-zarid text-[#465ae5] pb-[175px] xl:gap-[50px] 2xl:justify-start 2xl:gap-0"
   >
     <article
       class="relative z-10 w-full pt-[58px] xl:h-fit xl:pt-[58px] 2xl:h-[665px] 2xl:pt-[243px]"

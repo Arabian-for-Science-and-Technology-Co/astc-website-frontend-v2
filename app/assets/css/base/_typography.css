@@ -50,10 +50,6 @@
   font-display: swap;
 }
 
-:root {
-  --font-zarid: '29LT Zarid Sans AL', 'Zarid-Fallback', system-ui, sans-serif;
-}
-
 html {
   font-family: '29LT Zarid Sans AL', 'Zarid-Fallback', system-ui, sans-serif;
   /* @apply font-zarid; */

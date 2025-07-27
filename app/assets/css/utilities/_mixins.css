@@ -14,19 +14,19 @@
     scrollbar-width: thin;
     scrollbar-color: theme('colors.gray.400') transparent;
   }
-  
-  .app-container {
-    padding-left: 19px;
-    padding-right: 18px;
 
+  .app-container {
+    --pl: 19px;
+    --pr: 18px;
     @media (min-width: 1280px) {
-      padding-left: 65px;
-      padding-right: 64px;
+      --pl: 65px;
+      --pr: 64px;
     }
- 
     @media (min-width: 1920px) {
-      padding-left: 70px;
-      padding-right: 70px;
+      --pl: 70px;
+      --pr: 70px;
     }
+    padding-left: var(--pl);
+    padding-right: var(--pr);
   }
 }

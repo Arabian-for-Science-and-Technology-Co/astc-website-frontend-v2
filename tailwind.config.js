@@ -11,6 +11,7 @@ module.exports = {
   theme: {
     fontFamily: {
       zarid: ['29LT Zarid Sans AL', 'Zarid-Fallback', 'system-ui', ' sans-serif'],
+      sans: ['29LT Zarid Sans AL', 'Zarid-Fallback', 'system-ui', ' sans-serif'],
     },
     extend: {
       colors: {
