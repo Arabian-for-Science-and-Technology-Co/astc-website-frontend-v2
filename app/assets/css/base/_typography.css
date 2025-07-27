@@ -1,7 +1,7 @@
 /* assets/css/base/_typography.css */
 
 /* Variable Font (Main) */
-@font-face {
+/* @font-face {
   font-family: 'Zarid';
   src: url('../../Fonts/29LT Zarid Sans AL-Desktop-VAR-WOFF2-OTF/29LTZaridSansALVF.woff2')
     format('woff2-variations');
@@ -9,17 +9,17 @@
   font-stretch: 75% 125%;
   font-style: normal;
   font-display: swap;
-}
+} */
 
 /* Variable Slanted */
-@font-face {
+/* @font-face {
   font-family: 'Zarid';
   src: url('../../Fonts/29LT Zarid Sans AL-Desktop-VAR-WOFF2-OTF/29LTZaridSansALVF-Slanted.woff2')
     format('woff2-variations');
   font-weight: 100 900;
   font-style: italic;
   font-display: swap;
-}
+} */
 
 /* Static Fallback (Optional) */
 /* @font-face {
@@ -29,16 +29,41 @@
   font-weight: 400;
   font-display: swap;
 } */
+/* MAIN FONT WITH TECH ENHANCEMENTS */
+@font-face {
+  font-family: '29LT Zarid Sans AL';
+  src:
+    url('../../Fonts/29LT Zarid Sans AL-Desktop-VAR-WOFF2-OTF/29LTZaridSansALVF.woff2')
+      format('woff2 supports variations'),
+    url('../../Fonts/29LT Zarid Sans AL-Desktop-VAR-WOFF2-OTF/29LTZaridSansALVF.woff2')
+      format('woff2-variations');
+  font-display: swap;
+  font-weight: 100 900;
+}
 
- 
- :root {
-    --font-zarid: 'Zarid', 'Zarid-Fallback', system-ui, sans-serif;
-  }
+/* SLANTED WITH MODERN SYNTAX */
+@font-face {
+  font-family: '29LT Zarid Sans AL';
+  src: url('../../Fonts/29LT Zarid Sans AL-Desktop-VAR-WOFF2-OTF/29LTZaridSansALVF-Slanted.woff2')
+    format('woff2') tech('variations');
+  font-style: italic;
+  font-display: swap;
+}
 
-  html {
-    font-family: 'Zarid', 'Zarid-Fallback', system-ui, sans-serif;
-    /* @apply font-zarid; */
-    /* Better Arabic rendering */
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-  }
+:root {
+  --font-zarid: '29LT Zarid Sans AL', 'Zarid-Fallback', system-ui, sans-serif;
+}
+
+html {
+  font-family: '29LT Zarid Sans AL', 'Zarid-Fallback', system-ui, sans-serif;
+  /* @apply font-zarid; */
+  /* Better Arabic rendering */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+.font-figma-300 {
+  font-weight: 200 !important;
+}
+.font-figma-400 {
+  font-weight: 300 !important;
+}
