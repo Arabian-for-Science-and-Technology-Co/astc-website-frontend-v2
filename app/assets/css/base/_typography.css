@@ -49,7 +49,19 @@
   font-style: italic;
   font-display: swap;
 }
-
+@font-face {
+  font-family: 'Druk Wide';
+  src: url('../../Fonts/29LT Zarid Sans AL-Desktop-VAR-WOFF2-OTF/29LTZaridSansALVF-Slanted.woff2')
+    format('woff2') tech('variations');
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Druk Wide';
+  src: url('../../Fonts/Druk Wide/Druk Wide Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
 html {
   font-family: '29LT Zarid Sans AL', 'Zarid-Fallback', system-ui, sans-serif;
   /* @apply font-zarid; */

@@ -12,6 +12,7 @@ module.exports = {
     fontFamily: {
       zarid: ['29LT Zarid Sans AL', 'Zarid-Fallback', 'system-ui', ' sans-serif'],
       sans: ['29LT Zarid Sans AL', 'Zarid-Fallback', 'system-ui', ' sans-serif'],
+      durke: ['Druk Wide']
     },
     extend: {
       colors: {
