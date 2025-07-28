@@ -3,6 +3,7 @@
     <HeroSection />
     <NewsSection />
     <AnnouncementSection />
+    <PromoSection />
     
   </div>
 </template>
