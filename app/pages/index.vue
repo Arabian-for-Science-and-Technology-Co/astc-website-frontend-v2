@@ -4,6 +4,7 @@
     <NewsSection />
     <AnnouncementSection />
     <PromoSection />
+    <CustomersSection />
     
   </div>
 </template>
