@@ -11,7 +11,7 @@
         industries and driving progress
       </p>
       <button
-        class="mt-[100px] w-full max-w-[275px] rounded-3xl bg-white py-[23px] text-center text-base font-normal not-italic leading-[normal] tracking-[0.2px] text-black"
+        class="mt-[100px] w-full max-w-[275px] rounded-3xl bg-white py-[23px] text-center text-base font-normal not-italic leading-[normal] tracking-[0.2px] text-black transition-colors hover:bg-white/70"
       >
         More details...
       </button>

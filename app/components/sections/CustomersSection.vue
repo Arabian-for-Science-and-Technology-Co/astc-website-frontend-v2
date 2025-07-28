@@ -16,7 +16,7 @@
       </figure>
     </article>
     <button
-      class="mt-[109px] w-full max-w-[275px] rounded-3xl bg-white py-[23px] text-center text-xl font-[400] not-italic leading-[21px] tracking-[0.2px] text-black"
+      class="mt-[109px] w-full max-w-[275px] rounded-3xl bg-white py-[23px] text-center text-xl font-[400] not-italic leading-[21px] tracking-[0.2px] text-black transition-colors hover:bg-white/70"
     >
       Discover All Cases
     </button>
