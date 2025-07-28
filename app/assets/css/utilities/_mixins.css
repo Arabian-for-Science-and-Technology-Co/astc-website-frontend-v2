@@ -16,18 +16,18 @@
   }
 
   .app-container {
-    --pl: 19px;
-    --pr: 18px;
+    --container-ps: 19px;
+    --container-pe: 18px;
     @media (min-width: 1280px) {
-      --pl: 65px;
-      --pr: 64px;
+      --container-ps: 65px;
+      --container-pe: 64px;
     }
     @media (min-width: 1920px) {
-      --pl: 70px;
-      --pr: 70px;
+      --container-ps: 70px;
+      --container-pe: 70px;
     }
-    padding-left: var(--pl);
-    padding-right: var(--pr);
+    padding-left: var(--container-ps);
+    padding-right: var(--container-pe);
   }
 }
 .text-truncate-ellipsis {

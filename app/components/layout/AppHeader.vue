@@ -17,7 +17,7 @@
       <article class="flex items-center gap-[40px]">
         <LanguageSwitcher />
         <div :style="{ width: tabsRef?.containerWidth + 'px' }"></div>
-        <Tabs ref="tabsRef" class="fixed end-[--pl]" v-model="selected" :tabs="tabs" />
+        <Tabs ref="tabsRef" class="fixed end-[--container-ps]" v-model="selected" :tabs="tabs" />
       </article>
     </ClientOnly>
   </section>
