@@ -2,6 +2,7 @@
   <div class="mb-[400px]">
     <HeroSection />
     <NewsSection />
+    <AnnouncementSection />
     
   </div>
 </template>
