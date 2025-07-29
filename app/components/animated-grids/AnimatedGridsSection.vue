@@ -1,5 +1,11 @@
 <template>
-  <div id="AnimatedGridsSection" class="">
+  <div
+    :style="{
+      '--grid-color': color
+    }"
+    id="AnimatedGridsSection"
+    class=""
+  >
     <div class="static-grid">
       <StaticGride v-for="i in 14" :delay="0" :smallDotPosition="smallDotPosition" />
     </div>
@@ -12,6 +18,12 @@
 </template>
 
 <script setup>
+const props = defineProps({
+  color: {
+    type: String,
+    default: '#6f80f5'
+  }
+})
 const breakpoint = useBreakpoints()
 const smallDotPosition = computed(() => (breakpoint.value == '2xl' ? 15 : 3))
 </script>
@@ -22,7 +34,6 @@ const smallDotPosition = computed(() => (breakpoint.value == '2xl' ? 15 : 3))
   --grid-height: 8px;
   --grid-h-gap: 4.1875px;
   --grid-v-gap: 4.88px;
-  --grid-color: #6f80f5;
 
   --grid-contianer-padding-top: 1px;
   --grid-contianer-padding-bottom: 1px;
@@ -41,13 +52,11 @@ const smallDotPosition = computed(() => (breakpoint.value == '2xl' ? 15 : 3))
     --grid-contianer-padding-start: 2.76px;
   }
 
-  margin-top: 22.01px;
   padding-top: var(--grid-contianer-padding-top);
   padding-bottom: var(--grid-contianer-padding-bottom);
   padding-inline-end: var(--grid-contianer-padding-end);
   padding-inline-start: var(--grid-contianer-padding-start);
   @media (min-width: 1280px) {
-    margin-top: 23.07px;
   }
   /* padding: 4px; */
   position: relative;

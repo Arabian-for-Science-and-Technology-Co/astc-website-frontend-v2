@@ -3,10 +3,12 @@
     <HeroSection />
     <NewsSection />
     <AnnouncementSection />
+
     <PromoSection />
     <CustomersSection />
     <ParallaxSection />
     <PartnersSection />
+    <SaudiVisionSection />
     
   </div>
 </template>
