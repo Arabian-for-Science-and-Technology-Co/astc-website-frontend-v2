@@ -6,6 +6,7 @@
     <PromoSection />
     <CustomersSection />
     <ParallaxSection />
+    <PartnersSection />
     
   </div>
 </template>
