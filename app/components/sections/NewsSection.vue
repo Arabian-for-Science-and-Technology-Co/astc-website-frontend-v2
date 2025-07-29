@@ -7,10 +7,10 @@
         class="group relative flex h-full flex-shrink-0 items-start justify-start pe-[100px] last-of-type:pe-0"
         v-for="(item, index) in data"
       >
-        <div class="text-[32px] not-italic tracking-[0.32px] text-white">
+        <div class="text-[32px] not-italic tracking-[0.32px] text-white hover:text-[#0ADF0A]">
           <h4 class="mb-[2px] font-[700] uppercase leading-[38.4px]">{{ item.title }}</h4>
           <h4
-            class="text-truncate-multi w-[580px] pe-[10%] text-[32px] font-[300] not-italic leading-[30.4px] tracking-[0.32px] text-white"
+            class="text-truncate-multi w-[580px] pe-[10%] text-[32px] font-[300] not-italic leading-[30.4px] tracking-[0.32px]"
           >
             {{ item.desc }}
           </h4>
@@ -29,7 +29,7 @@
         </div>
       </div>
       <button
-        class="font-durke my-auto whitespace-nowrap text-center align-middle text-[32px] font-medium uppercase not-italic leading-[120%] tracking-[0.32px] text-[#0ADF0A]"
+        class="font-durke my-auto whitespace-nowrap text-center align-middle text-[32px] font-medium uppercase not-italic leading-[120%] tracking-[0.32px] text-[#0ADF0A] hover:text-white"
       >
         all news /
       </button>

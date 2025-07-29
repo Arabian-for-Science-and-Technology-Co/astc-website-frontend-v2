@@ -4,7 +4,7 @@
     <main class="flex-grow">
       <slot />
     </main>
-    <!-- <AppFooter /> -->
+    <AppFooter />
   </div>
 </template>
 

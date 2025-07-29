@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-[400px]">
+  <div class="">
     <HeroSection />
     <NewsSection />
     <AnnouncementSection />
