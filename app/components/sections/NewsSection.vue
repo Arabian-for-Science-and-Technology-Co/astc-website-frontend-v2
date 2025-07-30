@@ -1,7 +1,7 @@
 <template>
   <section class="h-[200px] bg-[#465AE6] pb-[36px] pt-[30px] font-zarid">
     <div
-      class="scrollWrapper app-container flex h-full items-start justify-start gap-[95px] overflow-auto"
+      class="scrollWrapper app-container flex h-full items-start justify-start lg:gap-[95px] gap-[70px] overflow-auto"
     >
       <div
         class="group relative flex h-full flex-shrink-0 items-start justify-start pe-[100px] last-of-type:pe-0"
