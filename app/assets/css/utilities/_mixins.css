@@ -19,8 +19,8 @@
     --container-ps: 19px;
     --container-pe: 18px;
     @media (min-width: 1280px) {
-      --container-ps: 65px;
-      --container-pe: 64px;
+      --container-ps: 41px;
+      --container-pe: 40px;
     }
     @media (min-width: 1920px) {
       --container-ps: 70px;

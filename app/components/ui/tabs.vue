@@ -40,7 +40,7 @@ const onTabChange = (tab) => {
 const updateWidth = () => {
   if (containerRef.value) {
     containerWidth.value = containerRef.value.offsetWidth
-    console.log('Current container width:', containerWidth.value)
+    // console.log('Current container width:', containerWidth.value)
     // Use the width value here for any logic you need
   }
 }

@@ -1,9 +1,17 @@
 <template>
   <section
-    class="app-container flex min-h-[100svh] w-full flex-col justify-between gap-0 overflow-y-auto overflow-x-hidden font-zarid text-[#465ae5] pb-[175px] xl:gap-[50px] 2xl:justify-start 2xl:gap-0"
+    :class="[
+      'flex min-h-[100svh] w-full flex-col justify-between gap-0 overflow-y-auto overflow-x-hidden font-zarid text-[#465ae5]',
+      'lg:gap-[162px] lg:pb-[126px]',
+      '2xl:justify-start 2xl:gap-0 2xl:pb-[175px]'
+    ]"
   >
     <article
-      class="relative z-10 w-full pt-[58px] xl:h-fit xl:pt-[58px] 2xl:h-[665px] 2xl:pt-[243px]"
+      :class="[
+        'app-container relative z-10 w-full pt-[58px]',
+        'lg:h-fit lg:pt-[203px]',
+        '2xl:h-[665px] 2xl:pt-[243px]'
+      ]"
     >
       <video
         autoplay
@@ -16,7 +24,11 @@
       </video>
 
       <div
-        class="relative flex w-full flex-col flex-wrap items-center justify-start gap-[39px] xl:flex-row xl:flex-nowrap xl:items-start xl:justify-center xl:gap-[100px] 2xl:justify-start 2xl:gap-[338.1px]"
+        :class="[
+          'relative flex w-full flex-col flex-wrap items-center justify-start gap-[39px]',
+          'lg:flex-row lg:flex-nowrap lg:items-start lg:justify-start lg:gap-[18.6%]',
+          '2xl:justify-start 2xl:gap-[338.1px]'
+        ]"
       >
         <div
           class="mb-0 h-[55px] w-[106px] xl:h-[150px] xl:w-[300px] 2xl:mb-[12px] 2xl:h-[209px] 2xl:w-[400.09px]"
@@ -40,8 +52,10 @@
       </div>
     </article>
 
-    <article class="relative z-10">
-      <ServicesSlider />
+    <article class="relative z-10 flex-1">
+      <ClientOnly>
+        <ServicesSlider />
+      </ClientOnly>
     </article>
   </section>
 </template>
