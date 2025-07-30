@@ -40,5 +40,8 @@
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3; /* Number of lines before truncation */
+  -webkit-line-clamp: 4; /* Number of lines before truncation */
+  @media (min-width: 1024px) {
+    -webkit-line-clamp: 3;
+  }
 }

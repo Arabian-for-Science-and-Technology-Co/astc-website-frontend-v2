@@ -7,10 +7,20 @@
         class="group relative flex h-full flex-shrink-0 items-start justify-start pe-[100px] last-of-type:pe-0"
         v-for="(item, index) in data"
       >
-        <div class="text-[32px] not-italic tracking-[0.32px] text-white hover:text-[#0ADF0A]">
-          <h4 class="mb-[2px] font-[700] uppercase leading-[38.4px]">{{ item.title }}</h4>
+        <div class="not-italic text-white hover:text-[#0ADF0A]">
           <h4
-            class="text-truncate-multi w-[580px] pe-[10%] text-[32px] font-[300] not-italic leading-[30.4px] tracking-[0.32px]"
+            :class="[
+              'font-durke mb-[14px] text-[16px] font-[500] uppercase leading-[19.2px] tracking-[0.16px]',
+              'lg:mb-[2px] lg:font-zarid lg:text-[32px] lg:font-[700] lg:leading-[38.4px] lg:tracking-[0.32px]'
+            ]"
+          >
+            {{ item.title }}
+          </h4>
+          <h4
+            :class="[
+              'text-truncate-multi w-[220px] text-[20px] font-[200] leading-[21px] tracking-[0.32px]',
+              'lg:w-[580px] lg:pe-[10%] lg:text-[32px] lg:font-[300] lg:leading-[30.4px]'
+            ]"
           >
             {{ item.desc }}
           </h4>
@@ -18,10 +28,10 @@
         <img
           v-if="item.video"
           :src="item.video"
-          class="h-[102px] w-[157px] self-end rounded-[10px] object-cover"
+          class="mb-[17px] h-[87px] w-[133.912px] self-end rounded-[10px] object-cover lg:mb-0 lg:h-[102px] lg:w-[157px]"
         />
         <div
-          class="absolute bottom-0 end-0 flex flex-col items-start justify-start text-[52px] font-[200] not-italic leading-[49.4px] tracking-[0.52px] text-[#0ADF0A] group-last-of-type:hidden"
+          class="absolute bottom-0 end-0 flex flex-col items-start justify-start text-[40px] font-[200] not-italic leading-[49.4px] tracking-[0.52px] text-[#0ADF0A] group-last-of-type:hidden lg:text-[52px]"
         >
           <span>#</span>
           <span>#</span>
@@ -29,7 +39,7 @@
         </div>
       </div>
       <button
-        class="font-durke my-auto whitespace-nowrap text-center align-middle text-[32px] font-medium uppercase not-italic leading-[120%] tracking-[0.32px] text-[#0ADF0A] hover:text-white"
+        class="font-durke my-auto whitespace-nowrap text-center align-middle text-[20px] font-medium uppercase not-italic leading-[120%] tracking-[0.32px] text-[#0ADF0A] hover:text-white lg:text-[32px]"
       >
         all news /
       </button>
