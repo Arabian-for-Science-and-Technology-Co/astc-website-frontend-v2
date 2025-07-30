@@ -3,9 +3,13 @@
     <article
       class="app-container flex items-center justify-between gap-[200px] !pe-[210px] text-[90px] font-[200] not-italic leading-[85.5px] tracking-[0.9px] text-black"
     >
-      <a href="tel:+966 11 4544158" class="cursor-default whitespace-nowrap hover:text-[#1778FF]"
-        >+966 11 4544158</a
+      <a
+        dir="ltr"
+        href="tel:+966 11 4544158"
+        class="cursor-default whitespace-nowrap hover:text-[#1778FF]"
       >
+        +966 11 4544158
+      </a>
       <a href="mailto:info@astc.com.sa" class="ms-[21px]">info@astc.com.sa</a>
       <div class="flex items-center gap-8">
         <a href="https://www.w3schools.com/" target="_blank">
