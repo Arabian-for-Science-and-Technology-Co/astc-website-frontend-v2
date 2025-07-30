@@ -1,12 +1,25 @@
 <template>
-  <section class="app-container bg-[#F0F0F0] pb-[163px] pt-[190px] font-zarid">
+  <section
+    :class="[
+      'app-container bg-[#F0F0F0] pb-[127px] pt-[100px] font-zarid',
+      'lg:pb-[127px] lg:pt-[110px]',
+      'xl:pb-[163px] xl:pt-[190px]'
+    ]"
+  >
     <h2
-      class="main-text-color max-w-[80%] text-[140px] font-[200] not-italic leading-[133px] tracking-[1.4px]"
+      :class="[
+        'main-text-color max-w-[80%] text-[52px] font-[200] not-italic leading-[49.4px] tracking-[0.52px]',
+        'lg:text-[90px] lg:leading-[85.5px] lg:tracking-[0.9px]',
+        'xl:text-[140px] xl:leading-[133px] xl:tracking-[1.4px]'
+      ]"
     >
       Contributing to the Saudi future with delivering fully local technologies
     </h2>
     <button
-      class="mt-[100px] w-full max-w-[275px] rounded-3xl bg-white py-[23px] text-center text-xl font-[400] not-italic leading-[21px] tracking-[0.2px] text-black transition-colors hover:bg-white/70"
+      :class="[
+        'mt-[80px] w-full max-w-[275px] rounded-3xl bg-white py-[23px] text-center text-xl font-[400] not-italic leading-[21px] tracking-[0.2px] text-black transition-colors hover:bg-white/70',
+        'xl:mt-[100px]'
+      ]"
     >
       About Us
     </button>
