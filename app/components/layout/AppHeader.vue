@@ -6,15 +6,30 @@
     ]"
   >
     <article class="flex items-center gap-[30px]">
-      <VisionLogoIcon />
-      <h3 class="text-xl font-normal not-italic leading-[100%] tracking-[0.2px] text-[#A9AEB8]">
+      <VisionLogoIcon :class="['w-[50px]', 'lg:w-auto']" />
+      <h3
+        class="hidden text-xl font-[300] not-italic leading-[100%] tracking-[0.2px] text-[#A9AEB8] lg:block"
+      >
         Every Saudi must get involved
         <br />
         for a better future
       </h3>
     </article>
     <ClientOnly>
-      <article class="flex items-center gap-[40px]">
+      <div :class="['-ms-[50px] -mt-6 mb-0 block h-[55px] w-[106px]', 'lg:hidden']">
+        <ASCLogoMainIcon class="h-full w-full" />
+      </div>
+    </ClientOnly>
+    <div class="self-start">
+      <button
+        class="gird fixed end-[--container-ps] m-0 aspect-square h-[42px] place-items-center rounded-xl bg-[#0000000D] p-0 backdrop-blur-[6px]"
+      >
+        <MenuMobileIcon />
+      </button>
+    </div>
+
+    <ClientOnly>
+      <article class="hidden items-center gap-[40px] lg:flex">
         <LanguageSwitcher />
         <div :style="{ width: tabsRef?.containerWidth + 'px' }"></div>
         <Tabs ref="tabsRef" class="fixed end-[--container-ps]" v-model="selected" :tabs="tabs" />
