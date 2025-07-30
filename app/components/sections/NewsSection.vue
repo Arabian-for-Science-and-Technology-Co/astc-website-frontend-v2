@@ -10,8 +10,8 @@
         <div class="not-italic text-white hover:text-[#0ADF0A]">
           <h4
             :class="[
-              'font-durke mb-[14px] text-[16px] font-[500] uppercase leading-[19.2px] tracking-[0.16px]',
-              'lg:mb-[2px] lg:font-zarid lg:text-[32px] lg:font-[700] lg:leading-[38.4px] lg:tracking-[0.32px]'
+              'main-title mb-[14px] text-[16px] font-[500] uppercase leading-[19.2px] tracking-[0.16px]',
+              'lg:mb-[2px] lg:text-[32px] lg:font-[700] lg:leading-[38.4px] lg:tracking-[0.32px]'
             ]"
           >
             {{ item.title }}
@@ -39,7 +39,7 @@
         </div>
       </div>
       <button
-        class="font-durke my-auto whitespace-nowrap text-center align-middle text-[20px] font-medium uppercase not-italic leading-[120%] tracking-[0.32px] text-[#0ADF0A] hover:text-white lg:text-[32px]"
+        class="my-auto whitespace-nowrap text-center align-middle font-durke text-[20px] font-medium uppercase not-italic leading-[120%] tracking-[0.32px] text-[#0ADF0A] hover:text-white lg:text-[32px]"
       >
         all news /
       </button>
@@ -80,14 +80,12 @@ const data = [
   display: none;
 }
 .main-title {
-  color: #fff;
+  font-family: 'Druk Wide', sans-serif;
+}
 
-  /* Web/astc_web_news-text_desktop */
-  font-family: '29LT Zarid Sans AL';
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 95%; /* 30.4px */
-  letter-spacing: 0.32px;
+@media (min-width: 1024px) {
+  .main-title {
+    font-family: '29LT Zarid Sans AL', 'Zarid-Fallback', system-ui, sans-serif;
+  }
 }
 </style>
