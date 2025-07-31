@@ -52,18 +52,24 @@ const solutions = Object.entries(solutionsModules).map(([_, module], index) => (
   @apply text-xl font-semibold not-italic leading-[normal] tracking-[0.2px] text-black;
 }
 .imgs-contianer {
-  @apply flex flex-wrap justify-start gap-[60px];
+  @apply flex flex-wrap justify-start gap-[23.09px];
+  @apply lg:gap-[60px];
 }
 .imgs-contianer__card {
-  @apply flex flex-col items-center gap-[20px];
+  @apply flex w-[90.3px] flex-col items-center gap-[11.67px];
+  @apply lg:w-[120px] lg:gap-[20px];
+  @apply 2xl:w-[160px];
 }
 .imgs-contianer__card__img {
-  @apply h-[160px] w-[160px] overflow-hidden rounded-[36.923px] transition-all hover:translate-y-[-5px];
+  @apply h-[90.3px] w-full overflow-hidden rounded-[20.845px] transition-all hover:translate-y-[-5px];
+  @apply lg:h-[120px] lg:rounded-[27.692px];
+  @apply 2xl:h-[160px] 2xl:rounded-[36.923px];
+
   &:hover {
     filter: drop-shadow(0 16px 28px rgba(23, 120, 255, 0.5));
   }
 }
 .imgs-contianer__card__title {
-  @apply max-w-[136px] text-center text-xl font-medium uppercase not-italic leading-[normal] tracking-[1.6px] text-black;
+  @apply w-full text-center text-xl font-medium uppercase not-italic leading-[normal] tracking-[1.6px] text-black;
 }
 </style>

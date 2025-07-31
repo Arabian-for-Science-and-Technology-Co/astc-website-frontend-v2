@@ -1,7 +1,7 @@
 <template>
-  <section class="h-[200px] bg-[#465AE6] pb-[36px] pt-[30px] font-zarid">
+  <section id="NewsSection" class="h-[200px] bg-[#465AE6] pb-[36px] pt-[30px] font-zarid">
     <div
-      class="scrollWrapper app-container flex h-full items-start justify-start lg:gap-[95px] gap-[70px] overflow-auto"
+      class="scrollWrapper app-container flex h-full items-start justify-start gap-[70px] overflow-auto lg:gap-[95px]"
     >
       <div
         class="group relative flex h-full flex-shrink-0 items-start justify-start pe-[100px] last-of-type:pe-0"
@@ -79,12 +79,12 @@ const data = [
 .scrollWrapper::-webkit-scrollbar {
   display: none;
 }
-.main-title {
+#NewsSection .main-title {
   font-family: 'Druk Wide', sans-serif;
 }
 
 @media (min-width: 1024px) {
-  .main-title {
+  #NewsSection .main-title {
     font-family: '29LT Zarid Sans AL', 'Zarid-Fallback', system-ui, sans-serif;
   }
 }
