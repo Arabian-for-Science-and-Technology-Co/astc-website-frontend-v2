@@ -26,7 +26,7 @@
       <div
         :class="[
           'relative flex w-full flex-col flex-wrap items-center justify-start gap-[39px]',
-          'lg:flex-row lg:flex-nowrap lg:items-start lg:justify-start lg:gap-[18.6%]',
+          'lg:flex-row lg:flex-nowrap lg:items-start lg:justify-start lg:gap-[18.0%]',
           '2xl:justify-start 2xl:gap-[338.1px]'
         ]"
       >
@@ -43,8 +43,7 @@
         <h2
           :class="[
             'mt-0 flex flex-col items-center gap-0 text-center text-[20px] font-normal leading-[105%] tracking-[0.3px] text-[#18264a]',
-            'lg:self-end lg:text-start lg:text-[52px] lg:font-light lg:leading-[95%] lg:tracking-[0.52px]',
-            '2xl:items-start'
+            'lg:items-start lg:self-end lg:text-start lg:text-[52px] lg:font-light lg:leading-[95%] lg:tracking-[0.52px]'
           ]"
         >
           <span :class="['inline-block font-[400]', 'lg:font-[300]']">

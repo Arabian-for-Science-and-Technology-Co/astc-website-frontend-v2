@@ -1,25 +1,41 @@
 <template>
   <section
-    class="app-container flex items-start gap-5 bg-[#F0F0F0] pb-[230px] pt-[118px] font-zarid"
+    :class="[
+      'app-container flex flex-col items-start gap-[46px] bg-[#F0F0F0] pb-[64px] pt-[70px] font-zarid',
+      'lg:gap-[52px] lg:pb-[93px] lg:pt-[80px]',
+      '2xl:flex-row 2xl:gap-5 2xl:pb-[230px] 2xl:pt-[118px]'
+    ]"
   >
     <h2
-      class="w-[670px] pe-[5%] pt-[16px] text-[90px] font-light not-italic leading-[85.5px] tracking-[0.9px] text-[#18264A]"
+      :class="[
+        'w-full pe-0 pt-0 text-[52px] font-[200] not-italic leading-[49.4px] tracking-[0.52px] text-[#18264A]',
+        'lg:text-[90px] lg:leading-[85.5px] lg:tracking-[0.9px]',
+        '2xl:w-[670px] 2xl:pe-[5%] 2xl:pt-[16px]'
+      ]"
     >
       ASTC is a trusted partner of:
     </h2>
 
     <article
-      class="grid flex-1 grid-cols-[repeat(auto-fill,minmax(215px,1fr))] gap-x-[60px] gap-y-[40px]"
+      :class="[
+        'grid w-full grid-cols-[repeat(auto-fill,minmax(120px,1fr))] gap-x-[60px] gap-y-[40px] py-7',
+        'lg:w-[90%] lg:flex-1 lg:grid-cols-[repeat(auto-fill,minmax(190px,1fr))] lg:gap-x-[30px] lg:gap-y-[50px] lg:py-7',
+        '2xl:w-full 2xl:flex-1 2xl:grid-cols-[repeat(auto-fill,minmax(215px,1fr))] 2xl:gap-x-[60px] 2xl:gap-y-[40px] 2xl:py-0'
+      ]"
     >
       <figure
         v-for="({ grey, color }, i) in partnerPairs"
         :key="i"
-        class="flex w-[215px] items-center p-0"
+        :class="[
+          'flex h-[50px] w-[120px] items-center justify-start',
+          'lg:h-[50px] lg:w-[190px]',
+          '2xl:h-[75px] 2xl:w-[215px]'
+        ]"
       >
         <img
           :src="grey"
           :alt="`logo ${i + 1}`"
-          class="max-h-[75px]"
+          class="h-full object-contain transition-opacity"
           @mouseover="$event.currentTarget.src = color"
           @mouseleave="$event.currentTarget.src = grey"
         />

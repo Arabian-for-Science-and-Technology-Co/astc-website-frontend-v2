@@ -24,8 +24,11 @@ const props = defineProps({
     default: '#6f80f5'
   }
 })
-const breakpoint = useBreakpoints()
-const smallDotPosition = computed(() => (breakpoint.value == '2xl' ? 15 : 3))
+const { gte } = useBreakpoints()
+const smallDotPosition = computed(() => {
+  if (gte('lg')) return 15
+  return 3
+})
 </script>
 
 <style scoped>
