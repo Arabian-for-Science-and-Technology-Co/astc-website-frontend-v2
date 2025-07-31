@@ -22,7 +22,7 @@
     </ClientOnly>
     <div class="self-start">
       <button
-        class="gird fixed end-[--container-ps] m-0 aspect-square h-[42px] place-items-center rounded-xl bg-[#0000000D] p-0 backdrop-blur-[6px]"
+        class="gird fixed end-[--container-ps] m-0 aspect-square h-[42px] place-items-center rounded-xl bg-[#0000000D] p-0 backdrop-blur-[6px] lg:hidden"
       >
         <MenuMobileIcon />
       </button>

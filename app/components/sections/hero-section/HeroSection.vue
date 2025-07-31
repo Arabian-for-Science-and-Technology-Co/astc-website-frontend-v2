@@ -26,7 +26,7 @@
       <div
         :class="[
           'relative flex w-full flex-col flex-wrap items-center justify-start gap-[39px]',
-          'lg:flex-row lg:flex-nowrap lg:items-start lg:justify-start lg:gap-[18.0%]',
+          'lg:flex-row lg:flex-nowrap lg:items-start lg:justify-start lg:gap-[15vw]',
           '2xl:justify-start 2xl:gap-[338.1px]'
         ]"
       >
