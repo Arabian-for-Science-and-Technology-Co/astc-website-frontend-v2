@@ -1,7 +1,7 @@
 <template>
   <section
     :class="[
-      'flex min-h-[100svh] w-full flex-col justify-between gap-[105px] overflow-y-auto overflow-x-hidden pb-[103px] font-zarid text-[#465ae5]',
+      'flex w-full flex-col justify-between gap-[105px] overflow-y-auto overflow-x-hidden pb-[108.3px] font-zarid text-[#465ae5] lg:min-h-[100svh]',
       'lg:gap-[162px] lg:pb-[126px]',
       '2xl:justify-start 2xl:gap-0 2xl:pb-[175px]'
     ]"
