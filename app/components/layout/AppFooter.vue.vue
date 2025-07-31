@@ -51,8 +51,8 @@
           '2xl:mt-[10px] 2xl:flex-row 2xl:items-center'
         ]"
       >
-        <ASCLogoMiniIcon class="ms-[117px] lg:ms-0" />
-        <p class="flex gap-[65px] lg:gap-1 2xl:self-end">
+        <ASCLogoMiniIcon class="ms-[31.2vw] lg:ms-0" />
+        <p class="flex gap-[17.34vw] lg:gap-1 2xl:self-end">
           <span>© 2025</span>
           <span class="max-w-[140px] lg:max-w-full">Arabian for Science and Technology</span>
         </p>
@@ -108,6 +108,7 @@ const pages = [
 <style scoped>
 .pages h3:last-child {
   @apply mt-[-28px] text-xl font-normal leading-[105%] tracking-[0.2px];
+  @apply lg:mt-[0px];
 }
 
 .pages h3:nth-last-child(2) {
