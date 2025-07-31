@@ -32,7 +32,18 @@
       <article class="hidden items-center gap-[40px] lg:flex">
         <LanguageSwitcher />
         <div :style="{ width: tabsRef?.containerWidth + 'px' }"></div>
-        <Tabs ref="tabsRef" class="fixed end-[--container-ps]" v-model="selected" :tabs="tabs" />
+        <Tabs ref="tabsRef" class="fixed end-[--container-ps]" v-model="selected" :tabs="tabs">
+          <template #tab="{ tab, isSelected }">
+            <h2 :class="[!isSelected && 'hover:text-[#1778FF]']">
+              {{ tab.label }}
+            </h2>
+            <span
+              v-if="tab.isNew"
+              class="absolute end-[7px] top-[7px] h-2 w-2 rounded-full bg-[#0ADF0A]"
+            >
+            </span>
+          </template>
+        </Tabs>
       </article>
     </ClientOnly>
   </section>
@@ -41,10 +52,10 @@
 <script setup>
 import LanguageSwitcher from '~/components/LanguageSwitcher.vue'
 const tabs = [
-  { label: 'Products & Solutions', value: 'Products & Solutions' },
-  { label: 'News', value: 'News', isNew: true },
-  { label: 'About', value: 'About' },
-  { label: 'Contact', value: 'Contact' }
+  { id: 'products_solutions', label: 'Products & Solutions', value: 'Products & Solutions' },
+  { id: 'news', label: 'News', value: 'News', isNew: true },
+  { id: 'about', label: 'About', value: 'About' },
+  { id: 'contact', label: 'Contact', value: 'Contact' }
 ]
 const selected = ref(null)
 

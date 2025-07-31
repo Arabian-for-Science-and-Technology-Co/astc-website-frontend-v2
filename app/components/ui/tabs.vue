@@ -15,9 +15,9 @@
         btnClass
       ]"
     >
-      {{ tab.label }}
-      <span v-if="tab.isNew" class="absolute end-[7px] top-[7px] h-2 w-2 rounded-full bg-[#0ADF0A]">
-      </span>
+      <slot name="tab" :tab="tab" :isSelected="tab.value == modelValue?.value">
+        {{ tab.label }}
+      </slot>
     </button>
   </div>
 </template>
@@ -59,5 +59,5 @@ onMounted(() => {
 })
 defineExpose({
   containerWidth
-});
+})
 </script>
