@@ -32,7 +32,6 @@ const emits = defineEmits(['update:modelValue'])
 
 const containerRef = ref(null)
 const containerWidth = ref(0)
-
 const onTabChange = (tab) => {
   emits('update:modelValue', tab)
 }
