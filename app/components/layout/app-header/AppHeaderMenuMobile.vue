@@ -9,7 +9,7 @@
     <teleport to="body">
       <section
         v-if="isOpen"
-        class="fixed pb-[66.8px] start-0 top-0 z-[100] flex h-[100vh] w-full flex-col overflow-y-auto bg-[#0D1667] text-white"
+        class="fixed start-0 top-0 z-[100] flex h-[100vh] w-full flex-col overflow-y-auto bg-[#0D1667] pb-[66.8px] text-white"
       >
         <section
           :class="[
@@ -45,18 +45,21 @@
           </button>
         </section>
         <div
-          :class="[
-            'app-container grid-rows-col grid-col-1 mt-[81px] grid w-fit gap-x-[0px] gap-y-[28px]'
-          ]"
+          :class="['app-container mt-[81px] inline-flex w-fit flex-col items-stretch gap-y-[28px]']"
         >
           <h3
             v-for="tab in tabs"
-            :class="['text-[52px] font-[200] not-italic leading-[49.4px] tracking-[0.52px]']"
+            :class="['text-[52px] w-fit relative font-[200] not-italic leading-[49.4px] tracking-[0.52px]']"
           >
             {{ tab.label }}
+            <span
+              v-if="tab.isNew"
+              class="absolute end-[-8px] top-[0px] h-2 w-2 rounded-full bg-[#0ADF0A]"
+            >
+            </span>
           </h3>
         </div>
-        <ProductsSection class="text-white !pt-[98px] !pb-[114px]" />
+        <ProductsSection class="!pb-[114px] !pt-[98px] text-white" />
         <AppFooterSection1 themeColor="white" class="text-white" />
       </section>
     </teleport>
