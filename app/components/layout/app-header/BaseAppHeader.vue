@@ -7,16 +7,22 @@
   >
     <!-- Left Logo Section -->
     <article v-if="showLeftLogo" class="-mt-[17px] hidden gap-[27px] lg:flex">
-      <ASCLogoMainIcon class="mb-[7px] h-[68px] w-[130px] self-start" />
+      <ASCLogoMainIcon
+        :color="isWhiteLogo ? 'white' : null"
+        class="mb-[7px] h-[68px] w-[130px] self-start"
+      />
       <h3
-        class="max-w-[129px] self-end text-xl font-[300] not-italic leading-[21px] tracking-[0.2px] text-[#18264A]"
+        :class="[
+          'max-w-[129px] self-end text-xl font-[300] not-italic leading-[21px] tracking-[0.2px] text-[#18264A]',
+          isWhiteLogo ? 'text-white' : 'text-[#18264A]'
+        ]"
       >
         Arabian for Sience and Technology
       </h3>
     </article>
 
-    <!-- Center Vision Logo -->
     <ClientOnly>
+      <!-- Center Vision Logo -->
       <article class="mb-[10px] flex items-center gap-[30px] self-end">
         <VisionLogoIcon :class="['w-[50px]', 'lg:w-auto']" />
         <h3
@@ -30,10 +36,8 @@
           for a better future
         </h3>
       </article>
-    </ClientOnly>
 
-    <!-- Mobile Logo -->
-    <ClientOnly>
+      <!-- Mobile Logo -->
       <div :class="['-ms-[50px] -mt-6 mb-0 block h-[55px] w-[106px]', 'lg:hidden']">
         <ASCLogoMainIcon class="h-full w-full" />
       </div>
@@ -41,11 +45,7 @@
 
     <!-- Mobile Menu Button -->
     <div class="self-start">
-      <button
-        class="gird fixed end-[--container-ps] m-0 aspect-square h-[42px] place-items-center rounded-xl bg-[#0000000D] p-0 backdrop-blur-[6px] lg:hidden"
-      >
-        <MenuMobileIcon />
-      </button>
+      <AppHeaderMenuMobile :tabs="tabs"  />
     </div>
 
     <!-- Tabs Section -->
@@ -91,7 +91,8 @@ import { ref } from 'vue'
 const props = defineProps({
   tabs: Array,
   showLeftLogo: { type: Boolean, default: true },
-  enableHover: { type: Boolean, default: true }
+  enableHover: { type: Boolean, default: true },
+  isWhiteLogo: { type: Boolean, default: false }
 })
 
 import LanguageSwitcher from '~/components/LanguageSwitcher.vue'

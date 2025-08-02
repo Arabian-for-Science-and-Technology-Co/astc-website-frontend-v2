@@ -1,5 +1,5 @@
 <template>
-  <section class="app-container bg-[FFF] pb-[121px] pt-[80px] font-zarid">
+  <section class="app-container bg-[FFF] pb-[121px] pt-[80px] font-zarid text-black">
     <article>
       <h2 class="main-title">Products</h2>
       <div class="imgs-contianer mt-[29px]">
@@ -49,7 +49,7 @@ const solutions = Object.entries(solutionsModules).map(([_, module], index) => (
 </script>
 <style scoped>
 .main-title {
-  @apply text-xl font-semibold not-italic leading-[normal] tracking-[0.2px] text-black;
+  @apply text-xl font-semibold not-italic leading-[normal] tracking-[0.2px];
 }
 .imgs-contianer {
   @apply flex flex-wrap justify-start gap-[23.09px];
@@ -70,6 +70,7 @@ const solutions = Object.entries(solutionsModules).map(([_, module], index) => (
   }
 }
 .imgs-contianer__card__title {
-  @apply w-full text-center text-xl font-medium uppercase not-italic leading-[normal] tracking-[1.6px] text-black;
+  @apply w-full text-center text-[16px] font-[300] uppercase not-italic leading-[normal] tracking-[1.28px];
+  @apply lg:text-xl lg:font-[500] lg:tracking-[1.6px];
 }
 </style>

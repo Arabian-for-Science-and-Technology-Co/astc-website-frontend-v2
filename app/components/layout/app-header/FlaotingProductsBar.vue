@@ -17,5 +17,4 @@ defineProps({
   tabs: { type: Array, required: true }
 })
 const emits = defineEmits(['mouseover', 'mouseleave'])
-const selected = ref(null)
 </script>
