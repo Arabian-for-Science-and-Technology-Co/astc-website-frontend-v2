@@ -52,7 +52,7 @@ const solutions = Object.entries(solutionsModules).map(([_, module], index) => (
   @apply text-xl font-semibold not-italic leading-[normal] tracking-[0.2px];
 }
 .imgs-contianer {
-  @apply flex flex-wrap justify-start gap-[23.09px];
+  @apply flex flex-wrap justify-start gap-x-[23.09px] gap-y-[38.75px];
   @apply lg:gap-[60px];
 }
 .imgs-contianer__card {

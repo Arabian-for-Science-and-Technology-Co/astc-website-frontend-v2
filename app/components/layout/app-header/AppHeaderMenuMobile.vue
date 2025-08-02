@@ -56,7 +56,7 @@
             {{ tab.label }}
           </h3>
         </div>
-        <ProductsSection class="text-white !pt-[98x] pb-[114px]" />
+        <ProductsSection class="text-white !pt-[98px] !pb-[114px]" />
         <AppFooterSection1 themeColor="white" class="text-white" />
       </section>
     </teleport>
