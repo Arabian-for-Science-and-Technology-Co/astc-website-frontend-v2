@@ -9,8 +9,6 @@
     <ParallaxSection />
     <PartnersSection />
     <SaudiVisionSection />
-    <ProductsSection />
-    
   </div>
 </template>
 

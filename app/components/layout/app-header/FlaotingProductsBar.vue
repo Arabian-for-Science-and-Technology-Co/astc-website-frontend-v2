@@ -3,9 +3,9 @@
     <div
       @mouseover="$emit('mouseover')"
       @mouseleave="$emit('mouseleave')"
-      class="h-[90vh] overflow-y-auto max-h-[900px] bg-white"
+      class="h-[90vh] max-h-[900px] overflow-y-auto bg-white"
     >
-      <BaseAppHeader class="!static" :tabs="tabs" :showLeftLogo="true" :enableHover="false" />
+      <AppHeader class="!static" :showLeftLogo="true" :enableHover="false" />
       <ProductsSection class="!pb-[74px] !pt-[60px]" />
     </div>
     <div class="backdrop flex-1 bg-blue-900/40"></div>
@@ -13,8 +13,5 @@
 </template>
 
 <script setup>
-defineProps({
-  tabs: { type: Array, required: true }
-})
 const emits = defineEmits(['mouseover', 'mouseleave'])
 </script>
