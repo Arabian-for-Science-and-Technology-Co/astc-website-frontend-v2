@@ -6,7 +6,7 @@
       class="h-[90vh] overflow-y-auto max-h-[900px] bg-white"
     >
       <BaseAppHeader class="!static" :tabs="tabs" :showLeftLogo="true" :enableHover="false" />
-      <ProductsSection />
+      <ProductsSection class="!pb-[74px] !pt-[60px]" />
     </div>
     <div class="backdrop flex-1 bg-blue-900/40"></div>
   </div>
