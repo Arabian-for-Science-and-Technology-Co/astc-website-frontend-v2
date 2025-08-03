@@ -24,7 +24,7 @@
       ]"
     >
       <figure
-        v-for="({ grey, color }, i) in partnerPairs"
+        v-for="({ color }, i) in partnerPairs"
         :key="i"
         :class="[
           'flex h-[50px] w-[120px] items-center justify-start',
@@ -33,11 +33,9 @@
         ]"
       >
         <img
-          :src="grey"
+          :src="color"
           :alt="`logo ${i + 1}`"
-          class="h-full object-contain transition-opacity"
-          @mouseover="$event.currentTarget.src = color"
-          @mouseleave="$event.currentTarget.src = grey"
+          class="h-full object-contain grayscale filter transition duration-300 hover:filter-none"
           loading="lazy"
           decoding="async"
         />
@@ -72,4 +70,7 @@ const partnerPairs = Object.entries(pairs)
 
 <style scoped>
 /* Your existing styles… */
+.partner-img {
+  background: url(<path-to-image>) lightgray -35.778px -33.562px / 142.396% 259.82% no-repeat;
+}
 </style>
