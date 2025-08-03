@@ -3,7 +3,7 @@
     <div
       @mouseover="$emit('mouseover')"
       @mouseleave="$emit('mouseleave')"
-      class="h-[90vh] max-h-[900px] bg-white"
+      class="h-[90vh] overflow-y-auto max-h-[900px] bg-white"
     >
       <BaseAppHeader class="!static" :tabs="tabs" :showLeftLogo="true" :enableHover="false" />
       <ProductsSection />
