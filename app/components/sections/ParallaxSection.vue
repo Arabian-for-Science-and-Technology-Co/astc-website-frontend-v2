@@ -3,21 +3,13 @@
     ref="container"
     class="relative flex h-screen items-stretch overflow-hidden bg-[#0D1667] font-zarid"
   >
-    <img
-      :src="sky_parallax_1"
-      class="h-full flex-1 object-cover"
-      :alt="`sky_parallax_1`"
-      loading="lazy"
-      decoding="async"
-    />
+    <img :src="sky_parallax_1" class="h-full flex-1 object-cover" :alt="`sky_parallax_1`" />
     <img
       ref="sky2"
       :src="sky_parallax_2"
       class="absolute inset-0 h-full w-full object-cover"
       :style="{ clipPath }"
       :alt="`sky_parallax_2`"
-      loading="lazy"
-      decoding="async"
     />
   </section>
 </template>
@@ -35,10 +27,10 @@ const { gte } = useBreakpoints()
 const start = computed(() => {
   if (gte('2xl')) return '0 0, 68 0, 92 100, 0 100'
   if (gte('lg')) return '0 0, 69 0, 100 100, 0 100'
-  return '0 0, 64 0, 100 100, 0 100'
+  return '0 0, 81 0, 100 100, 0 100'
 })
 
-const end = ref('0 0, 0 0, 0 100, 0 100')
+const end = ref('0 0, 0 0, 28 100, 0 100')
 // parse a “’x y, x y, …’” string into an array [[x,y],…]
 function parsePoints(str) {
   return str.split(',').map((pair) => pair.trim().split(/\s+/).map(Number))

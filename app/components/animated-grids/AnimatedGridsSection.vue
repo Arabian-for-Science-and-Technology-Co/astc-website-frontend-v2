@@ -43,7 +43,7 @@ const smallDotPosition = computed(() => {
   --grid-contianer-padding-end: 5px;
   --grid-contianer-padding-start: 3.88px;
 
-  @media (min-width: 1280px) {
+  @media (min-width: 1024px) {
     --grid-width: 7.854px;
     --grid-height: 7.854px;
     --grid-h-gap: 3.39px;
@@ -59,8 +59,7 @@ const smallDotPosition = computed(() => {
   padding-bottom: var(--grid-contianer-padding-bottom);
   padding-inline-end: var(--grid-contianer-padding-end);
   padding-inline-start: var(--grid-contianer-padding-start);
-  @media (min-width: 1280px) {
-  }
+
   /* padding: 4px; */
   position: relative;
   .static-grid {
@@ -75,7 +74,7 @@ const smallDotPosition = computed(() => {
     inset-inline-start: calc(
       (3 * (var(--grid-width) + var(--grid-h-gap))) + var(--grid-contianer-padding-start)
     );
-    @media (min-width: 1280px) {
+    @media (min-width: 1024px) {
       inset-inline-start: calc(
         (15 * (var(--grid-width) + var(--grid-h-gap))) + var(--grid-contianer-padding-start)
       );
