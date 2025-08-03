@@ -4,7 +4,7 @@
       @click="isOpen = !isOpen"
       class="gird fixed end-[--container-ps] m-0 h-[42px] w-[42px] place-items-center rounded-xl bg-[#0000000D] p-0 backdrop-blur-[6px] lg:hidden"
     >
-      <MenuMobileIcon class="h-[8px] w-[18px]" />
+      <MenuMobileIcon class="static !h-[8px] !w-[18px]" />
     </button>
     <teleport to="body">
       <section
