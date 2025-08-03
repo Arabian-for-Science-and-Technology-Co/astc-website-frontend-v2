@@ -26,7 +26,12 @@
 import { ref, onMounted, onUnmounted, computed } from 'vue'
 import sky_parallax_1 from '~/assets/Images/main/sky_parallax_1.png'
 import sky_parallax_2 from '~/assets/Images/main/sky_parallax_2.png'
-
+const props = defineProps({
+  sectionData: { type: Object, defaults: {} }
+})
+onMounted(() => {
+  console.log('props.sectionData', props.sectionData)
+})
 // ——— Configurable start / end polygons ———
 // “x y, x y, x y, x y” (percent values, without the “%” or “polygon()”)
 

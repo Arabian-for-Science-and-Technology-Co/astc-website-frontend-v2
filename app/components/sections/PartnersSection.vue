@@ -47,6 +47,12 @@
 </template>
 
 <script setup>
+const props = defineProps({
+  sectionData: { type: Object, defaults: {} }
+})
+onMounted(() => {
+  console.log('props.sectionData', props.sectionData)
+})
 // 1. Grab everything matching partner_*.png, eager‑loaded at build time
 const modules = import.meta.glob('~/assets/Images/main/partners/partner_*.png', { eager: true })
 

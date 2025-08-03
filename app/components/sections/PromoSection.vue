@@ -48,6 +48,12 @@
 
 <script setup>
 import promoImg from '~/assets/Images/main/promo.png'
+const props = defineProps({
+  sectionData: { type: Object, defaults: {} }
+})
+onMounted(() => {
+  console.log('props.sectionData', props.sectionData)
+})
 </script>
 <style scoped>
 .main-text-color {

@@ -52,6 +52,12 @@
 
 <script setup>
 import newsVideo from '~/assets/Images/news-video.png'
+const props = defineProps({
+  sectionData: { type: Object, defaults: {} }
+})
+onMounted(() => {
+  console.log('props.sectionData', props.sectionData)
+})
 const data = [
   {
     title: 'June 3, 2025',

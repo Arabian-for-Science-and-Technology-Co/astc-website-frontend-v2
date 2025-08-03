@@ -56,6 +56,12 @@
 
 <script setup>
 import saudiVisionImg from '~/assets/Images/main/saudi_vision.png'
+const props = defineProps({
+  sectionData: { type: Object, defaults: {} }
+})
+onMounted(() => {
+  console.log('props.sectionData', props.sectionData)
+})
 </script>
 <style scoped>
 .main-text-color {

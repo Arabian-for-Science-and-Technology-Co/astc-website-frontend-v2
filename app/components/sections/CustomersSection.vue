@@ -49,6 +49,12 @@
 </template>
 
 <script setup>
+const props = defineProps({
+  sectionData: { type: Object, defaults: {} }
+})
+onMounted(() => {
+  console.log('props.sectionData', props.sectionData)
+})
 import client_1 from '~/assets/Images/main/clients/client_1.png'
 import client_2 from '~/assets/Images/main/clients/client_2.png'
 import client_3 from '~/assets/Images/main/clients/client_3.png'

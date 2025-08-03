@@ -26,7 +26,14 @@
   </section>
 </template>
 
-<script setup></script>
+<script setup>
+const props = defineProps({
+  sectionData: { type: Object, defaults: {} }
+})
+onMounted(() => {
+  console.log('props.sectionData', props.sectionData)
+})
+</script>
 <style scoped>
 .main-text-color {
   background: linear-gradient(265deg, #465ae5 13.12%, #3246a9 97.6%);

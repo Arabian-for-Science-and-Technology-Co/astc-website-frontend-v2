@@ -63,5 +63,12 @@
   </section>
 </template>
 
-<script setup></script>
+<script setup>
+const props = defineProps({
+  sectionData: { type: Object, defaults: {} }
+})
+onMounted(() => {
+  console.log('props.sectionData', props.sectionData)
+})
+</script>
 <style></style>

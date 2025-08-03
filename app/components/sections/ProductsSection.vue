@@ -47,6 +47,13 @@ const productsModules = import.meta.glob('~/assets/Images/products/product_*.png
 const solutionsModules = import.meta.glob('~/assets/Images/solutions/solution_*', {
   eager: true
 })
+
+const props = defineProps({
+  sectionData: { type: Object, defaults: {} }
+})
+onMounted(() => {
+  console.log('props.sectionData', props.sectionData)
+})
 const produtctTitles = [
   'RAAD Superapp',
   'Digital Twin',
