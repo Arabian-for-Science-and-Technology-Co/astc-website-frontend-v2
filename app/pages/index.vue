@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import HeroSection from '~/components/sections/hero-section/HeroSection.vue'
+// import HeroSection from '~/components/sections/hero-section/HeroSection.vue'
 import NewsSection from '~/components/sections/NewsSection.vue'
 import AnnouncementSection from '~/components/sections/AnnouncementSection.vue'
 import PromoSection from '~/components/sections/PromoSection.vue'
@@ -19,11 +19,11 @@ import CustomersSection from '~/components/sections/CustomersSection.vue'
 import ParallaxSection from '~/components/sections/ParallaxSection.vue'
 import PartnersSection from '~/components/sections/PartnersSection.vue'
 import SaudiVisionSection from '~/components/sections/SaudiVisionSection.vue'
-import ProductsSection from '~/components/sections/ProductsSection.vue'
+// import ProductsSection from '~/components/sections/ProductsSection.vue'
 
 const { $customFetch } = useNuxtApp()
 const componentMap = {
-  hero_tiles: HeroSection,
+  // hero_tiles: HeroSection,
   'latest-news': NewsSection,
   'contributing-to-the-saudi-future-with-delivering-fully-local-technologies': AnnouncementSection,
   'custom-development': PromoSection,
@@ -31,7 +31,7 @@ const componentMap = {
   'section-wwnWfA': ParallaxSection,
   'astc-is-a-trusted-partner-of-': PartnersSection,
   'saudi-vision-2030': SaudiVisionSection,
-  'products-solutions': ProductsSection
+  // 'products-solutions': ProductsSection
 }
 const { data: sections } = useAsyncData(
   () =>
