@@ -16,7 +16,7 @@
           '3xl:text-[140px] 3xl:leading-[133px] 3xl:tracking-[1.4px]'
         ]"
       >
-        Custom Development
+        {{ sectionData?.[`title_${locale}`] }}
       </h2>
       <p
         :class="[
@@ -24,24 +24,25 @@
           'lg:mt-[80px] lg:w-[90%] lg:text-[52px] lg:leading-[49.4px] lg:tracking-[0.52px]'
         ]"
       >
-        With a relentless focus on technological advancement, ASTC leads the way in transforming
-        industries and driving progress
+        {{ sectionData?.[`content_${locale}`] }}
       </p>
       <button
+        @click="navigateTo(`/${sectionData?.cta_link}`)"
         :class="[
           'mt-[70px] w-full max-w-[275px] rounded-3xl bg-white py-[23px] text-center text-base font-normal not-italic leading-[normal] tracking-[0.2px] text-black transition-colors hover:bg-white/70',
           'lg:mt-[100px]'
         ]"
       >
-        More details...
+        {{ sectionData?.[`cta_text_${locale}`] }}
       </button>
     </article>
     <img
-      :src="promoImg"
+      :src="sectionData?.image || promoImg"
       :class="['w-full object-cover', 'lg:w-1/3', '3xl:w-1/2']"
       :alt="`Image representing promoImg`"
       loading="lazy"
       decoding="async"
+      @error="onImgError"
     />
   </section>
 </template>
@@ -51,9 +52,10 @@ import promoImg from '~/assets/Images/main/promo.png'
 const props = defineProps({
   sectionData: { type: Object, defaults: {} }
 })
-onMounted(() => {
-  console.log('props.sectionData', props.sectionData)
-})
+const { locale } = useI18n()
+function onImgError(event) {
+  event.target.src = promoImg
+}
 </script>
 <style scoped>
 .main-text-color {

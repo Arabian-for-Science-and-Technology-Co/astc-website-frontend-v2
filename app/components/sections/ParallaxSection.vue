@@ -3,13 +3,19 @@
     ref="container"
     class="relative flex h-screen items-stretch overflow-hidden bg-[#0D1667] font-zarid"
   >
-    <img :src="sky_parallax_1" class="h-full flex-1 object-cover" :alt="`sky_parallax_1`" />
+    <img
+      :src="sectionData?.image || sky_parallax_1"
+      class="h-full flex-1 object-cover"
+      :alt="`sky_parallax_1`"
+      @error="onImgError1"
+    />
     <img
       ref="sky2"
       :src="sky_parallax_2"
       class="absolute inset-0 h-full w-full object-cover"
       :style="{ clipPath }"
       :alt="`sky_parallax_2`"
+      @error="onImgError2"
     />
   </section>
 </template>
@@ -21,9 +27,12 @@ import sky_parallax_2 from '~/assets/Images/main/sky_parallax_2.png'
 const props = defineProps({
   sectionData: { type: Object, defaults: {} }
 })
-onMounted(() => {
-  console.log('props.sectionData', props.sectionData)
-})
+function onImgError1(event) {
+  event.target.src = sky_parallax_1
+}
+function onImgError2(event) {
+  event.target.src = sky_parallax_2
+}
 // ——— Configurable start / end polygons ———
 // “x y, x y, x y, x y” (percent values, without the “%” or “polygon()”)
 

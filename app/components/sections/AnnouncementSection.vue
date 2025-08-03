@@ -13,15 +13,16 @@
         '3xl:max-w-[80%] 3xl:text-[140px] 3xl:leading-[133px] 3xl:tracking-[1.4px]'
       ]"
     >
-      Contributing to the Saudi future with delivering fully local technologies
+      {{ sectionData?.[`title_${locale}`] }}
     </h2>
     <button
+      @click="navigateTo(`/${sectionData?.cta_link}`)"
       :class="[
         'mt-[80px] w-full max-w-[275px] rounded-3xl bg-white py-[23px] text-center text-xl font-[400] not-italic leading-[21px] tracking-[0.2px] text-black transition-colors hover:bg-white/70',
         '3xl:mt-[100px]'
       ]"
     >
-      About Us
+      {{ sectionData?.[`cta_text_${locale}`] }}
     </button>
   </section>
 </template>
@@ -30,9 +31,7 @@
 const props = defineProps({
   sectionData: { type: Object, defaults: {} }
 })
-onMounted(() => {
-  console.log('props.sectionData', props.sectionData)
-})
+const { locale } = useI18n()
 </script>
 <style scoped>
 .main-text-color {
