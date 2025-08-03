@@ -1,11 +1,15 @@
 <template>
   <div class="flex min-h-screen flex-col overflow-x-hidden bg-white font-zarid">
-    <AppHeader />
+    <AppHeader :showLeftLogo="!isHomePage" />
     <main class="flex-grow">
       <slot />
     </main>
-    <AppFooter />
+    <AppFooter :showProductsSection="!isProductsPage" />
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+const route = useRoute()
+const isHomePage = computed(() => route.path == '/')
+const isProductsPage = computed(() => route.path == '/products')
+</script>

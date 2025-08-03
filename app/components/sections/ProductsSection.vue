@@ -1,7 +1,7 @@
 <template>
   <section
     :class="[
-      'app-container flex flex-col gap-[66px] bg-[FFF] pb-[calc(var(--footer-gap)/2)] pt-[48px] font-zarid text-black',
+      'app-container flex flex-col gap-[66px] bg-[FFF] pt-[48px] font-zarid text-black',
       'lg:pt-[80px]',
       '3xl:pt-[80px]'
     ]"
