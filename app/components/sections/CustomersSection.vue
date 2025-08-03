@@ -3,14 +3,14 @@
     :class="[
       'app-container bg-[#F0F0F0] pb-[70px] pt-[70px] font-zarid',
       'lg:pb-[174px] lg:pt-[80px]',
-      '2xl:pb-[103px] 2xl:pt-[104px]'
+      '3xl:pb-[103px] 3xl:pt-[104px]'
     ]"
   >
     <h2
       :class="[
         'mb-[47.43px] w-full text-[52px] font-[200] not-italic leading-[49.4px] tracking-[0.52px] text-[#18264A]',
         'lg:mb-[64px] lg:max-w-[90%] lg:text-[90px] lg:leading-[85.5px] lg:tracking-[0.9px]',
-        '2xl:mb-[87px] 2xl:max-w-[350px]'
+        '3xl:mb-[87px] 3xl:max-w-[350px]'
       ]"
     >
       Among our customers:
@@ -19,7 +19,7 @@
       :class="[
         'mb-[80.57px] flex w-full flex-wrap justify-start gap-[10px]',
         'lg:mb-[67.52px] lg:w-[85%] lg:gap-[16.2px]',
-        '2xl:mb-[109px] 2xl:w-[70%] 2xl:gap-6'
+        '3xl:mb-[109px] 3xl:w-[70%] 3xl:gap-6'
       ]"
     >
       <figure
@@ -27,7 +27,7 @@
         :class="[
           'aspect-square h-[107px] w-[106px] p-2',
           'lg:h-[145.2px] lg:w-[145.2px] lg:p-2',
-          '2xl:h-[215px] 2xl:w-[215px] 2xl:p-5'
+          '3xl:h-[215px] 3xl:w-[215px] 3xl:p-5'
         ]"
       >
         <img

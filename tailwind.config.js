@@ -36,6 +36,9 @@ module.exports = {
       borderRadius: {
         sm: 'var(--radius-sm)',
         md: 'var(--radius-md)'
+      },
+      screens: {
+        '3xl': '1600px' // or any value > 1536px
       }
     }
   },
