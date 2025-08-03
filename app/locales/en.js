@@ -1,5 +1,6 @@
 export default {
   explore: 'Explore',
+  all_news: 'all news',
   welcome: 'Welcome',
   home: 'Home',
   about: 'About',

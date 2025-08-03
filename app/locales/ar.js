@@ -1,5 +1,6 @@
 export default {
   explore: 'أستكشف',
+  all_news: 'كل الأخبار',
   welcome: 'مرحبا',
   home: 'الرئيسية',
   about: 'من نحن',
