@@ -9,17 +9,17 @@
     <article>
       <h2 class="main-title">Products</h2>
       <div class="imgs-contianer mt-[29px]">
-        <figure v-for="(product, i) in products" class="imgs-contianer__card">
+        <figure v-for="(item, i) in categoryItems" class="imgs-contianer__card">
           <img
             :key="i"
-            :src="product.src"
+            :src="item.image"
             class="imgs-contianer__card__img"
             :alt="`Image ${i + 1} representing product`"
             loading="lazy"
             decoding="async"
           />
           <figcaption class="imgs-contianer__card__title">
-            {{ product.title }}
+            {{ item?.[`title_${locale}`] }}
           </figcaption>
         </figure>
       </div>
@@ -49,33 +49,22 @@
 </template>
 
 <script setup>
-const productsModules = import.meta.glob('~/assets/Images/products/product_*.png', { eager: true })
 const solutionsModules = import.meta.glob('~/assets/Images/solutions/solution_*', {
   eager: true
 })
-
-const props = defineProps({
-  sectionData: { type: Object, defaults: {} }
-})
-onMounted(() => {
-  console.log('props.sectionData', props.sectionData)
-})
-const produtctTitles = [
-  'RAAD Superapp',
-  'Digital Twin',
-  'Smart Fiber Optics',
-  'Computer Vision',
-  'PCR',
-  'Immersion Cooling'
-]
 const solutionsTitles = ['Saudi Build', 'Saudi Build']
-const products = Object.entries(productsModules)
-  .map(([_, module], index) => ({ src: module.default, title: produtctTitles[index] }))
-  .slice(0, 6)
 const solutions = Object.entries(solutionsModules).map(([_, module], index) => ({
   src: module.default,
   title: solutionsTitles[index]
 }))
+
+const props = defineProps({
+  sectionData: { type: Object, defaults: {} }
+})
+const { locale } = useI18n()
+const { categoryItems, fetchCategoryItems } = useCategoryItems()
+await fetchCategoryItems()
+
 </script>
 <style scoped>
 .main-title {
