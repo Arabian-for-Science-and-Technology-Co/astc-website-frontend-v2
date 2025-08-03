@@ -23,19 +23,11 @@
 
     <ClientOnly>
       <!-- Center Vision Logo -->
-      <article class="mb-[10px] flex items-center gap-[30px] self-end">
-        <VisionLogoIcon :class="['w-[50px]', 'lg:w-auto']" />
-        <h3
-          :class="[
-            'hidden text-xl font-[300] not-italic leading-[100%] tracking-[0.2px] text-[#A9AEB8]',
-            showLeftLogo ? '2xl:block' : 'lg:block'
-          ]"
-        >
-          Every Saudi must get involved
-          <br />
-          for a better future
-        </h3>
-      </article>
+      <SaudiVision
+        :isWhiteLogo="isWhiteLogo"
+        :showLeftLogo="showLeftLogo"
+        class="mb-[10px] self-end"
+      />
 
       <!-- Mobile Logo -->
       <div :class="['-ms-[50px] -mt-6 mb-0 block h-[55px] w-[106px]', 'lg:hidden']">
@@ -45,7 +37,7 @@
 
     <!-- Mobile Menu Button -->
     <div class="self-start">
-      <AppHeaderMenuMobile :tabs="tabs"  />
+      <AppHeaderMenuMobile :tabs="tabs" />
     </div>
 
     <!-- Tabs Section -->
