@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <HeroSection/>
+    <HeroSection />
     <component
       v-for="section in sections"
       :key="section.id"
@@ -30,18 +30,12 @@ const componentMap = {
   'among-our-customers-': CustomersSection,
   'section-wwnWfA': ParallaxSection,
   'astc-is-a-trusted-partner-of-': PartnersSection,
-  'saudi-vision-2030': SaudiVisionSection,
+  'saudi-vision-2030': SaudiVisionSection
   // 'products-solutions': ProductsSection
 }
-const { data: sections } = useAsyncData(
-  () =>
-    $customFetch('/website/home/page/1/sections', {
-      method: 'GET'
-    }),
-  {
-    transform: (res) => res.data || []
-  }
-)
+const { data: sections } = useAsyncData(() => $customFetch('/website/home/page/1/sections'), {
+  transform: (res) => res.data || []
+})
 
 onMounted(() => {
   console.log('sections', sections.value)
