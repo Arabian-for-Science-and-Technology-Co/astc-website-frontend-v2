@@ -6,14 +6,14 @@
       :class="[
         'relative z-10 w-full pb-[94px] pt-[70px]',
         'lg:pb-[102px] lg:pt-[100px]',
-        '2xl:pb-[206px] 2xl:pt-[190px]'
+        '3xl:pb-[206px] 3xl:pt-[190px]'
       ]"
     >
       <h2
         :class="[
           'mb-[23px] text-[48px] font-[200] not-italic leading-[normal] tracking-[0.48px] text-white',
           'lg:mb-[37px] lg:text-[90px] lg:leading-[85.5px] lg:tracking-[0.9px]',
-          '2xl:mb-[43px] 2xl:text-[140px] 2xl:leading-[133px] 2xl:tracking-[1.4px]'
+          '3xl:mb-[43px] 3xl:text-[140px] 3xl:leading-[133px] 3xl:tracking-[1.4px]'
         ]"
       >
         Saudi Vision 2030
@@ -22,13 +22,13 @@
         :class="[
           'mb-[61px] w-[70%] text-[20px] font-[200] not-italic leading-[24px] tracking-[0.2px] text-white',
           'lg:mb-[145px] lg:w-[85%] lg:text-[52px] lg:leading-[49.4px] lg:tracking-[0.52px]',
-          '2xl:mb-[141px]'
+          '3xl:mb-[141px]'
         ]"
       >
         Keep progressing!
       </p>
       <div
-        :class="['relative mb-[81px] max-w-full !overflow-hidden', 'lg:mb-[65px]', '2xl:mb-[74px]']"
+        :class="['relative mb-[81px] max-w-full !overflow-hidden', 'lg:mb-[65px]', '3xl:mb-[74px]']"
       >
         <AnimatedGridsSection color="white" />
         <Vision2030Icon

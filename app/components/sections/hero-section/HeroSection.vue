@@ -3,14 +3,14 @@
     :class="[
       'flex w-full flex-col justify-between gap-[105px] overflow-y-auto overflow-x-hidden pb-[108.3px] font-zarid text-[#465ae5] lg:min-h-[100svh]',
       'lg:gap-[162px] lg:pb-[126px]',
-      '2xl:justify-start 2xl:gap-0 2xl:pb-[175px]'
+      '3xl:justify-start 3xl:gap-0 3xl:pb-[175px]'
     ]"
   >
     <article
       :class="[
         'app-container relative z-10 w-full pt-[152px]',
         'lg:h-fit lg:pt-[203px]',
-        '2xl:h-[665px] 2xl:pt-[243px]'
+        '3xl:h-[665px] 3xl:pt-[243px]'
       ]"
     >
       <video
@@ -27,14 +27,14 @@
         :class="[
           'relative flex w-full flex-col flex-wrap items-center justify-start gap-[39px]',
           'lg:flex-row lg:flex-nowrap lg:items-start lg:justify-start lg:gap-[15vw]',
-          '2xl:justify-start 2xl:gap-[338.1px]'
+          '3xl:justify-start 3xl:gap-[338.1px]'
         ]"
       >
         <div
           :class="[
             'mb-0 hidden h-[55px] w-[106px]',
             'lg:block lg:h-[141px] lg:w-[269.91px]',
-            '2xl:mb-[12px] 2xl:h-[209px] 2xl:w-[400.09px]'
+            '3xl:mb-[12px] 3xl:h-[209px] 3xl:w-[400.09px]'
           ]"
         >
           <ASCLogoMainIcon class="h-full w-full" />

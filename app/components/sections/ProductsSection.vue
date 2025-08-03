@@ -61,15 +61,15 @@ const solutions = Object.entries(solutionsModules).map(([_, module], index) => (
 .imgs-contianer__card {
   @apply flex w-[90.3px] flex-col items-center gap-[11.67px];
   @apply lg:w-[120px] lg:gap-[20px];
-  @apply 2xl:w-[160px];
+  @apply 3xl:w-[160px];
 }
 .imgs-contianer__card--wide {
-  @apply w-[180px] lg:w-[120px] 2xl:w-[160px];
+  @apply w-[180px] lg:w-[120px] 3xl:w-[160px];
 }
 .imgs-contianer__card__img {
   @apply h-[90.3px] w-full overflow-hidden rounded-[20.845px] transition-all hover:translate-y-[-5px];
   @apply lg:h-[120px] lg:rounded-[27.692px];
-  @apply 2xl:h-[160px] 2xl:rounded-[36.923px];
+  @apply 3xl:h-[160px] 3xl:rounded-[36.923px];
 
   &:hover {
     filter: drop-shadow(0 16px 28px rgba(23, 120, 255, 0.5));

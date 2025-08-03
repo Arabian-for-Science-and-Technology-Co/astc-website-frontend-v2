@@ -3,23 +3,23 @@
     :class="[
       'app-container flex w-full flex-col-reverse pb-[55px] pt-[110px] text-xl font-normal not-italic leading-[105%] tracking-[0.2px] text-black',
       'lg:grid lg:grid-cols-12 lg:gap-y-[20px] lg:pt-[102px]',
-      '2xl:pb-[64px] 2xl:pt-[104px]'
+      '3xl:pb-[64px] 3xl:pt-[104px]'
     ]"
   >
     <div
       :class="[
         'mt-[108px] flex flex-col gap-[13.8px]',
         'lg:col-span-5 lg:mt-[-25px]',
-        '2xl:mt-[10px] 2xl:flex-row 2xl:items-center'
+        '3xl:mt-[10px] 3xl:flex-row 3xl:items-center'
       ]"
     >
       <ASCLogoMiniIcon class="ms-[31.2vw] lg:ms-0" />
-      <p class="flex gap-[17.34vw] lg:gap-1 2xl:self-end">
+      <p class="flex gap-[17.34vw] lg:gap-1 3xl:self-end">
         <span>© 2025</span>
         <span class="max-w-[140px] lg:max-w-full">Arabian for Science and Technology</span>
       </p>
     </div>
-    <h3 class="col-span-2 mt-[4px] hidden max-w-[230px] 2xl:mt-[14px] 2xl:block">
+    <h3 class="col-span-2 mt-[4px] hidden max-w-[230px] 3xl:mt-[14px] 3xl:block">
       8101 Othman Bin Affan Street, Riyadh, Saudi Arabia
     </h3>
     <div
@@ -28,7 +28,7 @@
         'grid-rows-col grid-col-1 grid w-fit gap-x-[0px] gap-y-[28px]',
         'lg:col-span-4 lg:mt-[4px] lg:grid lg:grid-flow-col lg:grid-rows-2 lg:gap-x-[40px] lg:gap-y-[0px]',
         'xl:gap-x-[60px]',
-        '2xl:col-span-4 2xl:ms-[14px] 2xl:mt-[14px]'
+        '3xl:col-span-4 3xl:ms-[14px] 3xl:mt-[14px]'
       ]"
     >
       <h3
@@ -46,7 +46,7 @@
         'ms-auto hidden flex-col items-center gap-[3px] text-[14px] font-[400] leading-[14.7px] tracking-[0.14px]',
         'lg:col-span-3 lg:flex',
         'xl:me-[30px]',
-        '2xl:col-span-1 2xl:me-[20px]'
+        '3xl:col-span-1 3xl:me-[20px]'
       ]"
     >
       <h3>Designed by</h3>
