@@ -34,7 +34,9 @@
           :key="i"
           :src="imgSrc"
           class="h-full w-full object-contain transition-transform hover:-translate-y-[10px]"
-          alt=""
+          :alt="`Image ${i + 1}`"
+          loading="lazy"
+          decoding="async"
         />
       </figure>
     </article>

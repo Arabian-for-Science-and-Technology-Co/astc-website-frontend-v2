@@ -58,7 +58,7 @@
     </article>
 
     <article class="relative z-10 h-[415.7px] lg:h-[580px]">
-        <ServicesSlider />
+      <ServicesSlider />
     </article>
   </section>
 </template>

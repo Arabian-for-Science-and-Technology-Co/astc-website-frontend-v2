@@ -14,8 +14,9 @@
       <img
         :src="service.img"
         class="h-full w-full object-cover transition-transform group-hover:scale-110"
-        alt=""
-      />
+        :alt="`Image representing service`"
+        loading="eager"
+       />
       <figcaption
         :class="[
           'absolute top-0 z-10 flex h-full w-full flex-col justify-between px-[28.67px] pb-[28.67px] pt-[32px]',

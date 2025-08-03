@@ -3,12 +3,21 @@
     ref="container"
     class="relative flex h-screen items-stretch overflow-hidden bg-[#0D1667] font-zarid"
   >
-    <img :src="sky_parallax_1" class="h-full flex-1 object-cover" />
+    <img
+      :src="sky_parallax_1"
+      class="h-full flex-1 object-cover"
+      :alt="`sky_parallax_1`"
+      loading="lazy"
+      decoding="async"
+    />
     <img
       ref="sky2"
       :src="sky_parallax_2"
       class="absolute inset-0 h-full w-full object-cover"
       :style="{ clipPath }"
+      :alt="`sky_parallax_2`"
+      loading="lazy"
+      decoding="async"
     />
   </section>
 </template>
