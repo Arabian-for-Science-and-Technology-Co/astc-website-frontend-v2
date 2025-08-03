@@ -14,7 +14,10 @@
     <article class="mt-[66px]">
       <h2 class="main-title">Solutions</h2>
       <div class="imgs-contianer mt-[29px]">
-        <figure v-for="(solution, i) in solutions" class="imgs-contianer__card">
+        <figure
+          v-for="(solution, i) in solutions"
+          class="imgs-contianer__card imgs-contianer__card--wide"
+        >
           <img :key="i" :src="solution.src" class="imgs-contianer__card__img" alt="" />
           <figcaption class="imgs-contianer__card__title">
             {{ solution.title }}
@@ -60,6 +63,9 @@ const solutions = Object.entries(solutionsModules).map(([_, module], index) => (
   @apply lg:w-[120px] lg:gap-[20px];
   @apply 2xl:w-[160px];
 }
+.imgs-contianer__card--wide {
+  @apply w-[180px] lg:w-[120px] 2xl:w-[160px];
+}
 .imgs-contianer__card__img {
   @apply h-[90.3px] w-full overflow-hidden rounded-[20.845px] transition-all hover:translate-y-[-5px];
   @apply lg:h-[120px] lg:rounded-[27.692px];
@@ -70,7 +76,7 @@ const solutions = Object.entries(solutionsModules).map(([_, module], index) => (
   }
 }
 .imgs-contianer__card__title {
-  @apply w-full text-center text-[16px] font-[300] uppercase not-italic leading-[normal] tracking-[1.28px];
+  @apply w-full text-center text-[16px] font-[500] uppercase not-italic leading-[normal] tracking-[1.28px];
   @apply lg:text-xl lg:font-[500] lg:tracking-[1.6px];
 }
 </style>
