@@ -1,4 +1,5 @@
 export default {
+  explore: 'أستكشف',
   welcome: 'مرحبا',
   home: 'الرئيسية',
   about: 'من نحن',

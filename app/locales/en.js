@@ -1,4 +1,5 @@
 export default {
+  explore: 'Explore',
   welcome: 'Welcome',
   home: 'Home',
   about: 'About',

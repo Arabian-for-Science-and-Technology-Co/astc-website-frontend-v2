@@ -18,6 +18,9 @@
 const props = defineProps({
   showProductsSection: { type: Boolean, default: true }
 })
+const { locale } = useI18n()
+const { settings } = useWebsiteSettings()
+
 const pages = [
   'Products & Solutions',
   'News',

@@ -12,12 +12,13 @@
         class="mb-[7px] h-[68px] w-[130px] self-start"
       />
       <h3
+        v-if="settings?.[`title_${locale}`]"
         :class="[
           'max-w-[129px] self-end text-xl font-[300] not-italic leading-[21px] tracking-[0.2px] text-[#18264A]',
           isWhiteLogo ? 'text-white' : 'text-[#18264A]'
         ]"
       >
-        Arabian for Sience and Technology
+        {{ settings?.[`title_${locale}`] }}
       </h3>
     </article>
 
@@ -48,7 +49,9 @@
         <Tabs ref="tabsRef" class="fixed end-[--container-ps]" v-model="selected" :tabs="tabs">
           <template #tab="{ tab, isSelected }">
             <h2
-              @mouseenter="enableHover && tab.id == 'products_solutions' ? (isHovering = true) : ''"
+              @mouseenter="
+                enableHover && tab.id == 'products-and-solutions' ? (isHovering = true) : ''
+              "
               :class="[!isSelected && 'hover:text-[#1778FF]']"
             >
               {{ tab.label }}
@@ -60,12 +63,12 @@
             </span>
             <teleport to="body">
               <FlaotingProductsBar
-                v-if="isHovering && tab.id == 'products_solutions'"
+                v-if="isHovering && tab.id == 'products-and-solutions'"
                 @mouseover="
-                  enableHover && tab.id == 'products_solutions' ? (isHovering = true) : ''
+                  enableHover && tab.id == 'products-and-solutions' ? (isHovering = true) : ''
                 "
                 @mouseleave="
-                  enableHover && tab.id == 'products_solutions' ? (isHovering = false) : ''
+                  enableHover && tab.id == 'products-and-solutions' ? (isHovering = false) : ''
                 "
                 :tabs="tabs"
               />
@@ -87,12 +90,21 @@ const props = defineProps({
 })
 
 import LanguageSwitcher from '~/components/LanguageSwitcher.vue'
-const tabs = [
-  { id: 'products_solutions', label: 'Products & Solutions', value: 'Products & Solutions' },
-  { id: 'news', label: 'News', value: 'News', isNew: true },
-  { id: 'about', label: 'About', value: 'About' },
-  { id: 'contact', label: 'Contact', value: 'Contact' }
-]
+const { locale } = useI18n()
+
+const { pages } = usePages()
+const { settings } = useWebsiteSettings()
+
+const tabs = computed(() =>
+  pages.value
+    .filter((page) => page.slug != 'home')
+    .map((page) => ({
+      id: page.slug,
+      label: page?.[`title_${locale.value}`],
+      value: page.slug,
+      isNew: page.slug == 'news'
+    }))
+)
 const selected = ref(null)
 const isHovering = ref(false)
 const tabsRef = ref(null)

@@ -12,4 +12,8 @@
 const route = useRoute()
 const isHomePage = computed(() => route.path == '/')
 const isProductsPage = computed(() => route.path == '/products')
+const { fetchSettings } = useWebsiteSettings()
+const { fetchPages } = usePages()
+await fetchSettings()
+await fetchPages()
 </script>
