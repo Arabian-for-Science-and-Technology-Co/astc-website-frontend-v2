@@ -2,7 +2,7 @@ export const usePages = () => {
   const pages = useState('pages', () => [])
 
   const fetchPages = async () => {
-    if (Object.keys(pages.value).length > 0) return
+    if (pages.value.length > 0) return
     const { $customFetch } = useNuxtApp()
     try {
       const { data } = await $customFetch('/website/home/page')
