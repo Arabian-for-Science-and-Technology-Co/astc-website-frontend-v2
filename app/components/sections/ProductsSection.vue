@@ -1,5 +1,11 @@
 <template>
-  <section class="app-container bg-[FFF] pb-[121px] pt-[80px] font-zarid text-black">
+  <section
+    :class="[
+      'app-container flex flex-col gap-[66px] bg-[FFF] pb-[calc(var(--footer-gap)/2)] pt-[48px] font-zarid text-black',
+      'lg:pt-[80px]',
+      '3xl:pt-[80px]'
+    ]"
+  >
     <article>
       <h2 class="main-title">Products</h2>
       <div class="imgs-contianer mt-[29px]">
@@ -18,7 +24,7 @@
         </figure>
       </div>
     </article>
-    <article class="mt-[66px]">
+    <article>
       <h2 class="main-title">Solutions</h2>
       <div class="imgs-contianer mt-[29px]">
         <figure
