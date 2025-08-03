@@ -13,4 +13,12 @@
   /* Radius */
   --radius-sm: 0.25rem;
   --radius-md: 0.375rem;
+
+  --footer-gap: 114px;
+  @media (min-width: 1024px) {
+    --footer-gap: 142px;
+  }
+  @media (min-width: 1600px) {
+    --footer-gap: 121px;
+  }
 }
