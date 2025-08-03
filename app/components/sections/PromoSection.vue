@@ -36,7 +36,13 @@
         More details...
       </button>
     </article>
-    <img :src="promoImg" :class="['w-full object-cover', 'lg:w-1/3', '3xl:w-1/2']" />
+    <img
+      :src="promoImg"
+      :class="['w-full object-cover', 'lg:w-1/3', '3xl:w-1/2']"
+      :alt="`Image representing promoImg`"
+      loading="lazy"
+      decoding="async"
+    />
   </section>
 </template>
 

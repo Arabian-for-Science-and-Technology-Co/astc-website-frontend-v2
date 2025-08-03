@@ -38,6 +38,8 @@
           class="h-full object-contain transition-opacity"
           @mouseover="$event.currentTarget.src = color"
           @mouseleave="$event.currentTarget.src = grey"
+          loading="lazy"
+          decoding="async"
         />
       </figure>
     </article>

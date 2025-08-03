@@ -8,6 +8,7 @@ module.exports = {
     './app.vue',
     './error.vue'
   ],
+  darkMode: 'class', //  disables automatic media-based dark mode
   theme: {
     fontFamily: {
       zarid: ['29LT Zarid Sans AL', 'Zarid-Fallback', 'system-ui', ' sans-serif'],

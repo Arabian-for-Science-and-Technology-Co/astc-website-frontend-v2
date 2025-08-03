@@ -1,6 +1,6 @@
 <template>
   <section
-    class="app-container relative flex items-stretch !overflow-hidden overflow-y-auto bg-[#0D1667] font-zarid  "
+    class="app-container relative flex items-stretch !overflow-hidden overflow-y-auto bg-[#0D1667] font-zarid"
   >
     <article
       :class="[
@@ -44,7 +44,13 @@
         Discover Our Vision
       </button>
     </article>
-    <img :src="saudiVisionImg" class="absolute start-0 top-0 -z-0 h-full w-full object-cover" />
+    <img
+      :src="saudiVisionImg"
+      class="absolute start-0 top-0 -z-0 h-full w-full object-cover"
+      :alt="`Image representing saudiVisionImg`"
+      loading="lazy"
+      decoding="async"
+    />
   </section>
 </template>
 

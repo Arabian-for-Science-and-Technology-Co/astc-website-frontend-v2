@@ -1,18 +1,22 @@
 <template>
-  <SliderCarousel trackClass="app-container flex justify-start lg:gap-[40px] gap-[28.67px]   ">
+  <SliderCarousel
+    class="h-full"
+    trackClass="app-container flex items-stretch justify-start lg:gap-[40px] gap-[28.67px]   "
+  >
     <figure
       v-for="(service, index) in services"
       :key="index"
       :class="[
-        'group relative h-[415.7px] w-[258px] shrink-0 overflow-hidden rounded-[34px]',
-        'lg:h-[580px] lg:w-[360px] lg:rounded-[48px]'
+        'group relative h-full w-[258px] shrink-0 overflow-hidden rounded-[34px]',
+        'lg:w-[360px] lg:rounded-[48px]'
       ]"
     >
       <img
         :src="service.img"
         class="h-full w-full object-cover transition-transform group-hover:scale-110"
-        alt=""
-      />
+        :alt="`Image representing service`"
+        loading="eager"
+       />
       <figcaption
         :class="[
           'absolute top-0 z-10 flex h-full w-full flex-col justify-between px-[28.67px] pb-[28.67px] pt-[32px]',

@@ -4,7 +4,14 @@
       <h2 class="main-title">Products</h2>
       <div class="imgs-contianer mt-[29px]">
         <figure v-for="(product, i) in products" class="imgs-contianer__card">
-          <img :key="i" :src="product.src" class="imgs-contianer__card__img" alt="" />
+          <img
+            :key="i"
+            :src="product.src"
+            class="imgs-contianer__card__img"
+            :alt="`Image ${i + 1} representing product`"
+            loading="lazy"
+            decoding="async"
+          />
           <figcaption class="imgs-contianer__card__title">
             {{ product.title }}
           </figcaption>
@@ -18,7 +25,14 @@
           v-for="(solution, i) in solutions"
           class="imgs-contianer__card imgs-contianer__card--wide"
         >
-          <img :key="i" :src="solution.src" class="imgs-contianer__card__img" alt="" />
+          <img
+            :key="i"
+            :src="solution.src"
+            class="imgs-contianer__card__img"
+            :alt="`Image ${i + 1} representing solution`"
+            loading="lazy"
+            decoding="async"
+          />
           <figcaption class="imgs-contianer__card__title">
             {{ solution.title }}
           </figcaption>
