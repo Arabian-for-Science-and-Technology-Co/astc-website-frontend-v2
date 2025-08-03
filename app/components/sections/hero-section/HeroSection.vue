@@ -47,11 +47,11 @@
           ]"
         >
           <span :class="['inline-block font-[400]', 'lg:font-[300]']">
-            Arabian for Science and Technology Co.
+            {{ settings?.[`title_${locale}`] }}
           </span>
 
           <span :class="['inline-block font-[600]', 'lg:font-[500]']">
-            Innovate Local. Impact Global.
+            {{ settings?.[`description_${locale}`] }}
           </span>
         </h2>
       </div>
@@ -67,8 +67,7 @@
 const props = defineProps({
   sectionData: { type: Object, defaults: {} }
 })
-onMounted(() => {
-  console.log('props.sectionData', props.sectionData)
-})
+const { locale } = useI18n()
+const { settings } = useWebsiteSettings()
 </script>
 <style></style>

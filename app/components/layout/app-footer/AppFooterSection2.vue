@@ -2,8 +2,8 @@
   <article
     :class="[
       'app-container flex w-full flex-col-reverse text-xl font-normal not-italic leading-[105%] tracking-[0.2px] text-black',
-      'lg:grid lg:grid-cols-12 lg:gap-y-[20px]',
-     ]"
+      'lg:grid lg:grid-cols-12 lg:gap-y-[20px]'
+    ]"
   >
     <div
       :class="[
@@ -15,11 +15,11 @@
       <ASCLogoMiniIcon class="ms-[31.2vw] lg:ms-0" />
       <p class="flex gap-[17.34vw] lg:gap-1 3xl:self-end">
         <span>© 2025</span>
-        <span class="max-w-[140px] lg:max-w-full">Arabian for Science and Technology</span>
+        <span class="max-w-[140px] lg:max-w-full">{{ settings?.[`title_${locale}`] }}</span>
       </p>
     </div>
     <h3 class="col-span-2 mt-[4px] hidden max-w-[230px] 3xl:mt-[14px] 3xl:block">
-      8101 Othman Bin Affan Street, Riyadh, Saudi Arabia
+      {{ settings?.[`address_${locale}`] }}
     </h3>
     <div
       :class="[
@@ -59,6 +59,8 @@
 defineProps({
   pages: { type: Array, required: true }
 })
+const { locale } = useI18n()
+const { settings } = useWebsiteSettings()
 </script>
 <style scoped>
 .pages h3:last-child {

@@ -33,7 +33,7 @@ const componentMap = {
   'saudi-vision-2030': SaudiVisionSection
   // 'products-solutions': ProductsSection
 }
-const { data: sections } = useAsyncData(() => $customFetch('/website/home/page/1/sections'), {
+const { data: sections } = await useAsyncData(() => $customFetch('/website/home/page/1/sections'), {
   transform: (res) => res.data || []
 })
 
