@@ -24,7 +24,7 @@
               <h3
                 :class="[
                   'hidden text-xl font-[300] not-italic leading-[100%] tracking-[0.2px] text-[#A9AEB8]',
-                  showLeftLogo ? '2xl:block' : 'lg:block'
+                  showLeftLogo ? '3xl:block' : 'lg:block'
                 ]"
               >
                 Every Saudi must get involved

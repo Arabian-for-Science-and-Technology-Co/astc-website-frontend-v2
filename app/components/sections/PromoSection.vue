@@ -6,14 +6,14 @@
       :class="[
         'app-container flex-1 pb-[80px] pt-[70px]',
         'lg:pb-[118px] lg:pt-[100px]',
-        '2xl:pb-[180px] 2xl:pt-[190px]'
+        '3xl:pb-[180px] 3xl:pt-[190px]'
       ]"
     >
       <h2
         :class="[
           'text-[52px] font-[200] not-italic leading-[49.4px] tracking-[0.52px] text-white',
           'lg:text-[90px] lg:leading-[85.5px] lg:tracking-[0.9px]',
-          '2xl:text-[140px] 2xl:leading-[133px] 2xl:tracking-[1.4px]'
+          '3xl:text-[140px] 3xl:leading-[133px] 3xl:tracking-[1.4px]'
         ]"
       >
         Custom Development
@@ -36,7 +36,7 @@
         More details...
       </button>
     </article>
-    <img :src="promoImg" :class="['w-full object-cover', 'lg:w-1/3', '2xl:w-1/2']" />
+    <img :src="promoImg" :class="['w-full object-cover', 'lg:w-1/3', '3xl:w-1/2']" />
   </section>
 </template>
 
