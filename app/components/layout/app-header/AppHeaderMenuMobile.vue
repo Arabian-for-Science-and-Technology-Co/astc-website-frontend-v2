@@ -2,9 +2,9 @@
   <div>
     <button
       @click="isOpen = !isOpen"
-      class="gird fixed end-[--container-ps] m-0 aspect-square h-[42px] place-items-center rounded-xl bg-[#0000000D] p-0 backdrop-blur-[6px] lg:hidden"
+      class="gird fixed end-[--container-ps] m-0 h-[42px] w-[42px] place-items-center rounded-xl bg-[#0000000D] p-0 backdrop-blur-[6px] lg:hidden"
     >
-      <MenuMobileIcon />
+      <MenuMobileIcon class="h-[8px] w-[18px]" />
     </button>
     <teleport to="body">
       <section
@@ -40,8 +40,11 @@
           </ClientOnly>
 
           <!-- Mobile Menu Button -->
-          <button @click="isOpen = !isOpen" class="self-start">
-            <CloseIcon />
+          <button
+            @click="isOpen = !isOpen"
+            class="gird m-0 h-[42px] w-[42px] place-items-center rounded-xl bg-[#0000000D] p-0 backdrop-blur-[6px] lg:hidden"
+          >
+            <CloseIcon class="h-[42px] w-[42px]" />
           </button>
         </section>
         <div
@@ -49,7 +52,9 @@
         >
           <h3
             v-for="tab in tabs"
-            :class="['text-[52px] w-fit relative font-[200] not-italic leading-[49.4px] tracking-[0.52px]']"
+            :class="[
+              'relative w-fit text-[52px] font-[200] not-italic leading-[49.4px] tracking-[0.52px]'
+            ]"
           >
             {{ tab.label }}
             <span
