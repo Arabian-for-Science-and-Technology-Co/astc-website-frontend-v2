@@ -1,10 +1,9 @@
 <template>
   <article
     :class="[
-      'app-container flex w-full flex-col-reverse pb-[55px] pt-[110px] text-xl font-normal not-italic leading-[105%] tracking-[0.2px] text-black',
-      'lg:grid lg:grid-cols-12 lg:gap-y-[20px] lg:pt-[102px]',
-      '3xl:pb-[64px] 3xl:pt-[104px]'
-    ]"
+      'app-container flex w-full flex-col-reverse text-xl font-normal not-italic leading-[105%] tracking-[0.2px] text-black',
+      'lg:grid lg:grid-cols-12 lg:gap-y-[20px]',
+     ]"
   >
     <div
       :class="[
