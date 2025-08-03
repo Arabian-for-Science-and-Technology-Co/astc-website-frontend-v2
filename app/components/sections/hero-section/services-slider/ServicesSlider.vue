@@ -1,11 +1,14 @@
 <template>
-  <SliderCarousel trackClass="app-container flex justify-start lg:gap-[40px] gap-[28.67px]   ">
+  <SliderCarousel
+    class="h-full"
+    trackClass="app-container flex items-stretch justify-start lg:gap-[40px] gap-[28.67px]   "
+  >
     <figure
       v-for="(service, index) in services"
       :key="index"
       :class="[
-        'group relative h-[415.7px] w-[258px] shrink-0 overflow-hidden rounded-[34px]',
-        'lg:h-[580px] lg:w-[360px] lg:rounded-[48px]'
+        'group relative h-full w-[258px] shrink-0 overflow-hidden rounded-[34px]',
+        'lg:w-[360px] lg:rounded-[48px]'
       ]"
     >
       <img
