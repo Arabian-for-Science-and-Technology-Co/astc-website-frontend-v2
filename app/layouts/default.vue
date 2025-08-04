@@ -1,5 +1,5 @@
 <template>
-  <div class="flex min-h-screen flex-col overflow-x-hidden bg-white font-zarid">
+  <div class="flex min-h-screen flex-col whitespace-pre-line overflow-x-hidden bg-white font-zarid">
     <AppHeader :showLeftLogo="!isHomePage" />
     <main class="flex-grow">
       <slot />
