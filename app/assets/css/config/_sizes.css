@@ -31,4 +31,10 @@
   @media (min-width: 1600px) {
     --footer-gap: 121px;
   }
+
+  --header-pt: 38px;
+  --header-height: calc(var(--header-pt) + 43.86px);
+  @media (min-width: 1024px) {
+    --header-height: calc(var(--header-pt) + 68px);
+  }
 }
