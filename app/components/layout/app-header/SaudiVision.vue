@@ -1,35 +1,33 @@
 <template>
-  <article
-    @mouseover="isHovering = true"
-    @mouseleave="isHovering = false"
-    :style="{ color: color }"
-    class="flex items-center gap-[30px]"
-  >
-    <VisionLogoIcon :color="color" :class="['w-[50px]', 'lg:w-auto']" />
+  <article class="group flex items-center gap-[30px]">
+    <img
+      :src="settings.saudi_vision"
+      :class="[
+        'gray-overlay w-[50px]',
+        'lg:w-[62px]',
+        isWhiteLogo ? 'group-hover:brightness-0 group-hover:invert-[1]' : 'group-hover:filter-none'
+      ]"
+      @error="$event.target.src = saudi_vision"
+    />
     <h3
       :class="[
-        'hidden text-xl font-[300] not-italic leading-[100%] tracking-[0.2px]',
-        showLeftLogo ? '3xl:block' : 'lg:block'
+        'hidden max-w-[210px] text-xl font-[300] not-italic leading-[100%] tracking-[0.2px] text-[#A9AEB8]',
+        showLeftLogo ? '3xl:block' : 'lg:block',
+        isWhiteLogo ? 'group-hover:text-white' : 'group-hover:text-black'
       ]"
     >
-      Every Saudi must get involved
-      <br />
-      for a better future
+      {{ settings?.[`saudi_vision_title_${locale}`] }}
     </h3>
   </article>
 </template>
 
 <script setup>
+import saudi_vision from '~/assets/Icons/vision_2030.svg?url'
 const props = defineProps({
   showLeftLogo: { type: Boolean, default: true },
   isWhiteLogo: { type: Boolean, default: false }
 })
-const isHovering = ref(false)
-const color = computed(() => {
-  if (props.isWhiteLogo) {
-    return isHovering.value ? 'white' : '#A9AEB8'
-  } else {
-    return isHovering.value ? 'black' : '#A9AEB8'
-  }
-})
+
+const { locale } = useI18n()
+const { settings } = useWebsiteSettings()
 </script>
