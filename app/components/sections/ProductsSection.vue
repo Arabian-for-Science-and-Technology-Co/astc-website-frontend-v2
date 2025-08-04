@@ -7,9 +7,9 @@
     ]"
   >
     <article>
-      <h2 class="main-title">Products</h2>
+      <h2 class="main-title">{{ products?.[`title_${locale}`] }}</h2>
       <div class="imgs-contianer mt-[29px]">
-        <figure v-for="(item, i) in categoryItems" class="imgs-contianer__card">
+        <figure v-for="(item, i) in products?.items || []" class="imgs-contianer__card">
           <img
             :key="i"
             :src="item.image"
@@ -25,22 +25,22 @@
       </div>
     </article>
     <article>
-      <h2 class="main-title">Solutions</h2>
+      <h2 class="main-title">{{ solutions?.[`title_${locale}`] }}</h2>
       <div class="imgs-contianer mt-[29px]">
         <figure
-          v-for="(solution, i) in solutions"
+          v-for="(item, i) in solutions?.items || []"
           class="imgs-contianer__card imgs-contianer__card--wide"
         >
           <img
             :key="i"
-            :src="solution.src"
+            :src="item.image"
             class="imgs-contianer__card__img"
             :alt="`Image ${i + 1} representing solution`"
             loading="lazy"
             decoding="async"
           />
           <figcaption class="imgs-contianer__card__title">
-            {{ solution.title }}
+            {{ item?.[`title_${locale}`] }}
           </figcaption>
         </figure>
       </div>
@@ -49,22 +49,16 @@
 </template>
 
 <script setup>
-const solutionsModules = import.meta.glob('~/assets/Images/solutions/solution_*', {
-  eager: true
-})
-const solutionsTitles = ['Saudi Build', 'Saudi Build']
-const solutions = Object.entries(solutionsModules).map(([_, module], index) => ({
-  src: module.default,
-  title: solutionsTitles[index]
-}))
-
 const props = defineProps({
   sectionData: { type: Object, defaults: {} }
 })
 const { locale } = useI18n()
-const { categoryItems, fetchCategoryItems } = useCategoryItems()
-await fetchCategoryItems()
-
+const { productsAndSolutions, fetchProductsAndSolutions } = useProductsAndSolutions()
+await fetchProductsAndSolutions()
+const products = computed(() => productsAndSolutions.value.find((data) => data.code == 'products'))
+const solutions = computed(() =>
+  productsAndSolutions.value.find((data) => data.code == 'solutions')
+)
 </script>
 <style scoped>
 .main-title {
