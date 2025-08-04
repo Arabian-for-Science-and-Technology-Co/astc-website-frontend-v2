@@ -14,8 +14,8 @@
     >
       <ASCLogoMiniIcon class="ms-[31.2vw] lg:ms-0" />
       <p class="flex gap-[17.34vw] lg:gap-1 3xl:self-end">
-        <span>© 2025</span>
-        <span class="max-w-[140px] lg:max-w-full">{{ settings?.[`title_${locale}`] }}</span>
+        <span>{{ settings?.footer }}</span>
+        <span class="max-w-[140px] lg:max-w-full">{{ settings?.[`footer_${locale}`] }}</span>
       </p>
     </div>
     <h3 class="col-span-2 mt-[4px] hidden max-w-[230px] 3xl:mt-[14px] 3xl:block">
