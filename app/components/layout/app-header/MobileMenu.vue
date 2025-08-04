@@ -22,12 +22,12 @@
           <SaudiVision :isWhiteLogo="true" :showLeftLogo="false" class="mb-[10px] self-end" />
           <!-- Mobile Logo -->
           <div :class="['-mt-6 mb-0 block h-[55px] w-[106px]', 'lg:hidden']">
-            <NuxtImg
+            <BaseImg
               densities="x1 x2"
               format="webp"
               :src="settings?.logo_light"
               class="h-full w-full"
-              @error="$event.target.src = ASC_Logo_Main"
+              :fallback="ASC_Logo_Main"
             />
           </div>
         </ClientOnly>
@@ -64,7 +64,7 @@
 </template>
 
 <script setup>
-import ASC_Logo_Main from '~/assets/Icons/ASC_Logo_Main.svg?url'
+const ASC_Logo_Main = '/Icons/ASC_Logo_Main.svg'
 
 defineProps({
   tabs: { type: Array, required: true }

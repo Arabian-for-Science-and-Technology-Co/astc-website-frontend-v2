@@ -37,12 +37,12 @@
             '3xl:mb-[12px] 3xl:h-[209px] 3xl:w-[400.09px]'
           ]"
         >
-          <NuxtImg
+          <BaseImg
             densities="x1 x2"
             format="webp"
             :src="settings.logo_dark || ASC_Logo_Main"
             :class="['h-full w-full']"
-            @error="$event.target.src = ASC_Logo_Main"
+            :fallback="ASC_Logo_Main"
           />
         </div>
 
@@ -70,7 +70,7 @@
 </template>
 
 <script setup>
-import ASC_Logo_Main from '~/assets/Icons/ASC_Logo_Main.svg?url'
+const ASC_Logo_Main = '/Icons/ASC_Logo_Main.svg'
 
 const props = defineProps({
   sectionData: { type: Object, defaults: {} }

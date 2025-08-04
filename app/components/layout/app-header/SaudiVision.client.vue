@@ -1,6 +1,6 @@
 <template>
   <article class="group flex items-center gap-[30px]">
-    <NuxtImg
+    <BaseImg
       densities="x1 x2"
       format="webp"
       :src="settings.saudi_vision"
@@ -15,7 +15,7 @@
             ? 'brightness-0 invert-[1]'
             : 'filter-none'
       ]"
-      @error="$event.target.src = saudi_vision"
+      :fallback="saudi_vision"
     />
     <h3
       :class="[
@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-import saudi_vision from '~/assets/Icons/vision_2030.svg?url'
+const saudi_vision = '/Icons/vision_2030.svg'
 const props = defineProps({
   showLeftLogo: { type: Boolean, default: true },
   isWhiteLogo: { type: Boolean, default: false },

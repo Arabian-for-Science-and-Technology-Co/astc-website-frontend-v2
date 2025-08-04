@@ -3,17 +3,14 @@
     ref="container"
     class="relative flex h-screen items-stretch overflow-hidden bg-[#0D1667] font-zarid"
   >
-    <NuxtImg
-      densities="x1 x2"
-      format="webp"
+    <BaseImg
+       format="webp"
       :src="sectionData?.image || sky_parallax_1"
       class="h-full flex-1 object-cover"
       :alt="`sky_parallax_1`"
-      @error="$event.target.src = sky_parallax_1"
+      :fallback="sky_parallax_1"
     />
-    <NuxtImg
-      densities="x1 x2"
-      format="webp"
+    <img
       ref="sky2"
       :src="sky_parallax_2"
       class="absolute inset-0 h-full w-full object-cover"
@@ -25,7 +22,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from 'vue'
-import sky_parallax_1 from '~/assets/Images/main/sky_parallax_1.png?url'
+const sky_parallax_1 = '/Images/main/sky_parallax_1.png'
 import sky_parallax_2 from '~/assets/Images/main/sky_parallax_2.png?url'
 const props = defineProps({
   sectionData: { type: Object, defaults: {} }
