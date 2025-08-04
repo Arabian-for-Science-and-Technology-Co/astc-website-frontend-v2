@@ -45,7 +45,7 @@
         {{ sectionData?.[`cta_text_${locale}`] }}
       </button>
     </article>
-    <NuxtImg
+    <BaseImg
       densities="x1 x2"
       format="webp"
       :src="sectionData?.image || saudiVisionImg"
@@ -53,13 +53,13 @@
       :alt="`Image representing saudiVisionImg`"
       loading="lazy"
       decoding="async"
-      @error="$event.target.src = saudiVisionImg"
+      :fallback="saudiVisionImg"
     />
   </section>
 </template>
 
 <script setup>
-import saudiVisionImg from '~/assets/Images/main/saudi_vision.png'
+const saudiVisionImg = '/Images/main/saudi_vision.png'
 const props = defineProps({
   sectionData: { type: Object, defaults: {} }
 })

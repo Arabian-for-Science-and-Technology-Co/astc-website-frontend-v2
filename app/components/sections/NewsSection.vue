@@ -25,7 +25,7 @@
             {{ item?.[`title_${locale}`] }}
           </h4>
         </div>
-        <NuxtImg
+        <BaseImg
           densities="x1 x2"
           format="webp"
           v-if="item.video_url"

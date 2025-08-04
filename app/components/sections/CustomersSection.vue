@@ -40,7 +40,7 @@
           '3xl:h-[215px] 3xl:w-[215px] 3xl:p-5'
         ]"
       >
-        <NuxtImg
+        <BaseImg
           densities="x1 x2"
           format="webp"
           :key="i"

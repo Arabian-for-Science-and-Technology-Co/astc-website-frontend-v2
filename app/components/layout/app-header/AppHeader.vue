@@ -7,13 +7,13 @@
   >
     <!-- Left Logo Section -->
     <article v-if="showLeftLogo" class="-mt-[17px] hidden gap-[27px] lg:flex">
-      <NuxtImg
+      <BaseImg
         densities="x1 x2"
         format="webp"
         @click="navigateTo('/')"
         :src="isWhiteLogo ? settings.logo_light : settings.logo_dark"
         :class="['mb-[7px] h-[68px] w-[130px] self-start hover:cursor-pointer']"
-        @error="$event.target.src = ASC_Logo_Main"
+        :fallback="ASC_Logo_Main"
       />
       <h3
         v-if="settings?.[`title_${locale}`]"
@@ -36,12 +36,12 @@
     <ClientOnly>
       <!-- Mobile Logo -->
       <div :class="['-ms-[50px] -mt-6 mb-0 block h-[55px] w-[106px]', 'lg:hidden']">
-        <NuxtImg
+        <BaseImg
           densities="x1 x2"
           format="webp"
           :src="settings.logo_dark"
           class="h-full w-full"
-          @error="$event.target.src = ASC_Logo_Main"
+          :fallback="ASC_Logo_Main"
         />
       </div>
     </ClientOnly>
@@ -70,7 +70,7 @@
 </template>
 
 <script setup>
-import ASC_Logo_Main from '~/assets/Icons/ASC_Logo_Main.svg?url'
+const ASC_Logo_Main = '/Icons/ASC_Logo_Main.svg'
 
 const props = defineProps({
   showLeftLogo: { type: Boolean, default: true },

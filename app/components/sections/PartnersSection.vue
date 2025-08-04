@@ -32,7 +32,7 @@
           '3xl:h-[75px] 3xl:w-[215px]'
         ]"
       >
-        <NuxtImg
+        <BaseImg
           densities="x1 x2"
           format="webp"
           :src="partner.logo"

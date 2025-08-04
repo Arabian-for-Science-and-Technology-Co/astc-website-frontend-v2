@@ -11,7 +11,7 @@
         'lg:w-[360px] lg:rounded-[48px]'
       ]"
     >
-      <NuxtImg
+      <BaseImg
         densities="x1 x2"
         format="webp"
         :src="category.image"

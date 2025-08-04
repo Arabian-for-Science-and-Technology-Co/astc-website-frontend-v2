@@ -10,7 +10,7 @@
       <h2 class="main-title">{{ products?.[`title_${locale}`] }}</h2>
       <div class="imgs-contianer mt-[29px]">
         <figure v-for="(item, i) in products?.items || []" class="imgs-contianer__card">
-          <NuxtImg
+          <BaseImg
             densities="x1 x2"
             format="webp"
             :key="i"
@@ -31,7 +31,7 @@
           v-for="(item, i) in solutions?.items || []"
           class="imgs-contianer__card imgs-contianer__card--wide"
         >
-          <NuxtImg
+          <BaseImg
             densities="x1 x2"
             format="webp"
             :key="i"
