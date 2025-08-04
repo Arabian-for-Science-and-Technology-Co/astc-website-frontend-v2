@@ -9,6 +9,16 @@
   --container-sm: 640px;
   --container-md: 768px;
   --container-lg: 1024px;
+  --container-ps: 19px;
+  --container-pe: 18px;
+  @media (min-width: 1280px) {
+    --container-ps: 41px;
+    --container-pe: 40px;
+  }
+  @media (min-width: 1920px) {
+    --container-ps: 70px;
+    --container-pe: 70px;
+  }
 
   /* Radius */
   --radius-sm: 0.25rem;
