@@ -45,3 +45,11 @@
     -webkit-line-clamp: 3;
   }
 }
+.gray-overlay {
+  filter: brightness(0) saturate(100%) invert(76%) sepia(6%) saturate(285%) hue-rotate(185deg)
+    brightness(97%) contrast(86%);
+  opacity: 0.95;
+}
+.white-filter {
+  filter: brightness(0) invert(1); /* black → white */
+}
