@@ -19,23 +19,14 @@
         >
           <ClientOnly>
             <!-- Center Vision Logo -->
-            <article class="mb-[10px] flex items-center gap-[30px] self-end">
-              <VisionLogoIcon color="white" :class="['w-[50px]', 'lg:w-auto']" />
-              <h3
-                :class="[
-                  'hidden text-xl font-[300] not-italic leading-[100%] tracking-[0.2px] text-[#A9AEB8]',
-                  showLeftLogo ? '3xl:block' : 'lg:block'
-                ]"
-              >
-                Every Saudi must get involved
-                <br />
-                for a better future
-              </h3>
-            </article>
-
+            <SaudiVision :isWhiteLogo="true" :showLeftLogo="false" class="mb-[10px] self-end" />
             <!-- Mobile Logo -->
             <div :class="['-mt-6 mb-0 block h-[55px] w-[106px]', 'lg:hidden']">
-              <ASCLogoMainIcon color="white" class="h-full w-full" />
+              <img
+                :src="settings?.logo_light"
+                class="h-full w-full"
+                @error="$event.target.src = ASC_Logo_Main"
+              />
             </div>
           </ClientOnly>
 
@@ -72,9 +63,13 @@
 </template>
 
 <script setup>
+import ASC_Logo_Main from '~/assets/Icons/ASC_Logo_Main.svg?url'
+
 defineProps({
   tabs: { type: Array, required: true }
 })
+const { settings } = useWebsiteSettings()
+
 const isOpen = ref(false)
 watch(isOpen, (val) => {
   if (val) {

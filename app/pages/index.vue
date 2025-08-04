@@ -24,13 +24,13 @@ import SaudiVisionSection from '~/components/sections/SaudiVisionSection.vue'
 const { $customFetch } = useNuxtApp()
 const componentMap = {
   // hero_tiles: HeroSection,
-  'latest-news': NewsSection,
-  'contributing-to-the-saudi-future-with-delivering-fully-local-technologies': AnnouncementSection,
-  'custom-development': PromoSection,
-  'among-our-customers-': CustomersSection,
-  'section-wwnWfA': ParallaxSection,
-  'astc-is-a-trusted-partner-of-': PartnersSection,
-  'saudi-vision-2030': SaudiVisionSection
+  'news_bar': NewsSection,
+  'vision': AnnouncementSection,
+  'custom_development': PromoSection,
+  'trusted_customers': CustomersSection,
+  'digital_cloud': ParallaxSection,
+  'trusted_partners': PartnersSection,
+  'vision2030': SaudiVisionSection
   // 'products-solutions': ProductsSection
 }
 const { data: sections } = await useAsyncData(() => $customFetch('/website/home/page/1/sections'), {
