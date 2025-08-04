@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed start-0 top-0 z-[40] flex h-[100vh] w-full flex-col">
+  <div class="flex h-[100vh] w-full flex-col">
     <div
       @mouseover="$emit('mouseover')"
       @mouseleave="$emit('mouseleave')"

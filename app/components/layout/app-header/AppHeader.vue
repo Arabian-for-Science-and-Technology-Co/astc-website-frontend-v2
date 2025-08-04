@@ -24,14 +24,14 @@
       </h3>
     </article>
 
-    <ClientOnly>
-      <!-- Center Vision Logo -->
-      <SaudiVision
-        :isWhiteLogo="isWhiteLogo"
-        :showLeftLogo="showLeftLogo"
-        class="mb-[10px] self-end"
-      />
+    <!-- Center Vision Logo -->
+    <SaudiVision
+      :isWhiteLogo="isWhiteLogo"
+      :showLeftLogo="showLeftLogo"
+      class="mb-[10px] self-end"
+    />
 
+    <ClientOnly>
       <!-- Mobile Logo -->
       <div :class="['-ms-[50px] -mt-6 mb-0 block h-[55px] w-[106px]', 'lg:hidden']">
         <img
@@ -51,49 +51,47 @@
     <ClientOnly>
       <article class="hidden items-center gap-[40px] lg:flex">
         <LanguageSwitcher />
-        <div :style="{ width: tabsRef?.containerWidth + 'px' }"></div>
-        <Tabs
-          :returnObject="false"
-          ref="tabsRef"
-          class="fixed end-[--container-ps]"
-          :modelValue="route.path"
-          @update:modelValue="
-            (val) => {
-              navigateTo(val)
-            }
-          "
-          :tabs="tabs"
-        >
-          <template #tab="{ tab, isSelected }">
-            <h2
-              @mouseenter="
-                enableHover && tab.id == 'products-and-solutions' ? (isHovering = true) : ''
-              "
-              :class="[!isSelected && 'hover:text-[#1778FF]']"
-            >
-              {{ tab.label }}
-            </h2>
-            <span
-              v-if="tab.isNew"
-              class="absolute end-[7px] top-[7px] h-2 w-2 rounded-full bg-[#0ADF0A]"
-            >
-            </span>
-            <teleport to="body">
-              <FlaotingProductsBar
-                v-if="isHovering && tab.id == 'products-and-solutions'"
-                @mouseover="
-                  enableHover && tab.id == 'products-and-solutions' ? (isHovering = true) : ''
-                "
-                @mouseleave="
-                  enableHover && tab.id == 'products-and-solutions' ? (isHovering = false) : ''
-                "
-                :tabs="tabs"
-              />
-            </teleport>
-          </template>
-        </Tabs>
+        <div class="tabs-placeholder" :style="{ width: tabsRef?.containerWidth + 'px' }"></div>
       </article>
     </ClientOnly>
+    <teleport to="body">
+      <Tabs
+        :returnObject="false"
+        ref="tabsRef"
+        :class="[
+          'fixed end-[--container-pe] top-[38px] z-[60] hidden lg:flex',
+          !enableHover && '!z-[-50] opacity-0'
+        ]"
+        :modelValue="route.path"
+        @update:modelValue="(val) => navigateTo(val)"
+        :tabs="tabs"
+      >
+        <template #tab="{ tab, isSelected }">
+          <h2
+            @mouseenter="
+              enableHover && tab.id == 'products-and-solutions'
+                ? (isHovering = true)
+                : (isHovering = false)
+            "
+            :class="[!isSelected && 'hover:text-[#1778FF]']"
+          >
+            {{ tab.label }}
+          </h2>
+          <span
+            v-if="tab.isNew"
+            class="absolute end-[7px] top-[7px] h-2 w-2 rounded-full bg-[#0ADF0A]"
+          >
+          </span>
+        </template>
+      </Tabs>
+      <FlaotingProductsBar
+        class="fixed start-0 top-0 z-[50]"
+        v-if="isHovering"
+        @mouseover="enableHover ? (isHovering = true) : ''"
+        @mouseleave="enableHover ? (isHovering = false) : ''"
+        :tabs="tabs"
+      />
+    </teleport>
   </section>
 </template>
 
