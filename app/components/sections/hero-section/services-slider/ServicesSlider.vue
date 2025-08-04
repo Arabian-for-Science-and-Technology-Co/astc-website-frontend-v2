@@ -11,7 +11,9 @@
         'lg:w-[360px] lg:rounded-[48px]'
       ]"
     >
-      <img
+      <NuxtImg
+        densities="x1 x2"
+        format="webp"
         :src="category.image"
         class="h-full w-full object-cover transition-transform group-hover:scale-110"
         :alt="`Image representing service`"

@@ -3,13 +3,17 @@
     ref="container"
     class="relative flex h-screen items-stretch overflow-hidden bg-[#0D1667] font-zarid"
   >
-    <img
+    <NuxtImg
+      densities="x1 x2"
+      format="webp"
       :src="sectionData?.image || sky_parallax_1"
       class="h-full flex-1 object-cover"
       :alt="`sky_parallax_1`"
       @error="$event.target.src = sky_parallax_1"
     />
-    <img
+    <NuxtImg
+      densities="x1 x2"
+      format="webp"
       ref="sky2"
       :src="sky_parallax_2"
       class="absolute inset-0 h-full w-full object-cover"

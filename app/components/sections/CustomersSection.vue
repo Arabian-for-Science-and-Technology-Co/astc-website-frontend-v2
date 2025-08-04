@@ -40,7 +40,9 @@
           '3xl:h-[215px] 3xl:w-[215px] 3xl:p-5'
         ]"
       >
-        <img
+        <NuxtImg
+          densities="x1 x2"
+          format="webp"
           :key="i"
           :src="customer.logo"
           class="h-full w-full object-contain transition-transform hover:-translate-y-[10px]"

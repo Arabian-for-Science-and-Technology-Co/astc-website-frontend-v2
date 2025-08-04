@@ -32,7 +32,9 @@
           '3xl:h-[75px] 3xl:w-[215px]'
         ]"
       >
-        <img
+        <NuxtImg
+          densities="x1 x2"
+          format="webp"
           :src="partner.logo"
           :alt="`logo ${i + 1}`"
           class="h-full object-contain grayscale filter transition duration-300 hover:filter-none"

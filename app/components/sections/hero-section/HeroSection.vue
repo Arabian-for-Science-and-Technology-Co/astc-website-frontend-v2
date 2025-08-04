@@ -37,12 +37,14 @@
             '3xl:mb-[12px] 3xl:h-[209px] 3xl:w-[400.09px]'
           ]"
         >
-          <img
+          <NuxtImg
+            densities="x1 x2"
+            format="webp"
             :src="settings.logo_dark || ASC_Logo_Main"
             :class="['h-full w-full']"
             @error="$event.target.src = ASC_Logo_Main"
           />
-         </div>
+        </div>
 
         <h2
           :class="[

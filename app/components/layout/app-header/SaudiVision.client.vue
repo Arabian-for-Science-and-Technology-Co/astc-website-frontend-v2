@@ -1,6 +1,8 @@
 <template>
   <article class="group flex items-center gap-[30px]">
-    <img
+    <NuxtImg
+      densities="x1 x2"
+      format="webp"
       :src="settings.saudi_vision"
       :class="[
         'gray-overlay w-[50px]',
