@@ -51,7 +51,7 @@
       :alt="`Image representing saudiVisionImg`"
       loading="lazy"
       decoding="async"
-      @error="onImgError"
+      @error="$event.target.src = saudiVisionImg"
     />
   </section>
 </template>
@@ -62,10 +62,6 @@ const props = defineProps({
   sectionData: { type: Object, defaults: {} }
 })
 const { locale } = useI18n()
-
-function onImgError(event) {
-  event.target.src = saudiVisionImg
-}
 </script>
 <style scoped>
 .main-text-color {
