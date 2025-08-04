@@ -7,15 +7,15 @@
     ]"
   >
     <a
-      v-if="settings.phones?.[0]"
+      v-if="settings?.phones?.[0]"
       dir="ltr"
-      href="tel:+966 11 4544158"
+      :href="`tel:${settings?.phones?.[0]}`"
       class="phone-number col-span-5 cursor-default whitespace-nowrap hover:text-[#1778FF]"
     >
-      {{ settings.phones?.[0] }}
+      {{ settings?.phones?.[0] }}
     </a>
     <div :class="['flex flex-col gap-[28px]', 'lg:col-span-4 lg:gap-[41px]', '3xl:col-span-5']">
-      <a settings?.mail href="mailto:info@astc.com.sa">{{ settings?.mail }}</a>
+      <a v-if="settings?.mail" href="mailto:info@astc.com.sa">{{ settings?.mail }}</a>
       <h3
         v-if="settings?.[`address_${locale}`]"
         class="block max-w-[230px] pe-[30px] text-xl font-normal not-italic leading-[105%] tracking-[0.2px] 3xl:hidden"

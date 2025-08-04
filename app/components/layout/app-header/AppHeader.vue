@@ -7,14 +7,15 @@
   >
     <!-- Left Logo Section -->
     <article v-if="showLeftLogo" class="-mt-[17px] hidden gap-[27px] lg:flex">
-      <ASCLogoMainIcon
-        :color="isWhiteLogo ? 'white' : null"
-        class="mb-[7px] h-[68px] w-[130px] self-start"
+      <img
+        :src="isWhiteLogo ? settings.logo_light : settings.logo_dark"
+        :class="['mb-[7px] h-[68px] w-[130px] self-start']"
+        @error="$event.target.src = ASC_Logo_Main"
       />
       <h3
         v-if="settings?.[`title_${locale}`]"
         :class="[
-          'max-w-[129px] self-end text-xl font-[300] not-italic leading-[21px] tracking-[0.2px] text-[#18264A]',
+          'max-w-[155px] self-end text-xl font-[400] not-italic leading-[21px] tracking-[0.2px] text-[#18264A]',
           isWhiteLogo ? 'text-white' : 'text-[#18264A]'
         ]"
       >
@@ -32,7 +33,11 @@
 
       <!-- Mobile Logo -->
       <div :class="['-ms-[50px] -mt-6 mb-0 block h-[55px] w-[106px]', 'lg:hidden']">
-        <ASCLogoMainIcon class="h-full w-full" />
+        <img
+          :src="settings.logo_dark"
+          class="h-full w-full"
+          @error="$event.target.src = ASC_Logo_Main"
+        />
       </div>
     </ClientOnly>
 
@@ -81,7 +86,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import ASC_Logo_Main from '~/assets/Icons/ASC_Logo_Main.svg?url'
 
 const props = defineProps({
   showLeftLogo: { type: Boolean, default: true },

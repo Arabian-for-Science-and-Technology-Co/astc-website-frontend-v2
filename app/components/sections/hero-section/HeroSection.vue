@@ -37,8 +37,12 @@
             '3xl:mb-[12px] 3xl:h-[209px] 3xl:w-[400.09px]'
           ]"
         >
-          <ASCLogoMainIcon class="h-full w-full" />
-        </div>
+          <img
+            :src="settings.logo_dark || ASC_Logo_Main"
+            :class="['h-full w-full']"
+            @error="$event.target.src = ASC_Logo_Main"
+          />
+         </div>
 
         <h2
           :class="[
@@ -64,6 +68,8 @@
 </template>
 
 <script setup>
+import ASC_Logo_Main from '~/assets/Icons/ASC_Logo_Main.svg?url'
+
 const props = defineProps({
   sectionData: { type: Object, defaults: {} }
 })
