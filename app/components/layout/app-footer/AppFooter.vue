@@ -9,7 +9,7 @@
       ]"
     >
       <AppFooterSection1 />
-      <AppFooterSection2 :pages="pages" class="pt-[110px] lg:pt-[102px] 3xl:pt-[104px]" />
+      <AppFooterSection2 class="pt-[110px] lg:pt-[102px] 3xl:pt-[104px]" />
     </section>
   </div>
 </template>
@@ -18,16 +18,5 @@
 const props = defineProps({
   showProductsSection: { type: Boolean, default: true }
 })
-const { locale } = useI18n()
-const { settings } = useWebsiteSettings()
-
-const pages = [
-  'Products & Solutions',
-  'News',
-  'About',
-  'Contact',
-  'Privacy Policy',
-  'Terms & Conditions'
-]
 </script>
 <style scoped></style>

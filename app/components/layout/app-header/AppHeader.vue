@@ -8,8 +8,9 @@
     <!-- Left Logo Section -->
     <article v-if="showLeftLogo" class="-mt-[17px] hidden gap-[27px] lg:flex">
       <img
+        @click="navigateTo('/')"
         :src="isWhiteLogo ? settings.logo_light : settings.logo_dark"
-        :class="['mb-[7px] h-[68px] w-[130px] self-start']"
+        :class="['mb-[7px] h-[68px] w-[130px] self-start hover:cursor-pointer']"
         @error="$event.target.src = ASC_Logo_Main"
       />
       <h3
@@ -51,7 +52,18 @@
       <article class="hidden items-center gap-[40px] lg:flex">
         <LanguageSwitcher />
         <div :style="{ width: tabsRef?.containerWidth + 'px' }"></div>
-        <Tabs ref="tabsRef" class="fixed end-[--container-ps]" v-model="selected" :tabs="tabs">
+        <Tabs
+          :returnObject="false"
+          ref="tabsRef"
+          class="fixed end-[--container-ps]"
+          :modelValue="route.path"
+          @update:modelValue="
+            (val) => {
+              navigateTo(val)
+            }
+          "
+          :tabs="tabs"
+        >
           <template #tab="{ tab, isSelected }">
             <h2
               @mouseenter="
@@ -99,6 +111,7 @@ const { locale } = useI18n()
 
 const { pages } = usePages()
 const { settings } = useWebsiteSettings()
+const route = useRoute()
 
 const tabs = computed(() =>
   pages.value
@@ -106,19 +119,29 @@ const tabs = computed(() =>
     .map((page) => ({
       id: page.slug,
       label: page?.[`title_${locale.value}`],
-      value: page.slug,
-      isNew: page.slug == 'news'
+      value: `/${page.slug}`,
+      isNew: page.slug == 'news' && route.path != '/news'
     }))
 )
-const selected = ref(null)
+
 const isHovering = ref(false)
 const tabsRef = ref(null)
 
 watch(isHovering, (val) => {
+  console.log('isHovering', isHovering.value)
+
   if (val) {
     document.body.style.overflow = 'hidden'
   } else {
     document.body.style.overflow = ''
   }
 })
+
+watch(
+  route,
+  () => {
+    isHovering.value = false
+  },
+  { deep: true }
+)
 </script>

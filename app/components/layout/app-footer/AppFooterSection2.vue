@@ -30,15 +30,17 @@
         '3xl:col-span-4 3xl:ms-[14px] 3xl:mt-[14px]'
       ]"
     >
-      <h3
-        v-for="page in pages"
+      <button
+        v-for="item in tabs"
+        :key="item.id"
+        @click="navigateTo(item.value)"
         :class="[
-          'text-[52px] font-[200] not-italic leading-[49.4px] tracking-[0.52px]',
+          'text-[52px] text-start font-[200] not-italic leading-[49.4px] tracking-[0.52px]',
           'lg:whitespace-nowrap lg:text-xl lg:font-normal lg:leading-[105%] lg:tracking-[0.2px]'
         ]"
       >
-        {{ page }}
-      </h3>
+        {{ item.label }}
+      </button>
     </div>
     <div
       :class="[
@@ -56,11 +58,30 @@
 </template>
 
 <script setup>
-defineProps({
-  pages: { type: Array, required: true }
-})
-const { locale } = useI18n()
+const { t, locale } = useI18n()
 const { settings } = useWebsiteSettings()
+
+const { pages } = usePages()
+
+const tabs = computed(() => [
+  ...pages.value
+    .filter((page) => page.slug != 'home')
+    .map((page) => ({
+      id: page.slug,
+      label: page?.[`title_${locale.value}`],
+      value: `/${page.slug}`
+    })),
+  {
+    id: 'privacy_policy',
+    label: t('privacy_policy'),
+    value: `/privacy-policy`
+  },
+  {
+    id: 'terms_and_conditions',
+    label: t('terms_and_conditions'),
+    value: `/terms-and-conditions`
+  }
+])
 </script>
 <style scoped>
 .pages h3:last-child {

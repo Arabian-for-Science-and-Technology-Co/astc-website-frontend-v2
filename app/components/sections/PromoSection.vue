@@ -48,7 +48,7 @@
 </template>
 
 <script setup>
-import promoImg from '~/assets/Images/main/promo.png'
+import promoImg from '~/assets/Images/main/promo.png?url'
 const props = defineProps({
   sectionData: { type: Object, defaults: {} }
 })
