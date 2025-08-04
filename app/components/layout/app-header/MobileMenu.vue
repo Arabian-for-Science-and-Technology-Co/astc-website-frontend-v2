@@ -2,7 +2,7 @@
   <button
     v-bind="$attrs"
     @click="isOpen = !isOpen"
-    class="gird m-0 h-[42px] w-[42px] place-items-center rounded-xl bg-[#0000000D] p-0 backdrop-blur-[6px]  "
+    class="gird m-0 h-[42px] w-[42px] place-items-center rounded-xl bg-[#0000000D] p-0 backdrop-blur-[6px]"
   >
     <MenuMobileIcon class="static !h-[8px] !w-[18px]" />
   </button>
@@ -22,7 +22,9 @@
           <SaudiVision :isWhiteLogo="true" :showLeftLogo="false" class="mb-[10px] self-end" />
           <!-- Mobile Logo -->
           <div :class="['-mt-6 mb-0 block h-[55px] w-[106px]', 'lg:hidden']">
-            <img
+            <NuxtImg
+              densities="x1 x2"
+              format="webp"
               :src="settings?.logo_light"
               class="h-full w-full"
               @error="$event.target.src = ASC_Logo_Main"

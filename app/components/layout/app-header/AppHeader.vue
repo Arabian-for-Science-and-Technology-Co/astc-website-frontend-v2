@@ -7,7 +7,9 @@
   >
     <!-- Left Logo Section -->
     <article v-if="showLeftLogo" class="-mt-[17px] hidden gap-[27px] lg:flex">
-      <img
+      <NuxtImg
+        densities="x1 x2"
+        format="webp"
         @click="navigateTo('/')"
         :src="isWhiteLogo ? settings.logo_light : settings.logo_dark"
         :class="['mb-[7px] h-[68px] w-[130px] self-start hover:cursor-pointer']"
@@ -34,7 +36,9 @@
     <ClientOnly>
       <!-- Mobile Logo -->
       <div :class="['-ms-[50px] -mt-6 mb-0 block h-[55px] w-[106px]', 'lg:hidden']">
-        <img
+        <NuxtImg
+          densities="x1 x2"
+          format="webp"
           :src="settings.logo_dark"
           class="h-full w-full"
           @error="$event.target.src = ASC_Logo_Main"

@@ -45,7 +45,9 @@
         {{ sectionData?.[`cta_text_${locale}`] }}
       </button>
     </article>
-    <img
+    <NuxtImg
+      densities="x1 x2"
+      format="webp"
       :src="sectionData?.image || saudiVisionImg"
       class="absolute start-0 top-0 -z-0 h-full w-full object-cover"
       :alt="`Image representing saudiVisionImg`"
