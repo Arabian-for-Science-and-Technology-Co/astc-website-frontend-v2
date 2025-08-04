@@ -1,5 +1,5 @@
 <template>
-  <div class="">contact</div>
+  <div class="pt-[--header-height]">contact</div>
 </template>
 
 <script setup></script>

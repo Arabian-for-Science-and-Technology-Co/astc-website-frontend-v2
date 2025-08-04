@@ -1,5 +1,5 @@
 <template>
-  <div class="">Products & Solutions</div>
+  <div class="pt-[--header-height]">Products & Solutions</div>
 </template>
 
 <script setup></script>

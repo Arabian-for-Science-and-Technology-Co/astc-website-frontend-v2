@@ -2,7 +2,7 @@
   <section
     :class="[
       'app-container absolute z-40 flex h-fit w-full items-center justify-between bg-transparent transition-colors duration-300',
-      'pt-[38px]'
+      'pt-[--header-pt]'
     ]"
   >
     <!-- Left Logo Section -->
@@ -44,7 +44,7 @@
 
     <div class="mobileMenu-placeholder">
       <MobileMenu
-        class="gird fixed end-[--container-ps] top-[38px] z-[100] lg:hidden"
+        class="gird fixed end-[--container-ps] top-[--header-pt] z-[100] lg:hidden"
         :tabs="tabs"
       />
     </div>
@@ -55,7 +55,7 @@
         <div class="desktopMenu-placeholder" :style="{ width: desktopMenuRef?.width + 'px' }">
           <DesktopMenu
             ref="desktopMenuRef"
-            class="fixed end-[--container-pe] top-[38px] z-[60] hidden lg:flex"
+            class="fixed end-[--container-pe] top-[--header-pt] z-[60] hidden lg:flex"
             :tabs="tabs"
             :enableHover="enableHover"
           />

@@ -1,5 +1,5 @@
 <template>
-  <div class="">news</div>
+  <div class="pt-[--header-height]">news</div>
 </template>
 
 <script setup></script>
