@@ -18,10 +18,14 @@ export default defineNuxtConfig({
     //     config.plugins.push(vuetify({ autoImport: true }));
     //   });
     // },
+    '@nuxt/image',
     '@nuxtjs/tailwindcss',
     'nuxt-svgo',
     '@nuxtjs/i18n'
   ],
+  //  image: {
+  //   dir: '~/assets',  // Point to where your images are
+  // },
   i18n: {
     locales: [
       { code: 'en', iso: 'en-US', file: 'en.js', name: 'English' },

@@ -2,8 +2,8 @@
   <article
     :class="[
       'app-container flex w-full flex-col-reverse text-xl font-normal not-italic leading-[105%] tracking-[0.2px] text-black',
-      'lg:grid lg:grid-cols-12 lg:gap-y-[20px]',
-     ]"
+      'lg:grid lg:grid-cols-12 lg:gap-y-[20px]'
+    ]"
   >
     <div
       :class="[
@@ -14,12 +14,12 @@
     >
       <ASCLogoMiniIcon class="ms-[31.2vw] lg:ms-0" />
       <p class="flex gap-[17.34vw] lg:gap-1 3xl:self-end">
-        <span>© 2025</span>
-        <span class="max-w-[140px] lg:max-w-full">Arabian for Science and Technology</span>
+        <span>{{ settings?.footer }}</span>
+        <span class="max-w-[140px] lg:max-w-full">{{ settings?.[`footer_${locale}`] }}</span>
       </p>
     </div>
     <h3 class="col-span-2 mt-[4px] hidden max-w-[230px] 3xl:mt-[14px] 3xl:block">
-      8101 Othman Bin Affan Street, Riyadh, Saudi Arabia
+      {{ settings?.[`address_${locale}`] }}
     </h3>
     <div
       :class="[
@@ -30,15 +30,17 @@
         '3xl:col-span-4 3xl:ms-[14px] 3xl:mt-[14px]'
       ]"
     >
-      <h3
-        v-for="page in pages"
+      <button
+        v-for="item in tabs"
+        :key="item.id"
+        @click="navigateTo(item.value)"
         :class="[
-          'text-[52px] font-[200] not-italic leading-[49.4px] tracking-[0.52px]',
+          'text-[52px] text-start font-[200] not-italic leading-[49.4px] tracking-[0.52px]',
           'lg:whitespace-nowrap lg:text-xl lg:font-normal lg:leading-[105%] lg:tracking-[0.2px]'
         ]"
       >
-        {{ page }}
-      </h3>
+        {{ item.label }}
+      </button>
     </div>
     <div
       :class="[
@@ -56,9 +58,30 @@
 </template>
 
 <script setup>
-defineProps({
-  pages: { type: Array, required: true }
-})
+const { t, locale } = useI18n()
+const { settings } = useWebsiteSettings()
+
+const { pages } = usePages()
+
+const tabs = computed(() => [
+  ...pages.value
+    .filter((page) => page.slug != 'home')
+    .map((page) => ({
+      id: page.slug,
+      label: page?.[`title_${locale.value}`],
+      value: `/${page.slug}`
+    })),
+  {
+    id: 'privacy_policy',
+    label: t('privacy_policy'),
+    value: `/privacy-policy`
+  },
+  {
+    id: 'terms_and_conditions',
+    label: t('terms_and_conditions'),
+    value: `/terms-and-conditions`
+  }
+])
 </script>
 <style scoped>
 .pages h3:last-child {
