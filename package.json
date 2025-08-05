@@ -7,6 +7,7 @@
     "dev:network": "nuxt dev --host 0.0.0.0",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
+    "start": "node .output/server/index.mjs",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "format": "prettier --write .",
