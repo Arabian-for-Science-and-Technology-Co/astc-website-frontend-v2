@@ -4,7 +4,9 @@
       'app-container flex flex-col bg-[#F0F0F0] pb-[150px] pt-[--header-height] font-zarid text-black lg:pb-[230px] 3xl:pb-[247px]'
     ]"
   >
-    <h1 class="head-title mt-[100px] lg:mt-[120px] 3xl:mt-[160px]">Products & Solutions</h1>
+    <h1 class="head-title mt-[100px] lg:mt-[120px] 3xl:mt-[160px]">
+      {{ products?.[`title_${locale}`] }} & {{ solutions?.[`title_${locale}`] }}
+    </h1>
     <section
       class="mt-[80px] flex flex-col justify-start gap-[83px] lg:mt-[97px] lg:gap-[126px] 3xl:mt-[123px] 3xl:gap-[166px]"
     >
