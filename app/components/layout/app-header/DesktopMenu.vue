@@ -6,7 +6,7 @@
       ref="tabsRef"
       :class="[
         !enableHover && '!z-[-50] opacity-0',
-        isCategoriesOrProductsandsolutionsPage && !isHovering && '!bg-white'
+        isWhiteBg && !isHovering && '!bg-white'
       ]"
       :modelValue="route.path"
       @update:modelValue="(val) => navigateTo(val)"
@@ -51,8 +51,8 @@ defineProps({
 })
 const tabsRef = ref(null)
 const route = useRoute()
-const isCategoriesOrProductsandsolutionsPage = computed(() =>
-  ['/products-and-solutions', '/categories-details'].some((p) => route.fullPath.startsWith(p))
+const isWhiteBg = computed(() =>
+  ['/products-and-solutions', '/categories-details','/contact','/about'].some((p) => route.fullPath.startsWith(p))
 )
 const isHovering = ref(false)
 watch(isHovering, (val) => {

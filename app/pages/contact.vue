@@ -1,5 +1,11 @@
 <template>
-  <div class="pt-[--header-height]">contact</div>
+  <div
+    :class="[
+      'app-container flex flex-col bg-[#F0F0F0] pb-[150px] pt-[--header-height] font-zarid text-black lg:pb-[230px] 3xl:pb-[247px]'
+    ]"
+  >
+    contact
+  </div>
 </template>
 
 <script setup></script>

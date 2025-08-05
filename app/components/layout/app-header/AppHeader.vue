@@ -56,7 +56,7 @@
     <ClientOnly>
       <article class="hidden items-center gap-[40px] lg:flex">
         <LanguageSwitcher
-          :class="isCategoriesOrProductsandsolutionsPage && enableHover && '!bg-white'"
+          :class="isWhiteBg && enableHover && '!bg-white'"
         />
         <div class="desktopMenu-placeholder" :style="{ width: desktopMenuRef?.width + 'px' }">
           <DesktopMenu
@@ -86,8 +86,8 @@ const { locale } = useI18n()
 const { pages } = usePages()
 const { settings } = useWebsiteSettings()
 const route = useRoute()
-const isCategoriesOrProductsandsolutionsPage = computed(() =>
-  ['/products-and-solutions', '/categories-details'].some((p) => route.fullPath.startsWith(p))
+const isWhiteBg = computed(() =>
+  ['/products-and-solutions', '/categories-details','/contact','/about'].some((p) => route.fullPath.startsWith(p))
 )
 
 const tabs = computed(() =>
