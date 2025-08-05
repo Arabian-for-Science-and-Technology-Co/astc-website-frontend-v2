@@ -4,89 +4,93 @@
   </NuxtLayout>
 </template>
 <script setup>
-const { locale, locales } = useI18n()
-
 const config = useRuntimeConfig()
 const baseUrl = config.public.siteUrl || 'https://astc.com.sa/astc/'
-const staticMetaData = {
-  title: 'ASTC',
+const { locale, locales } = useI18n()
+const { settings, fetchSettings } = useWebsiteSettings()
+await fetchSettings()
+
+const staticMetaData = computed(() => ({
+  title: settings?.value?.[`meta_title_${locale.value}`] || 'ASTC',
   description:
+    settings?.value?.[`meta_description_${locale.value}`] ||
     'ASTC has been a trusted contractor in Saudi Arabia since 2007, delivering expert-level Project Management, Telecom Engineering, and IT services.',
   type: 'website',
-  image: `${baseUrl}/favicon.ico`,
+  image: settings.value?.favicon || `${baseUrl}/favicon.ico`,
   url: `${baseUrl}/astc/`,
   keywords:
+    settings?.value?.[`keywords_${locale.value}`] ||
     'ASTC, Arabian for Science and Technology Co., Saudi contractor, project management, telecom, IT services',
-  author: 'ASTC Team'
-}
+  author: 'ASTC'
+}))
 
 useHead({
   htmlAttrs: {
     dir: computed(() => locales.value.find((l) => l.code === locale.value)?.dir || 'ltr'),
     lang: computed(() => locale.value)
   },
-  title: staticMetaData.title,
-  meta: [
+  title: () => staticMetaData.value.title,
+  meta: () => [
     { hid: 'charset', name: 'charset', content: 'utf-8' },
     {
       hid: 'description',
       name: 'description',
-      content: staticMetaData.description
+      content: staticMetaData.value.description
     },
     {
       hid: 'author',
       name: 'author',
-      content: staticMetaData.author
+      content: staticMetaData.value.author
     },
     {
       hid: 'keywords',
       name: 'keywords',
-      content: staticMetaData.keywords
+      content: staticMetaData.value.keywords
     },
     {
       hid: 'og:title',
       property: 'og:title',
-      content: staticMetaData.title
+      content: staticMetaData.value.title
     },
     {
       hid: 'og:description',
       property: 'og:description',
-      content: staticMetaData.description
+      content: staticMetaData.value.description
     },
     {
       hid: 'og:type',
       property: 'og:type',
-      content: staticMetaData.type
+      content: staticMetaData.value.type
     },
     {
       hid: 'og:image',
       property: 'og:image',
-      content: staticMetaData.image
+      content: staticMetaData.value.image
     },
     {
       hid: 'og:url',
       property: 'og:url',
-      content: staticMetaData.url
+      content: staticMetaData.value.url
     },
     {
       hid: 'twitter:title',
       name: 'twitter:title',
-      content: staticMetaData.title
+      content: staticMetaData.value.title
     },
     {
       hid: 'twitter:description',
       name: 'twitter:description',
-      content: staticMetaData.description
+      content: staticMetaData.value.description
     },
     {
       hid: 'twitter:image',
       name: 'twitter:image',
-      content: staticMetaData.image
+      content: staticMetaData.value.image
     },
     {
       hid: 'twitter:url',
       name: 'twitter:url',
-      content: staticMetaData.url
+      content: staticMetaData.value.url
     },
     {
       hid: 'twitter:card',
@@ -98,7 +102,7 @@ useHead({
     {
       rel: 'icon',
       type: 'image/png',
-      href: '/favicon.ico'
+      href: settings.value?.favicon || '/favicon.ico'
     }
   ]
 })

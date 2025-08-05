@@ -8,14 +8,16 @@
     <button
       v-for="(tab, index) in tabs"
       :key="index"
-      @click="() => onTabChange(tab)"
+      @click="
+        () => onTabChange(returnObject ? tab : Object.keys(tab).length ? tab?.[valueKey] : tab)
+      "
       :class="[
         'relative flex h-full items-center text-nowrap rounded-xl border-none px-[20px] capitalize',
-        tab.value == modelValue?.value && 'bg-[#010101] text-white',
+        isTabSelected(tab) && btnSelectedClass,
         btnClass
       ]"
     >
-      <slot name="tab" :tab="tab" :isSelected="tab.value == modelValue?.value">
+      <slot name="tab" :tab="tab" :isSelected="isTabSelected(tab)">
         {{ tab.label }}
       </slot>
     </button>
@@ -26,21 +28,27 @@
 const props = defineProps({
   tabs: { type: Array, required: true },
   modelValue: { type: [Object, null], required: true },
-  btnClass: { type: String }
+  btnClass: { type: String },
+  btnSelectedClass: { type: String, default: 'bg-[#010101] text-white' },
+  returnObject: { type: Boolean, default: true },
+  valueKey: { type: String, default: 'value' }
 })
 const emits = defineEmits(['update:modelValue'])
 
 const containerRef = ref(null)
 const containerWidth = ref(0)
-const onTabChange = (tab) => {
-  emits('update:modelValue', tab)
+const onTabChange = (val) => {
+  emits('update:modelValue', val)
+}
+const isTabSelected = (tab) => {
+  return props.returnObject
+    ? tab?.[props.valueKey] == props.modelValue?.[props.valueKey]
+    : (Object.keys(tab).length ? tab?.[props.valueKey] : tab) == props.modelValue
 }
 
 const updateWidth = () => {
   if (containerRef.value) {
     containerWidth.value = containerRef.value.offsetWidth
-    // console.log('Current container width:', containerWidth.value)
-    // Use the width value here for any logic you need
   }
 }
 

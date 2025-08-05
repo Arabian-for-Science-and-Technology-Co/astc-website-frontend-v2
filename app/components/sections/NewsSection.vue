@@ -5,7 +5,7 @@
     >
       <div
         class="group relative flex h-full flex-shrink-0 items-start justify-start pe-[100px] last-of-type:pe-0"
-        v-for="(item, index) in data"
+        v-for="(item, index) in newsData"
       >
         <div class="not-italic text-white hover:text-[#0ADF0A]">
           <h4
@@ -14,7 +14,7 @@
               'lg:mb-[2px] lg:text-[32px] lg:font-[700] lg:leading-[38.4px] lg:tracking-[0.32px]'
             ]"
           >
-            {{ item.title }}
+            {{ $fd(item.updated_at, 'MMM DD, YYYY') }}
           </h4>
           <h4
             :class="[
@@ -22,16 +22,16 @@
               'lg:w-[580px] lg:pe-[10%] lg:text-[32px] lg:font-[300] lg:leading-[30.4px]'
             ]"
           >
-            {{ item.desc }}
+            {{ item?.[`title_${locale}`] }}
           </h4>
         </div>
-        <img
-          v-if="item.video"
-          :src="item.video"
+        <BaseImg
+          densities="x1 x2"
+          format="webp"
+          v-if="item.video_url"
+          :src="item.video_url"
           class="mb-[17px] h-[87px] w-[133.912px] self-end rounded-[10px] object-cover lg:mb-0 lg:h-[102px] lg:w-[157px]"
           :alt="`video`"
-          loading="lazy"
-          decoding="async"
         />
         <div
           class="absolute bottom-0 end-0 flex flex-col items-start justify-start text-[40px] font-[200] not-italic leading-[49.4px] tracking-[0.52px] text-[#0ADF0A] group-last-of-type:hidden lg:text-[52px]"
@@ -44,7 +44,7 @@
       <button
         class="my-auto whitespace-nowrap text-center align-middle font-durke text-[20px] font-medium uppercase not-italic leading-[120%] tracking-[0.32px] text-[#0ADF0A] hover:text-white lg:text-[32px]"
       >
-        all news /
+        {{ $t('all_news') }} /
       </button>
     </div>
   </section>
@@ -52,6 +52,17 @@
 
 <script setup>
 import newsVideo from '~/assets/Images/news-video.png'
+const props = defineProps({
+  sectionData: { type: Object, defaults: {} }
+})
+const { $customFetch } = useNuxtApp()
+const { locale } = useI18n()
+const { data: newsData } = await useAsyncData(
+  () => $customFetch('/website/news?per_page=3&page=1'),
+  {
+    transform: (res) => res.data || []
+  }
+)
 const data = [
   {
     title: 'June 3, 2025',

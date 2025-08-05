@@ -3,7 +3,13 @@
     ref="container"
     class="relative flex h-screen items-stretch overflow-hidden bg-[#0D1667] font-zarid"
   >
-    <img :src="sky_parallax_1" class="h-full flex-1 object-cover" :alt="`sky_parallax_1`" />
+    <BaseImg
+       format="webp"
+      :src="sectionData?.image || sky_parallax_1"
+      class="h-full flex-1 object-cover"
+      :alt="`sky_parallax_1`"
+      :fallback="sky_parallax_1"
+    />
     <img
       ref="sky2"
       :src="sky_parallax_2"
@@ -16,8 +22,11 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from 'vue'
-import sky_parallax_1 from '~/assets/Images/main/sky_parallax_1.png'
-import sky_parallax_2 from '~/assets/Images/main/sky_parallax_2.png'
+const sky_parallax_1 = '/Images/main/sky_parallax_1.png'
+import sky_parallax_2 from '~/assets/Images/main/sky_parallax_2.png?url'
+const props = defineProps({
+  sectionData: { type: Object, defaults: {} }
+})
 
 // ——— Configurable start / end polygons ———
 // “x y, x y, x y, x y” (percent values, without the “%” or “polygon()”)

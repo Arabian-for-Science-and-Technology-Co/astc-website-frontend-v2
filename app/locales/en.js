@@ -1,4 +1,8 @@
 export default {
+  explore: 'Explore',
+  privacy_policy: "Privacy Policy",
+  terms_and_conditions: "Terms & Conditions",
+  all_news: 'all news',
   welcome: 'Welcome',
   home: 'Home',
   about: 'About',

@@ -13,20 +13,26 @@
         '3xl:max-w-[80%] 3xl:text-[140px] 3xl:leading-[133px] 3xl:tracking-[1.4px]'
       ]"
     >
-      Contributing to the Saudi future with delivering fully local technologies
+      {{ sectionData?.[`title_${locale}`] }}
     </h2>
     <button
+      @click="navigateTo(`/${sectionData?.cta_link}`)"
       :class="[
         'mt-[80px] w-full max-w-[275px] rounded-3xl bg-white py-[23px] text-center text-xl font-[400] not-italic leading-[21px] tracking-[0.2px] text-black transition-colors hover:bg-white/70',
         '3xl:mt-[100px]'
       ]"
     >
-      About Us
+      {{ sectionData?.[`cta_text_${locale}`] }}
     </button>
   </section>
 </template>
 
-<script setup></script>
+<script setup>
+const props = defineProps({
+  sectionData: { type: Object, defaults: {} }
+})
+const { locale } = useI18n()
+</script>
 <style scoped>
 .main-text-color {
   background: linear-gradient(265deg, #465ae5 13.12%, #3246a9 97.6%);

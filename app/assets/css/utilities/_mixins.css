@@ -16,16 +16,7 @@
   }
 
   .app-container {
-    --container-ps: 19px;
-    --container-pe: 18px;
-    @media (min-width: 1280px) {
-      --container-ps: 41px;
-      --container-pe: 40px;
-    }
-    @media (min-width: 1920px) {
-      --container-ps: 70px;
-      --container-pe: 70px;
-    }
+    
     padding-left: var(--container-ps);
     padding-right: var(--container-pe);
   }
@@ -44,4 +35,12 @@
   @media (min-width: 1024px) {
     -webkit-line-clamp: 3;
   }
+}
+.gray-overlay {
+  filter: brightness(0) saturate(100%) invert(76%) sepia(6%) saturate(285%) hue-rotate(185deg)
+    brightness(97%) contrast(86%);
+  opacity: 0.95;
+}
+.white-filter {
+  filter: brightness(0) invert(1); /* black → white */
 }

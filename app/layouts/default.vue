@@ -1,7 +1,7 @@
 <template>
-  <div class="flex min-h-screen flex-col overflow-x-hidden bg-white font-zarid">
+  <div class="flex min-h-screen flex-col whitespace-pre-line overflow-x-hidden bg-white font-zarid">
     <AppHeader :showLeftLogo="!isHomePage" />
-    <main class="flex-grow">
+    <main class="flex-grow ">
       <slot />
     </main>
     <AppFooter :showProductsSection="!isProductsPage" />
@@ -11,5 +11,9 @@
 <script setup>
 const route = useRoute()
 const isHomePage = computed(() => route.path == '/')
-const isProductsPage = computed(() => route.path == '/products')
+const isProductsPage = computed(() => route.path == '/products-and-solutions')
+const { fetchSettings } = useWebsiteSettings()
+const { fetchPages } = usePages()
+await fetchSettings()
+await fetchPages()
 </script>

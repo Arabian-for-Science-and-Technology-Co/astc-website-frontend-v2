@@ -37,7 +37,13 @@
             '3xl:mb-[12px] 3xl:h-[209px] 3xl:w-[400.09px]'
           ]"
         >
-          <ASCLogoMainIcon class="h-full w-full" />
+          <BaseImg
+            densities="x1 x2"
+            format="webp"
+            :src="settings.logo_dark || ASC_Logo_Main"
+            :class="['h-full w-full']"
+            :fallback="ASC_Logo_Main"
+          />
         </div>
 
         <h2
@@ -47,11 +53,11 @@
           ]"
         >
           <span :class="['inline-block font-[400]', 'lg:font-[300]']">
-            Arabian for Science and Technology Co.
+            {{ settings?.[`title_${locale}`] }}
           </span>
 
           <span :class="['inline-block font-[600]', 'lg:font-[500]']">
-            Innovate Local. Impact Global.
+            {{ settings?.[`description_${locale}`] }}
           </span>
         </h2>
       </div>
@@ -63,5 +69,13 @@
   </section>
 </template>
 
-<script setup></script>
+<script setup>
+const ASC_Logo_Main = '/Icons/ASC_Logo_Main.svg'
+
+const props = defineProps({
+  sectionData: { type: Object, defaults: {} }
+})
+const { locale } = useI18n()
+const { settings } = useWebsiteSettings()
+</script>
 <style></style>
