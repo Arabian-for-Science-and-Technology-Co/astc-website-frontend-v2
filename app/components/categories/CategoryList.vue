@@ -1,0 +1,68 @@
+<template>
+  <article>
+    <h2 class="main-title">{{ title }}</h2>
+    <div class="imgs-contianer mt-[74.47px]">
+      <figure v-for="(item, i) in items || []" class="imgs-contianer__card">
+        <BaseImg
+          densities="x1 x2"
+          format="webp"
+          :key="i"
+          :src="item.image"
+          class="imgs-contianer__card__img"
+          :alt="`Image ${i + 1} representing product`"
+        />
+        <figcaption>
+          <h3 class="imgs-contianer__card__title">
+            {{ item?.[`title_${locale}`] || item?.[`meta_title_${locale}`] }}
+          </h3>
+          <p class="imgs-contianer__card__desc">{{ item?.[`meta_desc_${locale}`] }}</p>
+        </figcaption>
+      </figure>
+    </div>
+  </article>
+</template>
+
+<script setup>
+const props = defineProps({
+  items: { type: Object, default: {} },
+  title: { type: String, default: '' }
+})
+const { locale } = useI18n()
+</script>
+<style scoped>
+.main-title {
+  @apply text-[52px] font-[200] not-italic leading-[49.4px] tracking-[0.52px] text-[#18264A];
+  @apply 3xl:text-[90px] 3xl:leading-[85.5px] 3xl:tracking-[0.9px];
+}
+.imgs-contianer {
+  @apply flex w-full max-w-full flex-wrap justify-center gap-x-[14px] gap-y-[28.5px];
+  @apply lg:justify-start lg:gap-x-[50px] lg:gap-y-[103.45px];
+  @apply 3xl:max-w-[80%] 3xl:gap-x-[108px] 3xl:gap-y-[103px];
+}
+
+.imgs-contianer__card {
+  @apply flex w-[162px] flex-col items-center gap-[16.4px];
+  @apply lg:w-[140px] lg:gap-[29px];
+  @apply xl:w-[260px];
+  @apply 3xl:w-[260px];
+}
+
+.imgs-contianer__card__img {
+  @apply h-[131.3px] w-[131.3px] overflow-hidden rounded-[30.3px] transition-all hover:translate-y-[-5px];
+  @apply lg:!h-[140px] lg:w-full lg:rounded-[40px];
+  @apply xl:!h-[260px] xl:rounded-[60px];
+  @apply 3xl:!h-[260px] 3xl:rounded-[60px];
+
+  &:hover {
+    filter: drop-shadow(0 16px 28px rgba(23, 120, 255, 0.5));
+  }
+}
+
+.imgs-contianer__card__title {
+  @apply w-full text-center text-xl font-[500] uppercase not-italic leading-[normal] tracking-[1.6px];
+}
+.imgs-contianer__card__desc {
+  @apply mt-[3px] w-full px-0 text-center text-xl font-[400] not-italic leading-[21px] tracking-[0.2px];
+  @apply lg:mt-[17px] lg:px-2;
+}
+</style>
