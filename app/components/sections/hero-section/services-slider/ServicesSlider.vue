@@ -31,6 +31,7 @@
           {{ category?.[`title_${locale}`] }}
         </h3>
         <button
+          @click="navigateTo(`categories-details/${category.id}`)"
           :class="[
             'w-full rounded-[17.201px] bg-[#FFFFFF1A] pb-[15.25px] pt-[12.48px] text-center text-[18px] font-normal not-italic leading-[105%] tracking-[0.2px] text-white backdrop-blur-[17px]',
             'lg:rounded-3xl lg:pb-[24px] lg:pt-[23px] lg:text-[20px]'
