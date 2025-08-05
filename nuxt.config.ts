@@ -2,14 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  head: {
-    script: [
-      {
-        src: 'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js',
-        defer: true
-      }
-    ]
-  },
+
   //----------------------for auto modules----------------------
   modules: [
     // async (_options, nuxt) => {
@@ -33,7 +26,7 @@ export default defineNuxtConfig({
     ],
     defaultLocale: 'en',
     strategy: 'no_prefix',
-    restructureDir:'app',
+    restructureDir: 'app',
     langDir: 'locales',
     detectBrowserLanguage: {
       useCookie: true,
