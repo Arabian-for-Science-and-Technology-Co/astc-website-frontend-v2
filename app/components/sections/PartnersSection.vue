@@ -13,7 +13,7 @@
         '3xl:w-[670px] 3xl:pe-[5%] 3xl:pt-[16px]'
       ]"
     >
-      {{ sectionData?.[`title_${locale}`] }}
+      ASTC is a trusted partner of:
     </h2>
 
     <article
@@ -24,7 +24,7 @@
       ]"
     >
       <figure
-        v-for="(partner, i) in partners"
+        v-for="({ color }, i) in partnerPairs"
         :key="i"
         :class="[
           'flex h-[50px] w-[120px] items-center justify-start',
@@ -32,10 +32,8 @@
           '3xl:h-[75px] 3xl:w-[215px]'
         ]"
       >
-        <BaseImg
-          densities="x1 x2"
-          format="webp"
-          :src="partner.logo"
+        <img
+          :src="color"
           :alt="`logo ${i + 1}`"
           class="h-full object-contain grayscale filter transition duration-300 hover:filter-none"
           loading="lazy"
@@ -47,21 +45,32 @@
 </template>
 
 <script setup>
-const props = defineProps({
-  sectionData: { type: Object, defaults: {} }
-})
-const { $customFetch } = useNuxtApp()
-const { locale } = useI18n()
-const { data: partners } = await useAsyncData(
-  () => $customFetch('/website/home/partners?type=corporate'),
-  {
-    transform: (res) => res.data || []
-  }
-)
+// 1. Grab everything matching partner_*.png, eager‑loaded at build time
+const modules = import.meta.glob('~/assets/Images/main/partners/partner_*.png', { eager: true })
+
+// 2. Group into { grey, color } pairs keyed by "partner_X"
+const pairs = Object.entries(modules).reduce((acc, [fullPath, module]) => {
+  const filename = fullPath.split('/').pop() // e.g. "partner_1_grey.png"
+  const isGrey = filename.includes('_grey')
+  // strip off either "_grey.png" or ".png" to get base name
+  const base = isGrey ? filename.replace('_grey.png', '') : filename.replace('.png', '')
+
+  if (!acc[base]) acc[base] = { grey: null, color: null }
+  if (isGrey) acc[base].grey = module.default
+  else acc[base].color = module.default
+
+  return acc
+}, /** @type Record<string,{grey:string|null,color:string|null}> */ ({}))
+
+// 3. Turn into a sorted array for predictable ordering:
+const partnerPairs = Object.entries(pairs)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([, pair]) => pair)
 </script>
 
 <style scoped>
+/* Your existing styles… */
 .partner-img {
-  /* background: url(<path-to-image>) lightgray -35.778px -33.562px / 142.396% 259.82% no-repeat; */
+  background: url(<path-to-image>) lightgray -35.778px -33.562px / 142.396% 259.82% no-repeat;
 }
 </style>

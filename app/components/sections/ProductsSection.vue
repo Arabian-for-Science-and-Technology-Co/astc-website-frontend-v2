@@ -7,42 +7,40 @@
     ]"
   >
     <article>
-      <h2 class="main-title">{{ products?.[`title_${locale}`] }}</h2>
+      <h2 class="main-title">Products</h2>
       <div class="imgs-contianer mt-[29px]">
-        <figure v-for="(item, i) in products?.items || []" class="imgs-contianer__card">
-          <BaseImg
-            densities="x1 x2"
-            format="webp"
+        <figure v-for="(product, i) in products" class="imgs-contianer__card">
+          <img
             :key="i"
-            :src="item.image"
+            :src="product.src"
             class="imgs-contianer__card__img"
             :alt="`Image ${i + 1} representing product`"
+            loading="lazy"
+            decoding="async"
           />
           <figcaption class="imgs-contianer__card__title">
-            {{ item?.[`title_${locale}`] }}
+            {{ product.title }}
           </figcaption>
         </figure>
       </div>
     </article>
     <article>
-      <h2 class="main-title">{{ solutions?.[`title_${locale}`] }}</h2>
+      <h2 class="main-title">Solutions</h2>
       <div class="imgs-contianer mt-[29px]">
         <figure
-          v-for="(item, i) in solutions?.items || []"
+          v-for="(solution, i) in solutions"
           class="imgs-contianer__card imgs-contianer__card--wide"
         >
-          <BaseImg
-            densities="x1 x2"
-            format="webp"
+          <img
             :key="i"
-            :src="item.image"
+            :src="solution.src"
             class="imgs-contianer__card__img"
             :alt="`Image ${i + 1} representing solution`"
             loading="lazy"
             decoding="async"
           />
           <figcaption class="imgs-contianer__card__title">
-            {{ item?.[`title_${locale}`] }}
+            {{ solution.title }}
           </figcaption>
         </figure>
       </div>
@@ -51,16 +49,26 @@
 </template>
 
 <script setup>
-const props = defineProps({
-  sectionData: { type: Object, defaults: {} }
+const productsModules = import.meta.glob('~/assets/Images/products/product_*.png', { eager: true })
+const solutionsModules = import.meta.glob('~/assets/Images/solutions/solution_*', {
+  eager: true
 })
-const { locale } = useI18n()
-const { productsAndSolutions, fetchProductsAndSolutions } = useProductsAndSolutions()
-await fetchProductsAndSolutions()
-const products = computed(() => productsAndSolutions.value.find((data) => data.code == 'products'))
-const solutions = computed(() =>
-  productsAndSolutions.value.find((data) => data.code == 'solutions')
-)
+const produtctTitles = [
+  'RAAD Superapp',
+  'Digital Twin',
+  'Smart Fiber Optics',
+  'Computer Vision',
+  'PCR',
+  'Immersion Cooling'
+]
+const solutionsTitles = ['Saudi Build', 'Saudi Build']
+const products = Object.entries(productsModules)
+  .map(([_, module], index) => ({ src: module.default, title: produtctTitles[index] }))
+  .slice(0, 6)
+const solutions = Object.entries(solutionsModules).map(([_, module], index) => ({
+  src: module.default,
+  title: solutionsTitles[index]
+}))
 </script>
 <style scoped>
 .main-title {
