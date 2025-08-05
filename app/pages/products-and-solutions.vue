@@ -1,8 +1,6 @@
 <template>
   <section
-    :class="[
-      'app-container app-container flex flex-col bg-[FFF] pt-[--header-height] font-zarid text-black'
-    ]"
+    :class="['app-container flex flex-col bg-[FFF] pt-[--header-height] font-zarid text-black']"
   >
     <h1 class="head-title mt-[100px] lg:mt-[120px] 3xl:mt-[160px]">Products & Solutions</h1>
     <section
@@ -74,12 +72,12 @@ const solutions = computed(() =>
   @apply 3xl:text-[90px] 3xl:leading-[85.5px] 3xl:tracking-[0.9px];
 }
 .imgs-contianer {
-  @apply flex w-full max-w-full flex-wrap justify-center gap-x-[48.73px] gap-y-[28.5px];
+  @apply flex w-full max-w-full flex-wrap justify-center gap-x-[14px] gap-y-[28.5px];
   @apply lg:justify-start lg:gap-x-[50px] lg:gap-y-[103.45px];
   @apply 3xl:max-w-[80%] 3xl:gap-x-[108px] 3xl:gap-y-[103px];
 }
 .imgs-contianer__card {
-  @apply flex w-[131.3px] flex-col items-center gap-[16.4px];
+  @apply flex w-[162px] flex-col items-center gap-[16.4px];
   @apply lg:w-[140px] lg:gap-[29px];
   @apply xl:w-[260px];
   @apply 3xl:w-[260px];
@@ -88,8 +86,8 @@ const solutions = computed(() =>
   @apply w-[180px] lg:w-[120px] 3xl:w-[160px];
 }
 .imgs-contianer__card__img {
-  @apply h-[131.3px] w-full overflow-hidden rounded-[30.3px] transition-all hover:translate-y-[-5px];
-  @apply lg:h-[140px] lg:rounded-[40px];
+  @apply h-[131.3px] w-[131.3px] overflow-hidden rounded-[30.3px] transition-all hover:translate-y-[-5px];
+  @apply lg:h-[140px] lg:w-full lg:rounded-[40px];
   @apply xl:h-[260px] xl:rounded-[60px];
   @apply 3xl:h-[260px] 3xl:rounded-[60px];
 
