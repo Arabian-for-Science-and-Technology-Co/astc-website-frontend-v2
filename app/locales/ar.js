@@ -1,5 +1,7 @@
 export default {
   explore: 'أستكشف',
+  contact: "اتصل بنا",
+  address: "العنوان",
   privacy_policy: "سياسة الخصوصية",
   terms_and_conditions: "الشروط والأحكام",
   all_news: 'كل الأخبار',

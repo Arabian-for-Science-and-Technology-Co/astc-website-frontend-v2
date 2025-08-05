@@ -1,5 +1,7 @@
 export default {
   explore: 'Explore',
+  contact: "Contact",
+  address: "Address",
   privacy_policy: "Privacy Policy",
   terms_and_conditions: "Terms & Conditions",
   all_news: 'all news',
