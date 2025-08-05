@@ -16,7 +16,7 @@
           '3xl:text-[140px] 3xl:leading-[133px] 3xl:tracking-[1.4px]'
         ]"
       >
-        {{ sectionData?.[`title_${locale}`] }}
+        Custom Development
       </h2>
       <p
         :class="[
@@ -24,37 +24,30 @@
           'lg:mt-[80px] lg:w-[90%] lg:text-[52px] lg:leading-[49.4px] lg:tracking-[0.52px]'
         ]"
       >
-        {{ sectionData?.[`content_${locale}`] }}
+        With a relentless focus on technological advancement, ASTC leads the way in transforming
+        industries and driving progress
       </p>
       <button
-        @click="navigateTo(`/${sectionData?.cta_link}`)"
         :class="[
           'mt-[70px] w-full max-w-[275px] rounded-3xl bg-white py-[23px] text-center text-base font-normal not-italic leading-[normal] tracking-[0.2px] text-black transition-colors hover:bg-white/70',
           'lg:mt-[100px]'
         ]"
       >
-        {{ sectionData?.[`cta_text_${locale}`] }}
+        More details...
       </button>
     </article>
-    <BaseImg
-      densities="x1 x2"
-      format="webp"
-      :src="sectionData?.image || promoImg"
+    <img
+      :src="promoImg"
       :class="['w-full object-cover', 'lg:w-1/3', '3xl:w-1/2']"
       :alt="`Image representing promoImg`"
       loading="lazy"
       decoding="async"
-      :fallback="promoImg"
     />
   </section>
 </template>
 
 <script setup>
-const promoImg = 'promo.png'
-const props = defineProps({
-  sectionData: { type: Object, defaults: {} }
-})
-const { locale } = useI18n()
+import promoImg from '~/assets/Images/main/promo.png'
 </script>
 <style scoped>
 .main-text-color {

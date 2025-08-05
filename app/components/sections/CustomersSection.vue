@@ -13,7 +13,7 @@
         '3xl:mb-[87px] 3xl:max-w-[350px]'
       ]"
     >
-      {{ sectionData?.[`title_${locale}`] }}
+      Among our customers:
     </h2>
     <article
       :class="[
@@ -23,28 +23,16 @@
       ]"
     >
       <figure
-        v-for="(customer, i) in customers"
-        @click="
-          customer?.url &&
-          navigateTo(customer?.url, {
-            external: true,
-            open: {
-              target: '_blank'
-            }
-          })
-        "
-        :title="customer?.url"
+        v-for="(imgSrc, i) in data"
         :class="[
           'aspect-square h-[107px] w-[106px] p-2',
           'lg:h-[145.2px] lg:w-[145.2px] lg:p-2',
           '3xl:h-[215px] 3xl:w-[215px] 3xl:p-5'
         ]"
       >
-        <BaseImg
-          densities="x1 x2"
-          format="webp"
+        <img
           :key="i"
-          :src="customer.logo"
+          :src="imgSrc"
           class="h-full w-full object-contain transition-transform hover:-translate-y-[10px]"
           :alt="`Image ${i + 1}`"
           loading="lazy"
@@ -53,25 +41,33 @@
       </figure>
     </article>
     <button
-      @click="navigateTo(`/${sectionData?.cta_link}`)"
       class="w-full max-w-[275px] rounded-3xl bg-white py-[23px] text-center text-xl font-[400] not-italic leading-[21px] tracking-[0.2px] text-black transition-colors hover:bg-white/70"
     >
-      {{ sectionData?.[`cta_text_${locale}`] }}
+      Discover All Cases
     </button>
   </section>
 </template>
 
 <script setup>
-const props = defineProps({
-  sectionData: { type: Object, defaults: {} }
-})
-const { $customFetch } = useNuxtApp()
-const { locale } = useI18n()
-const { data: customers } = await useAsyncData(
-  () => $customFetch('/website/home/partners?type=government'),
-  {
-    transform: (res) => res.data || []
-  }
-)
+import client_1 from '~/assets/Images/main/clients/client_1.png'
+import client_2 from '~/assets/Images/main/clients/client_2.png'
+import client_3 from '~/assets/Images/main/clients/client_3.png'
+import client_4 from '~/assets/Images/main/clients/client_4.png'
+import client_5 from '~/assets/Images/main/clients/client_5.png'
+import client_6 from '~/assets/Images/main/clients/client_6.png'
+import client_7 from '~/assets/Images/main/clients/client_7.png'
+import client_9 from '~/assets/Images/main/clients/client_9.png'
+const data = [
+  //
+  client_2,
+  client_3,
+  client_4,
+  client_5,
+  client_1,
+
+  client_6,
+  client_7,
+  client_9
+]
 </script>
 <style scoped></style>

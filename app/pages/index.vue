@@ -1,35 +1,32 @@
 <template>
   <div class="">
     <HeroSection />
-    <component
-      v-for="section in sections"
-      :key="section.id"
-      :is="componentMap[section.code] || null"
-      :section-data="section"
-    />
+    <NewsSection />
+    <AnnouncementSection />
+
+    <PromoSection />
+    <CustomersSection />
+    <ParallaxSection />
+    <PartnersSection />
+    <SaudiVisionSection />
   </div>
 </template>
 
 <script setup>
-import NewsSection from '~/components/sections/NewsSection.vue'
-import AnnouncementSection from '~/components/sections/AnnouncementSection.vue'
-import PromoSection from '~/components/sections/PromoSection.vue'
-import CustomersSection from '~/components/sections/CustomersSection.vue'
-import ParallaxSection from '~/components/sections/ParallaxSection.vue'
-import PartnersSection from '~/components/sections/PartnersSection.vue'
-import SaudiVisionSection from '~/components/sections/SaudiVisionSection.vue'
-
 const { $customFetch } = useNuxtApp()
-const componentMap = {
-  news_bar: NewsSection,
-  vision: AnnouncementSection,
-  custom_development: PromoSection,
-  trusted_customers: CustomersSection,
-  digital_cloud: ParallaxSection,
-  trusted_partners: PartnersSection,
-  vision2030: SaudiVisionSection
+const fetchData = async () => {
+  try {
+    const data = await $customFetch('pokemon/ditto', {
+      method: 'GET'
+      // body: { test: 123 },
+      // withCache: true
+    })
+    console.log(data)
+  } catch (error) {
+    console.error('Fetch error:', error)
+  }
 }
-const { data: sections } = await useAsyncData(() => $customFetch('/website/home/page/1/sections'), {
-  transform: (res) => res.data || []
+onMounted(() => {
+  fetchData()
 })
 </script>
