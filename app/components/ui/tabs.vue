@@ -8,9 +8,7 @@
     <button
       v-for="(tab, index) in tabs"
       :key="index"
-      @click="
-        () => onTabChange(returnObject ? tab : Object.keys(tab).length ? tab?.[valueKey] : tab)
-      "
+      @click="() => onTabChange(returnObject ? tab : isObject(tab) ? tab?.[valueKey] : tab)"
       :class="[
         'relative flex h-full items-center text-nowrap rounded-xl border-none px-[20px] capitalize',
         isTabSelected(tab) && btnSelectedClass,
@@ -18,7 +16,7 @@
       ]"
     >
       <slot name="tab" :tab="tab" :isSelected="isTabSelected(tab)">
-        {{ tab.label }}
+        {{ isObject(tab) ? tab.label : tab }}
       </slot>
     </button>
   </div>
@@ -34,7 +32,7 @@ const props = defineProps({
   valueKey: { type: String, default: 'value' }
 })
 const emits = defineEmits(['update:modelValue'])
-
+const isObject = (d) => typeof d == 'object' && Object.keys(d).length
 const containerRef = ref(null)
 const containerWidth = ref(0)
 const onTabChange = (val) => {
@@ -43,7 +41,7 @@ const onTabChange = (val) => {
 const isTabSelected = (tab) => {
   return props.returnObject
     ? tab?.[props.valueKey] == props.modelValue?.[props.valueKey]
-    : (Object.keys(tab).length ? tab?.[props.valueKey] : tab) == props.modelValue
+    : (isObject(tab) ? tab?.[props.valueKey] : tab) == props.modelValue
 }
 
 const updateWidth = () => {

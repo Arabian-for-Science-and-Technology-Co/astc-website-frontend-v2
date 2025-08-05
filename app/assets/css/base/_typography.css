@@ -62,6 +62,12 @@
   font-weight: 500;
   font-style: normal;
 }
+@font-face {
+  font-family: 'Roboto';
+  src: url('../../Fonts/Roboto/Roboto-VariableFont_wdth,wght.ttf') format('truetype');
+   font-weight: 100 900;
+  font-style: normal;
+}
 html {
   font-family: '29LT Zarid Sans AL', 'Zarid-Fallback', system-ui, sans-serif;
   /* @apply font-zarid; */
