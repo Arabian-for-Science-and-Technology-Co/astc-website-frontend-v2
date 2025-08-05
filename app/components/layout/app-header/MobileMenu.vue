@@ -57,7 +57,14 @@
           </span>
         </h3>
       </div>
-      <ProductsSection class="!pb-[114px] !pt-[98px] text-white" />
+      <div class="app-container mt-[50px] !h-[68px]">
+        <LanguageSwitcher
+          class="!bg-[#333FB1]"
+          btn-class="text-white"
+          btn-selected-class="bg-white !text-black"
+        />
+      </div>
+      <ProductsSection class="!pb-[114px] !pt-[110px] text-white" />
       <AppFooterSection1 themeColor="white" class="text-white" />
     </section>
   </teleport>
