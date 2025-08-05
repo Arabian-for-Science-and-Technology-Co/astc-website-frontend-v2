@@ -4,7 +4,10 @@
       v-bind="$attrs"
       :returnObject="false"
       ref="tabsRef"
-      :class="[!enableHover && '!z-[-50] opacity-0']"
+      :class="[
+        !enableHover && '!z-[-50] opacity-0',
+        isCategoriesOrProductsandsolutionsPage && !isHovering && '!bg-white'
+      ]"
       :modelValue="route.path"
       @update:modelValue="(val) => navigateTo(val)"
       :tabs="tabs"
@@ -48,6 +51,9 @@ defineProps({
 })
 const tabsRef = ref(null)
 const route = useRoute()
+const isCategoriesOrProductsandsolutionsPage = computed(() =>
+  ['/products-and-solutions', '/categories-details'].some((p) => route.fullPath.startsWith(p))
+)
 const isHovering = ref(false)
 watch(isHovering, (val) => {
   if (val) {
