@@ -76,7 +76,7 @@ const solutions = computed(() =>
 .imgs-contianer {
   @apply flex w-full max-w-full flex-wrap justify-center gap-x-[48.73px] gap-y-[28.5px];
   @apply lg:justify-start lg:gap-x-[50px] lg:gap-y-[103.45px];
-  @apply 3xl:max-w-[76.7%] 3xl:gap-x-[108px] 3xl:gap-y-[103px];
+  @apply 3xl:max-w-[80%] 3xl:gap-x-[108px] 3xl:gap-y-[103px];
 }
 .imgs-contianer__card {
   @apply flex w-[131.3px] flex-col items-center gap-[16.4px];
