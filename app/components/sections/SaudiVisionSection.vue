@@ -16,7 +16,7 @@
           '3xl:mb-[43px] 3xl:text-[140px] 3xl:leading-[133px] 3xl:tracking-[1.4px]'
         ]"
       >
-        {{ sectionData?.[`title_${locale}`] }}
+        Saudi Vision 2030
       </h2>
       <p
         :class="[
@@ -25,7 +25,7 @@
           '3xl:mb-[141px]'
         ]"
       >
-        {{ sectionData?.[`content_${locale}`] }}
+        Keep progressing!
       </p>
       <div
         :class="['relative mb-[81px] max-w-full !overflow-hidden', 'lg:mb-[65px]', '3xl:mb-[74px]']"
@@ -39,31 +39,23 @@
         />
       </div>
       <button
-        @click="navigateTo(`/${sectionData?.cta_link}`)"
         class="w-full max-w-[275px] rounded-3xl bg-white py-[23px] text-center text-base font-normal not-italic leading-[normal] tracking-[0.2px] text-black transition-colors hover:bg-white/70"
       >
-        {{ sectionData?.[`cta_text_${locale}`] }}
+        Discover Our Vision
       </button>
     </article>
-    <BaseImg
-      densities="x1 x2"
-      format="webp"
-      :src="sectionData?.image || saudiVisionImg"
+    <img
+      :src="saudiVisionImg"
       class="absolute start-0 top-0 -z-0 h-full w-full object-cover"
       :alt="`Image representing saudiVisionImg`"
       loading="lazy"
       decoding="async"
-      :fallback="saudiVisionImg"
     />
   </section>
 </template>
 
 <script setup>
-const saudiVisionImg = '/Images/main/saudi_vision.png'
-const props = defineProps({
-  sectionData: { type: Object, defaults: {} }
-})
-const { locale } = useI18n()
+import saudiVisionImg from '~/assets/Images/main/saudi_vision.png'
 </script>
 <style scoped>
 .main-text-color {

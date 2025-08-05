@@ -1,24 +1,22 @@
 <template>
   <SliderCarousel
     class="h-full"
-    trackClass="app-container flex h-full items-stretch justify-start lg:gap-[40px] gap-[28.67px]   "
+    trackClass="app-container flex items-stretch justify-start lg:gap-[40px] gap-[28.67px]   "
   >
     <figure
-      v-for="(category, index) in categories"
-      :key="category.id"
+      v-for="(service, index) in services"
+      :key="index"
       :class="[
-        'group relative h-full w-[258px] shrink-0 overflow-hidden rounded-[34px] bg-gray-950',
+        'group relative h-full w-[258px] shrink-0 overflow-hidden rounded-[34px]',
         'lg:w-[360px] lg:rounded-[48px]'
       ]"
     >
-      <BaseImg
-        densities="x1 x2"
-        format="webp"
-        :src="category.image"
+      <img
+        :src="service.img"
         class="h-full w-full object-cover transition-transform group-hover:scale-110"
         :alt="`Image representing service`"
         loading="eager"
-      />
+       />
       <figcaption
         :class="[
           'absolute top-0 z-10 flex h-full w-full flex-col justify-between px-[28.67px] pb-[28.67px] pt-[32px]',
@@ -28,7 +26,7 @@
         <h3
           :class="['text-[52px] font-[300] not-italic leading-[95%] tracking-[0.52px] text-white']"
         >
-          {{ category?.[`title_${locale}`] }}
+          {{ service.label }}
         </h3>
         <button
           :class="[
@@ -36,7 +34,7 @@
             'lg:rounded-3xl lg:pb-[24px] lg:pt-[23px] lg:text-[20px]'
           ]"
         >
-          {{ $t('explore') }}
+          Explore
         </button>
       </figcaption>
     </figure>
@@ -44,10 +42,16 @@
 </template>
 
 <script setup>
-const { $customFetch } = useNuxtApp()
-const { locale } = useI18n()
-const { data: categories } = await useAsyncData(() => $customFetch('/website/home/categories'), {
-  transform: (res) => res.data || []
-})
+import productImage1 from '~/assets/Images/main/products_cards/product_1.png'
+import productImage2 from '~/assets/Images/main/products_cards/product_2.png'
+import productImage3 from '~/assets/Images/main/products_cards/product_3.png'
+import productImage4 from '~/assets/Images/main/products_cards/product_4.png'
+
+const services = [
+  { label: 'Products', img: productImage1 },
+  { label: 'Solutions', img: productImage2 },
+  { label: 'Managed Services', img: productImage3 },
+  { label: 'Services', img: productImage4 }
+]
 </script>
 <style></style>

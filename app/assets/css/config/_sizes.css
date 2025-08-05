@@ -9,16 +9,6 @@
   --container-sm: 640px;
   --container-md: 768px;
   --container-lg: 1024px;
-  --container-ps: 19px;
-  --container-pe: 18px;
-  @media (min-width: 1280px) {
-    --container-ps: 41px;
-    --container-pe: 40px;
-  }
-  @media (min-width: 1920px) {
-    --container-ps: 70px;
-    --container-pe: 70px;
-  }
 
   /* Radius */
   --radius-sm: 0.25rem;
@@ -30,11 +20,5 @@
   }
   @media (min-width: 1600px) {
     --footer-gap: 121px;
-  }
-
-  --header-pt: 38px;
-  --header-height: calc(var(--header-pt) + 43.86px);
-  @media (min-width: 1024px) {
-    --header-height: calc(var(--header-pt) + 68px);
   }
 }
