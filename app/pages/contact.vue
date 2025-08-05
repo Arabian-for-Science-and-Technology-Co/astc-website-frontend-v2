@@ -2,11 +2,11 @@
   <div
     id="contact"
     :class="[
-      'app-container flex flex-col bg-[#F0F0F0] pb-[150px] pt-[--header-height] font-zarid text-black lg:pb-[230px] xl:pb-[247px]'
+      'flex flex-col bg-[#F0F0F0] pb-[150px] pt-[--header-height] font-zarid text-black lg:pb-[230px] xl:pb-[247px]'
     ]"
   >
     <section
-      class="mb-[216px] mt-[172px] flex w-fit flex-col gap-[74px] lg:mb-[153px] lg:mt-[172px] lg:gap-[82px] 3xl:ms-[254px]"
+      class="app-container mb-[216px] mt-[172px] flex w-fit flex-col gap-[74px] lg:mb-[153px] lg:mt-[172px] lg:gap-[82px] 3xl:ms-[254px]"
     >
       <article class="" v-for="info in informations">
         <h2
@@ -41,14 +41,12 @@
           <h2 class=" ">{{ tab }}</h2>
         </template>
       </Tabs>
-      <BaseMap/>
+      <BaseMap />
     </article>
   </div>
 </template>
 
 <script setup>
-import BaseMap from '~/components/map/BaseMap.vue'
-
 const { settings } = useWebsiteSettings()
 const { t, locale } = useI18n()
 const informations = computed(() => [
