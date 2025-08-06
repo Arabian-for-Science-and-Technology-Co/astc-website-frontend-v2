@@ -6,26 +6,36 @@
 const mapContainer = ref(null)
 const { $googleMapsLoader } = useNuxtApp()
 
-// Default map options
-
 const props = defineProps({
   center: {
     type: Object,
-    default: { lat: -34.397, lng: 150.644 }
+    default: () => ({ lat: -34.397, lng: 150.644 })
   },
   zoom: {
     type: Number,
     default: 8
+  },
+  markers: {
+    type: Array,
+    default: () => [] // Example: [{ lat: ..., lng: ... }, ...]
   }
 })
 
 onMounted(async () => {
   try {
     const google = await $googleMapsLoader.load()
-    new google.maps.Map(mapContainer.value, {
+
+    const map = new google.maps.Map(mapContainer.value, {
       center: props.center,
-      zoom: props.zoom,
-      disableDefaultUI: true // Customize UI here
+      zoom: props.zoom
+    })
+
+    // Add markers
+    props.markers.forEach((markerData) => {
+      new google.maps.Marker({
+        position: markerData,
+        map
+      })
     })
   } catch (error) {
     console.error('Google Maps failed to load:', error)

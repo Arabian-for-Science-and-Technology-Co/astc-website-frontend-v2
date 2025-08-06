@@ -36,11 +36,11 @@
         :tabs="mapTypes"
       >
         <template #tab="{ tab }">
-          <h2 class=" ">{{ tab }}</h2>
+          <h2 class=" ">{{ tab.label }}</h2>
         </template>
       </Tabs>
       <div class="h-screen max-h-[1106px]">
-        <BaseMap :center="{ lat: 40.7128, lng: -74.006 }" :zoom="12" />
+        <BaseMap :center="position" :zoom="10" :markers="[position]" />
       </div>
     </article>
   </div>
@@ -59,8 +59,20 @@ const informations = computed(() => [
     items: [settings.value?.[`address_${locale.value}`]]
   }
 ])
-const mapTypes = ['Map', 'Get from the airport', 'Hotels around', 'Nearest metro station']
-const mapType = ref(mapTypes[0])
+const mapTypes = [
+  { label: 'Map', value: 'map' },
+  { label: 'Get from the airport', value: 'get-from-the-airport' },
+  { label: 'Hotels around', value: 'hotels-around' },
+  { label: 'Nearest metro station', value: 'nearest-metro-station' }
+]
+const mapType = ref(mapTypes[0].value)
+const position = computed(() => ({
+  lat: Number(settings.value?.latitude),
+  lng: Number(settings.value?.longitude)
+}))
+watch(mapType, () => {
+  console.log('mapType', mapType.value)
+})
 </script>
 <style>
 #contact .main-title {
