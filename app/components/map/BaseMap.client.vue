@@ -30,10 +30,7 @@ const props = defineProps({
   },
   airportPosition: {
     type: Object,
-    default: () => ({
-      lat: 30.112, // Cairo Airport as example
-      lng: 31.4
-    })
+    default: null
   }
 })
 
@@ -113,21 +110,18 @@ function applyMapAction(type) {
       break
 
     case 'get-from-the-airport':
-      const directionsService = new google.maps.DirectionsService()
-      directionsService.route(
-        {
-          origin: props.airportPosition,
-          destination: props.center,
-          travelMode: google.maps.TravelMode.DRIVING
-        },
-        (result, status) => {
-          if (status === google.maps.DirectionsStatus.OK) {
-            directionsRenderer.value.setDirections(result)
-          } else {
-            console.error('Failed to fetch directions', status)
-          }
-        }
-      )
+      if (!props.airportPosition) {
+        findNearestAirport(props.center)
+      } else {
+        drawRouteFromAirport(props.airportPosition)
+      }
+      break
+    case 'road-from-nearest-airport':
+      if (!props.airportPosition) {
+        findNearestAirport1(props.center)
+      } else {
+        drawRouteFromAirport1(props.airportPosition)
+      }
       break
 
     case 'hotels-around':
@@ -143,7 +137,113 @@ function applyMapAction(type) {
       break
   }
 }
+function findNearestAirport1(center, fullDirections = false) {
+  const google = window.google
 
+  const request = {
+    location: center,
+    radius: 50000,
+    keyword: 'airport'
+  }
+
+  placesService.nearbySearch(request, (results, status) => {
+    if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 0) {
+      const nearestAirport = results[0].geometry.location
+      if (fullDirections) {
+        drawRouteFromAirport(nearestAirport, true)
+      } else {
+        drawRouteFromAirport(nearestAirport)
+      }
+    } else {
+      console.error('No nearby airports found or request failed:', status)
+    }
+  })
+}
+function drawRouteFromAirport1(origin, full = false) {
+  const google = window.google
+  const directionsService = new google.maps.DirectionsService()
+
+  directionsService.route(
+    {
+      origin,
+      destination: props.center,
+      travelMode: google.maps.TravelMode.DRIVING
+    },
+    (result, status) => {
+      if (status === google.maps.DirectionsStatus.OK) {
+        directionsRenderer.value.setDirections(result)
+
+        const leg = result.routes[0].legs[0]
+
+        // Clear previous markers
+        clearMap()
+
+        // ✅ Add markers for origin & destination
+        const originMarker = new google.maps.Marker({
+          position: leg.start_location,
+          map: mapInstance.value,
+          title: 'Airport'
+        })
+
+        const destinationMarker = new google.maps.Marker({
+          position: leg.end_location,
+          map: mapInstance.value,
+          title: 'Your Location'
+        })
+
+        markerRefs.push(originMarker, destinationMarker)
+
+        // ✅ Show panel
+        if (full) {
+          routeSummary.value = {
+            duration: leg.duration.text,
+            distance: leg.distance.text,
+            mode: 'car'
+          }
+        }
+      } else {
+        console.error('Failed to fetch directions', status)
+      }
+    }
+  )
+}
+function drawRouteFromAirport(origin) {
+  const google = window.google
+  const directionsService = new google.maps.DirectionsService()
+
+  directionsService.route(
+    {
+      origin,
+      destination: props.center,
+      travelMode: google.maps.TravelMode.DRIVING
+    },
+    (result, status) => {
+      if (status === google.maps.DirectionsStatus.OK) {
+        directionsRenderer.value.setDirections(result)
+      } else {
+        console.error('Failed to fetch directions', status)
+      }
+    }
+  )
+}
+function findNearestAirport(center) {
+  const google = window.google
+
+  const request = {
+    location: center,
+    radius: 50000, // in meters (adjust based on expected area)
+    keyword: 'airport'
+  }
+
+  placesService.nearbySearch(request, (results, status) => {
+    if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 0) {
+      const nearestAirport = results[0].geometry.location
+      drawRouteFromAirport(nearestAirport)
+    } else {
+      console.error('No nearby airports found or request failed:', status)
+    }
+  })
+}
 // Search nearby places (hotels, metro, etc.)
 function searchNearby(keyword) {
   const google = window.google
