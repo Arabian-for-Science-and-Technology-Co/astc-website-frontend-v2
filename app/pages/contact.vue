@@ -36,7 +36,7 @@
       </article>
     </section>
     <section>
-      <div class="ms-[--container-ps] w-full overflow-x-auto lg:mx-auto lg:w-fit">
+      <div class="ms-[--container-ps] rounded-t-3xl w-full overflow-x-auto lg:mx-auto lg:w-fit">
         <Tabs
           :returnObject="false"
           :class="['rounded-b-none bg-white']"
