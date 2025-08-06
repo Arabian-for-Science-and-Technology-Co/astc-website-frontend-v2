@@ -1,17 +1,26 @@
 <template>
-  <div class="flex min-h-screen flex-col whitespace-pre-line overflow-x-hidden bg-white font-zarid">
-    <AppHeader :showLeftLogo="!isHomePage" />
-    <main class="flex-grow ">
+  <div class="flex min-h-screen flex-col overflow-x-hidden whitespace-pre-line bg-white font-zarid">
+    <AppHeader
+      :showLeftLogo="showLeftLogo"
+      :isWhiteLogo="isWhiteLogo"
+      :tabsClass="tabsClass"
+      :selectedTabClass="selectedTabClass"
+    />
+    <main class="flex-grow">
       <slot />
     </main>
-    <AppFooter :showProductsSection="!isProductsPage" />
+    <AppFooter :showProductsSection="showProductsSection" />
   </div>
 </template>
 
 <script setup>
-const route = useRoute()
-const isHomePage = computed(() => route.path == '/')
-const isProductsPage = computed(() => route.path == '/products-and-solutions')
+const props = defineProps({
+  showProductsSection: { type: Boolean, default: true },
+  showLeftLogo: { type: Boolean, default: true },
+  isWhiteLogo: { type: Boolean, default: false },
+  tabsClass: { type: String, default: '!bg-white' },
+  selectedTabClass: { type: String, default: '' }
+})
 const { fetchSettings } = useWebsiteSettings()
 const { fetchPages } = usePages()
 await fetchSettings()

@@ -56,7 +56,8 @@
     <ClientOnly>
       <article class="hidden items-center gap-[40px] lg:flex">
         <LanguageSwitcher
-          :class="isWhiteBg && enableHover && '!bg-white'"
+          :tabsClass="enableHover && tabsClass"
+          :selectedTabClass="enableHover && selectedTabClass"
         />
         <div class="desktopMenu-placeholder" :style="{ width: desktopMenuRef?.width + 'px' }">
           <DesktopMenu
@@ -64,6 +65,8 @@
             class="fixed end-[--container-pe] top-[--header-pt] z-[60] hidden lg:flex"
             :tabs="tabs"
             :enableHover="enableHover"
+            :tabsClass=" tabsClass"
+            :selectedTabClass=" selectedTabClass"
           />
         </div>
       </article>
@@ -77,7 +80,9 @@ const ASC_Logo_Main = '/Icons/ASC_Logo_Main.svg'
 const props = defineProps({
   showLeftLogo: { type: Boolean, default: true },
   enableHover: { type: Boolean, default: true },
-  isWhiteLogo: { type: Boolean, default: false }
+  isWhiteLogo: { type: Boolean, default: false },
+  tabsClass: { type: String, default: '' },
+  selectedTabClass: { type: String, default: '' }
 })
 
 import LanguageSwitcher from '~/components/LanguageSwitcher.vue'
@@ -86,9 +91,9 @@ const { locale } = useI18n()
 const { pages } = usePages()
 const { settings } = useWebsiteSettings()
 const route = useRoute()
-const isWhiteBg = computed(() =>
-  ['/products-and-solutions', '/categories-details','/contact','/about'].some((p) => route.fullPath.startsWith(p))
-)
+// const isWhiteBg = computed(() =>
+//   ['/products-and-solutions', '/categories-details','/contact','/about'].some((p) => route.fullPath.startsWith(p))
+// )
 
 const tabs = computed(() =>
   pages.value

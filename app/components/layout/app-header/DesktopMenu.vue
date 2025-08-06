@@ -4,18 +4,21 @@
       v-bind="$attrs"
       :returnObject="false"
       ref="tabsRef"
-      :class="[
-        !enableHover && '!z-[-50] opacity-0',
-        isWhiteBg && !isHovering && '!bg-white'
-      ]"
+      :class="[!enableHover && '!z-[-50] opacity-0', !isHovering && tabsClass]"
+      :btnSelectedClass="!isHovering && selectedTabClass"
       :modelValue="route.path"
-      @update:modelValue="(val) => navigateTo(val)"
+      @update:modelValue="
+        (val) => {
+          navigateTo(val)
+          isHovering = false
+        }
+      "
       :tabs="tabs"
     >
       <template #tab="{ tab, isSelected }">
         <h2
           @mouseenter="
-            enableHover && tab.id == 'products-and-solutions'
+            !disableHoverOnTab && enableHover && tab.id == 'products-and-solutions'
               ? (isHovering = true)
               : (isHovering = false)
           "
@@ -30,6 +33,7 @@
         </span>
       </template>
     </Tabs>
+    <!-- contianer -->
     <div v-if="isHovering" class="fixed start-0 top-0 z-[50] flex h-[100vh] w-full flex-col">
       <div
         @mouseover="enableHover ? (isHovering = true) : ''"
@@ -45,16 +49,17 @@
 </template>
 
 <script setup>
-defineProps({
+const props = defineProps({
   tabs: { type: Array, required: true },
-  enableHover: { type: Boolean, default: true }
+  enableHover: { type: Boolean, default: true },
+  tabsClass: { type: String, default: '' },
+  selectedTabClass: { type: String, default: '' }
 })
 const tabsRef = ref(null)
 const route = useRoute()
-const isWhiteBg = computed(() =>
-  ['/products-and-solutions', '/categories-details','/contact','/about'].some((p) => route.fullPath.startsWith(p))
-)
+
 const isHovering = ref(false)
+const disableHoverOnTab = ref(false)
 watch(isHovering, (val) => {
   if (val) {
     document.body.style.overflow = 'hidden'
@@ -62,13 +67,28 @@ watch(isHovering, (val) => {
     document.body.style.overflow = ''
   }
 })
+let timeoutId = null
+
 watch(
   route,
   () => {
-    isHovering.value = false
+    disableHoverOnTab.value = true
+    if (timeoutId) {
+      clearTimeout(timeoutId)
+    }
+    timeoutId = setTimeout(() => {
+      disableHoverOnTab.value = false
+      timeoutId = null
+    }, 1000)
   },
-  { deep: true }
+  { deep: true, immediate: true }
 )
+
+onBeforeUnmount(() => {
+  if (timeoutId) {
+    clearTimeout(timeoutId)
+  }
+})
 
 defineExpose({
   width: computed(() => tabsRef.value?.containerWidth)
