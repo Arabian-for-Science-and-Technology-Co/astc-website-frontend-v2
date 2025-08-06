@@ -1,16 +1,21 @@
 <template>
-  <div class="">
-    <HeroSection />
-    <component
-      v-for="section in sections"
-      :key="section.id"
-      :is="componentMap[section.code] || null"
-      :section-data="section"
-    />
-  </div>
+  <NuxtLayout :showLeftLogo="false" :tabsClass="null" name="default">
+    <div class="">
+      <HeroSection />
+      <component
+        v-for="section in sections"
+        :key="section.id"
+        :is="componentMap[section.code] || null"
+        :section-data="section"
+      />
+    </div>
+  </NuxtLayout>
 </template>
 
 <script setup>
+definePageMeta({
+  layout: false,
+})
 import NewsSection from '~/components/sections/NewsSection.vue'
 import AnnouncementSection from '~/components/sections/AnnouncementSection.vue'
 import PromoSection from '~/components/sections/PromoSection.vue'

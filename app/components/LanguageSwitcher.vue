@@ -4,13 +4,16 @@
     :modelValue="selected"
     @update:model-value="setLocale($event.value)"
     v-bind="$attrs"
-    :class="['gap-[8.35px]']"
-    :btn-class="['!px-[10px]',btnClass]"
+    :class="['gap-[8.35px]', tabsClass]"
+    :btn-class="['!px-[10px]', btnClass]"
+    :btnSelectedClass="selectedTabClass"
   />
 </template>
 <script setup>
 const props = defineProps({
-  btnClass: { type: String }, 
+  btnClass: { type: String },
+  tabsClass: { type: String, default: '' },
+  selectedTabClass: { type: String, default: '' }
 })
 const { locale, locales, setLocale } = useI18n()
 const mapped = {

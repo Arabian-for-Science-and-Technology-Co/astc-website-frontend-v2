@@ -1,18 +1,23 @@
 <template>
-  <section
-    :class="[
-      'app-container flex flex-col bg-[#F0F0F0] pb-[150px] pt-[--header-height] font-zarid text-black lg:pb-[230px] 3xl:pb-[247px]'
-    ]"
-  >
+  <NuxtLayout :showProductsSection="false" name="default">
     <section
-      class="mt-[80px] flex flex-col justify-start gap-[83px] lg:mt-[97px] lg:gap-[126px] 3xl:mt-[123px] 3xl:gap-[166px]"
+      :class="[
+        'app-container flex flex-col bg-[#F0F0F0] pb-[150px] pt-[--header-height] font-zarid text-black lg:pb-[230px] 3xl:pb-[247px]'
+      ]"
     >
-      <CategoryList :title="title" :items="categoryItems" />
+      <section
+        class="mt-[80px] flex flex-col justify-start gap-[83px] lg:mt-[97px] lg:gap-[126px] 3xl:mt-[123px] 3xl:gap-[166px]"
+      >
+        <CategoryList :title="title" :items="categoryItems" />
+      </section>
     </section>
-  </section>
+  </NuxtLayout>
 </template>
 
 <script setup>
+definePageMeta({
+  layout: false
+})
 const route = useRoute()
 const { $customFetch } = useNuxtApp()
 const { data: categoryItems } = await useAsyncData(

@@ -11,7 +11,7 @@
       @click="() => onTabChange(returnObject ? tab : isObject(tab) ? tab?.[valueKey] : tab)"
       :class="[
         'relative flex h-full items-center text-nowrap rounded-xl border-none px-[20px] capitalize',
-        isTabSelected(tab) && btnSelectedClass,
+        isTabSelected(tab) && (btnSelectedClass || 'bg-[#010101] text-white'),
         btnClass
       ]"
     >
@@ -27,7 +27,7 @@ const props = defineProps({
   tabs: { type: Array, required: true },
   modelValue: { type: [Object, null], required: true },
   btnClass: { type: String },
-  btnSelectedClass: { type: String, default: 'bg-[#010101] text-white' },
+  btnSelectedClass: { type: String },
   returnObject: { type: Boolean, default: true },
   valueKey: { type: String, default: 'value' }
 })
