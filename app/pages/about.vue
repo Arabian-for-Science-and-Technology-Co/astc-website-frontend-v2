@@ -2,25 +2,163 @@
   <NuxtLayout :isWhiteLogo="true" :selectedTabClass="'bg-[#0D1667] text-white'" name="default">
     <div
       :class="[
-        'app-container bg flex min-h-screen flex-col bg-[#F0F0F0] pb-[150px] pt-[--header-height] font-zarid text-black lg:pb-[230px] 3xl:pb-[247px]'
+        'bg flex min-h-screen flex-col bg-[#0D1667] pb-[209px] pt-[--header-height] font-zarid text-white lg:pb-[300px] 3xl:pb-[280px]'
       ]"
     >
-      about
+      <img
+        :src="goldenImg"
+        class="mx-[7px] mt-[73px] lg:mx-[80px] lg:mt-[43px] 3xl:mx-[247px] 3xl:mt-[69px]"
+        alt=""
+      />
+      <div class="custom-app-container mt-[68px] lg:mt-[62px] 3xl:mt-[104px]">
+        <h2
+          :class="[
+            'text-[52px] font-[200] leading-[49.4px] tracking-[0.52px]',
+            'lg:max-w-[70%] lg:text-[90px] lg:leading-[85.5px] lg:tracking-[0.9px]'
+          ]"
+        >
+          Arabian for Sience and Technology
+        </h2>
+        <p
+          :class="[
+            'mt-[40px] space-y-[38px] text-[20px] font-[300] leading-[105%] tracking-[0.2px]',
+            'lg:mt-[57px] lg:text-[30px] lg:leading-[110%] lg:tracking-[0.3px]'
+          ]"
+        >
+          <span class="block">
+            Established in 2007, Arabian for Science and Technology Co. (ASTC) stands as one of the
+            leading Master Systems Integrators of Saudi Arabia.
+          </span>
+          <span class="block">
+            We pride ourselves on building lasting partnerships, providing cost-effective solutions,
+            and maintaining a highly skilled team committed to reaching success in any projects.
+          </span>
+          <span class="block">
+            From 2023, we prioritize delivering fully local solutions everywhere it is possible and
+            feasible - starting from our in-house development and ending up with international
+            partnerships and Merge & Acquisitions of prospective products, that allow us to build
+            local expertise and transfer the best world's practices and know-how.
+          </span>
+        </p>
+        <h2
+          :class="[
+            'mt-[91px] text-[52px] font-[200] leading-[49.4px] tracking-[0.52px]',
+            'lg:mt-[180px] lg:text-[90px] lg:leading-[85.5px] lg:tracking-[0.9px]',
+            'lg:mt-[171px]'
+          ]"
+        >
+          Our Vision —
+          <br />
+          Innovate Local, Impact Global
+        </h2>
+      </div>
+      <div class="mt-[100x] lg:mt-[180px]">
+        <h2
+          :class="[
+            'custom-app-container max-w-[264px] text-[30px] font-[600] leading-[110%] tracking-[0.3px]',
+            'lg:max-w-full'
+          ]"
+        >
+          Some of our licenses and certificates
+        </h2>
+        <div class="min-h-[290px]"></div>
+      </div>
+      <div class="custom-app-container mt-[100x] lg:mt-[180px]">
+        <h2
+          :class="[
+            'text-[52px] font-[200] leading-[49.4px] tracking-[0.52px]',
+            'lg:max-w-[70%] lg:text-[90px] lg:leading-[85.5px] lg:tracking-[0.9px]'
+          ]"
+        >
+          Our Goals
+        </h2>
+        <p
+          :class="[
+            'mt-[40px] space-y-[38px] text-[20px] font-[300] leading-[105%] tracking-[0.2px]',
+            'lg:mt-[65px] lg:text-[30px] lg:leading-[110%] lg:tracking-[0.3px]'
+          ]"
+        >
+          <span class="block">
+            ASTC is dedicated to fostering the technological independence of Saudi Arabia. We are
+            committed to achieving this by:
+          </span>
+          <ul class="list-disc list-inside">
+            <li>Elevating local expertise</li>
+            <li>Boosting the national GDP through strategic IT initiatives</li>
+            <li>Diversifying the economy</li>
+            <li>Unlocking the full potential of Saudi nationals</li>
+          </ul>
+          <span class="block"> Join us in shaping a prosperous, tech-savvy Saudi future. </span>
+        </p>
+        <BaseButton
+          :class="[
+            'font-section mt-[40px] h-[68px] max-w-[295px] text-[16px] font-[500] leading-[normal] lg:mt-[95px]',
+            'lg:mt-[95px] lg:text-[20px] lg:font-[300] lg:leading-[21px] lg:tracking-[0.2px]'
+          ]"
+        >
+          Let’s Talk
+        </BaseButton>
+      </div>
+      <div class="custom-app-container mt-[100x] lg:mt-[180px]">
+        <h2
+          :class="[
+            'text-[52px] font-[200] leading-[49.4px] tracking-[0.52px]',
+            'lg:max-w-[70%] lg:text-[90px] lg:leading-[85.5px] lg:tracking-[0.9px]'
+          ]"
+        >
+          Our Goals
+        </h2>
+        <p
+          :class="[
+            'mt-[40px] space-y-[38px] text-[20px] font-[300] leading-[105%] tracking-[0.2px]',
+            'lg:mt-[65px] lg:text-[30px] lg:leading-[110%] lg:tracking-[0.3px]'
+          ]"
+        >
+          <span class="block">
+            We empower Saudi talents to create innovative technologies that accelerate the Kingdom's
+            digital economy, contributing to national prosperity and setting new benchmarks on the
+            world stage.
+          </span>
+        </p>
+      </div>
     </div>
   </NuxtLayout>
 </template>
 
 <script setup>
+import goldenImg from '~/assets/Images/about/golden_sign.png'
 definePageMeta({
   layout: false,
   pageTransition: false,
   layoutTransition: false
 })
 </script>
-<style>
+<style scoped>
 .bg {
   background:
     linear-gradient(191deg, rgba(13, 22, 103, 0) 23.08%, #0d1667 70.2%),
     url('~/assets/Images/about/background.jpg') lightgray -2249px 0px / 218.841% 124.092% no-repeat;
+}
+.custom-app-container {
+  padding-inline-start: 19px;
+  padding-inline-end: 18px;
+
+  @media (min-width: 1280px) {
+    padding-inline-start: 41px;
+    padding-inline-end: 40px;
+  }
+  @media (min-width: 1600px) {
+    padding-inline-start: 438px;
+    padding-inline-end: 586px;
+  }
+}
+.font-section {
+  font-family: Roboto !important;
+}
+
+@media (min-width: 1024px) {
+  .font-section {
+    font-family: '29LT Zarid Sans AL', 'Zarid-Fallback', system-ui, sans-serif !important;
+  }
 }
 </style>
