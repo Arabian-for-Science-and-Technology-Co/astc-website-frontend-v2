@@ -52,10 +52,10 @@
           </template>
         </Tabs>
       </div>
-      <div class="h-screen max-h-[1106px]">
+      <div class="h-[calc(100vh-68px)] max-h-[1106px]">
         <BaseMap
           :center="position"
-          :zoom="10"
+          :zoom="8"
           :markers="[position]"
           :type="mapType"
           :airport-position="{ lat: 30.112, lng: 31.4 }"
