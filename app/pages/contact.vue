@@ -29,16 +29,18 @@
       </article>
     </section>
     <article>
-      <Tabs
-        :returnObject="false"
-        :class="['mx-auto rounded-b-none bg-white']"
-        v-model="mapType"
-        :tabs="mapTypes"
-      >
-        <template #tab="{ tab }">
-          <h2 class=" ">{{ tab.label }}</h2>
-        </template>
-      </Tabs>
+      <div class="ms-[18px] w-full overflow-x-auto lg:mx-auto lg:w-fit">
+        <Tabs
+          :returnObject="false"
+          :class="['rounded-b-none bg-white']"
+          v-model="mapType"
+          :tabs="mapTypes"
+        >
+          <template #tab="{ tab }">
+            <h2 class=" ">{{ tab.label }}</h2>
+          </template>
+        </Tabs>
+      </div>
       <div class="h-screen max-h-[1106px]">
         <BaseMap
           :center="position"
