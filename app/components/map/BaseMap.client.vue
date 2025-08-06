@@ -20,7 +20,7 @@ const props = defineProps({
   },
   zoom: {
     type: Number,
-    default: 10
+    default: 12
   },
   markers: {
     type: Array,
@@ -38,28 +38,28 @@ const props = defineProps({
 
 let placesService = null
 let markerRefs = []
-
+function getMapOptions() {
+  const google = window.google
+  return {
+    center: props.center,
+    zoom: props.zoom,
+    mapTypeId: google.maps.MapTypeId.HYBRID, // or SATELLITE / ROADMAP
+    disableDefaultUI: true,
+    zoomControl: true,
+    zoomControlOptions: {
+      position: google.maps.ControlPosition.RIGHT_BOTTOM
+    },
+    streetViewControl: true,
+    streetViewControlOptions: {
+      position: google.maps.ControlPosition.RIGHT_BOTTOM
+    }
+  }
+}
 onMounted(async () => {
   try {
     const google = await $googleMapsLoader.load()
 
-    const map = new google.maps.Map(mapContainer.value, {
-      center: props.center,
-      zoom: props.zoom,
-      mapTypeId: google.maps.MapTypeId.SATELLITE,
-
-      disableDefaultUI: true, // disable all default controls
-      // styles: standardStyle,
-      zoomControl: true,
-      zoomControlOptions: {
-        position: google.maps.ControlPosition.RIGHT_BOTTOM
-      },
-
-      streetViewControl: true,
-      streetViewControlOptions: {
-        position: google.maps.ControlPosition.RIGHT_BOTTOM
-      }
-    })
+    const map = new google.maps.Map(mapContainer.value, getMapOptions())
 
     mapInstance.value = map
     directionsRenderer.value = new google.maps.DirectionsRenderer({ map })
@@ -72,18 +72,22 @@ onMounted(async () => {
   }
 })
 
-// Watch for tab change
 watch(
   () => props.type,
   (newVal) => {
     if (mapInstance.value) {
+      resetMapSettings()
       clearMap()
-      renderMarkers()
+
+      // only render markers if the type is NOT using directions
+      if (newVal !== 'get-from-the-airport') {
+        renderMarkers()
+      }
+
       applyMapAction(newVal)
     }
   }
 )
-
 // Watch for center change (reactivity)
 watch(
   () => props.center,
@@ -97,11 +101,34 @@ watch(
 // Add markers from props
 function renderMarkers() {
   const google = window.google
+
   markerRefs = props.markers.map((markerData) => {
-    return new google.maps.Marker({
+    const marker = new google.maps.Marker({
       position: markerData,
       map: mapInstance.value
     })
+
+    // ✅ Create InfoWindow with link
+    const infoWindow = new google.maps.InfoWindow({
+      content: `
+        <div>
+          <a 
+            href="https://www.google.com/maps?q=${markerData.lat},${markerData.lng}" 
+            target="_blank"
+            style="text-decoration: none; color: #4285F4; height:20px;"
+          >
+            View on Google Maps
+          </a>
+        </div>
+      `
+    })
+
+    // ✅ Add click listener
+    marker.addListener('click', () => {
+      infoWindow.open(mapInstance.value, marker)
+    })
+
+    return marker
   })
 }
 
@@ -112,7 +139,20 @@ function clearMap() {
   markerRefs.forEach((marker) => marker.setMap(null))
   markerRefs = []
 }
+function resetMapSettings() {
+  const google = window.google
+  if (!mapInstance.value) return
+  const options = getMapOptions(props.center, props.zoom)
+  // Apply center, zoom, and type
+  mapInstance.value.setCenter(options.center)
+  mapInstance.value.setZoom(options.zoom)
+  mapInstance.value.setMapTypeId(options.mapTypeId)
 
+  // Clear directions and markers
+  directionsRenderer.value.set('directions', null)
+  markerRefs.forEach((marker) => marker.setMap(null))
+  markerRefs = []
+}
 // Handle actions based on tab
 function applyMapAction(type) {
   const google = window.google
@@ -120,7 +160,7 @@ function applyMapAction(type) {
 
   switch (type) {
     case 'map':
-      mapInstance.value.setMapTypeId(google.maps.MapTypeId.SATELLITE)
+      // mapInstance.value.setMapTypeId(google.maps.MapTypeId.SATELLITE)
       break
 
     case 'get-from-the-airport':
@@ -157,13 +197,49 @@ function drawRouteFromAirport(origin) {
     },
     (result, status) => {
       if (status === google.maps.DirectionsStatus.OK) {
+        directionsRenderer.value.setOptions({
+          suppressMarkers: true,
+          polylineOptions: {
+            strokeColor: '#0F53FF',
+            strokeWeight: 5
+          }
+        })
+
         directionsRenderer.value.setDirections(result)
+
+        // ✅ Fix: fit map view to show entire route
+        const bounds = new google.maps.LatLngBounds()
+        result.routes[0].overview_path.forEach((point) => bounds.extend(point))
+        mapInstance.value.fitBounds(bounds)
+
+        const leg = result.routes[0].legs[0]
+
+        const originMarker = new google.maps.Marker({
+          position: leg.start_location,
+          map: mapInstance.value,
+          icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            fillColor: 'white',
+            fillOpacity: 1,
+            scale: 6,
+            strokeColor: '#A9AEB8',
+            strokeWeight: 2
+          }
+        })
+
+        const destinationMarker = new google.maps.Marker({
+          position: leg.end_location,
+          map: mapInstance.value
+        })
+
+        markerRefs.push(originMarker, destinationMarker)
       } else {
         console.error('Failed to fetch directions', status)
       }
     }
   )
 }
+
 function findNearestAirport(center) {
   const google = window.google
 
