@@ -4,12 +4,12 @@
     :class="['flex flex-col bg-[#F0F0F0] pt-[--header-height] font-zarid text-black']"
   >
     <section
-      class="app-container mb-[125px] mt-[172px] flex w-fit flex-col gap-[74px] lg:mb-[153px] lg:mt-[172px] lg:gap-[82px] 3xl:ms-[254px]"
+      class="app-container font-section mb-[125px] mt-[172px] flex w-fit flex-col gap-[74px] lg:mb-[153px] lg:mt-[172px] lg:gap-[82px] 3xl:ms-[254px]"
     >
       <article class="" v-for="info in informations">
         <h2
           :class="[
-            'main-title mb-[20px] text-[18px] font-[500] leading-[normal] tracking-[0.18px]',
+            'mb-[20px] text-[18px] font-[500] leading-[normal] tracking-[0.18px]',
             'lg:mb-0 lg:text-[30px] lg:font-[600] lg:leading-[33px] lg:tracking-[0.3px]'
           ]"
         >
@@ -19,17 +19,24 @@
           <h3
             v-for="item in info.items"
             :class="[
-              'text-[36px] font-[200] not-italic leading-[48.6px] tracking-[0.36px] text-[#18264A]',
+              'text-[36px] font-[300] not-italic leading-[48.6px] tracking-[0.36px] text-[#18264A]',
+              'lg:font-[200]',
               'xl:text-[90px] xl:leading-[85.5px] xl:tracking-[0.9px]'
             ]"
           >
             {{ item }}
           </h3>
         </div>
+        <BaseButton class="mt-[23px] block !max-w-[242px] lg:hidden">
+          <h3 class="flex w-full items-center justify-start gap-[30px] px-[33px] text-[16px]">
+            <LocationIcon />
+            Build a route
+          </h3>
+        </BaseButton>
       </article>
     </section>
-    <article>
-      <div class="ms-[18px] w-full overflow-x-auto lg:mx-auto lg:w-fit">
+    <section>
+      <div class="ms-[--container-ps] w-full overflow-x-auto lg:mx-auto lg:w-fit">
         <Tabs
           :returnObject="false"
           :class="['rounded-b-none bg-white']"
@@ -37,7 +44,11 @@
           :tabs="mapTypes"
         >
           <template #tab="{ tab }">
-            <h2 class=" ">{{ tab.label }}</h2>
+            <h2 v-if="tab.value == 'nearest-metro-station'" class="flex items-center gap-[8px]">
+              <NearestIcon />
+              {{ tab.label }}
+            </h2>
+            <h2 v-else>{{ tab.label }}</h2>
           </template>
         </Tabs>
       </div>
@@ -50,7 +61,7 @@
           :airport-position="{ lat: 30.112, lng: 31.4 }"
         />
       </div>
-    </article>
+    </section>
   </div>
 </template>
 
@@ -80,13 +91,13 @@ const position = computed(() => ({
 }))
 </script>
 <style>
-#contact .main-title {
-  font-family: Roboto;
+#contact .font-section {
+  font-family: Roboto !important;
 }
 
 @media (min-width: 1024px) {
-  #contact .main-title {
-    font-family: '29LT Zarid Sans AL', 'Zarid-Fallback', system-ui, sans-serif;
+  #contact .font-section {
+    font-family: '29LT Zarid Sans AL', 'Zarid-Fallback', system-ui, sans-serif !important;
   }
 }
 </style>
