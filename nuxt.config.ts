@@ -1,6 +1,9 @@
 // nuxt.config.ts
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
+  build: {
+    transpile: ['@googlemaps/js-api-loader']
+  },
   devtools: { enabled: true },
   head: {
     script: [

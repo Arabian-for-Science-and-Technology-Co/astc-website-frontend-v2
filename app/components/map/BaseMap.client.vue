@@ -1,20 +1,34 @@
 <template>
   <div ref="mapContainer" class="h-full w-full"></div>
 </template>
+
 <script setup>
-import { ref, nextTick, onMounted } from 'vue'
 const mapContainer = ref(null)
-const map = ref(null)
 const { $googleMapsLoader } = useNuxtApp()
 
+// Default map options
+
+const props = defineProps({
+  center: {
+    type: Object,
+    default: { lat: -34.397, lng: 150.644 }
+  },
+  zoom: {
+    type: Number,
+    default: 8
+  }
+})
+
 onMounted(async () => {
-  await nextTick()
-  await $googleMapsLoader.load()
-  map.value = new google.maps.Map(mapContainer.value, {
-    center: { lat: 40.7128, lng: -74.006 },
-    zoom: 12,
-    mapTypeId: 'roadmap'
-  })
-  // Add markers, infoWindow, directionsRenderer, etc.
+  try {
+    const google = await $googleMapsLoader.load()
+    new google.maps.Map(mapContainer.value, {
+      center: props.center,
+      zoom: props.zoom,
+      disableDefaultUI: true // Customize UI here
+    })
+  } catch (error) {
+    console.error('Google Maps failed to load:', error)
+  }
 })
 </script>
