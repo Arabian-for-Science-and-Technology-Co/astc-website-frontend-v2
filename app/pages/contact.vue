@@ -36,7 +36,7 @@
       </article>
     </section>
     <section>
-      <div class="ms-[--container-ps] rounded-t-3xl w-full overflow-x-auto lg:mx-auto lg:w-fit">
+      <div class="ms-[--container-ps] w-full overflow-x-auto rounded-t-3xl lg:mx-auto lg:w-fit">
         <Tabs
           :returnObject="false"
           :class="['rounded-b-none bg-white']"
@@ -53,13 +53,7 @@
         </Tabs>
       </div>
       <div class="h-[calc(100vh-68px)] max-h-[1106px]">
-        <BaseMap
-          :center="position"
-          :zoom="8"
-          :markers="[position]"
-          :type="mapType"
-          :airport-position="{ lat: 30.112, lng: 31.4 }"
-        />
+        <BaseMap :center="position" :zoom="8" :markers="[position]" :type="mapType" />
       </div>
     </section>
   </div>
@@ -80,8 +74,14 @@ const informations = computed(() => [
 ])
 const mapTypes = computed(() => [
   { label: t('map'), value: 'map' },
-  { label: t('get_from_airport'), value: 'get-from-the-airport' },
-  { label: t('hotels_around'), value: 'hotels-around' },
+  {
+    label: t('get_from_airport'),
+    value:
+      //
+      'get-from-the-airport'
+      // 'road-from-nearest-airport'
+  },
+   { label: t('hotels_around'), value: 'hotels-around' },
   { label: t('nearest_metro_station'), value: 'nearest-metro-station' }
 ])
 const mapType = ref(mapTypes.value[0].value)
