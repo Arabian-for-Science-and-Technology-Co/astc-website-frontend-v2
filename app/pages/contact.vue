@@ -59,13 +59,13 @@ const informations = computed(() => [
     items: [settings.value?.[`address_${locale.value}`]]
   }
 ])
-const mapTypes = [
-  { label: 'Map', value: 'map' },
-  { label: 'Get from the airport', value: 'get-from-the-airport' },
-  { label: 'Hotels around', value: 'hotels-around' },
-  { label: 'Nearest metro station', value: 'nearest-metro-station' }
-]
-const mapType = ref(mapTypes[0].value)
+const mapTypes = computed(() => [
+  { label: t('map'), value: 'map' },
+  { label: t('get_from_airport'), value: 'get-from-the-airport' },
+  { label: t('hotels_around'), value: 'hotels-around' },
+  { label: t('nearest_metro_station'), value: 'nearest-metro-station' }
+])
+const mapType = ref(mapTypes.value[0].value)
 const position = computed(() => ({
   lat: Number(settings.value?.latitude),
   lng: Number(settings.value?.longitude)
