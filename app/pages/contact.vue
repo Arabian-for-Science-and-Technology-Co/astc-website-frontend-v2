@@ -76,12 +76,9 @@ const mapTypes = computed(() => [
   { label: t('map'), value: 'map' },
   {
     label: t('get_from_airport'),
-    value:
-      //
-      'get-from-the-airport'
-      // 'road-from-nearest-airport'
+    value: 'get-from-the-airport'
   },
-   { label: t('hotels_around'), value: 'hotels-around' },
+  { label: t('hotels_around'), value: 'hotels-around' },
   { label: t('nearest_metro_station'), value: 'nearest-metro-station' }
 ])
 const mapType = ref(mapTypes.value[0].value)
