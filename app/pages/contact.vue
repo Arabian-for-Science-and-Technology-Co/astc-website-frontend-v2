@@ -53,7 +53,7 @@
         </Tabs>
       </div>
       <div class="h-[calc(100vh-68px)] max-h-[1106px]">
-        <BaseMap :center="position" :zoom="8" :markers="[position]" :type="mapType" />
+        <BaseMap :center="position" :zoom="12" :markers="[position]" :type="mapType" />
       </div>
     </section>
   </div>
