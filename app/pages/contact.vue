@@ -40,7 +40,13 @@
         </template>
       </Tabs>
       <div class="h-screen max-h-[1106px]">
-        <BaseMap :center="position" :zoom="10" :markers="[position]" />
+        <BaseMap
+          :center="position"
+          :zoom="10"
+          :markers="[position]"
+          :type="mapType"
+          :airport-position="{ lat: 30.112, lng: 31.4 }"
+        />
       </div>
     </article>
   </div>
@@ -70,9 +76,6 @@ const position = computed(() => ({
   lat: Number(settings.value?.latitude),
   lng: Number(settings.value?.longitude)
 }))
-watch(mapType, () => {
-  console.log('mapType', mapType.value)
-})
 </script>
 <style>
 #contact .main-title {
