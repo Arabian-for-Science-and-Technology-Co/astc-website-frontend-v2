@@ -7,7 +7,7 @@
     <section
       class="mt-[80px] flex flex-col justify-start gap-[83px] lg:mt-[97px] lg:gap-[126px] 3xl:mt-[123px] 3xl:gap-[166px]"
     >
-      <CategoryList :title="'category'" :items="categoryItems" />
+      <CategoryList :title="title" :items="categoryItems" />
     </section>
   </section>
 </template>
@@ -20,6 +20,11 @@ const { data: categoryItems } = await useAsyncData(
   {
     transform: (res) => res.data || []
   }
+)
+const { t, locale } = useI18n()
+
+const title = computed(
+  () => categoryItems.value?.[0]?.category?.[`title_${locale.value}`] || t('category')
 )
 </script>
 <style scoped></style>
