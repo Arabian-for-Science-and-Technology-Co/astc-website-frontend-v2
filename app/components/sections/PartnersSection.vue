@@ -50,10 +50,10 @@
 const props = defineProps({
   sectionData: { type: Object, defaults: {} }
 })
-const { $customFetch } = useNuxtApp()
+const customFetch = useCustomFetch()
 const { locale } = useI18n()
 const { data: partners } = await useAsyncData(
-  () => $customFetch('/website/home/partners?type=corporate'),
+  () => customFetch('/website/home/partners?type=corporate'),
   {
     transform: (res) => res.data || []
   }

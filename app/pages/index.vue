@@ -24,7 +24,7 @@ import ParallaxSection from '~/components/sections/ParallaxSection.vue'
 import PartnersSection from '~/components/sections/PartnersSection.vue'
 import SaudiVisionSection from '~/components/sections/SaudiVisionSection.vue'
 
-const { $customFetch } = useNuxtApp()
+const customFetch = useCustomFetch()
 const componentMap = {
   news_bar: NewsSection,
   vision: AnnouncementSection,
@@ -34,7 +34,7 @@ const componentMap = {
   trusted_partners: PartnersSection,
   vision2030: SaudiVisionSection
 }
-const { data: sections } = await useAsyncData(() => $customFetch('/website/home/page/1/sections'), {
+const { data: sections } = await useAsyncData(() => customFetch('/website/home/page/1/sections'), {
   transform: (res) => res.data || []
 })
 </script>

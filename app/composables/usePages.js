@@ -3,9 +3,9 @@ export const usePages = () => {
 
   const fetchPages = async () => {
     if (pages.value.length > 0) return
-    const { $customFetch } = useNuxtApp()
+    const customFetch = useCustomFetch()
     try {
-      const { data } = await $customFetch('/website/home/page')
+      const { data } = await customFetch('/website/home/page')
       pages.value = data || []
     } catch (error) {
       console.error('Failed to fetch pages:', error)
