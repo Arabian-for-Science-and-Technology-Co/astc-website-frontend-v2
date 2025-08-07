@@ -6,7 +6,7 @@
       ]"
     >
       <img
-        :src="goldenImg"
+        :src="aboutIntro?.image"
         class="mx-[7px] mt-[73px] lg:mx-[80px] lg:mt-[43px] 3xl:mx-[247px] 3xl:mt-[69px]"
         alt=""
       />
@@ -17,7 +17,7 @@
             'lg:max-w-[70%] lg:text-[90px] lg:leading-[85.5px] lg:tracking-[0.9px]'
           ]"
         >
-          Arabian for Sience and Technology
+          {{ aboutIntro?.[`title_${locale}`] }}
         </h2>
         <p
           :class="[
@@ -26,18 +26,13 @@
           ]"
         >
           <span class="block">
-            Established in 2007, Arabian for Science and Technology Co. (ASTC) stands as one of the
-            leading Master Systems Integrators of Saudi Arabia.
+            {{ aboutIntro?.[`content_${locale}`]?.split(',')?.[0] }}
           </span>
           <span class="block">
-            We pride ourselves on building lasting partnerships, providing cost-effective solutions,
-            and maintaining a highly skilled team committed to reaching success in any projects.
+            {{ aboutIntro?.[`content_${locale}`]?.split(',')?.[1] }}
           </span>
           <span class="block">
-            From 2023, we prioritize delivering fully local solutions everywhere it is possible and
-            feasible - starting from our in-house development and ending up with international
-            partnerships and Merge & Acquisitions of prospective products, that allow us to build
-            local expertise and transfer the best world's practices and know-how.
+            {{ aboutIntro?.[`content_${locale}`]?.split(',')?.[2] }}
           </span>
         </p>
         <h2
@@ -47,9 +42,9 @@
             'lg:mt-[171px]'
           ]"
         >
-          Our Vision —
+          {{ visionStatement?.[`title_${locale}`]?.split('—')?.[0] }} —
           <br />
-          Innovate Local, Impact Global
+          {{ visionStatement?.[`title_${locale}`]?.split('—')?.[1] }}
         </h2>
       </div>
       <div class="mt-[100px] lg:mt-[180px]">
@@ -59,7 +54,7 @@
             'lg:max-w-full'
           ]"
         >
-          Some of our licenses and certificates
+          {{ certificatesSlider?.[`title_${locale}`] }}
         </h2>
         <ScrollWithDragWrapper
           class="mt-[49px] pe-[--container-pe] ps-[--container-ps] lg:mt-[53px] lg:pe-0 lg:ps-0"
@@ -75,8 +70,8 @@
                   selectedCertificate = certificate
                 }
               "
-              :key="certificate.src"
-              :src="certificate.src"
+              :key="certificate.id"
+              :src="certificate.image"
               class="inline-block h-auto w-auto max-w-[205px] object-contain align-bottom"
               alt=""
             />
@@ -90,7 +85,7 @@
             'lg:max-w-[70%] lg:text-[90px] lg:leading-[85.5px] lg:tracking-[0.9px]'
           ]"
         >
-          Our Goals
+          {{ aboutGoals?.[`title_${locale}`] }}
         </h2>
         <div
           :class="[
@@ -99,8 +94,7 @@
           ]"
         >
           <p>
-            ASTC is dedicated to fostering the technological independence of Saudi Arabia. We are
-            committed to achieving this by:
+            {{ aboutGoals?.[`content_${locale}`] }}
           </p>
           <ul class="w-[90%] list-outside list-disc space-y-4 ps-6">
             <li>Elevating local expertise</li>
@@ -126,7 +120,7 @@
             'lg:max-w-[70%] lg:text-[90px] lg:leading-[85.5px] lg:tracking-[0.9px]'
           ]"
         >
-          Our Mission
+          {{ aboutMission?.[`title_${locale}`] }}
         </h2>
         <p
           :class="[
@@ -135,20 +129,19 @@
           ]"
         >
           <span class="block">
-            We empower Saudi talents to create innovative technologies that accelerate the Kingdom's
-            digital economy, contributing to national prosperity and setting new benchmarks on the
-            world stage.
+            {{ aboutMission?.[`content_${locale}`] }}
           </span>
         </p>
       </div>
       <BaseModal
         v-model:open="modalOpen"
-        containerClass="w-full !max-w-[612px] !bg-transparent"
+        containerClass="w-full !mx-0 !max-w-[500px] !bg-transparent"
+        bodyClass="px-6"
         :canCloseByBackdrop="true"
         :canCloseByEsc="true"
       >
         <img
-          :src="selectedCertificate.src"
+          :src="selectedCertificate.image"
           class="inline-block h-auto w-auto object-contain align-bottom"
           alt=""
         />
@@ -162,9 +155,9 @@ import goldenImg from '~/assets/Images/about/golden_sign.png'
 const certificatesModules = import.meta.glob('~/assets/Images/about/certificates/*.png', {
   eager: true
 })
-const certificates = Object.entries(certificatesModules).map(([_, module], index) => ({
-  src: module.default
-}))
+// const certificates = Object.entries(certificatesModules).map(([_, module], index) => ({
+//   src: module.default
+// }))
 definePageMeta({
   layout: false,
   pageTransition: false,
@@ -172,14 +165,21 @@ definePageMeta({
 })
 const selectedCertificate = ref(null)
 const modalOpen = ref(false)
-
+const { t, locale } = useI18n()
 const customFetch = useCustomFetch()
-// const { data: categoryItems } = await useAsyncData(
-//   () => customFetch(`/website/home/categories/${route.params.id}/items`),
-//   {
-//     transform: (res) => res.data || []
-//   }
-// )
+const { data: aboutData } = useAsyncData(() => customFetch(`/website/home/page/2/sections`), {
+  transform: (res) => res.data || []
+})
+const { data: certificates } = useAsyncData(() => customFetch(`/website/home/certificates`), {
+  transform: (res) => res.data || []
+})
+const aboutIntro = computed(() => aboutData.value.find((d) => d.code == 'about_intro'))
+const visionStatement = computed(() => aboutData.value.find((d) => d.code == 'vision_statement'))
+const certificatesSlider = computed(() =>
+  aboutData.value.find((d) => d.code == 'certificates_slider')
+)
+const aboutGoals = computed(() => aboutData.value.find((d) => d.code == 'about_goals'))
+const aboutMission = computed(() => aboutData.value.find((d) => d.code == 'about_mission'))
 </script>
 <style scoped>
 .bg {

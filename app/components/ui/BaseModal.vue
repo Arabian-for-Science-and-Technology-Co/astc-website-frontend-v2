@@ -3,13 +3,13 @@
     <Transition name="fade">
       <div
         v-if="open"
-        class="fixed inset-0 z-[1000] flex items-center justify-center bg-black/50 backdrop-blur-sm"
+        class="fixed inset-0 z-[1000] flex items-center justify-center bg-black/70  "
         @click.self="handleBackdropClose"
         tabindex="0"
       >
         <!-- Close button OUTSIDE the container -->
         <button
-          class="absolute right-4 top-4 z-50 text-xl text-white transition hover:text-red-300"
+          class="absolute right-[50px] top-[50px] z-50 3xl:text-[28px] text-white transition hover:text-red-300"
           @click="handleCancel"
         >
           ✕
