@@ -1,5 +1,5 @@
 <template>
-  <article class="group flex items-center gap-[30px]">
+  <article @click="navigateTo('/')" class="group flex items-center gap-[30px]">
     <BaseImg
       densities="x1 x2"
       format="webp"

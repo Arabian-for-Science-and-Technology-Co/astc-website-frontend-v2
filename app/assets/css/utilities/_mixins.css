@@ -16,7 +16,6 @@
   }
 
   .app-container {
-    
     padding-left: var(--container-ps);
     padding-right: var(--container-pe);
   }
@@ -43,4 +42,12 @@
 }
 .white-filter {
   filter: brightness(0) invert(1); /* black → white */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

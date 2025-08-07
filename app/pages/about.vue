@@ -10,7 +10,7 @@
         class="mx-[7px] mt-[73px] lg:mx-[80px] lg:mt-[43px] 3xl:mx-[247px] 3xl:mt-[69px]"
         alt=""
       />
-      <div class="custom-app-container mt-[68px] lg:mt-[62px] 3xl:mt-[104px]">
+      <div class="app-container app-container--edit mt-[68px] lg:mt-[62px] 3xl:mt-[104px]">
         <h2
           :class="[
             'text-[52px] font-[200] leading-[49.4px] tracking-[0.52px]',
@@ -52,18 +52,32 @@
           Innovate Local, Impact Global
         </h2>
       </div>
-      <div class="mt-[100x] lg:mt-[180px]">
+      <div class="mt-[100px] lg:mt-[180px]">
         <h2
           :class="[
-            'custom-app-container max-w-[264px] text-[30px] font-[600] leading-[110%] tracking-[0.3px]',
+            'app-container app-container--edit max-w-[264px] text-[30px] font-[600] leading-[110%] tracking-[0.3px]',
             'lg:max-w-full'
           ]"
         >
           Some of our licenses and certificates
         </h2>
-        <div class="min-h-[290px]"></div>
+        <ScrollWithDragWrapper
+          class="mt-[49px] pe-[--container-pe] ps-[--container-ps] lg:mt-[53px] lg:pe-0 lg:ps-0"
+        >
+          <div
+            class="grid auto-cols-max grid-flow-col grid-rows-2 items-end gap-[30px] lg:grid-rows-1"
+          >
+            <img
+              v-for="certificate in certificates"
+              :key="certificate.src"
+              :src="certificate.src"
+              class="inline-block h-auto w-auto max-w-[205px] object-contain align-bottom"
+              alt=""
+            />
+          </div>
+        </ScrollWithDragWrapper>
       </div>
-      <div class="custom-app-container mt-[100x] lg:mt-[180px]">
+      <div class="app-container app-container--edit mt-[100px] lg:mt-[180px] 3xl:mt-[184px]">
         <h2
           :class="[
             'text-[52px] font-[200] leading-[49.4px] tracking-[0.52px]',
@@ -72,41 +86,41 @@
         >
           Our Goals
         </h2>
-        <p
+        <div
           :class="[
             'mt-[40px] space-y-[38px] text-[20px] font-[300] leading-[105%] tracking-[0.2px]',
             'lg:mt-[65px] lg:text-[30px] lg:leading-[110%] lg:tracking-[0.3px]'
           ]"
         >
-          <span class="block">
+          <p>
             ASTC is dedicated to fostering the technological independence of Saudi Arabia. We are
             committed to achieving this by:
-          </span>
-          <ul class="list-disc list-inside">
+          </p>
+          <ul class="w-[90%] list-outside list-disc space-y-4 ps-6">
             <li>Elevating local expertise</li>
             <li>Boosting the national GDP through strategic IT initiatives</li>
             <li>Diversifying the economy</li>
             <li>Unlocking the full potential of Saudi nationals</li>
           </ul>
-          <span class="block"> Join us in shaping a prosperous, tech-savvy Saudi future. </span>
-        </p>
+          <p>Join us in shaping a prosperous, tech-savvy Saudi future.</p>
+        </div>
         <BaseButton
           :class="[
             'font-section mt-[40px] h-[68px] max-w-[295px] text-[16px] font-[500] leading-[normal] lg:mt-[95px]',
-            'lg:mt-[95px] lg:text-[20px] lg:font-[300] lg:leading-[21px] lg:tracking-[0.2px]'
+            'lg:mt-[95px] lg:text-[20px] lg:font-[400] lg:leading-[21px] lg:tracking-[0.2px]'
           ]"
         >
           Let’s Talk
         </BaseButton>
       </div>
-      <div class="custom-app-container mt-[100x] lg:mt-[180px]">
+      <div class="app-container app-container--edit mt-[100px] lg:mt-[180px] 3xl:mt-[184px]">
         <h2
           :class="[
             'text-[52px] font-[200] leading-[49.4px] tracking-[0.52px]',
             'lg:max-w-[70%] lg:text-[90px] lg:leading-[85.5px] lg:tracking-[0.9px]'
           ]"
         >
-          Our Goals
+          Our Mission
         </h2>
         <p
           :class="[
@@ -127,6 +141,12 @@
 
 <script setup>
 import goldenImg from '~/assets/Images/about/golden_sign.png'
+const certificatesModules = import.meta.glob('~/assets/Images/about/certificates/*.png', {
+  eager: true
+})
+const certificates = Object.entries(certificatesModules).map(([_, module], index) => ({
+  src: module.default
+}))
 definePageMeta({
   layout: false,
   pageTransition: false,
@@ -144,16 +164,9 @@ const { $customFetch } = useNuxtApp()
 .bg {
   background:
     linear-gradient(191deg, rgba(13, 22, 103, 0) 23.08%, #0d1667 70.2%),
-    url('~/assets/Images/about/background.jpg') lightgray -2249px 0px / 218.841% 124.092% no-repeat;
+    url('~/assets/Images/about/background.jpg');
 }
-.custom-app-container {
-  padding-inline-start: 19px;
-  padding-inline-end: 18px;
-
-  @media (min-width: 1280px) {
-    padding-inline-start: 41px;
-    padding-inline-end: 40px;
-  }
+.app-container--edit {
   @media (min-width: 1600px) {
     padding-inline-start: 438px;
     padding-inline-end: 586px;
