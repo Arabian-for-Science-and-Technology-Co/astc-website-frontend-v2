@@ -3,9 +3,9 @@ export const useProductsAndSolutions = () => {
 
   const fetchProductsAndSolutions = async () => {
     if (productsAndSolutions.value.length > 0) return
-    const { $customFetch } = useNuxtApp()
+    const customFetch = useCustomFetch()
     try {
-      const { data } = await $customFetch('/website/home/products-and-solutions')
+      const { data } = await customFetch('/website/home/products-and-solutions')
       productsAndSolutions.value = data || []
     } catch (error) {
       console.error('Failed to fetch productsAndSolutions:', error)

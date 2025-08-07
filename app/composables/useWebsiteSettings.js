@@ -29,9 +29,9 @@ export const useWebsiteSettings = () => {
 
   const fetchSettings = async () => {
     if (Object.keys(settings.value).length > 0) return
-    const { $customFetch } = useNuxtApp()
+    const customFetch = useCustomFetch()
     try {
-      const { data } = await $customFetch('/website/general/setting')
+      const { data } = await customFetch('/website/general/setting')
       settings.value = data || {}
     } catch (error) {
       console.error('Failed to fetch website settings:', error)

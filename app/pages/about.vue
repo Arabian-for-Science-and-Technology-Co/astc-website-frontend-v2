@@ -152,9 +152,9 @@ definePageMeta({
   pageTransition: false,
   layoutTransition: false
 })
-const { $customFetch } = useNuxtApp()
+const customFetch = useCustomFetch()
 // const { data: categoryItems } = await useAsyncData(
-//   () => $customFetch(`/website/home/categories/${route.params.id}/items`),
+//   () => customFetch(`/website/home/categories/${route.params.id}/items`),
 //   {
 //     transform: (res) => res.data || []
 //   }

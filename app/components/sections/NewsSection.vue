@@ -55,10 +55,10 @@ import newsVideo from '~/assets/Images/news-video.png'
 const props = defineProps({
   sectionData: { type: Object, defaults: {} }
 })
-const { $customFetch } = useNuxtApp()
+const customFetch = useCustomFetch()
 const { locale } = useI18n()
 const { data: newsData } = await useAsyncData(
-  () => $customFetch('/website/news?per_page=3&page=1'),
+  () => customFetch('/website/news?per_page=3&page=1'),
   {
     transform: (res) => res.data || []
   }
