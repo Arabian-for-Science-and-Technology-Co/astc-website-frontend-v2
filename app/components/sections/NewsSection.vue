@@ -13,7 +13,7 @@
                 'lg:mb-[2px] lg:text-[32px] lg:font-[700] lg:leading-[38.4px] lg:tracking-[0.32px]'
               ]"
             >
-              {{ $fd(item.updated_at, 'MMM DD, YYYY') }}
+              {{ $fd(item.updated_at, locale == 'en' ? 'MMM DD, YYYY' : 'DD MMM, YYYY') }}
             </h4>
             <h4
               :class="[
