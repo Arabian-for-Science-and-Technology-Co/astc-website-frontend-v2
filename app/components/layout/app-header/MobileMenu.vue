@@ -2,7 +2,10 @@
   <button
     v-bind="$attrs"
     @click="isOpen = !isOpen"
-    class="gird m-0 h-[42px] w-[42px] place-items-center rounded-xl bg-[#0000000D] p-0 backdrop-blur-[6px]"
+    :class="[
+      'gird m-0 h-[42px] w-[42px] place-items-center rounded-xl bg-[#0000000D] p-0 backdrop-blur-[6px]',
+      isWhiteLogo && '!bg-[#F0F0F0]'
+    ]"
   >
     <MenuMobileIcon class="static !h-[8px] !w-[18px]" />
   </button>
@@ -21,7 +24,15 @@
           <!-- Center Vision Logo -->
           <SaudiVision :isWhiteLogo="true" :showLeftLogo="false" class="mb-[10px] self-end" />
           <!-- Mobile Logo -->
-          <div :class="['-mt-6 mb-0 block h-[55px] w-[106px]', 'lg:hidden']">
+          <div
+            @click="
+              () => {
+                navigateTo('/')
+                isOpen = false
+              }
+            "
+            :class="['-mt-6 mb-0 block h-[55px] w-[106px]', 'lg:hidden']"
+          >
             <BaseImg
               densities="x1 x2"
               format="webp"
@@ -45,6 +56,12 @@
       >
         <h3
           v-for="tab in tabs"
+          @click="
+            () => {
+              navigateTo(tab.value)
+              isOpen = false
+            }
+          "
           :class="[
             'relative w-fit text-[52px] font-[200] not-italic leading-[49.4px] tracking-[0.52px]'
           ]"
@@ -74,7 +91,8 @@
 const ASC_Logo_Main = '/Icons/ASC_Logo_Main.svg'
 
 defineProps({
-  tabs: { type: Array, required: true }
+  tabs: { type: Array, required: true },
+  isWhiteLogo: { type: Boolean, default: false }
 })
 const { settings } = useWebsiteSettings()
 

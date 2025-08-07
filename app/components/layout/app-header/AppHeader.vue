@@ -6,11 +6,14 @@
     ]"
   >
     <!-- Left Logo Section -->
-    <article v-if="showLeftLogo" class="-mt-[17px] hidden gap-[27px] lg:flex">
+    <article
+      @click="navigateTo('/')"
+      v-if="showLeftLogo"
+      class="-mt-[17px] hidden gap-[27px] lg:flex"
+    >
       <BaseImg
         densities="x1 x2"
         format="webp"
-        @click="navigateTo('/')"
         :src="isWhiteLogo ? settings.logo_light : settings.logo_dark"
         :class="['mb-[7px] h-[68px] w-[130px] self-start hover:cursor-pointer']"
         :fallback="ASC_Logo_Main"
@@ -35,11 +38,14 @@
 
     <ClientOnly>
       <!-- Mobile Logo -->
-      <div :class="['-ms-[50px] -mt-6 mb-0 block h-[55px] w-[106px]', 'lg:hidden']">
+      <div
+        @click="navigateTo('/')"
+        :class="['-ms-[50px] -mt-6 mb-0 block h-[55px] w-[106px]', 'lg:hidden']"
+      >
         <BaseImg
           densities="x1 x2"
           format="webp"
-          :src="settings.logo_dark"
+          :src="isWhiteLogo ? settings.logo_light : settings.logo_dark"
           class="h-full w-full"
           :fallback="ASC_Logo_Main"
         />
@@ -48,6 +54,7 @@
 
     <div class="mobileMenu-placeholder">
       <MobileMenu
+        :isWhiteLogo="isWhiteLogo"
         class="gird fixed end-[--container-ps] top-[--header-pt] z-[100] lg:hidden"
         :tabs="tabs"
       />
@@ -65,8 +72,8 @@
             class="fixed end-[--container-pe] top-[--header-pt] z-[60] hidden lg:flex"
             :tabs="tabs"
             :enableHover="enableHover"
-            :tabsClass=" tabsClass"
-            :selectedTabClass=" selectedTabClass"
+            :tabsClass="tabsClass"
+            :selectedTabClass="selectedTabClass"
           />
         </div>
       </article>
