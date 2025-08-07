@@ -69,6 +69,12 @@
           >
             <img
               v-for="certificate in certificates"
+              @click="
+                () => {
+                  modalOpen = true
+                  selectedCertificate = certificate
+                }
+              "
               :key="certificate.src"
               :src="certificate.src"
               class="inline-block h-auto w-auto max-w-[205px] object-contain align-bottom"
@@ -135,6 +141,18 @@
           </span>
         </p>
       </div>
+      <BaseModal
+        v-model:open="modalOpen"
+        containerClass="w-full !max-w-[612px] !bg-transparent"
+        :canCloseByBackdrop="true"
+        :canCloseByEsc="true"
+      >
+        <img
+          :src="selectedCertificate.src"
+          class="inline-block h-auto w-auto object-contain align-bottom"
+          alt=""
+        />
+      </BaseModal>
     </div>
   </NuxtLayout>
 </template>
@@ -152,6 +170,9 @@ definePageMeta({
   pageTransition: false,
   layoutTransition: false
 })
+const selectedCertificate = ref(null)
+const modalOpen = ref(false)
+
 const customFetch = useCustomFetch()
 // const { data: categoryItems } = await useAsyncData(
 //   () => customFetch(`/website/home/categories/${route.params.id}/items`),

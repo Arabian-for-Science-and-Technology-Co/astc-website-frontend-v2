@@ -1,0 +1,135 @@
+<template>
+  <Teleport to="body">
+    <Transition name="fade">
+      <div
+        v-if="open"
+        class="fixed inset-0 z-[1000] flex items-center justify-center bg-black/50 backdrop-blur-sm"
+        @click.self="handleBackdropClose"
+        tabindex="0"
+      >
+        <!-- Close button OUTSIDE the container -->
+        <button
+          class="absolute right-4 top-4 z-50 text-xl text-white transition hover:text-red-300"
+          @click="handleCancel"
+        >
+          ✕
+        </button>
+
+        <!-- Modal container -->
+        <component
+          :is="formMode ? 'form' : 'div'"
+          :class="[
+            'mx-4 w-full max-w-lg transform rounded-lg bg-white shadow-lg transition-all dark:bg-gray-800',
+            containerClass
+          ]"
+          @submit.prevent="handleSubmit"
+          @keydown.esc="handleEsc"
+        >
+          <!-- Header -->
+          <div
+            v-if="$slots.header || title"
+            :class="[
+              'flex items-center justify-between border-b border-gray-200 px-6 py-4 dark:border-gray-700',
+              headerClass
+            ]"
+          >
+            <slot name="header">
+              <h3 class="text-lg font-semibold text-gray-800 dark:text-white">{{ title }}</h3>
+            </slot>
+          </div>
+
+          <!-- Body -->
+          <div :class="['px-6 py-4', bodyClass]">
+            <slot />
+          </div>
+
+          <!-- Footer -->
+          <div
+            v-if="$slots.footer"
+            :class="['border-t border-gray-200 px-6 py-4 dark:border-gray-700', footerClass]"
+          >
+            <slot name="footer" />
+          </div>
+        </component>
+      </div>
+    </Transition>
+  </Teleport>
+</template>
+
+<script setup>
+import { ref, watch, onMounted, onUnmounted } from 'vue'
+
+const props = defineProps({
+  open: Boolean,
+  title: String,
+  formMode: Boolean,
+  onConfirm: Function,
+  onCancel: Function,
+  canCloseByBackdrop: { type: Boolean, default: true },
+  canCloseByEsc: { type: Boolean, default: true },
+  containerClass: String,
+  headerClass: String,
+  bodyClass: String,
+  footerClass: String
+})
+
+const emit = defineEmits(['update:open'])
+
+const open = ref(props.open)
+
+watch(
+  () => props.open,
+  (val) => {
+    open.value = val
+    if (val) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+  }
+)
+
+function close() {
+  emit('update:open', false)
+}
+
+function handleSubmit() {
+  props.onConfirm?.()
+  close()
+}
+
+function handleCancel() {
+  props.onCancel?.()
+  close()
+}
+
+function handleBackdropClose() {
+  if (props.canCloseByBackdrop) {
+    handleCancel()
+  }
+}
+
+function handleEsc(e) {
+  if (e.key === 'Escape' && props.canCloseByEsc) {
+    handleCancel()
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('keydown', handleEsc)
+})
+onUnmounted(() => {
+  document.removeEventListener('keydown', handleEsc)
+})
+</script>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.25s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
