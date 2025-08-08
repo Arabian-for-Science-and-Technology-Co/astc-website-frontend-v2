@@ -1,22 +1,22 @@
 <template>
-  <NuxtLayout :showProductsSection="false" name="default">
+  <section
+    :class="[
+      'app-container flex flex-col bg-[#F0F0F0] pb-[150px] pt-[--header-height] font-zarid text-black lg:pb-[230px] 3xl:pb-[247px]'
+    ]"
+  >
     <section
-      :class="[
-        'app-container flex flex-col bg-[#F0F0F0] pb-[150px] pt-[--header-height] font-zarid text-black lg:pb-[230px] 3xl:pb-[247px]'
-      ]"
+      class="mt-[80px] flex flex-col justify-start gap-[83px] lg:mt-[97px] lg:gap-[126px] 3xl:mt-[123px] 3xl:gap-[166px]"
     >
-      <section
-        class="mt-[80px] flex flex-col justify-start gap-[83px] lg:mt-[97px] lg:gap-[126px] 3xl:mt-[123px] 3xl:gap-[166px]"
-      >
-        <CategoryList :title="title" :items="categoryItems" />
-      </section>
+      <CategoryList :title="title" :items="categoryItems" />
     </section>
-  </NuxtLayout>
+  </section>
 </template>
 
 <script setup>
 definePageMeta({
-  layout: false
+  layoutProps: {
+    showProductsSection: false
+  }
 })
 const route = useRoute()
 const customFetch = useCustomFetch()
