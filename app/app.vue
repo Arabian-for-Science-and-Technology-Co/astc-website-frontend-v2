@@ -6,7 +6,7 @@
 <script setup>
 const config = useRuntimeConfig()
 const baseUrl = config.public.siteUrl || 'https://astc.com.sa/astc/'
-const { locale, locales } = useI18n()
+const { locale } = useI18n()
 const { settings, fetchSettings } = useWebsiteSettings()
 await fetchSettings()
 
@@ -25,10 +25,6 @@ const staticMetaData = computed(() => ({
 }))
 
 useHead({
-  htmlAttrs: {
-    dir: computed(() => locales.value.find((l) => l.code === locale.value)?.dir || 'ltr'),
-    lang: computed(() => locale.value)
-  },
   title: () => staticMetaData.value.title,
   meta: () => [
     { hid: 'charset', name: 'charset', content: 'utf-8' },

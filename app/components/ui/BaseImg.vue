@@ -1,5 +1,5 @@
 <template>
-  <NuxtImg v-bind="$attrs" :src="resolvedSrc" @error="handleImageError" />
+  <NuxtImg class="content-transition" v-bind="$attrs" :src="resolvedSrc" @error="handleImageError" />
 </template>
 
 <script setup>

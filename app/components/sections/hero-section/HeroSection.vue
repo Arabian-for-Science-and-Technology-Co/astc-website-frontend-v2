@@ -32,7 +32,7 @@
       >
         <div
           :class="[
-            'mb-0 hidden h-[55px] w-[106px]',
+            'content-transition mb-0 hidden h-[55px] w-[106px]',
             'lg:block lg:h-[141px] lg:w-[269.91px]',
             '3xl:mb-[12px] 3xl:h-[209px] 3xl:w-[400.09px]'
           ]"
@@ -63,7 +63,7 @@
       </div>
     </article>
 
-    <article class="relative z-10 h-[415.7px] lg:h-[580px]">
+    <article class="content-transition relative z-10 h-[415.7px] lg:h-[580px]">
       <ServicesSlider />
     </article>
   </section>

@@ -1,7 +1,9 @@
 @import './base/_reset.css';
 @import './base/_typography.css';
 @import './base/_root.css';
-@import './base/_transitions.css';
+ 
+@import './animation/_language_transitions.css';
+@import './animation/_navigation_transitions.css';
 
 @import './config/_colors.css';
 @import './config/_sizes.css';

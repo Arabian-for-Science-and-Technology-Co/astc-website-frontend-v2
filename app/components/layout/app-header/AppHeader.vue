@@ -61,12 +61,12 @@
       />
     </div>
 
-    <ClientOnly>
-      <article class="hidden items-center gap-[40px] lg:flex">
-        <LanguageSwitcher
-          :tabsClass="enableHover && tabsClass"
-          :selectedTabClass="enableHover && selectedTabClass"
-        />
+    <article class="hidden items-center gap-[40px] lg:flex">
+      <LanguageSwitcher
+        :tabsClass="enableHover && tabsClass"
+        :selectedTabClass="enableHover && selectedTabClass"
+      />
+      <ClientOnly>
         <div class="desktopMenu-placeholder" :style="{ width: desktopMenuRef?.width + 'px' }">
           <DesktopMenu
             :dir="'ltr'"
@@ -78,8 +78,8 @@
             :selectedTabClass="selectedTabClass"
           />
         </div>
-      </article>
-    </ClientOnly>
+      </ClientOnly>
+    </article>
   </section>
 </template>
 
