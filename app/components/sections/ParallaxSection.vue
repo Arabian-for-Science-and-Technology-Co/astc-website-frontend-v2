@@ -4,19 +4,21 @@
     class="relative flex h-screen items-stretch overflow-hidden bg-[#0D1667] font-zarid"
   >
     <BaseImg
-       format="webp"
+      format="webp"
       :src="sectionData?.image || sky_parallax_1"
       class="h-full flex-1 object-cover"
       :alt="`sky_parallax_1`"
       :fallback="sky_parallax_1"
     />
-    <img
-      ref="sky2"
-      :src="sky_parallax_2"
-      class="absolute inset-0 h-full w-full object-cover"
-      :style="{ clipPath }"
-      :alt="`sky_parallax_2`"
-    />
+    <ClientOnly>
+      <img
+        ref="sky2"
+        :src="sky_parallax_2"
+        class="absolute inset-0 h-full w-full object-cover"
+        :style="{ clipPath }"
+        :alt="`sky_parallax_2`"
+      />
+    </ClientOnly>
   </section>
 </template>
 
