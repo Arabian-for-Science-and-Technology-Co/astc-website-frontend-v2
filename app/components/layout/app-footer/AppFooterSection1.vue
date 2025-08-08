@@ -50,7 +50,7 @@
 
 <script setup>
 defineProps({
-  themeColor: { type: String, required: true }
+  themeColor: { type: String }
 })
 const { locale } = useI18n()
 const { settings } = useWebsiteSettings()
