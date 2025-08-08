@@ -7,7 +7,9 @@
     class=""
   >
     <div class="static-grid">
-      <StaticGride v-for="i in 14" :delay="0" :smallDotPosition="smallDotPosition" />
+      <ClientOnly>
+        <StaticGride v-for="i in 14" :smallDotPosition="smallDotPosition" />
+      </ClientOnly>
     </div>
     <div class="animated-grid">
       <ClientOnly>
