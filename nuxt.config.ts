@@ -5,19 +5,8 @@ export default defineNuxtConfig({
     transpile: ['@googlemaps/js-api-loader']
   },
   devtools: { enabled: true },
-  //----------------------for auto modules----------------------
-  modules: [
-    // async (_options, nuxt) => {
-    //   nuxt.hooks.hook("vite:extendConfig", (config) => {
-    //     // @ts-expect-error
-    //     config.plugins.push(vuetify({ autoImport: true }));
-    //   });
-    // },
-    '@nuxt/image',
-    '@nuxtjs/tailwindcss',
-    'nuxt-svgo',
-    '@nuxtjs/i18n'
-  ],
+  //----------------------for modules----------------------
+  modules: ['@nuxt/image', '@nuxtjs/tailwindcss', 'nuxt-svgo', '@nuxtjs/i18n'],
   //  image: {
   //   dir: '~/assets',  // Point to where your images are
   // },
@@ -28,7 +17,7 @@ export default defineNuxtConfig({
     ],
     defaultLocale: 'en',
     strategy: 'no_prefix',
-    restructureDir:'app',
+    restructureDir: 'app',
     langDir: 'locales',
     detectBrowserLanguage: {
       useCookie: true,
@@ -48,7 +37,7 @@ export default defineNuxtConfig({
   imports: {
     autoImport: true
     // dirs: [
-    //   // Only auto-import from these directories
+    //   // only auto-import from these directories
     //   "composables",
     //   "utils",
     //   "stores",
