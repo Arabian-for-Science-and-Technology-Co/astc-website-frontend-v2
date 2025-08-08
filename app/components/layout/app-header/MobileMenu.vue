@@ -15,6 +15,7 @@
       class="fixed start-0 top-0 z-[100] flex h-[100vh] w-full flex-col overflow-y-auto bg-[#0D1667] pb-[66.8px] text-white"
     >
       <section
+        :dir="'ltr'"
         :class="[
           'app-container z-[100] flex h-fit w-full items-center justify-between bg-transparent transition-colors duration-300',
           'pt-[38px]'
