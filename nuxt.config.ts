@@ -1,11 +1,11 @@
 // nuxt.config.ts
 export default defineNuxtConfig({
-  //  app: {
-  //   pageTransition: {
-  //     name: 'page',
-  //     mode: 'out-in'
-  //   }
-  // },
+   app: {
+    pageTransition: {
+      name: 'page',
+      mode: 'out-in'
+    }
+  },
   compatibilityDate: '2025-07-15',
   build: {
     transpile: ['@googlemaps/js-api-loader']
