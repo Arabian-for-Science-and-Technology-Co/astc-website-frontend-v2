@@ -1,69 +1,69 @@
 <template>
-  <NuxtLayout :showProductsSection="false" name="default">
+  <section
+    :class="[
+      'app-container flex flex-col bg-[#F0F0F0] pb-[150px] pt-[--header-height] font-zarid text-black lg:pb-[230px] 3xl:pb-[247px]'
+    ]"
+  >
+    <h1 class="head-title mt-[100px] lg:mt-[120px] 3xl:mt-[160px]">
+      {{ products?.[`title_${locale}`] }} & {{ solutions?.[`title_${locale}`] }}
+    </h1>
     <section
-      :class="[
-        'app-container flex flex-col bg-[#F0F0F0] pb-[150px] pt-[--header-height] font-zarid text-black lg:pb-[230px] 3xl:pb-[247px]'
-      ]"
+      class="mt-[80px] flex flex-col justify-start gap-[83px] lg:mt-[97px] lg:gap-[126px] 3xl:mt-[123px] 3xl:gap-[166px]"
     >
-      <h1 class="head-title mt-[100px] lg:mt-[120px] 3xl:mt-[160px]">
-        {{ products?.[`title_${locale}`] }} & {{ solutions?.[`title_${locale}`] }}
-      </h1>
-      <section
-        class="mt-[80px] flex flex-col justify-start gap-[83px] lg:mt-[97px] lg:gap-[126px] 3xl:mt-[123px] 3xl:gap-[166px]"
-      >
-        <article>
-          <h2 class="main-title">{{ products?.[`title_${locale}`] }}</h2>
-          <div class="imgs-contianer mt-[74.47px]">
-            <figure v-for="(item, i) in products?.items || []" class="imgs-contianer__card">
-              <BaseImg
-                densities="x1 x2"
-                format="webp"
-                :key="i"
-                :src="item.image"
-                class="imgs-contianer__card__img"
-                :alt="`Image ${i + 1} representing product`"
-              />
-              <figcaption>
-                <h3 class="imgs-contianer__card__title">{{ item?.[`title_${locale}`] }}</h3>
-                <p class="imgs-contianer__card__desc">{{ item?.[`meta_desc_${locale}`] }}</p>
-              </figcaption>
-            </figure>
-          </div>
-        </article>
-        <article>
-          <h2 class="main-title">{{ solutions?.[`title_${locale}`] }}</h2>
-          <div class="imgs-contianer imgs-contianer--wide mt-[29px]">
-            <figure
-              v-for="(item, i) in solutions?.items || []"
-              class="imgs-contianer__card imgs-contianer__card--wide"
-            >
-              <BaseImg
-                densities="x1 x2"
-                format="webp"
-                :key="i"
-                :src="item.image"
-                class="imgs-contianer__card__img imgs-contianer__card__img--wide"
-                :alt="`Image ${i + 1} representing solution`"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption class="w-full">
-                <h3 class="imgs-contianer__card__title">{{ item?.[`title_${locale}`] }}</h3>
-                <p class="imgs-contianer__card__desc imgs-contianer__card__desc--wide">
-                  {{ item?.[`meta_desc_${locale}`] }}
-                </p>
-              </figcaption>
-            </figure>
-          </div>
-        </article>
-      </section>
+      <article>
+        <h2 class="main-title">{{ products?.[`title_${locale}`] }}</h2>
+        <div class="imgs-contianer mt-[74.47px]">
+          <figure v-for="(item, i) in products?.items || []" class="imgs-contianer__card">
+            <BaseImg
+              densities="x1 x2"
+              format="webp"
+              :key="i"
+              :src="item.image"
+              class="imgs-contianer__card__img"
+              :alt="`Image ${i + 1} representing product`"
+            />
+            <figcaption>
+              <h3 class="imgs-contianer__card__title">{{ item?.[`title_${locale}`] }}</h3>
+              <p class="imgs-contianer__card__desc">{{ item?.[`meta_desc_${locale}`] }}</p>
+            </figcaption>
+          </figure>
+        </div>
+      </article>
+      <article>
+        <h2 class="main-title">{{ solutions?.[`title_${locale}`] }}</h2>
+        <div class="imgs-contianer imgs-contianer--wide mt-[29px]">
+          <figure
+            v-for="(item, i) in solutions?.items || []"
+            class="imgs-contianer__card imgs-contianer__card--wide"
+          >
+            <BaseImg
+              densities="x1 x2"
+              format="webp"
+              :key="i"
+              :src="item.image"
+              class="imgs-contianer__card__img imgs-contianer__card__img--wide"
+              :alt="`Image ${i + 1} representing solution`"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption class="w-full">
+              <h3 class="imgs-contianer__card__title">{{ item?.[`title_${locale}`] }}</h3>
+              <p class="imgs-contianer__card__desc imgs-contianer__card__desc--wide">
+                {{ item?.[`meta_desc_${locale}`] }}
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+      </article>
     </section>
-  </NuxtLayout>
+  </section>
 </template>
 
 <script setup>
 definePageMeta({
-  layout: false
+  layoutProps: {
+    showProductsSection: false
+  }
 })
 const { locale } = useI18n()
 const { productsAndSolutions, fetchProductsAndSolutions } = useProductsAndSolutions()
