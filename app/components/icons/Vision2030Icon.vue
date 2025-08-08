@@ -8,7 +8,6 @@
 </template>
 <script setup>
 const props = defineProps({
-  name: { type: String, required: true },
   size: { type: [String, Number], default: 24 }
 })
 </script>
