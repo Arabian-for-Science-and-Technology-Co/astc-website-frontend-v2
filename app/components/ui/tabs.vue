@@ -25,9 +25,9 @@
 <script setup>
 const props = defineProps({
   tabs: { type: Array, required: true },
-  modelValue: { type: [Object, null], required: true },
-  btnClass: { type: String },
-  btnSelectedClass: { type: String },
+  modelValue: { type: [String, Number, Object, null], required: true },
+  btnClass: { type: [String, Array, Boolean, null] },
+  btnSelectedClass: { type: [String, Array, Boolean, null] },
   returnObject: { type: Boolean, default: true },
   valueKey: { type: String, default: 'value' }
 })

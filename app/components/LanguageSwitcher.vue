@@ -11,9 +11,9 @@
 </template>
 <script setup>
 const props = defineProps({
-  btnClass: { type: String },
-  tabsClass: { type: String, default: '' },
-  selectedTabClass: { type: String, default: '' }
+  btnClass: { type: [String, Array, Boolean, null] },
+  tabsClass: { type: [String, Array, Boolean, null], default: '' },
+  selectedTabClass: { type: [String, Array, Boolean, null], default: '' }
 })
 const { locale, locales, setLocale } = useI18n()
 const mapped = {

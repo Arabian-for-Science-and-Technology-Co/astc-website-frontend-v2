@@ -8,6 +8,6 @@
 </template>
 <script setup>
 const props = defineProps({
-  color: { type: String, required: true, default: '#A9AEB8' }
+  color: { type: String, default: '#A9AEB8' }
 })
 </script>

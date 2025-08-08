@@ -4,7 +4,7 @@
 
 <script setup>
 const props = defineProps({
-  fallback: { type: String, required: true },
+  fallback: { type: String },
   src: { type: String, required: true }
 })
 
@@ -13,5 +13,4 @@ function handleImageError() {
   fallbackSrc.value = props.fallback
 }
 const resolvedSrc = computed(() => fallbackSrc.value || props.src)
-
 </script>
