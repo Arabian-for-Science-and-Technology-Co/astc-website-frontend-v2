@@ -173,13 +173,13 @@ const { data: aboutData } = useAsyncData(() => customFetch(`/website/home/page/2
 const { data: certificates } = useAsyncData(() => customFetch(`/website/home/certificates`), {
   transform: (res) => res.data || []
 })
-const aboutIntro = computed(() => aboutData.value.find((d) => d.code == 'about_intro'))
-const visionStatement = computed(() => aboutData.value.find((d) => d.code == 'vision_statement'))
+const aboutIntro = computed(() => aboutData.value?.find((d) => d?.code == 'about_intro'))
+const visionStatement = computed(() => aboutData.value?.find((d) => d?.code == 'vision_statement'))
 const certificatesSlider = computed(() =>
-  aboutData.value.find((d) => d.code == 'certificates_slider')
+  aboutData.value?.find((d) => d?.code == 'certificates_slider')
 )
-const aboutGoals = computed(() => aboutData.value.find((d) => d.code == 'about_goals'))
-const aboutMission = computed(() => aboutData.value.find((d) => d.code == 'about_mission'))
+const aboutGoals = computed(() => aboutData.value?.find((d) => d?.code == 'about_goals'))
+const aboutMission = computed(() => aboutData.value?.find((d) => d?.code == 'about_mission'))
 </script>
 <style scoped>
 .bg {
