@@ -1,5 +1,6 @@
 <template>
   <section
+    :dir="'ltr'"
     :class="[
       'app-container absolute z-40 flex h-fit w-full items-center justify-between bg-transparent transition-colors duration-300',
       'pt-[--header-pt]'
@@ -68,6 +69,7 @@
         />
         <div class="desktopMenu-placeholder" :style="{ width: desktopMenuRef?.width + 'px' }">
           <DesktopMenu
+            :dir="'ltr'"
             ref="desktopMenuRef"
             class="fixed end-[--container-pe] top-[--header-pt] z-[60] hidden lg:flex"
             :tabs="tabs"
