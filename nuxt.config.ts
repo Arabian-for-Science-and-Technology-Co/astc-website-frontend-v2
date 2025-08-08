@@ -5,14 +5,6 @@ export default defineNuxtConfig({
     transpile: ['@googlemaps/js-api-loader']
   },
   devtools: { enabled: true },
-  head: {
-    script: [
-      {
-        src: 'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js',
-        defer: true
-      }
-    ]
-  },
   //----------------------for auto modules----------------------
   modules: [
     // async (_options, nuxt) => {
