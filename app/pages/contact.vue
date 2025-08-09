@@ -85,7 +85,13 @@ const mapType = ref(mapTypes.value[0].value)
 const position = computed(() => ({
   lat: Number(settings.value?.latitude),
   lng: Number(settings.value?.longitude)
+  // lat: Number(24.7496182),
+  // lng: Number(46.7230664),
 }))
+const airportPosition = {
+  lat: Number(24.9454935),
+  lng: Number(46.7089092)
+}
 </script>
 <style>
 #contact .font-section {
