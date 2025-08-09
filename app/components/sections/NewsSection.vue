@@ -1,5 +1,8 @@
 <template>
-  <section id="NewsSection" class="h-[200px] bg-[#465AE6] pb-[36px] pt-[30px] font-zarid">
+  <section
+    id="NewsSection"
+    class="h-[200px] bg-[#465AE6] pb-[36px] pt-[30px] font-zarid rtl:lg:h-[205px]"
+  >
     <ScrollWithDragWrapper class="app-container h-full !overflow-y-visible">
       <div class="flex h-full items-start justify-start gap-[70px] lg:gap-[95px]">
         <div
@@ -18,7 +21,7 @@
             <h4
               :class="[
                 'text-truncate-multi w-[220px] text-[20px] font-[200] leading-[21px] tracking-[0.32px]',
-                'lg:w-[580px] lg:pe-[10%] lg:text-[32px] lg:font-[300] lg:leading-[30.4px] rtl:lg:leading-[32px]'
+                'lg:w-[580px] lg:pe-[10%] lg:text-[32px] lg:font-[300] lg:leading-[30.4px] rtl:lg:leading-[34px]'
               ]"
             >
               {{ item?.[`title_${locale}`] }}
@@ -41,7 +44,7 @@
           </div>
         </div>
         <button
-          class="my-auto whitespace-nowrap pe-[50px] text-center align-middle font-durke text-[20px] font-medium uppercase not-italic leading-[120%] tracking-[0.32px] text-[#0ADF0A] hover:text-white lg:pe-[151px] lg:text-[32px]"
+          class="my-auto whitespace-nowrap pe-[50px] text-center align-middle font-durke text-[20px] font-medium uppercase not-italic leading-[120%] tracking-[0.32px] text-[#0ADF0A] hover:text-white lg:pe-[151px] lg:text-[32px] rtl:font-[800]"
         >
           {{ $t('all_news') }} /
         </button>
