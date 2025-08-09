@@ -39,8 +39,8 @@
       class="mb-[10px] self-end"
     />
 
+    <!-- Mobile Logo -->
     <ClientOnly>
-      <!-- Mobile Logo -->
       <div
         @click="navigateTo('/')"
         :class="['-ms-[50px] -mt-6 mb-0 block h-[55px] w-[106px]', 'lg:hidden']"
@@ -55,21 +55,26 @@
       </div>
     </ClientOnly>
 
-    <div class="mobileMenu-placeholder">
-      <MobileMenu
-        :isWhiteLogo="isWhiteLogo"
-        class="gird fixed end-[--container-ps] top-[--header-pt] z-[100] lg:hidden"
-        :tabs="tabs"
-      />
-    </div>
-
-    <article class="hidden items-center gap-[40px] lg:flex">
-      <slot name="languageSwitcher"></slot>
-      <ClientOnly>
-        <div class="desktopMenu-placeholder" :style="{ width: desktopMenuWidth + 'px' }">
-          <slot name="desktopMenu"></slot>
-        </div>
-      </ClientOnly>
+    <article class="flex items-center gap-[40px]">
+      <div class="hidden lg:block">
+        <slot name="languageSwitcher" />
+      </div>
+      <!-- floating-section -->
+      <div
+        class="desktopMenu-placeholder hidden lg:block"
+        :style="{ width: desktopMenuWidth + 'px' }"
+      >
+        <slot
+          name="desktopMenu"
+          :floatingClass="'fixed end-[--container-pe] top-[--header-pt] z-[100] hidden lg:flex'"
+        />
+      </div>
+      <div class="mobileMenu-placeholder block lg:hidden">
+        <slot
+          name="mobileMenu"
+          :floatingClass="'fixed end-[--container-pe] top-[--header-pt] z-[100]'"
+        />
+      </div>
     </article>
   </section>
 </template>
@@ -80,8 +85,7 @@ const ASC_Logo_Main = '/Icons/ASC_Logo_Main.svg'
 const props = defineProps({
   showLeftLogo: { type: Boolean, default: true },
   isWhiteLogo: { type: Boolean, default: false },
-  desktopMenuWidth: { type: [String, Number], default: '' },
-  tabs: { type: [Array, undefined] }
+  desktopMenuWidth: { type: [String, Number], default: '' }
 })
 
 const { locale } = useI18n()
