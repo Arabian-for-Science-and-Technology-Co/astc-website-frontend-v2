@@ -27,8 +27,8 @@
           <BaseImg
             densities="x1 x2"
             format="webp"
-            v-if="item.video_url"
-            :src="item.video_url"
+            v-if="item.image"
+            :src="item.image"
             class="mb-[17px] h-[87px] w-[133.912px] self-end rounded-[10px] object-cover lg:mb-0 lg:h-[102px] lg:w-[157px]"
             :alt="`video`"
           />
