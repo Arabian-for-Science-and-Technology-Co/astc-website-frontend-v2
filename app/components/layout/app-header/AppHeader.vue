@@ -8,15 +8,23 @@
     <template #languageSwitcher>
       <LanguageSwitcher :tabsClass="tabsClass" :selectedTabClass="selectedTabClass" />
     </template>
-    <template #desktopMenu>
-      <DesktopMenu
-        :dir="'ltr'"
-        ref="desktopMenuRef"
-        class="fixed end-[--container-pe] top-[--header-pt] z-[60] hidden lg:flex"
-        :tabs="tabs"
-        :tabsClass="tabsClass"
-        :selectedTabClass="selectedTabClass"
-    /></template>
+    <template #desktopMenu="{ floatingClass }">
+      <ClientOnly>
+        <DesktopMenu
+          :dir="'ltr'"
+          ref="desktopMenuRef"
+          :tabs="tabs"
+          :class="floatingClass"
+          :tabsClass="tabsClass"
+          :selectedTabClass="selectedTabClass"
+        />
+      </ClientOnly>
+    </template>
+    <template #mobileMenu="{ floatingClass }">
+      <ClientOnly>
+        <MobileMenu :class="floatingClass" :isWhiteLogo="isWhiteLogo" :tabs="tabs" />
+      </ClientOnly>
+    </template>
   </BaseAppHeader>
 </template>
 
