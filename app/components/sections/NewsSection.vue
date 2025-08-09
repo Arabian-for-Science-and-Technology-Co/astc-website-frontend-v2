@@ -18,7 +18,7 @@
             <h4
               :class="[
                 'text-truncate-multi w-[220px] text-[20px] font-[200] leading-[21px] tracking-[0.32px]',
-                'lg:w-[580px] lg:pe-[10%] lg:text-[32px] lg:font-[300] lg:leading-[30.4px]'
+                'lg:w-[580px] lg:pe-[10%] lg:text-[32px] lg:font-[300] lg:leading-[30.4px] rtl:lg:leading-[32px]'
               ]"
             >
               {{ item?.[`title_${locale}`] }}

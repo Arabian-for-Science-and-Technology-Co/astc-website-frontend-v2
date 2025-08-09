@@ -21,7 +21,7 @@
       <p
         :class="[
           'mt-[37px] w-[70%] text-[20px] font-[200] not-italic leading-[21px] tracking-[0.2px] text-white',
-          'lg:mt-[80px] lg:w-[90%] lg:text-[52px] lg:leading-[49.4px] lg:tracking-[0.52px]'
+          'lg:mt-[80px] lg:w-[90%] lg:text-[52px] lg:leading-[49.4px] lg:tracking-[0.52px] rtl:lg:leading-[60px]'
         ]"
       >
         {{ sectionData?.[`content_${locale}`] }}
