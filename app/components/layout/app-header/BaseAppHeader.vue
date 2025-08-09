@@ -13,6 +13,7 @@
       class="-mt-[17px] hidden gap-[27px] lg:flex"
     >
       <BaseImg
+        :key="isWhiteLogo"
         densities="x1 x2"
         format="webp"
         :src="isWhiteLogo ? settings.logo_light : settings.logo_dark"
