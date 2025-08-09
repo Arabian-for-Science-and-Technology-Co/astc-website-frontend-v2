@@ -201,7 +201,8 @@ function drawRouteFromAirport(origin) {
           suppressMarkers: true,
           polylineOptions: {
             strokeColor: '#0F53FF',
-            strokeWeight: 5
+            strokeWeight: 5,
+            strokeOpacity:0.7,
           }
         })
 
