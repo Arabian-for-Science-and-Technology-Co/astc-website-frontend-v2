@@ -11,7 +11,7 @@
   </button>
   <teleport to="body">
     <section
-      v-if="isOpen"
+      v-show="isOpen"
       class="fixed start-0 top-0 z-[100] flex h-[100vh] w-full flex-col overflow-y-auto bg-[#0D1667] pb-[66.8px] text-white"
     >
       <section

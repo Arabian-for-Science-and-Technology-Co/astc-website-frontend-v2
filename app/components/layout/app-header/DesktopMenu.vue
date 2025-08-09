@@ -4,7 +4,7 @@
       v-bind="$attrs"
       :returnObject="false"
       ref="tabsRef"
-      :class="[!enableHover && '!z-[-50] opacity-0', !isHovering && tabsClass]"
+      :class="[!isHovering && tabsClass]"
       :btnSelectedClass="!isHovering && selectedTabClass"
       :modelValue="route.path"
       @update:modelValue="
@@ -18,7 +18,7 @@
       <template #tab="{ tab, isSelected }">
         <h2
           @mouseenter="
-            !disableHoverOnTab && enableHover && tab.id == 'products-and-solutions'
+            !disableHoverOnTab && tab.id == 'products-and-solutions'
               ? (isHovering = true)
               : (isHovering = false)
           "
@@ -33,14 +33,21 @@
         </span>
       </template>
     </Tabs>
-    <!-- contianer -->
-    <div v-if="isHovering" class="fixed start-0 top-0 z-[50] flex h-[100vh] w-full flex-col">
+    <div v-show="isHovering" class="fixed start-0 top-0 z-[50] flex h-[100vh] w-full flex-col">
       <div
-        @mouseover="enableHover ? (isHovering = true) : ''"
-        @mouseleave="enableHover ? (isHovering = false) : ''"
+        @mouseover="isHovering = true"
+        @mouseleave="isHovering = false"
         class="h-[90vh] max-h-[900px] overflow-y-auto bg-white"
       >
-        <AppHeader class="!static" :showLeftLogo="true" :enableHover="false" />
+        <BaseAppHeader
+          class="!static"
+          :desktopMenuWidth="tabsRef?.containerWidth"
+          :showLeftLogo="true"
+        >
+          <template #languageSwitcher>
+            <LanguageSwitcher />
+          </template>
+        </BaseAppHeader>
         <ProductsSection class="!pb-[74px] !pt-[60px]" />
       </div>
       <div class="backdrop flex-1 bg-blue-900/40"></div>
@@ -51,7 +58,6 @@
 <script setup>
 const props = defineProps({
   tabs: { type: Array, required: true },
-  enableHover: { type: Boolean, default: true },
   tabsClass: { type: String, default: '' },
   selectedTabClass: { type: String, default: '' }
 })
