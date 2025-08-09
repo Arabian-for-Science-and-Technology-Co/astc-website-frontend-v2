@@ -1,12 +1,11 @@
 <template>
   <div class="h-full w-full">
     <iframe
-      v-if="type === 'get-from-the-airport' && embedUrl"
+      v-if="type === 'get-from-the-airport' && !isNearestAirportLoading && embedUrl"
       :src="embedUrl"
       width="100%"
       height="100%"
       style="border: 0"
-      allowfullscreen
       loading="lazy"
       referrerpolicy="no-referrer-when-downgrade"
     ></iframe>
@@ -22,7 +21,10 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { computed, watch } from 'vue'
+import { useNearestAirport } from '~/composables/useNearestAirport'
+
 const props = defineProps({
   center: { type: Object, required: true },
   zoom: { type: Number, default: 12 },
@@ -31,19 +33,40 @@ const props = defineProps({
   airportPosition: { type: Object, default: null }
 })
 
-// Your Google API key must be allowed for the Maps Embed API as well.
- const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
+const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
 
-// Compute the embed URL only when needed.
+const {
+  nearestAirport,
+  findNearestAirport,
+  isLoading: isNearestAirportLoading
+} = useNearestAirport(props.center)
+
+watch(
+  () => props.type,
+  async (val) => {
+    if (val === 'get-from-the-airport' && !props.airportPosition) {
+      await findNearestAirport()
+    }
+  },
+  { immediate: true }
+)
+
 const embedUrl = computed(() => {
   if (props.type !== 'get-from-the-airport') return null
 
-  const origin = props.airportPosition
-    ? `${props.airportPosition.lat},${props.airportPosition.lng}`
-    : `${props.center.lat},${props.center.lng}`
+  const originCoords = props.airportPosition ?? nearestAirport.value
+  if (!originCoords) return null
 
+  const origin = `${originCoords.lat},${originCoords.lng}`
   const destination = `${props.center.lat},${props.center.lng}`
 
-  return `https://www.google.com/maps/embed/v1/directions?key=${apiKey}&origin=${origin}&destination=${destination}&mode=driving`
+  return (
+    `https://www.google.com/maps/embed/v1/directions` +
+    `?key=${apiKey}` +
+    `&origin=${encodeURIComponent(origin)}` +
+    `&destination=${encodeURIComponent(destination)}` +
+    `&mode=driving` +
+    `&maptype=satellite`
+  )
 })
 </script>
