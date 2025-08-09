@@ -31,12 +31,6 @@ const desktopMenuRef = ref(null)
 const { pages } = usePages()
 const route = useRoute()
 const { locale } = useI18n()
-watch(
-  () => props.isWhiteLogo,
-  (isWhiteLogo) => {
-    console.log('isWhiteLogo', isWhiteLogo)
-  }
-)
 const tabs = computed(() =>
   pages.value
     .filter((page) => page.slug != 'home')

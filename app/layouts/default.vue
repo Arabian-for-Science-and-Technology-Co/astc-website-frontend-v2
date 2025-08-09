@@ -1,10 +1,10 @@
 <template>
   <div class="flex min-h-screen flex-col overflow-x-hidden whitespace-pre-line bg-white font-zarid">
     <AppHeader
-      :showLeftLogo="layoutProps?.showLeftLogo ?? true"
-      :isWhiteLogo="layoutProps?.isWhiteLogo ?? false"
-      :tabsClass="layoutProps?.tabsClass ?? '!bg-white'"
-      :selectedTabClass="layoutProps?.selectedTabClass ?? ''"
+      :showLeftLogo="layoutProps?.showLeftLogo"
+      :isWhiteLogo="layoutProps?.isWhiteLogo"
+      :tabsClass="layoutProps?.tabsClass"
+      :selectedTabClass="layoutProps?.selectedTabClass"
     />
     <main class="flex-grow">
       <slot />
@@ -15,8 +15,17 @@
 
 <script setup>
 const route = useRoute()
-const layoutProps = computed(() => route.meta.layoutProps ?? {})
-
+const layoutProps = computed(() => {
+  const meta = route.meta.layoutProps || {}
+  return {
+    showLeftLogo: true,
+    isWhiteLogo: false,
+    tabsClass: '!bg-white',
+    selectedTabClass: '',
+    showProductsSection: true,
+    ...meta
+  }
+})
 const { fetchSettings } = useWebsiteSettings()
 const { fetchPages } = usePages()
 await fetchSettings()
