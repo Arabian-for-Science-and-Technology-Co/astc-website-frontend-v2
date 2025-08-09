@@ -1,7 +1,7 @@
 <template>
   <section id="NewsSection" class="h-[200px] bg-[#465AE6] pb-[36px] pt-[30px] font-zarid">
-    <ScrollWithDragWrapper class="h-full !overflow-y-visible">
-      <div class="app-container flex h-full items-start justify-start gap-[70px] lg:gap-[95px]">
+    <ScrollWithDragWrapper class="app-container h-full !overflow-y-visible">
+      <div class="flex h-full items-start justify-start gap-[70px] lg:gap-[95px]">
         <div
           class="group relative flex h-full flex-shrink-0 items-start justify-start pe-[100px] last-of-type:pe-0"
           v-for="(item, index) in newsData"
@@ -41,7 +41,7 @@
           </div>
         </div>
         <button
-          class="my-auto whitespace-nowrap text-center align-middle font-durke text-[20px] font-medium uppercase not-italic leading-[120%] tracking-[0.32px] text-[#0ADF0A] hover:text-white lg:text-[32px]"
+          class="my-auto whitespace-nowrap pe-[50px] text-center align-middle font-durke text-[20px] font-medium uppercase not-italic leading-[120%] tracking-[0.32px] text-[#0ADF0A] hover:text-white lg:pe-[151px] lg:text-[32px]"
         >
           {{ $t('all_news') }} /
         </button>
