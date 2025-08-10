@@ -15,7 +15,7 @@ import NewsSection from '~/components/sections/NewsSection.vue'
 import AnnouncementSection from '~/components/sections/AnnouncementSection.vue'
 import PromoSection from '~/components/sections/PromoSection.vue'
 import CustomersSection from '~/components/sections/CustomersSection.vue'
-import ParallaxSection from '~/components/sections/ParallaxSection.vue'
+import ParallaxSection from '~/components/sections/parallax-section/ParallaxSection.vue'
 import PartnersSection from '~/components/sections/PartnersSection.vue'
 import SaudiVisionSection from '~/components/sections/SaudiVisionSection.vue'
 definePageMeta({
