@@ -23,7 +23,7 @@ html.transition-active body {
 /*-------------text-transition------------Text fade animation---------------------------------------------*/
 
 /*---text-transition--global---*/
-html.transition-active :is(h1, h2, h3, h4, h5, h6, p, span, li, button, figcaption) {
+/* html.transition-active :is(h1, h2, h3, h4, h5, h6, p, span, li, button, figcaption) {
   transition:
     opacity 0.4s ease,
     transform 0.4s ease;
@@ -37,7 +37,7 @@ html:not(.transition-active) :is(h1, h2, h3, h4, h5, h6, p, span, li, button, fi
   transition:
     opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s,
     transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s;
-}
+} */
 
 /*---text-transition--manual control---*/
 .transition-active .text-transition {

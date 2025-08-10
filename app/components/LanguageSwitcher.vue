@@ -39,7 +39,7 @@ const switchLocale = async (newLocale) => {
   transitionDirection.value = newLocaleIndex > currentLocaleIndex ? 'slide-left' : 'slide-right'
   isTransitioning.value = true
   await nextTick()
-  await new Promise((resolve) => setTimeout(resolve, 1000))
+  // await new Promise((resolve) => setTimeout(resolve, 1000))
   await setLocale(newLocale.value)
   isTransitioning.value = false
 }
