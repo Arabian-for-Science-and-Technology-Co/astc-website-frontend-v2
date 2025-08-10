@@ -1,5 +1,14 @@
 // nuxt.config.ts
 export default defineNuxtConfig({
+  //to trun app on my local network for testing
+  $development: {
+    vite: {
+      server: {
+        allowedHosts: ['192.168.1.11'], // or your dev domain
+        hmr: { host: '192.168.1.11' } // optionally set clientPort if you customized ports
+      }
+    }
+  },
   ssr: true, // SSR is default, but be explicit
   compatibilityDate: '2024-05-07', // unlock Netlify Functions v2 features in Nitro
   // Nitro will auto-detect Netlify, no preset required for serverless
@@ -7,6 +16,18 @@ export default defineNuxtConfig({
     pageTransition: {
       name: 'page',
       mode: 'out-in'
+    },
+    head: {
+      meta: [
+        {
+          name: 'color-scheme',
+          content: 'only light'
+        },
+        {
+          name: 'theme-color',
+          content: '#ffffff'
+        }
+      ]
     }
   },
   compatibilityDate: '2025-07-15',
