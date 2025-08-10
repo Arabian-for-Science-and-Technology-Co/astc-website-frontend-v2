@@ -11,12 +11,6 @@
 </template>
 
 <script setup>
-definePageMeta({
-  layoutProps: {
-    showLeftLogo: false,
-    tabsClass: null
-  }
-})
 import NewsSection from '~/components/sections/NewsSection.vue'
 import AnnouncementSection from '~/components/sections/AnnouncementSection.vue'
 import PromoSection from '~/components/sections/PromoSection.vue'
@@ -24,6 +18,21 @@ import CustomersSection from '~/components/sections/CustomersSection.vue'
 import ParallaxSection from '~/components/sections/ParallaxSection.vue'
 import PartnersSection from '~/components/sections/PartnersSection.vue'
 import SaudiVisionSection from '~/components/sections/SaudiVisionSection.vue'
+definePageMeta({
+  layoutProps: {
+    showLeftLogo: false,
+    tabsClass: null
+  }
+})
+
+const { locale } = useI18n()
+const { getPage } = usePages()
+const homePage = getPage('home')
+usePageHead(() => ({
+  title: homePage?.[`meta_title_${locale.value}`],
+  description: homePage?.[`meta_description_${locale.value}`],
+  keywords: homePage?.[`meta_keywords_${locale.value}`]
+}))
 
 const customFetch = useCustomFetch()
 const componentMap = {
