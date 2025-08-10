@@ -1,6 +1,6 @@
 <template>
   <section
-    class="flex min-h-screen flex-col items-stretch overflow-hidden bg-[#0D1667] font-zarid lg:flex-row"
+    class="flex max-h-[820px] flex-col items-stretch overflow-hidden bg-[#0D1667] font-zarid lg:max-h-[auto] lg:min-h-screen lg:flex-row"
   >
     <article
       :class="[
