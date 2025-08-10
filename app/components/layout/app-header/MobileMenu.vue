@@ -3,7 +3,7 @@
     v-bind="$attrs"
     @click="isOpen = !isOpen"
     :class="[
-      'gird m-0 h-[42px] w-[42px] place-items-center rounded-xl bg-[#0000000D] p-0 backdrop-blur-[6px]',
+      'm-0 flex h-[42px] w-[42px] place-items-center items-center justify-center rounded-xl bg-[#0000000D] p-0 backdrop-blur-[6px]',
       isWhiteLogo && '!bg-[#F0F0F0]'
     ]"
   >
