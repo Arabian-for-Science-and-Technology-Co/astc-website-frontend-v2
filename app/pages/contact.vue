@@ -9,7 +9,7 @@
       <article class="" v-for="info in informations">
         <h2
           :class="[
-            'mb-[20px] text-[18px] font-[500] leading-[normal] tracking-[0.18px]',
+            'mb-[20px] text-[18px] font-[500] leading-[normal] tracking-[0.18px] !no-underline',
             'lg:mb-0 lg:text-[30px] lg:font-[600] lg:leading-[33px] lg:tracking-[0.3px]'
           ]"
         >
@@ -19,7 +19,7 @@
           <h3
             v-for="item in info.items"
             :class="[
-              'text-[36px] font-[300] not-italic leading-[48.6px] tracking-[0.36px] text-[#18264A]',
+              'text-[36px] font-[300] not-italic leading-[48.6px] tracking-[0.36px] text-[#18264A] !no-underline',
               'lg:font-[200]',
               'xl:text-[90px] xl:leading-[85.5px] xl:tracking-[0.9px]'
             ]"

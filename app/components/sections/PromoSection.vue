@@ -40,7 +40,7 @@
       densities="x1 x2"
       format="webp"
       :src="sectionData?.image || promoImg"
-      :class="['w-full object-cover', 'lg:w-1/3', '3xl:w-1/2']"
+      :class="['max-h-[312px] w-full object-cover', 'lg:max-h-full lg:w-1/3', '3xl:w-1/2']"
       :alt="`Image representing promoImg`"
       loading="lazy"
       decoding="async"
