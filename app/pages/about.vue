@@ -177,7 +177,7 @@ const aboutMission = computed(() => aboutData.value?.find((d) => d?.code == 'abo
 .bg {
   background:
     linear-gradient(191deg, rgba(13, 22, 103, 0) 23.08%, #0d1667 70.2%),
-    url('~/assets/Images/about/background.jpg');
+    url('~/assets/images/about/background.jpg');
 }
 .app-container--edit {
   @media (min-width: 1600px) {
