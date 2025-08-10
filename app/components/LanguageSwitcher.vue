@@ -6,16 +6,16 @@
       @update:model-value="switchLocale"
       v-bind="$attrs"
       :class="['gap-[8.35px]', tabsClass]"
-      :btn-class="['!px-[10px]', btnClass]"
-      :btnSelectedClass="selectedTabClass"
+      :tab-class="['!px-[10px]', tabClass]"
+      :selectedTabClass="selectedTabClass"
     />
   </ClientOnly>
 </template>
 
 <script setup>
 const props = defineProps({
-  btnClass: { type: [String, Array, Boolean, null] },
   tabsClass: { type: [String, Array, Boolean, null], default: '' },
+  tabClass: { type: [String, Array, Boolean, null] },
   selectedTabClass: { type: [String, Array, Boolean, null], default: '' }
 })
 

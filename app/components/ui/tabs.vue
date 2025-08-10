@@ -11,8 +11,8 @@
       @click="() => onTabChange(returnObject ? tab : isObject(tab) ? tab?.[valueKey] : tab)"
       :class="[
         'relative flex h-full items-center text-nowrap rounded-xl border-none px-[20px] capitalize',
-        isTabSelected(tab) && (btnSelectedClass || 'bg-[#010101] text-white'),
-        btnClass
+        isTabSelected(tab) && (selectedTabClass || 'bg-[#010101] text-white'),
+        tabClass
       ]"
     >
       <slot name="tab" :tab="tab" :isSelected="isTabSelected(tab)">
@@ -26,8 +26,8 @@
 const props = defineProps({
   tabs: { type: Array, required: true },
   modelValue: { type: [String, Number, Object, null], required: true },
-  btnClass: { type: [String, Array, Boolean, null] },
-  btnSelectedClass: { type: [String, Array, Boolean, null] },
+  tabClass: { type: [String, Array, Boolean, null] },
+  selectedTabClass: { type: [String, Array, Boolean, null] },
   returnObject: { type: Boolean, default: true },
   valueKey: { type: String, default: 'value' }
 })

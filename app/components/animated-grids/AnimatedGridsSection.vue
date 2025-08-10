@@ -42,8 +42,8 @@ const smallDotPosition = computed(() => {
 
   --grid-contianer-padding-top: 1px;
   --grid-contianer-padding-bottom: 1px;
-  --grid-contianer-padding-end: 5px;
-  --grid-contianer-padding-start: 3.88px;
+  --grid-contianer-padding-end:0px;
+  --grid-contianer-padding-start: 0px;
 
   @media (min-width: 1024px) {
     --grid-width: 7.854px;

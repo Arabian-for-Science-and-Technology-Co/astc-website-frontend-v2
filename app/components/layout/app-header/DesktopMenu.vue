@@ -5,7 +5,7 @@
       :returnObject="false"
       ref="tabsRef"
       :class="[!isHovering && tabsClass]"
-      :btnSelectedClass="!isHovering && selectedTabClass"
+      :selectedTabClass="!isHovering && selectedTabClass"
       :modelValue="route.path"
       @update:modelValue="
         (val) => {

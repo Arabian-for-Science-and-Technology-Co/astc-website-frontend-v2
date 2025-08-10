@@ -78,8 +78,8 @@
       <div class="app-container mt-[50px] !h-[68px]">
         <LanguageSwitcher
           class="!bg-[#333FB1]"
-          btn-class="text-white"
-          btn-selected-class="bg-white !text-black"
+          tab-class="text-white"
+          selected-tab-class="bg-white !text-black"
         />
       </div>
       <ProductsSection class="!pb-[114px] !pt-[110px] text-white" />
