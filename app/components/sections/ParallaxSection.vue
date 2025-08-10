@@ -25,7 +25,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from 'vue'
 const sky_parallax_1 = '/Images/main/sky_parallax_1.png'
-import sky_parallax_2 from '~/assets/Images/main/sky_parallax_2.png?url'
+import sky_parallax_2 from '~/assets/images/main/sky_parallax_2.png?url'
 const props = defineProps({
   sectionData: { type: Object, defaults: {} }
 })

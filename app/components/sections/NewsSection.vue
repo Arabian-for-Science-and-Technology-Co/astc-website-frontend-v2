@@ -54,7 +54,7 @@
 </template>
 
 <script setup>
-import newsVideo from '~/assets/Images/news-video.png'
+import newsVideo from '~/assets/images/news-video.png'
 const props = defineProps({
   sectionData: { type: Object, defaults: {} }
 })
