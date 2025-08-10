@@ -10,7 +10,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "start": "node .output/server/index.mjs"
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.16.10",
