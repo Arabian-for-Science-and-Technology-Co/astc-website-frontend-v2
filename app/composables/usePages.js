@@ -12,10 +12,10 @@ export const usePages = () => {
       pages.value = []
     }
   }
-  const homePage = computed(() => pages.value.find((page) => page.slug == 'home') || {})
+  const getPage = (pageSlug) => pages.value.find((page) => page.slug == pageSlug) || {}
   return {
     pages,
-    homePage,
-    fetchPages
+    fetchPages,
+    getPage
   }
 }

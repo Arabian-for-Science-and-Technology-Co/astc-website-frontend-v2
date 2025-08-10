@@ -53,15 +53,23 @@
         </Tabs>
       </div>
       <div class="h-[calc(100vh-68px)] max-h-[1106px]">
-        <ContactMap :center="position"  :zoom="12" :markers="[position]" :type="mapType" />
+        <ContactMap :center="position" :zoom="12" :markers="[position]" :type="mapType" />
       </div>
     </section>
   </div>
 </template>
 
 <script setup>
-const { settings } = useWebsiteSettings()
 const { t, locale } = useI18n()
+const { getPage } = usePages()
+const contactPage = getPage('contact')
+usePageHead(() => ({
+  title: contactPage?.[`meta_title_${locale.value}`],
+  description: contactPage?.[`meta_description_${locale.value}`],
+  keywords: contactPage?.[`meta_keywords_${locale.value}`]
+}))
+
+const { settings } = useWebsiteSettings()
 const informations = computed(() => [
   {
     title: t('contact'),
