@@ -35,7 +35,7 @@
         :key="item.id"
         @click="navigateTo(item.value)"
         :class="[
-          'text-[52px] text-start font-[200] not-italic leading-[49.4px] tracking-[0.52px]',
+          'text-start text-[52px] font-[200] not-italic leading-[49.4px] tracking-[0.52px]',
           'lg:whitespace-nowrap lg:text-xl lg:font-normal lg:leading-[105%] lg:tracking-[0.2px]'
         ]"
       >
@@ -84,12 +84,12 @@ const tabs = computed(() => [
 ])
 </script>
 <style scoped>
-.pages h3:last-child {
+.pages button:last-child {
   @apply mt-[-28px] text-xl font-normal leading-[105%] tracking-[0.2px];
   @apply lg:mt-[0px];
 }
 
-.pages h3:nth-last-child(2) {
+.pages button:nth-last-child(2) {
   @apply text-xl font-normal leading-[105%] tracking-[0.2px];
 }
 </style>
