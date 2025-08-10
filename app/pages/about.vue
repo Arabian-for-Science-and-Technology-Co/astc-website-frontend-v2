@@ -149,13 +149,6 @@
 </template>
 
 <script setup>
-import goldenImg from '~/assets/Images/about/golden_sign.png'
-const certificatesModules = import.meta.glob('~/assets/Images/about/certificates/*.png', {
-  eager: true
-})
-// const certificates = Object.entries(certificatesModules).map(([_, module], index) => ({
-//   src: module.default
-// }))
 definePageMeta({
   layoutProps: {
     isWhiteLogo: true,
