@@ -1,7 +1,7 @@
 export default defineNuxtRouteMiddleware((to) => {
   const forbiddenRoutes = [
     //
-    // '/news',
+    '/news'
     // '/about'
   ]
 
