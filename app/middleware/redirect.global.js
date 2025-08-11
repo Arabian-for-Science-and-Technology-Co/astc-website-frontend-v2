@@ -5,7 +5,7 @@ export default defineNuxtRouteMiddleware((to) => {
     //
     '/news',
     // '/about',
-    'product-details/:id'
+    // 'product-details/:id'
   ]
   const { matched, pattern, groups } = matchPattern(to.path, forbiddenRoutes, { exact: false })
 
