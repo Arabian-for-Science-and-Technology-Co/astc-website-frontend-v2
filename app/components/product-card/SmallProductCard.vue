@@ -1,6 +1,6 @@
 <template>
   <figure
-    @click="navigateTo(`/product-details/${data?.id}`)"
+    @click="navigateTo(`/product-details/${data?.slug}`)"
     :class="['imgs-contianer__card', wide && 'imgs-contianer__card--wide']"
   >
     <BaseImg
