@@ -4,10 +4,17 @@
       'bg flex min-h-screen flex-col bg-[#0D1667] pb-[209px] pt-[--header-height] font-zarid text-white lg:pb-[300px] 3xl:pb-[280px]'
     ]"
   >
-    <img
-      :src="aboutIntro?.image"
-      class="mx-[7px] mt-[73px] lg:mx-[80px] lg:mt-[43px] 3xl:mx-[247px] 3xl:mt-[69px]"
-      alt=""
+    <NuxtImg
+      :src="aboutIntro.image"
+      :class="[
+        'mx-[7px] mt-[73px] min-h-[30vh] object-contain',
+        'lg:mx-[80px] lg:mt-[43px] lg:min-h-[50vh]',
+        '3xl:mx-[247px] 3xl:mt-[69px]'
+      ]"
+      alt="..."
+      placeholder="blur"
+      format="webp"
+      priority
     />
     <template v-for="item in aboutData" :key="item?.id">
       <div v-if="item.code == 'certificates_slider'" class="mt-[100px] lg:mt-[180px]">
