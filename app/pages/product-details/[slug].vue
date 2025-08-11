@@ -1,5 +1,5 @@
 <template>
-  <div :class="['bg-[#F0F0F0] font-zarid', 'lg:pb-[300px]', '3xl:pb-[280px]']" :styl>
+  <div :class="['bg-[#F0F0F0] font-zarid']" :styl>
     <div
       :class="[
         'bg flex h-screen max-h-[700px] flex-col justify-end bg-[#0D1667] pb-[60px] pt-[--header-height] text-white',
@@ -54,7 +54,7 @@
             :class="[
               'app-container app-container--edit :mt-[30px] flex w-full max-w-full flex-wrap justify-center gap-x-[14px] gap-y-[28.5px] !pe-0',
               'lg:mt-[60px] lg:justify-start lg:gap-x-[50px] lg:gap-y-[103.45px]',
-              'xl:gap-x-[108px] xl:gap-y-[103px]'
+              'xl:gap-x-[108px] xl:gap-y-[103px] 3xl:max-w-[85%]'
             ]"
           >
             <ProductCard v-for="(imageBlock, i) in item?.image_blocks || []" :data="imageBlock" />
