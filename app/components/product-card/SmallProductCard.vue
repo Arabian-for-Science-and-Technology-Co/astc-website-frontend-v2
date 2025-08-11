@@ -6,10 +6,10 @@
     <BaseImg
       densities="x1 x2"
       format="webp"
-      :key="i"
+      :key="data?.id"
       :src="data?.image"
       :class="['imgs-contianer__card__img']"
-      :alt="`Image ${i + 1} representing solution`"
+      :alt="`Image ${data?.id} representing solution`"
       loading="lazy"
       decoding="async"
     />
