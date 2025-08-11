@@ -8,5 +8,6 @@ export default {
   map: 'Map',
   get_from_airport: 'Get from the airport',
   hotels_around: 'Hotels around',
-  nearest_metro_station: 'Nearest metro station'
+  nearest_metro_station: 'Nearest metro station',
+  build_route: 'Build a route'
 }

@@ -8,5 +8,6 @@ export default {
   map: 'الخريطة',
   get_from_airport: 'الوصول من المطار',
   hotels_around: 'الفنادق القريبة',
-  nearest_metro_station: 'أقرب محطة مترو'
+  nearest_metro_station: 'أقرب محطة مترو',
+  build_route: 'بناء طريق'
 }
