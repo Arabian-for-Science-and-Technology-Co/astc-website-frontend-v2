@@ -2,9 +2,9 @@
   <div :class="['bg-[#F0F0F0] font-zarid', 'lg:pb-[300px]', '3xl:pb-[280px]']" :styl>
     <div
       :class="[
-        'bg flex h-screen max-h-[968px] flex-col justify-end bg-[#0D1667] pb-[60px] pt-[--header-height] text-white',
-        'lg:pb-[117px]',
-        '3xl:pb-[147px]'
+        'bg flex h-screen max-h-[700px] flex-col justify-end bg-[#0D1667] pb-[60px] pt-[--header-height] text-white',
+        'lg:max-h-[720px] lg:pb-[117px]',
+        '3xl:max-h-[968px] 3xl:pb-[147px]'
       ]"
       :style="{
         backgroundImage: `url(${productData?.cover_image})`,
@@ -27,7 +27,53 @@
         </h4>
       </header>
     </div>
-    <div class="min-h-screen"></div>
+    <div
+      :class="[
+        'min-h-screen pb-[60px] pt-[60px] text-[#18264A]',
+        'lg:pb-[228px] lg:pt-[90px]',
+        '3xl:pb-[235px]'
+      ]"
+    >
+      <template v-for="item in productData.item_sections" :key="item?.id">
+        <ProductDetailsTemplate
+          class="app-container app-container--edit"
+          v-if="!item?.image_blocks?.length"
+          :data="item"
+        />
+        <div v-else :class="['mt-[59px]', 'lg:mt-[82px]']">
+          <h2
+            v-if="item?.[`title_${locale}`]"
+            :class="[
+              'app-container app-container--edit text-[30px] font-[600] leading-[33px] tracking-[0.3px]'
+            ]"
+          >
+            {{ item?.[`title_${locale}`] }}
+          </h2>
+
+          <div
+            :class="[
+              'app-container app-container--edit :mt-[30px] flex w-full max-w-full flex-wrap justify-center gap-x-[14px] gap-y-[28.5px] !pe-0',
+              'lg:mt-[60px] lg:justify-start lg:gap-x-[50px] lg:gap-y-[103.45px]',
+              'xl:gap-x-[108px] xl:gap-y-[103px]'
+            ]"
+          >
+            <ProductCard v-for="(imageBlock, i) in item?.image_blocks || []" :data="imageBlock" />
+          </div>
+        </div>
+      </template>
+      <div class="app-container app-container--edit">
+        <BaseButton
+          @click="navigateTo(`/contact`)"
+          :class="[
+            'font-section mt-[40px] h-[68px] max-w-[295px] text-[16px] font-[500] leading-[normal] lg:mt-[95px]',
+            'lg:text-[20px] lg:font-[400] lg:leading-[21px] lg:tracking-[0.2px]'
+          ]"
+        >
+          {{ 'Let’s Talk' }}
+        </BaseButton>
+      </div>
+    </div>
+
     <BaseModal
       v-model:open="modalOpen"
       containerClass="w-full !mx-0 max-w-[310px] sm:max-w-[500px] 3xl:!max-w-[612px] !bg-transparent"
@@ -63,8 +109,19 @@ const { data: productData } = await useAsyncData(
     transform: (res) => res.data || []
   }
 )
+usePageHead(() => ({
+  title: productData?.[`meta_title_${locale.value}`],
+  description: productData?.[`meta_description_${locale.value}`],
+  keywords: productData?.[`meta_keywords_${locale.value}`]
+}))
 </script>
 <style scoped>
+.app-container--edit {
+  @media (min-width: 1600px) {
+    padding-inline-start: 438px;
+    padding-inline-end: 586px;
+  }
+}
 .head-title {
   @apply text-[52px] font-[200] leading-[49.4px] tracking-[0.52px];
   @apply lg:text-[140px] lg:leading-[133px] lg:tracking-[1.4px];
