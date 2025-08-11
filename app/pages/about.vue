@@ -134,15 +134,16 @@
     </div>
     <BaseModal
       v-model:open="modalOpen"
-      containerClass="w-full !mx-0 !max-w-[500px] !bg-transparent"
-      bodyClass="px-6"
+      containerClass="w-full !mx-0 max-w-[310px] sm:max-w-[500px] 3xl:!max-w-[612px] !bg-transparent"
+      bodyClass="sm:!px-0 px-[30px] flex justify-center items-center  !py-0"
       :canCloseByBackdrop="true"
       :canCloseByEsc="true"
     >
-      <img
+      <ClickZoom
+        img-class="max-h-[85vh]"
         :src="selectedCertificate.image"
-        class="inline-block h-auto w-auto object-contain align-bottom"
-        alt=""
+        :tap-zoom="2.5"
+        :max-scale="5"
       />
     </BaseModal>
   </div>
