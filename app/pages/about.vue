@@ -5,14 +5,13 @@
     ]"
   >
     <NuxtImg
-      :src="aboutIntro.image"
+      :src="aboutIntro?.image"
       :class="[
         'mx-[7px] mt-[73px] min-h-[30vh] object-contain',
         'lg:mx-[80px] lg:mt-[43px] lg:min-h-[50vh]',
         '3xl:mx-[247px] 3xl:mt-[69px]'
       ]"
       alt="..."
-      placeholder="blur"
       format="webp"
       priority
     />
@@ -83,10 +82,10 @@ const selectedCertificate = ref(null)
 const modalOpen = ref(false)
 const { locale } = useI18n()
 const customFetch = useCustomFetch()
-const { data: aboutData } = useAsyncData(() => customFetch(`/website/home/page/2/sections`), {
+const { data: aboutData } = await useAsyncData(() => customFetch(`/website/home/page/2/sections`), {
   transform: (res) => res.data || []
 })
-const { data: certificates } = useAsyncData(() => customFetch(`/website/home/certificates`), {
+const { data: certificates } = await useAsyncData(() => customFetch(`/website/home/certificates`), {
   transform: (res) => res.data || []
 })
 const aboutIntro = computed(() => aboutData.value?.find((d) => d?.code == 'about_intro'))
