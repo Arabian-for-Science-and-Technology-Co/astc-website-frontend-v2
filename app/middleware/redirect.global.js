@@ -1,11 +1,15 @@
+import { matchPattern } from '~/utils/route-patterns'
+
 export default defineNuxtRouteMiddleware((to) => {
   const forbiddenRoutes = [
     //
-    '/news'
-    // '/about'
+    '/news',
+    // '/about',
+    'product-details/:id'
   ]
+  const { matched, pattern, groups } = matchPattern(to.path, forbiddenRoutes, { exact: false })
 
-  if (forbiddenRoutes.includes(to.path)) {
+  if (matched) {
     return navigateTo('/')
   }
 })
