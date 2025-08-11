@@ -31,16 +31,13 @@ definePageMeta({
 const selectedCertificate = ref(null)
 const modalOpen = ref(false)
 const { locale } = useI18n()
+const route = useRoute()
 const customFetch = useCustomFetch()
-const { data: aboutData } = useAsyncData(() => customFetch(`/website/home/page/2/sections`), {
-  transform: (res) => res.data || []
-})
-const { data: certificates } = useAsyncData(() => customFetch(`/website/home/certificates`), {
-  transform: (res) => res.data || []
-})
-const aboutIntro = computed(() => aboutData.value?.find((d) => d?.code == 'about_intro'))
-const certificatesSlider = computed(() =>
-  aboutData.value?.find((d) => d?.code == 'certificates_slider')
+const { data: productData } = await useAsyncData(
+  () => customFetch(`/website/home/item/${route.params.slug}`),
+  {
+    transform: (res) => res.data || []
+  }
 )
 </script>
 <style scoped>
