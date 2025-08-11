@@ -110,9 +110,9 @@ const { data: productData } = await useAsyncData(
   }
 )
 usePageHead(() => ({
-  title: productData?.[`meta_title_${locale.value}`],
-  description: productData?.[`meta_description_${locale.value}`],
-  keywords: productData?.[`meta_keywords_${locale.value}`]
+  title: productData.value?.[`meta_title_${locale.value}`],
+  description: productData.value?.[`meta_description_${locale.value}`],
+  keywords: productData.value?.[`meta_keywords_${locale.value}`]
 }))
 </script>
 <style scoped>
