@@ -27,10 +27,14 @@
             {{ item }}
           </h3>
         </div>
-        <BaseButton class="mt-[23px] block !max-w-[242px] lg:hidden">
+        <BaseButton
+          v-if="info.id == 'address'"
+          @click="navigateTo(`/contact`)"
+          class="mt-[23px] block !max-w-[242px] lg:hidden"
+        >
           <h3 class="flex w-full items-center justify-start gap-[30px] px-[33px] text-[16px]">
             <LocationIcon />
-            Build a route
+            {{ $t('build_route') }}
           </h3>
         </BaseButton>
       </article>
@@ -72,10 +76,12 @@ usePageHead(() => ({
 const { settings } = useWebsiteSettings()
 const informations = computed(() => [
   {
+    id: 'contact',
     title: t('contact'),
     items: [...settings.value?.phones, settings.value?.mail]
   },
   {
+    id: 'address',
     title: t('address'),
     items: [settings.value?.[`address_${locale.value}`]]
   }

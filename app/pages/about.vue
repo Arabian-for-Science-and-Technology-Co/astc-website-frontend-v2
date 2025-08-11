@@ -13,7 +13,7 @@
       <div v-if="item.code == 'certificates_slider'" class="mt-[100px] lg:mt-[180px]">
         <h2
           :class="[
-            'app-container app-container--edit max-w-[264px] text-[30px] font-[600] leading-[110%] tracking-[0.3px]',
+            'app-container app-container--edit max-w-[282px] !pe-0 text-[30px] font-[600] leading-[110%] tracking-[0.3px]',
             'lg:max-w-full'
           ]"
         >
