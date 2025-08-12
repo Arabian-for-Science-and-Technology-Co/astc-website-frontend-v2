@@ -1,4 +1,3 @@
-<!-- components/ui/UiInput.vue -->
 <script setup lang="ts">
 import { computed } from 'vue'
 
@@ -122,7 +121,7 @@ function onInput(e: Event) {
       <!-- INPUT (peer for floating label) -->
       <input
         :id="baseId"
-        class="peer"
+        class="base-input peer"
         :class="['', inputCls, $slots.leading ? 'pl-9' : '', $slots.trailing ? 'pr-9' : '']"
         :type="type"
         :value="modelValue as any"
@@ -160,7 +159,7 @@ function onInput(e: Event) {
         ]"
       >
         {{ label }}
-        <span v-if="required" aria-hidden="true" class="text-red-600">*</span>
+        <!-- <span v-if="required" aria-hidden="true" class="text-red-600">*</span> -->
       </label>
     </div>
 
@@ -175,3 +174,21 @@ function onInput(e: Event) {
     </p>
   </div>
 </template>
+<style scoped>
+/* Hide number input arrows in Chrome, Edge, Safari (WebKit) */
+.base-input[type='number']::-webkit-outer-spin-button,
+.base-input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide number input arrows in Firefox */
+.base-input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+/* Optional: ensure iOS Safari shows no spinner */
+.base-input[type='number'] {
+  -webkit-appearance: none;
+}
+</style>

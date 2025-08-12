@@ -72,11 +72,11 @@
             'lg:text-[20px] lg:font-[400] lg:leading-[21px] lg:tracking-[0.2px]'
           ]"
         >
-          {{ 'Let’s Talk' }}
+          {{ $t('lets_talk') }}
         </BaseButton>
       </div>
     </div>
-    <RequestDocumentModal v-model:open="modalOpen" />
+    <RequestDocumentModal :itemId="productData.id" v-model:open="modalOpen" />
   </div>
 </template>
 

@@ -10,5 +10,18 @@ export default {
   hotels_around: 'Hotels around',
   nearest_metro_station: 'Nearest metro station',
   build_route: 'Build a route',
-  integrated : 'Integrated {type}',
+  integrated: 'Integrated {type}',
+  lets_talk: 'Let’s Talk',
+  email: 'E-mail',
+  phone: 'Phone',
+  name: 'Name',
+  position_in_the_company: 'Position in the company',
+  company_name: 'Company name',
+  get_the_files: 'Get the files',
+  by_submitting_your_data_you_agree: 'By submitting your data, you agree',
+  to_the: 'to the',
+  privacy_policy: 'Privacy Policy',
+  terms_and_conditions: 'Terms and Conditions',
+  leave_your_contacts_to_receive_all_the_files_on_the_project:
+    'Leave your contacts to receive all the files on the project'
 }
