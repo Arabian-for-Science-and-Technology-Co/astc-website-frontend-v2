@@ -23,7 +23,7 @@
         <component
           :is="formMode ? 'form' : 'div'"
           :class="[
-            'mx-0 w-full transform overflow-y-auto transition-all',
+            'styled-scrollbar mx-0 w-full transform transition-all',
             formMode
               ? 'h-[80vh] max-w-full rounded-3xl rounded-b-none bg-white lg:h-auto lg:max-w-lg lg:rounded-b-3xl'
               : 'max-w-lg bg-transparent',
@@ -32,7 +32,6 @@
           @submit.prevent="handleSubmit"
           @keydown.esc="handleEsc"
         >
-          <!-- Header -->
           <header
             v-if="$slots.header || title"
             :class="[
@@ -40,7 +39,10 @@
               headerClass
             ]"
           >
-            <button @click="handleCancel" class="absolute end-5 top-5">
+            <button
+              @click="handleCancel"
+              class="absolute end-[19px] top-[19px] hover:opacity-55 lg:end-5 lg:top-5"
+            >
               <CloseIcon1 :size="19" />
             </button>
             <slot name="header">
@@ -48,16 +50,11 @@
             </slot>
           </header>
 
-          <!-- Body -->
           <main :class="[bodyClass]">
             <slot />
           </main>
 
-          <!-- Footer -->
-          <footer
-            v-if="$slots.footer"
-            :class="['border-t border-gray-200 px-6 py-4 dark:border-gray-700', footerClass]"
-          >
+          <footer v-if="$slots.footer" :class="[footerClass]">
             <slot name="footer" />
           </footer>
         </component>
@@ -134,7 +131,7 @@ onUnmounted(() => {
 })
 </script>
 
-<style scoped>
+<style>
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.25s ease;

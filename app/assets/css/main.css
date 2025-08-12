@@ -1,7 +1,7 @@
 @import './base/_reset.css';
 @import './base/_typography.css';
 @import './base/_root.css';
- 
+
 @import './animation/_language_transitions.css';
 @import './animation/_navigation_transitions.css';
 
@@ -10,6 +10,7 @@
 @import './config/_breakpoints.css';
 
 @import './utilities/_mixins.css';
+@import './utilities/_scrollbar.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
