@@ -17,7 +17,18 @@
     <div
       class="h-[70vh] overflow-y-auto px-[27px] pt-[19px] lg:h-fit lg:max-h-[80vh] lg:px-[40px] lg:pt-[32px]"
     >
-      fsdfs
+      <BaseInput
+        size="xl"
+        id="email"
+        v-model="email"
+        label="E-mail"
+        type="email"
+        labelPlacement="inside"
+        placeholder="you@example.com"
+        :error="showError ? 'Please enter a valid email address' : null"
+      />
+
+    
     </div>
   </BaseModal>
 </template>
@@ -26,6 +37,13 @@
 defineProps({
   modelValue: { type: Boolean, default: false }
 })
+
+const email = ref('')
+const showError = ref(false)
+
+function submit() {
+  showError.value = !/.+@.+\..+/.test(email.value)
+}
 </script>
 <!-- <ClickZoom
   img-class="w-full object-contain max-h-[90vh]"
