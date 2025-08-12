@@ -3,8 +3,8 @@
     <h2
       v-if="data?.[`title_${locale}`]"
       :class="[
-        'font-title text-[52px] font-[300] leading-[49.4px] tracking-[0.52px]',
-        'lg:text-[70px] lg:leading-[87.5px] lg:tracking-[0.7px]'
+        'font-title mt-[60px] text-[52px] font-[300] leading-[49.4px] tracking-[0.52px]',
+        'lg:mt-[90px] lg:text-[70px] lg:leading-[87.5px] lg:tracking-[0.7px]'
       ]"
     >
       {{ data?.[`title_${locale}`] }}
