@@ -9,5 +9,6 @@ export default {
   get_from_airport: 'الوصول من المطار',
   hotels_around: 'الفنادق القريبة',
   nearest_metro_station: 'أقرب محطة مترو',
-  build_route: 'بناء طريق'
+  build_route: 'بناء طريق',
+  integrated: 'المتكاملة'
 }
