@@ -34,7 +34,7 @@
         '3xl:pb-[235px]'
       ]"
     >
-      <template v-for="item in productData.item_sections" :key="item?.id">
+      <template v-for="item in productData?.item_sections" :key="item?.id">
         <ProductDetailsTemplate
           class="app-container app-container--edit"
           v-if="!item?.image_blocks?.length"
