@@ -92,6 +92,13 @@ const aboutIntro = computed(() => aboutData.value?.find((d) => d?.code == 'about
 const certificatesSlider = computed(() =>
   aboutData.value?.find((d) => d?.code == 'certificates_slider')
 )
+const { getPage } = usePages()
+const aboutPage = getPage('about')
+usePageHead(() => ({
+  title: aboutPage?.[`meta_title_${locale.value}`],
+  description: aboutPage?.[`meta_description_${locale.value}`],
+  keywords: aboutPage?.[`meta_keywords_${locale.value}`]
+}))
 </script>
 <style scoped>
 .bg {
