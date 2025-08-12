@@ -41,7 +41,7 @@
             'app-container app-container--edit text-[30px] font-[600] leading-[33px] tracking-[0.3px]'
           ]"
         >
-          {{ $t('integrated') }} {{ productData?.category?.[`title_${locale}`] }}
+          {{ $t('integrated', { type: productData?.category?.[`title_${locale}`] }) }}
         </h2>
 
         <div
@@ -51,12 +51,8 @@
             'xl:gap-x-[108px] xl:gap-y-[103px] 3xl:max-w-[85%]'
           ]"
         >
-          <!-- <ProductCard
-            v-for="(integratedItem, i) in productData?.integrated_items || []"
-            :data="integratedItem"
-          /> -->
           <ProductCard
-            v-for="(integratedItem, i) in productData?.item_sections?.[1]?.image_blocks || []"
+            v-for="(integratedItem, i) in productData?.integrated_items || []"
             :data="integratedItem"
           />
         </div>
