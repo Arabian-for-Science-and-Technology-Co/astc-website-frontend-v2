@@ -56,10 +56,8 @@
 
     <BaseModal
       v-model:open="modalOpen"
-      containerClass="w-full !mx-0 max-w-[310px] sm:max-w-[500px] 3xl:!max-w-[612px] !bg-transparent"
-      bodyClass="sm:!px-0 px-[30px] flex justify-center items-center  !py-0"
-      :canCloseByBackdrop="true"
-      :canCloseByEsc="true"
+      containerClass="max-w-[310px] sm:max-w-[500px] 3xl:!max-w-[612px]"
+      bodyClass="sm:!px-0 px-[30px]"
     >
       <ClickZoom
         img-class="max-h-[85vh]"
