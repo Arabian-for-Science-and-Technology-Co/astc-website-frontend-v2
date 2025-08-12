@@ -31,5 +31,9 @@ const { t, locale } = useI18n()
 const title = computed(
   () => categoryItems.value?.[0]?.category?.[`title_${locale.value}`] || t('category')
 )
+usePageHead(() => ({
+  title: title.value,
+}))
+
 </script>
 <style scoped></style>
