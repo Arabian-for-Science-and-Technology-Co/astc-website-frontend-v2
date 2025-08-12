@@ -3,13 +3,17 @@
     <Transition name="fade">
       <div
         v-if="open"
-        class="fixed inset-0 z-[1000] flex items-center justify-center bg-black/70  "
+        :class="[
+          'fixed inset-0 z-[1000] flex w-full justify-center bg-black/70',
+          formMode ? 'items-end lg:items-center' : 'items-center'
+        ]"
         @click.self="handleBackdropClose"
         tabindex="0"
       >
         <!-- Close button OUTSIDE the container -->
         <button
-          class="absolute right-[50px] top-[50px] z-50 3xl:text-[28px] text-white transition hover:text-red-300"
+          v-if="showOutsideCloseBtn"
+          class="absolute right-[50px] top-[50px] z-50 text-white transition hover:text-red-300 3xl:text-[28px]"
           @click="handleCancel"
         >
           ✕
@@ -19,7 +23,10 @@
         <component
           :is="formMode ? 'form' : 'div'"
           :class="[
-            'mx-4 w-full max-w-lg transform rounded-lg bg-white shadow-lg transition-all dark:bg-gray-800',
+            'mx-0 w-full transform overflow-y-auto transition-all',
+            formMode
+              ? 'h-[80vh] max-w-full rounded-3xl rounded-b-none bg-white lg:h-auto lg:max-w-lg lg:rounded-b-3xl'
+              : 'max-w-lg bg-transparent',
             containerClass
           ]"
           @submit.prevent="handleSubmit"
@@ -39,7 +46,7 @@
           </div>
 
           <!-- Body -->
-          <div :class="['px-6 py-4', bodyClass]">
+          <div :class="[bodyClass]">
             <slot />
           </div>
 
@@ -67,6 +74,7 @@ const props = defineProps({
   onCancel: Function,
   canCloseByBackdrop: { type: Boolean, default: true },
   canCloseByEsc: { type: Boolean, default: true },
+  showOutsideCloseBtn: { type: Boolean, default: true },
   containerClass: String,
   headerClass: String,
   bodyClass: String,

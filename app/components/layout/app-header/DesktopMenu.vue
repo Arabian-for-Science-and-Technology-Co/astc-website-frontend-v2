@@ -79,6 +79,7 @@ watch(
   route,
   () => {
     disableHoverOnTab.value = true
+    isHovering.value = false
     if (timeoutId) {
       clearTimeout(timeoutId)
     }
