@@ -21,9 +21,11 @@ definePageMeta({
 const route = useRoute()
 const customFetch = useCustomFetch()
 const { data: categoryItems } = await useAsyncData(
+  () => `category-details:${route.params.id}`,
   () => customFetch(`/website/home/categories/${route.params.id}/items`),
   {
-    transform: (res) => res.data || []
+    transform: (res) => res.data || [],
+    watch: [() => route.params.id]
   }
 )
 const { t, locale } = useI18n()
@@ -32,8 +34,7 @@ const title = computed(
   () => categoryItems.value?.[0]?.category?.[`title_${locale.value}`] || t('category')
 )
 usePageHead(() => ({
-  title: title.value,
+  title: title.value
 }))
-
 </script>
 <style scoped></style>
