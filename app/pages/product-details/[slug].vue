@@ -76,7 +76,7 @@
         </BaseButton>
       </div>
     </div>
-    <RequestDocumentModal :itemId="productData.id" v-model:open="modalOpen" />
+    <RequestDocumentModal :key="modalOpen" :itemId="productData.id" v-model:open="modalOpen" />
   </div>
 </template>
 
@@ -88,7 +88,7 @@ definePageMeta({
     selectedTabClass: 'bg-[#010101] text-white'
   }
 })
-const modalOpen = ref(true)
+const modalOpen = ref(false)
 const { locale } = useI18n()
 const customFetch = useCustomFetch()
 const { data: productData } = await useAsyncData(

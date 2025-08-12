@@ -4,6 +4,7 @@
 
 @import './animation/_language_transitions.css';
 @import './animation/_navigation_transitions.css';
+@import './animation/_fade_animation.css';
 
 @import './config/_colors.css';
 @import './config/_sizes.css';
