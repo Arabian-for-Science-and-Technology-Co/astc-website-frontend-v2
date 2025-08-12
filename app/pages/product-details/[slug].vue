@@ -1,5 +1,5 @@
 <template>
-  <div :class="['bg-[#F0F0F0] font-zarid']" :styl>
+  <div :class="['bg-[#F0F0F0] font-zarid']">
     <div
       :class="[
         'bg flex h-screen max-h-[700px] flex-col justify-end bg-[#0D1667] pb-[60px] pt-[--header-height] text-white',
@@ -63,7 +63,7 @@
       </template>
       <div class="app-container app-container--edit">
         <BaseButton
-          @click="navigateTo(`/contact`)"
+          @click="modalOpen = true"
           :class="[
             'font-section mt-[40px] h-[68px] max-w-[295px] text-[16px] font-[500] leading-[normal] lg:mt-[95px]',
             'lg:text-[20px] lg:font-[400] lg:leading-[21px] lg:tracking-[0.2px]'
@@ -76,37 +76,104 @@
 
     <BaseModal
       v-model:open="modalOpen"
-      containerClass="w-full !mx-0 max-w-[310px] sm:max-w-[500px] 3xl:!max-w-[612px] !bg-transparent"
-      bodyClass="sm:!px-0 px-[30px] flex justify-center items-center  !py-0"
-      :canCloseByBackdrop="true"
-      :canCloseByEsc="true"
+      containerClass="w-full  lg:max-w-[500px] 3xl:!max-w-[612px] "
+      bodyClass="sm:!px-0 px-[30px]"
+      form-mode
+      :showOutsideCloseBtn="false"
     >
-      <ClickZoom
-        img-class="max-h-[85vh]"
-        :src="selectedCertificate.image"
-        :tap-zoom="2.5"
-        :max-scale="5"
-      />
+      <div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+        <div>fdsdf</div>
+      </div>
     </BaseModal>
   </div>
 </template>
 
 <script setup>
+const route = useRoute()
 definePageMeta({
   layoutProps: {
     isWhiteLogo: true,
     selectedTabClass: 'bg-[#010101] text-white'
   }
 })
-const selectedCertificate = ref(null)
 const modalOpen = ref(false)
 const { locale } = useI18n()
-const route = useRoute()
 const customFetch = useCustomFetch()
 const { data: productData } = await useAsyncData(
+  () => `product-details:${route.params.slug}`,
   () => customFetch(`/website/home/item/${route.params.slug}`),
   {
-    transform: (res) => res.data || []
+    transform: (res) => res.data || [],
+    watch: [() => route.params.slug]
   }
 )
 usePageHead(() => ({
