@@ -33,30 +33,33 @@
           @keydown.esc="handleEsc"
         >
           <!-- Header -->
-          <div
+          <header
             v-if="$slots.header || title"
             :class="[
-              'flex items-center justify-between border-b border-gray-200 px-6 py-4 dark:border-gray-700',
+              'flex items-center justify-between border-gray-200 pt-[29px] dark:border-gray-700',
               headerClass
             ]"
           >
+            <button @click="handleCancel" class="absolute end-5 top-5">
+              <CloseIcon1 :size="19" />
+            </button>
             <slot name="header">
               <h3 class="text-lg font-semibold text-gray-800 dark:text-white">{{ title }}</h3>
             </slot>
-          </div>
+          </header>
 
           <!-- Body -->
-          <div :class="[bodyClass]">
+          <main :class="[bodyClass]">
             <slot />
-          </div>
+          </main>
 
           <!-- Footer -->
-          <div
+          <footer
             v-if="$slots.footer"
             :class="['border-t border-gray-200 px-6 py-4 dark:border-gray-700', footerClass]"
           >
             <slot name="footer" />
-          </div>
+          </footer>
         </component>
       </div>
     </Transition>
