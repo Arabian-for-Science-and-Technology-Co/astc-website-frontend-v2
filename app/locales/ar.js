@@ -10,5 +10,5 @@ export default {
   hotels_around: 'الفنادق القريبة',
   nearest_metro_station: 'أقرب محطة مترو',
   build_route: 'بناء طريق',
-  integrated: 'المتكاملة'
+  integrated: '{type} المتكاملة'
 }

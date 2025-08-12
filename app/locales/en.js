@@ -10,5 +10,5 @@ export default {
   hotels_around: 'Hotels around',
   nearest_metro_station: 'Nearest metro station',
   build_route: 'Build a route',
-  integrated : 'Integrated',
+  integrated : 'Integrated {type}',
 }
