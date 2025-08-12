@@ -16,7 +16,7 @@
       width="42"
       height="42"
       rx="12"
-      fill="white"
+      :fill="color"
       fill-opacity="0.05"
     />
     <line
@@ -24,7 +24,7 @@
       y1="14"
       x2="28.5563"
       y2="28.1421"
-      stroke="white"
+      :stroke="color"
       stroke-width="2"
       stroke-linecap="round"
     />
@@ -34,7 +34,7 @@
       x2="21"
       y2="-1"
       transform="matrix(-0.707107 0.707107 0.707107 0.707107 30 14)"
-      stroke="white"
+      :stroke="color"
       stroke-width="2"
       stroke-linecap="round"
     />
@@ -45,3 +45,9 @@
     </defs>
   </svg>
 </template>
+<script setup>
+const props = defineProps({
+  size: { type: [String, Number], default: 24 },
+  color: { type: String, default: 'white' }
+})
+</script>

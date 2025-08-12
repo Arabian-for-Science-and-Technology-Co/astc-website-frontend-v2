@@ -9,5 +9,6 @@ export default {
   get_from_airport: 'Get from the airport',
   hotels_around: 'Hotels around',
   nearest_metro_station: 'Nearest metro station',
-  build_route: 'Build a route'
+  build_route: 'Build a route',
+  integrated : 'Integrated',
 }

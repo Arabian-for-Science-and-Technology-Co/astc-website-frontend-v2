@@ -75,7 +75,7 @@
 </template>
 <script setup>
 const props = defineProps({
-  name: { type: String, required: true },
+  name: { type: String },
   size: { type: [String, Number], default: 24 },
   logoColor_1: { type: String, required: '#3246A9' },
   logoColor_2: { type: String, required: '#465AE5' },

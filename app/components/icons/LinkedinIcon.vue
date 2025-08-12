@@ -16,8 +16,8 @@
 </template>
 <script setup>
 const props = defineProps({
-  color: { type: String, required: true, default: 'black' },
-  hoverColor: { type: String, required: true, default: 'black' },
+  color: { type: String, default: 'black' },
+  hoverColor: { type: String, default: 'black' },
   size: { type: [String, Number], default: 68 }
 })
 const isHovering = ref(false)
