@@ -15,52 +15,59 @@
     >
       <header class="app-container text-white">
         <h6
+          v-if="productData?.category?.[`title_${locale}`]"
           :class="[
             'text-[20px] font-[600] leading-[normal] tracking-[0.2px]',
             'lg:text-[30px] lg:leading-[33px] lg:tracking-[0.3px]'
           ]"
         >
-          {{ productData?.category?.[`title_${locale}`] || 'All products' }}
+          {{ productData?.category?.[`title_${locale}`] }}
         </h6>
         <h4 :class="['head-title mt-[22px]', 'lg:mt-[15px]']">
           {{ productData?.[`title_${locale}`] }}
         </h4>
       </header>
     </div>
-    <div
-      :class="[
-        'min-h-screen pb-[60px] pt-[60px] text-[#18264A]',
-        'lg:pb-[228px] lg:pt-[90px]',
-        '3xl:pb-[235px]'
-      ]"
-    >
-      <template v-for="item in productData?.item_sections" :key="item?.id">
-        <ProductDetailsTemplate
-          class="app-container app-container--edit"
-          v-if="!item?.image_blocks?.length"
-          :data="item"
-        />
-        <div v-else :class="['mt-[59px]', 'lg:mt-[82px]']">
-          <h2
-            v-if="item?.[`title_${locale}`]"
-            :class="[
-              'app-container app-container--edit text-[30px] font-[600] leading-[33px] tracking-[0.3px]'
-            ]"
-          >
-            {{ item?.[`title_${locale}`] }}
-          </h2>
+    <div :class="['min-h-screen pb-[60px] text-[#18264A]', 'lg:pb-[228px]', '3xl:pb-[235px]']">
+      <ProductDetailsTemplate
+        class="app-container app-container--edit"
+        v-if="productData?.item_sections?.[0]"
+        :data="productData?.item_sections?.[0]"
+      />
+      <div :class="['mt-[59px]', 'lg:mt-[82px]']">
+        <h2
+          v-if="productData?.[`title_${locale}`]"
+          :class="[
+            'app-container app-container--edit text-[30px] font-[600] leading-[33px] tracking-[0.3px]'
+          ]"
+        >
+          {{ $t('integrated') }} {{ productData?.category?.[`title_${locale}`] }}
+        </h2>
 
-          <div
-            :class="[
-              'app-container app-container--edit :mt-[30px] flex w-full max-w-full flex-wrap justify-center gap-x-[14px] gap-y-[28.5px] !pe-0',
-              'lg:mt-[60px] lg:justify-start lg:gap-x-[50px] lg:gap-y-[103.45px]',
-              'xl:gap-x-[108px] xl:gap-y-[103px] 3xl:max-w-[85%]'
-            ]"
-          >
-            <ProductCard v-for="(imageBlock, i) in item?.image_blocks || []" :data="imageBlock" />
-          </div>
+        <div
+          :class="[
+            'app-container app-container--edit :mt-[30px] flex w-full max-w-full flex-wrap justify-center gap-x-[14px] gap-y-[28.5px] !pe-0',
+            'lg:mt-[60px] lg:justify-start lg:gap-x-[50px] lg:gap-y-[103.45px]',
+            'xl:gap-x-[108px] xl:gap-y-[103px] 3xl:max-w-[85%]'
+          ]"
+        >
+          <!-- <ProductCard
+            v-for="(integratedItem, i) in productData?.integrated_items || []"
+            :data="integratedItem"
+          /> -->
+          <ProductCard
+            v-for="(integratedItem, i) in productData?.item_sections?.[1]?.image_blocks || []"
+            :data="integratedItem"
+          />
         </div>
-      </template>
+      </div>
+      <ProductDetailsTemplate
+        v-for="item in productData?.item_sections?.slice?.(1)"
+        :key="item?.id"
+        class="app-container app-container--edit"
+        :data="item"
+      />
+
       <div class="app-container app-container--edit">
         <BaseButton
           @click="modalOpen = true"
@@ -76,26 +83,15 @@
 
     <BaseModal
       v-model:open="modalOpen"
-      containerClass="w-full  lg:max-w-[500px] 3xl:!max-w-[612px] "
-      bodyClass="sm:!px-0 px-[30px]"
+      containerClass="w-full px-[40px]  lg:max-w-[500px] 3xl:!max-w-[612px] "
+      bodyClass=""
       form-mode
       :showOutsideCloseBtn="false"
     >
-      <div>
-        <div>fdsdf</div>
-        <div>fdsdf</div>
-        <div>fdsdf</div>
-        <div>fdsdf</div>
-        <div>fdsdf</div>
-        <div>fdsdf</div>
-        <div>fdsdf</div>
-        <div>fdsdf</div>
-        <div>fdsdf</div>
-        <div>fdsdf</div>
-        <div>fdsdf</div>
-        <div>fdsdf</div>
-        <div>fdsdf</div>
-        <div>fdsdf</div>
+      <template #header>
+        <h3 class="">Leave your contacts to receive all the files on the project</h3>
+      </template>
+      <div class="max-h-[80vh] overflow-y-auto">
         <div>fdsdf</div>
         <div>fdsdf</div>
         <div>fdsdf</div>
@@ -165,7 +161,7 @@ definePageMeta({
     selectedTabClass: 'bg-[#010101] text-white'
   }
 })
-const modalOpen = ref(false)
+const modalOpen = ref(true)
 const { locale } = useI18n()
 const customFetch = useCustomFetch()
 const { data: productData } = await useAsyncData(
