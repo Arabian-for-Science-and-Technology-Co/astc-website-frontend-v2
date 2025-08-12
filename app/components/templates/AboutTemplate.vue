@@ -13,7 +13,7 @@
     <article
       v-if="data?.[`content_${locale}`]"
       :class="[
-        'mt-[40px] space-y-[30px] text-[20px] font-[300] leading-[105%] tracking-[0.2px]',
+        'mt-[40px] space-y-[30px] text-[20px] font-[300] leading-[105%] tracking-[0.2px] rtl:leading-[130%]',
         'lg:mt-[65px] lg:space-y-[38px] lg:text-[30px] lg:leading-[110%] lg:tracking-[0.3px]',
         '[&_:is(ul,ol)]:w-[90%]',
         '[&_:is(ul,ol)]:list-outside',
