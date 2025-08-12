@@ -40,6 +40,7 @@
             ]"
           >
             <button
+              type="button"
               @click="handleCancel"
               class="absolute end-[19px] top-[19px] hover:opacity-55 lg:end-5 lg:top-5"
             >
@@ -101,8 +102,18 @@ function close() {
   emit('update:open', false)
 }
 
-function handleSubmit() {
-  props.onConfirm?.()
+async function handleSubmit(e) {
+  // if form is invalid -> show native validation UI and do nothing
+  if (props.formMode && !e.target.checkValidity()) {
+    // show default browser validation UI
+    if (typeof e.target.reportValidity === 'function') {
+      e.target.reportValidity()
+    }
+    return
+  }
+
+  // valid -> prevent normal navigation and handle in Vue
+  await props.onConfirm?.()
   close()
 }
 

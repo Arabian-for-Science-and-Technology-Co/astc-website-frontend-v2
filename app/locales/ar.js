@@ -10,5 +10,18 @@ export default {
   hotels_around: 'الفنادق القريبة',
   nearest_metro_station: 'أقرب محطة مترو',
   build_route: 'بناء طريق',
-  integrated: '{type} المتكاملة'
+  integrated: '{type} المتكاملة',
+  lets_talk: 'لنتحدث',
+  email: 'البريد الإلكتروني',
+  phone: 'الهاتف',
+  name: 'الاسم',
+  position_in_the_company: 'الوظيفة في الشركة',
+  company_name: 'اسم الشركة',
+  get_the_files: 'احصل على الملفات',
+  by_submitting_your_data_you_agree: 'من خلال إرسال بياناتك، فإنك توافق',
+  to_the: 'على',
+  privacy_policy: 'سياسة الخصوصية',
+  terms_and_conditions: 'الشروط والأحكام',
+  leave_your_contacts_to_receive_all_the_files_on_the_project:
+    'اترك بيانات الاتصال الخاصة بك لتلقي جميع الملفات المتعلقة بالمشروع'
 }
