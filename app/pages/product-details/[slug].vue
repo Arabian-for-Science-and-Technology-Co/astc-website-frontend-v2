@@ -83,15 +83,19 @@
 
     <BaseModal
       v-model:open="modalOpen"
-      containerClass="w-full px-[40px]  lg:max-w-[500px] 3xl:!max-w-[612px] "
+      containerClass="w-full !h-auto  text-black lg:max-w-[500px] 3xl:!max-w-[639px] "
+      headerClass="lg:px-[40px] px-[27px]"
       bodyClass=""
+      footerClass="lg:px-[40px] px-[27px]"
       form-mode
       :showOutsideCloseBtn="false"
     >
       <template #header>
-        <h3 class="">Leave your contacts to receive all the files on the project</h3>
+        <h3 :class="['text-[30px] font-[300] leading-[100%] lg:max-w-[312px]']">
+          Leave your contacts to receive all the files on the project
+        </h3>
       </template>
-      <div class="max-h-[80vh] overflow-y-auto">
+      <div class="h-[70vh] overflow-y-auto px-[27px] lg:h-fit lg:max-h-[80vh] lg:px-[40px]">
         <div>fdsdf</div>
         <div>fdsdf</div>
         <div>fdsdf</div>
