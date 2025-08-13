@@ -21,5 +21,7 @@ export default {
   privacy_policy: 'سياسة الخصوصية',
   terms_and_conditions: 'الشروط والأحكام',
   leave_your_contacts_to_receive_all_the_files_on_the_project:
-    'اترك بيانات الاتصال الخاصة بك لتلقي جميع الملفات المتعلقة بالمشروع'
+    'اترك بيانات الاتصال الخاصة بك لتلقي جميع الملفات المتعلقة بالمشروع',
+  news: 'الأخبار',
+  more_news: 'المزيد من الأخبار'
 }

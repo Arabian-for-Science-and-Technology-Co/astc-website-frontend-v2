@@ -21,5 +21,7 @@ export default {
   privacy_policy: 'Privacy Policy',
   terms_and_conditions: 'Terms and Conditions',
   leave_your_contacts_to_receive_all_the_files_on_the_project:
-    'Leave your contacts to receive all the files on the project'
+    'Leave your contacts to receive all the files on the project',
+  news: 'news',
+  more_news: 'more news'
 }
