@@ -7,7 +7,7 @@
       densities="x1 x2"
       format="webp"
       :key="data?.id"
-      :src="data?.image"
+      :src="data?.image || data?.image_url"
       :class="['imgs-contianer__card__img', wide && 'imgs-contianer__card__img--wide']"
       :alt="`Image ${data?.id} representing solution`"
       loading="lazy"

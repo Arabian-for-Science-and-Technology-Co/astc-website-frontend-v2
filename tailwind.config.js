@@ -40,6 +40,7 @@ module.exports = {
         md: 'var(--radius-md)'
       },
       screens: {
+        'xs':'375px',
         '3xl': '1600px' // or any value > 1536px
       }
     }

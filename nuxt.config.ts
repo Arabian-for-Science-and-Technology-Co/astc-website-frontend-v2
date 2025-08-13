@@ -27,10 +27,11 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
   //----------------------for modules----------------------
-  modules: ['@nuxt/image', '@nuxtjs/tailwindcss', 'nuxt-svgo', '@nuxtjs/i18n'],
+  modules: ['@nuxt/image', '@nuxtjs/tailwindcss', 'nuxt-svgo', '@nuxtjs/i18n', 'vue-sonner/nuxt'],
   //  image: {
   //   dir: '~/assets',  // Point to where your images are
   // },
+  vueSonner: { css: true },
   i18n: {
     locales: [
       { code: 'en', iso: 'en-US', file: 'en.js', name: 'English' },

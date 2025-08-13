@@ -23,7 +23,7 @@
         <component
           :is="formMode ? 'form' : 'div'"
           :class="[
-            'mx-0 w-full transform overflow-y-auto transition-all',
+            'styled-scrollbar mx-0 w-full transform transition-all',
             formMode
               ? 'h-[80vh] max-w-full rounded-3xl rounded-b-none bg-white lg:h-auto lg:max-w-lg lg:rounded-b-3xl'
               : 'max-w-lg bg-transparent',
@@ -32,7 +32,6 @@
           @submit.prevent="handleSubmit"
           @keydown.esc="handleEsc"
         >
-          <!-- Header -->
           <header
             v-if="$slots.header || title"
             :class="[
@@ -40,24 +39,23 @@
               headerClass
             ]"
           >
-            <button @click="handleCancel" class="absolute end-5 top-5">
-              <CloseIcon1 :size="19" />
+            <button
+              type="button"
+              @click="handleCancel"
+              class="absolute end-[18px] top-[18px] hover:opacity-55 lg:end-5 lg:top-5"
+            >
+              <CloseIcon1 :size="gte('lg') ? 19 : 16" />
             </button>
             <slot name="header">
               <h3 class="text-lg font-semibold text-gray-800 dark:text-white">{{ title }}</h3>
             </slot>
           </header>
 
-          <!-- Body -->
           <main :class="[bodyClass]">
             <slot />
           </main>
 
-          <!-- Footer -->
-          <footer
-            v-if="$slots.footer"
-            :class="['border-t border-gray-200 px-6 py-4 dark:border-gray-700', footerClass]"
-          >
+          <footer v-if="$slots.footer" :class="[footerClass]">
             <slot name="footer" />
           </footer>
         </component>
@@ -87,6 +85,7 @@ const props = defineProps({
 const emit = defineEmits(['update:open'])
 
 const open = ref(props.open)
+const { gte } = useBreakpoints()
 
 watch(
   () => props.open,
@@ -104,9 +103,18 @@ function close() {
   emit('update:open', false)
 }
 
-function handleSubmit() {
-  props.onConfirm?.()
-  close()
+async function handleSubmit(e) {
+  // if form is invalid -> show native validation UI and do nothing
+  if (props.formMode && !e.target.checkValidity()) {
+    // show default browser validation UI
+    if (typeof e.target.reportValidity === 'function') {
+      e.target.reportValidity()
+    }
+    return
+  }
+
+  // valid -> prevent normal navigation and handle in Vue
+  await props.onConfirm?.()
 }
 
 function handleCancel() {
@@ -134,13 +142,4 @@ onUnmounted(() => {
 })
 </script>
 
-<style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.25s ease;
-}
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-</style>
+<style></style>
