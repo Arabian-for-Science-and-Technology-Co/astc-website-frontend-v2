@@ -30,23 +30,21 @@
     </div>
     <div :class="['min-h-screen pb-[60px] text-[#18264A]', 'lg:pb-[228px]', '3xl:pb-[235px]']">
       <ProductDetailsTemplate
-        class="app-container app-container--edit"
+        class="app-container-small"
         v-if="productData?.item_sections?.[0]"
         :data="productData?.item_sections?.[0]"
       />
       <div :class="['mt-[59px]', 'lg:mt-[82px]']">
         <h2
           v-if="productData?.[`title_${locale}`]"
-          :class="[
-            'app-container app-container--edit text-[30px] font-[600] leading-[33px] tracking-[0.3px]'
-          ]"
+          :class="['app-container-small text-[30px] font-[600] leading-[33px] tracking-[0.3px]']"
         >
           {{ $t('integrated', { type: productData?.category?.[`title_${locale}`] }) }}
         </h2>
 
         <div
           :class="[
-            'app-container app-container--edit mt-[30px] flex w-full max-w-full flex-wrap justify-center gap-x-[14px] gap-y-[28.5px] !pe-0',
+            'app-container-small mt-[30px] flex w-full max-w-full flex-wrap justify-center gap-x-[14px] gap-y-[28.5px] !pe-0',
             'xs:justify-start',
             'lg:mt-[60px] lg:gap-x-[50px] lg:gap-y-[103.45px]',
             'xl:gap-x-[108px] xl:gap-y-[103px] 3xl:max-w-[85%] 3xl:!pe-0'
@@ -61,11 +59,11 @@
       <ProductDetailsTemplate
         v-for="item in productData?.item_sections?.slice?.(1)"
         :key="item?.id"
-        class="app-container app-container--edit"
+        class="app-container-small"
         :data="item"
       />
 
-      <div class="app-container app-container--edit">
+      <div class="app-container-small">
         <BaseButton
           @click="modalOpen = true"
           :class="[
@@ -107,23 +105,11 @@ usePageHead(() => ({
 }))
 </script>
 <style scoped>
-.app-container--edit {
-  @media (min-width: 1600px) {
-    padding-inline-start: 438px;
-    padding-inline-end: 586px;
-  }
-}
 .head-title {
   @apply text-[52px] font-[200] leading-[49.4px] tracking-[0.52px];
   @apply lg:text-[140px] lg:leading-[133px] lg:tracking-[1.4px];
 }
 
-.app-container--edit {
-  @media (min-width: 1600px) {
-    padding-inline-start: 438px;
-    padding-inline-end: 586px;
-  }
-}
 .font-section {
   font-family: Roboto !important;
 }
