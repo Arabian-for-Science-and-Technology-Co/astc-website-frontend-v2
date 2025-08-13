@@ -4,14 +4,14 @@ export default defineNuxtPlugin((nuxtApp) => {
   function getMonthName(date, loc = locale.value, length = 'short') {
     return new Intl.DateTimeFormat(loc, {
       month: length,
-      ...(loc === 'ar' && { numberingSystem: 'latn' }),
+      ...(loc === 'ar' && { numberingSystem: 'latn' })
     }).format(date)
   }
 
   function getWeekdayName(date, loc = locale.value, length = 'long') {
     return new Intl.DateTimeFormat(loc, {
       weekday: length,
-      ...(loc === 'ar' && { numberingSystem: 'latn' }),
+      ...(loc === 'ar' && { numberingSystem: 'latn' })
     }).format(date)
   }
 
@@ -25,64 +25,141 @@ export default defineNuxtPlugin((nuxtApp) => {
   function formatDate(dateInput, format = 'YYYY-MM-DD HH:mm:ss') {
     // 1) ensure Date
     const date =
-      dateInput instanceof Date
-        ? dateInput
-        : new Date(String(dateInput).replace(/\.\d+Z$/, 'Z'))
+      dateInput instanceof Date ? dateInput : new Date(String(dateInput).replace(/\.\d+Z$/, 'Z'))
     if (isNaN(date)) return ''
 
     // 2) pull all parts
-    const year   = date.getFullYear()
+    const year = date.getFullYear()
     const monthN = date.getMonth() + 1
-    const day    = date.getDate()
+    const day = date.getDate()
     const hour24 = date.getHours()
     const hour12 = hour24 % 12 || 12
     const minute = date.getMinutes()
     const second = date.getSeconds()
-    const ms     = date.getMilliseconds()
+    const ms = date.getMilliseconds()
 
-    // 3) build token map
-    const tokens = {
-      YYYY: String(year),
-      YY:   String(year).slice(-2),
+    // locale helpers
+    const loc = typeof locale?.value === 'string' ? locale.value : 'en'
+    const isAr = loc?.toLowerCase().startsWith('ar')
 
-      MMMM: getMonthName(date, locale.value, 'long'),
-      MMM:  getMonthName(date, locale.value, 'short'),
-      MM:   String(monthN).padStart(2, '0'),
-      M:    String(monthN),
-
-      DD:   String(day).padStart(2, '0'),
-      D:    String(day),
-
-      dddd: getWeekdayName(date, locale.value, 'long'),
-      ddd:  getWeekdayName(date, locale.value, 'short'),
-      dd:   getWeekdayName(date, locale.value, 'narrow'),
-
-      HH:   String(hour24).padStart(2, '0'),
-      H:    String(hour24),
-
-      hh:   String(hour12).padStart(2, '0'),
-      h:    String(hour12),
-
-      mm:   String(minute).padStart(2, '0'),
-      m:    String(minute),
-
-      ss:   String(second).padStart(2, '0'),
-      s:    String(second),
-
-      SSS:  String(ms).padStart(3, '0'),
-
-      A:    hour24 < 12 ? 'AM' : 'PM',
-      a:    hour24 < 12 ? 'am' : 'pm',
-
-      Do:   ordinal(day),
-      // you can add more: Q (quarter), w (week of year), etc.
+    const meridiem = (h, lower = false) => {
+      if (isAr) return 'صم'.charAt(h < 12 ? 0 : 1) // "ص" / "م"
+      return lower ? (h < 12 ? 'am' : 'pm') : h < 12 ? 'AM' : 'PM'
     }
 
-    // 4) replace in the format string
-    return format.replace(
-      /Do|YYYY|YY|MMMM|MMM|MM|M|DD|D|dddd|ddd|dd|HH|H|hh|h|mm|m|ss|s|SSS|A|a/g,
-      (matched) => tokens[matched] || matched
-    )
+    // base token regex (used to expand preset patterns)
+    const BASE_TOKEN_RE = /Do|YYYY|YY|MMMM|MMM|MM|M|DD|D|dddd|ddd|dd|HH|H|hh|h|mm|m|ss|s|SSS|A|a/g
+
+    // 3) build token map (base)
+    const tokens = {
+      YYYY: String(year),
+      YY: String(year).slice(-2),
+
+      MMMM: getMonthName(date, loc, 'long'),
+      MMM: getMonthName(date, loc, 'short'),
+      MM: String(monthN).padStart(2, '0'),
+      M: String(monthN),
+
+      DD: String(day).padStart(2, '0'),
+      D: String(day),
+
+      dddd: getWeekdayName(date, loc, 'long'),
+      ddd: getWeekdayName(date, loc, 'short'),
+      dd: getWeekdayName(date, loc, 'narrow'),
+
+      HH: String(hour24).padStart(2, '0'),
+      H: String(hour24),
+
+      hh: String(hour12).padStart(2, '0'),
+      h: String(hour12),
+
+      mm: String(minute).padStart(2, '0'),
+      m: String(minute),
+
+      ss: String(second).padStart(2, '0'),
+      s: String(second),
+
+      SSS: String(ms).padStart(3, '0'),
+
+      A: meridiem(hour24, false),
+      a: meridiem(hour24, true),
+
+      Do: ordinal(day)
+    }
+
+    // 3.1) Moment-like preset patterns per locale
+    const presets = isAr
+      ? {
+          LT: 'h:mm a',
+          LTS: 'h:mm:ss a',
+          L: 'DD/MM/YYYY',
+          l: 'D/M/YYYY',
+          LL: 'D MMMM YYYY',
+          ll: 'D MMM YYYY',
+          LLL: 'D MMMM YYYY h:mm a',
+          lll: 'D MMM YYYY h:mm a',
+          LLLL: 'dddd، D MMMM YYYY h:mm a',
+          llll: 'ddd، D MMM YYYY h:mm a'
+        }
+      : {
+          LT: 'h:mm A',
+          LTS: 'h:mm:ss A',
+          L: 'MM/DD/YYYY',
+          l: 'M/D/YYYY',
+          LL: 'MMMM D, YYYY',
+          ll: 'MMM D, YYYY',
+          LLL: 'MMMM D, YYYY h:mm A',
+          lll: 'MMM D, YYYY h:mm A',
+          LLLL: 'dddd, MMMM D, YYYY h:mm A',
+          llll: 'ddd, MMM D, YYYY h:mm A'
+        }
+
+    // 3.2) expand presets into final strings using base tokens
+    for (const [k, pattern] of Object.entries(presets)) {
+      tokens[k] = pattern.replace(BASE_TOKEN_RE, (m) => tokens[m] ?? m)
+    }
+
+    // 4) replace (build a regex with longest-first order to avoid partial matches)
+    const ALL_TOKENS = [
+      // presets first (longest → shortest)
+      'LLLL',
+      'llll',
+      'LLL',
+      'lll',
+      'LL',
+      'll',
+      'LTS',
+      'LT',
+      'L',
+      'l',
+      // base tokens
+      'Do',
+      'YYYY',
+      'YY',
+      'MMMM',
+      'MMM',
+      'MM',
+      'M',
+      'DD',
+      'D',
+      'dddd',
+      'ddd',
+      'dd',
+      'HH',
+      'H',
+      'hh',
+      'h',
+      'mm',
+      'm',
+      'ss',
+      's',
+      'SSS',
+      'A',
+      'a'
+    ]
+    const TOKEN_RE = new RegExp(ALL_TOKENS.join('|'), 'g')
+
+    return format.replace(TOKEN_RE, (matched) => tokens[matched] ?? matched)
   }
 
   nuxtApp.vueApp.config.globalProperties.$fd = formatDate
@@ -140,6 +217,12 @@ Composite Formats:
   $fd(sampleDate, 'dddd, Do MMMM YYYY')     // → "Thursday, 24th April 2025"
   $fd(sampleDate, 'YYYY-MM-DD HH:mm:ss')    // → "2025-04-24 15:07:05"
 
+
+  $fd(new Date(), 'LT')       // → "4:43 PM"  (en)
+  $fd(new Date(), 'h:mm A')   // → "4:43 PM"  (en)
+  $fd(new Date(), 'LTS')      // → "4:43:07 PM"
+  $fd(new Date(), 'LLL')      // → "August 13, 2025 4:43 PM"
+  
 Note:
 - The function automatically uses the current locale from nuxt-i18n.
 - For Arabic (`ar`) locale, month and weekday names are localized, but ordinal suffixes like 'th' remain in English by default.
