@@ -19,6 +19,14 @@
     padding-left: var(--container-ps);
     padding-right: var(--container-pe);
   }
+  .app-container-small {
+    padding-inline-start: var(--container-ps);
+    padding-inline-end: var(--container-pe);
+    @media (min-width: 1600px) {
+      padding-inline-start: 438px;
+      padding-inline-end: 586px;
+    }
+  }
 }
 .text-truncate-ellipsis {
   overflow: hidden;

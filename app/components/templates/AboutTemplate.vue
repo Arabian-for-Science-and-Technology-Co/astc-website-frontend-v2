@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container app-container--edit mt-[100px] lg:mt-[180px] 3xl:mt-[184px]">
+  <div class="app-container-small mt-[100px] lg:mt-[180px] 3xl:mt-[184px]">
     <h2
       v-if="data?.[`title_${locale}`]"
       :class="[
@@ -59,12 +59,7 @@ const contentHtml = computed(() => {
 </script>
 
 <style>
-.app-container--edit {
-  @media (min-width: 1600px) {
-    padding-inline-start: 438px;
-    padding-inline-end: 586px;
-  }
-}
+
 .font-section {
   font-family: Roboto !important;
 }
