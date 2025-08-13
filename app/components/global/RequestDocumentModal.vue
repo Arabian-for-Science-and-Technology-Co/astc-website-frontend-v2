@@ -1,7 +1,7 @@
 <template>
   <BaseModal
-    :model-value:open="modalOpen"
-    @update:modelValue:open="$emit('update:modelValue:open', $event)"
+    :open="open"
+    @update:open="$emit('update:open', $event)"
     containerClass="w-full !h-auto  text-black lg:max-w-[500px] 3xl:!max-w-[639px] "
     headerClass="lg:px-[40px] px-[27px]"
     bodyClass=""
@@ -18,9 +18,7 @@
     <div
       class="h-[70vh] max-h-[500px] overflow-y-auto px-[27px] pt-[19px] lg:h-fit lg:max-h-[80vh] lg:px-[40px] lg:pt-[32px]"
     >
-      <div
-        class="grid grid-cols-[repeat(auto-fit,minmax(271px,1fr))] gap-x-[16px] gap-y-[11px] lg:gap-y-[17px]"
-      >
+      <div class="grid grid-cols-1 gap-x-[16px] gap-y-[12px] lg:grid-cols-2 lg:gap-y-[17px]">
         <BaseInput
           size="xl"
           id="email"
@@ -60,7 +58,7 @@
         />
         <BaseInput
           size="xl"
-          class="col-span-2"
+          class="lg:col-span-2"
           required
           id="CompanyName"
           v-model="formData.companyName"
@@ -74,7 +72,7 @@
       >
         <button
           type="submit"
-          :disabled="!canSubmit & isLoading"
+          :disabled="!canSubmit"
           :class="[
             'w-full max-w-[275px] rounded-3xl bg-[#0D1667] pb-[18.3px] pt-[17.2px] text-center text-[30px] font-[300] leading-[105%] tracking-[0.3px] text-white lg:pb-[19px] lg:pt-[18px]',
             'disabled:bg-[#DADADA]'
@@ -96,9 +94,11 @@
 
 <script setup>
 const props = defineProps({
-  modelValue: { type: Boolean, default: false },
-  itemId: { type: [String, Boolean] }
+  open: { type: Boolean },
+  itemId: { type: [String, Number] }
 })
+const emits = defineEmits(['update:open'])
+
 const { $toast } = useNuxtApp()
 const formData = reactive({
   email: '',
@@ -110,8 +110,10 @@ const formData = reactive({
 const isLoading = ref(false)
 const canSubmit = computed(() => Object.keys(formData).every((k) => formData[k]))
 const customFetch = useCustomFetch()
+const resetFormData = () => Object.keys(formData).forEach((k) => (formData[k] = ''))
 
 async function submit() {
+  if (isLoading.value) return
   isLoading.value = true
 
   const payload = {
@@ -129,6 +131,8 @@ async function submit() {
       body: payload
     })
     $toast.success(response?.message, { duration: 4000 })
+    emits('update:open', false)
+    resetFormData()
   } catch (err) {
     console.error(err)
     useHandleErrorMsg(err)
@@ -136,4 +140,10 @@ async function submit() {
     isLoading.value = false
   }
 }
+watch(
+  () => props.open,
+  (val) => {
+    val && resetFormData()
+  }
+)
 </script>

@@ -63,7 +63,7 @@ const sizeCls = computed(() => {
       return {
         label: 'text-[20px] font-[300] leading-[150%]  ',
         labelFocus:
-          'peer-focus:text-base peer-focus:!px-[10px] peer-focus:!py-[1px] peer-[&:not(:placeholder-shown)]:text-base peer-[&:not(:placeholder-shown)]:!px-[10px] peer-[&:not(:placeholder-shown)]:!py-[1px]',
+          'peer-focus:text-base peer-focus:!px-[10px] peer-focus:!py-[0px] lg:peer-focus:!py-[1px] peer-[&:not(:placeholder-shown)]:text-base peer-[&:not(:placeholder-shown)]:!px-[10px] peer-[&:not(:placeholder-shown)]:!py-[0px] lg:peer-[&:not(:placeholder-shown)]:!py-[1px]',
         input: 'h-[50px] px-[19px]  text-[20px] font-[300] leading-[150%]'
       }
     default:
