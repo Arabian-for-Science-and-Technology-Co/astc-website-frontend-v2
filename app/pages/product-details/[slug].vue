@@ -2,7 +2,7 @@
   <div :class="['bg-[#F0F0F0] font-zarid']">
     <div
       :class="[
-        'bg flex h-screen max-h-[700px] flex-col justify-end bg-[#0D1667] pb-[60px] pt-[--header-height] text-white',
+        'flex h-screen max-h-[700px] flex-col justify-end bg-[#0D1667] pb-[60px] pt-[--header-height] text-white',
         'lg:max-h-[720px] lg:pb-[117px]',
         '3xl:max-h-[968px] 3xl:pb-[147px]'
       ]"
@@ -117,11 +117,7 @@ usePageHead(() => ({
   @apply text-[52px] font-[200] leading-[49.4px] tracking-[0.52px];
   @apply lg:text-[140px] lg:leading-[133px] lg:tracking-[1.4px];
 }
-.bg {
-  background:
-    url('~/assets/images/products/raad-2.jpg') lightgray 0px 62.383px / 100% 132.248% no-repeat,
-    #d9d9d9;
-}
+
 .app-container--edit {
   @media (min-width: 1600px) {
     padding-inline-start: 438px;
