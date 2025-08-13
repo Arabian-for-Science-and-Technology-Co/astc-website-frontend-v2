@@ -46,9 +46,10 @@
 
         <div
           :class="[
-            'app-container app-container--edit :mt-[30px] flex w-full max-w-full flex-wrap justify-center gap-x-[14px] gap-y-[28.5px] !pe-0',
-            'lg:mt-[60px] lg:justify-start lg:gap-x-[50px] lg:gap-y-[103.45px]',
-            'xl:gap-x-[108px] xl:gap-y-[103px] 3xl:max-w-[85%]'
+            'app-container app-container--edit mt-[30px] flex w-full max-w-full flex-wrap justify-center gap-x-[14px] gap-y-[28.5px] !pe-0',
+            'xs:justify-start',
+            'lg:mt-[60px] lg:gap-x-[50px] lg:gap-y-[103.45px]',
+            'xl:gap-x-[108px] xl:gap-y-[103px] 3xl:max-w-[85%] 3xl:!pe-0'
           ]"
         >
           <ProductCard
