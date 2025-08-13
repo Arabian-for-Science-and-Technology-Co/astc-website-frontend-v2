@@ -99,7 +99,7 @@ const props = defineProps({
   modelValue: { type: Boolean, default: false },
   itemId: { type: [String, Boolean] }
 })
-
+const { $toast } = useNuxtApp()
 const formData = reactive({
   email: '',
   phone: '',
@@ -128,12 +128,12 @@ async function submit() {
       method: 'POST',
       body: payload
     })
-    console.log('response', response)
+    $toast.success(response?.message, { duration: 4000 })
   } catch (err) {
     console.error(err)
+    useHandleErrorMsg(err)
   } finally {
     isLoading.value = false
   }
 }
- 
 </script>
