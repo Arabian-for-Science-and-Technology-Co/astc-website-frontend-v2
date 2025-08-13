@@ -19,7 +19,7 @@
       <div v-if="item.code == 'certificates_slider'" class="mt-[100px] lg:mt-[180px]">
         <h2
           :class="[
-            'app-container app-container--edit max-w-[282px] !pe-0 text-[30px] font-[600] leading-[110%] tracking-[0.3px]',
+            'app-container-small max-w-[282px] !pe-0 text-[30px] font-[600] leading-[110%] tracking-[0.3px]',
             'lg:max-w-full'
           ]"
         >
@@ -104,12 +104,7 @@ usePageHead(() => ({
     linear-gradient(191deg, rgba(13, 22, 103, 0) 23.08%, #0d1667 70.2%),
     url('~/assets/images/about/background.jpg');
 }
-.app-container--edit {
-  @media (min-width: 1600px) {
-    padding-inline-start: 438px;
-    padding-inline-end: 586px;
-  }
-}
+
 .font-section {
   font-family: Roboto !important;
 }
