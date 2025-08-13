@@ -64,7 +64,7 @@
       </section>
       <button
         :class="[
-          'relative mx-auto mt-[28px] self-center text-[22px] font-[500] leading-[120%] tracking-[0.22px] text-[#0ADF0A]',
+          'relative mx-auto mt-[28px] self-center text-[22px] font-[500] leading-[120%] tracking-[0.22px] text-[#0ADF0A] transition-all hover:opacity-80',
           'font-durke lg:mt-[43px] lg:text-[28px] lg:tracking-[0.28px]'
         ]"
       >
