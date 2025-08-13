@@ -60,7 +60,7 @@
       bodyClass="sm:!px-0 px-[30px]"
     >
       <ClickZoom
-        img-class="max-h-[85vh]"
+        img-class="max-h-[85vh] !object-contain"
         :src="selectedCertificate.image"
         :tap-zoom="2.5"
         :max-scale="5"
