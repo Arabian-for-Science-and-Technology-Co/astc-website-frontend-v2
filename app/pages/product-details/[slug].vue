@@ -77,7 +77,7 @@
         </BaseButton>
       </div>
     </div>
-    <RequestDocumentModal v-if="modalOpen" :itemId="productData.id" v-model:open="modalOpen" />
+    <RequestDocumentModal :itemId="productData?.id" v-model:open="modalOpen" />
   </div>
 </template>
 

@@ -42,9 +42,9 @@
             <button
               type="button"
               @click="handleCancel"
-              class="absolute end-[19px] top-[19px] hover:opacity-55 lg:end-5 lg:top-5"
+              class="absolute end-[18px] top-[18px] hover:opacity-55 lg:end-5 lg:top-5"
             >
-              <CloseIcon1 :size="19" />
+              <CloseIcon1 :size="gte('lg') ? 19 : 16" />
             </button>
             <slot name="header">
               <h3 class="text-lg font-semibold text-gray-800 dark:text-white">{{ title }}</h3>
@@ -85,6 +85,7 @@ const props = defineProps({
 const emit = defineEmits(['update:open'])
 
 const open = ref(props.open)
+const { gte } = useBreakpoints()
 
 watch(
   () => props.open,
@@ -114,7 +115,6 @@ async function handleSubmit(e) {
 
   // valid -> prevent normal navigation and handle in Vue
   await props.onConfirm?.()
-  close()
 }
 
 function handleCancel() {
