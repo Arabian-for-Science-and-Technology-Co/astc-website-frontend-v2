@@ -34,8 +34,12 @@
           id="phone"
           v-model="formData.phone"
           :label="$t('phone')"
+          type="tel"
+          inputmode="numeric"
+          maxlength="20"
+          pattern="^\+?[0-9]{1,20}$"
+          title="Digits only, optionally starting with +. Up to 20 digits."
           required
-          type="number"
           labelPlacement="inside"
         />
         <BaseInput

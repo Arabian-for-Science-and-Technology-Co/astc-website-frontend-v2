@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import type { InputHTMLAttributes } from 'vue'
 
 type Size = 'sm' | 'md' | 'lg' | 'xl'
 type LabelPlacement = 'above' | 'inside' | 'none'
@@ -9,6 +10,12 @@ const props = withDefaults(
     id?: string
     modelValue?: string | number | null
     type?: string
+    minlength?: number | string
+    maxlength?: number | string
+    step?: number | string
+    pattern?: string
+    inputmode?: InputHTMLAttributes['inputmode']
+    title?: string
     placeholder?: string
     size?: Size
     disabled?: boolean
@@ -128,6 +135,12 @@ function onInput(e: Event) {
         :placeholder="labelPlacement === 'inside' ? ' ' : placeholder"
         :disabled="disabled"
         :readonly="readonly"
+        :minlength="minlength"
+        :maxlength="maxlength"
+        :step="step"
+        :pattern="pattern"
+        :inputmode="inputmode"
+        :title="title"
         :required="required"
         :autocomplete="autocomplete"
         :aria-label="labelPlacement === 'none' ? ariaLabel : undefined"
