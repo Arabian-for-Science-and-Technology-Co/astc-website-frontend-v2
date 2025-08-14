@@ -4,8 +4,8 @@
       position="top-right"
       rich-colors
       :toastOptions="{
-        class: head.htmlAttrs.dir === 'rtl' ? 'font-arabic' : 'font-zarid',
-        descriptionClass: head.htmlAttrs.dir === 'rtl' ? 'font-arabic' : 'font-zarid'
+        class: locale == 'ar' ? 'font-arabic' : 'font-zarid',
+        descriptionClass: locale == 'ar' ? 'font-arabic' : 'font-zarid'
       }"
     />
     <NuxtPage />
@@ -13,10 +13,9 @@
 </template>
 <script setup>
 const config = useRuntimeConfig()
-const baseUrl = config.public.siteUrl || 'https://astc.com.sa/astc/'
+const baseUrl = config?.public?.siteUrl || 'https://astc.com.sa/astc/'
 const { locale } = useI18n()
-const head = useLocaleHead({ addDirAttribute: true, addSeoAttributes: true })
-const { settings, fetchSettings } = useWebsiteSettings()
+ const { settings, fetchSettings } = useWebsiteSettings()
 
 await fetchSettings()
 const staticMetaData = computed(() => ({
