@@ -64,5 +64,6 @@ const props = defineProps({
   totalPages: { type: Number },
   currentPage: { type: Number }
 })
+const { locale } = useI18n()
 </script>
 <style></style>
