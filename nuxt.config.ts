@@ -97,5 +97,6 @@ export default defineNuxtConfig({
         types: ['@nuxt/types', '@nuxtjs/tailwindcss']
       }
     }
-  }
+  },
+  ignore: ['**/pages/**/_components/**']
 })
