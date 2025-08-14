@@ -63,15 +63,17 @@
         </div>
       </section>
       <button
+        v-if="currentPage != totalPages"
+        @click="currentPage++"
         :class="[
           'relative mx-auto mt-[28px] self-center text-[22px] font-[500] leading-[120%] tracking-[0.22px] text-[#0ADF0A] transition-all hover:opacity-80',
           'font-durke lg:mt-[43px] lg:text-[28px] lg:tracking-[0.28px]'
         ]"
       >
         <SlashSvg />
-        <span class="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2">{{
-          $t('more_news')
-        }}</span>
+        <span class="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2">
+          {{ $t('more_news') }}
+        </span>
       </button>
     </div>
   </div>
@@ -86,12 +88,22 @@ definePageMeta({
   }
 })
 const customFetch = useCustomFetch()
-const { data: newsData } = await useAsyncData(
-  () => customFetch('/website/news?per_page=3&page=1'),
-  {
-    transform: (res) => res.data || []
-  }
-)
+const {
+  rows: newsData,
+  isLoading,
+  isLoadingMore,
+  currentPage,
+  totalPages
+} = usePaginatedFetcher({
+  service: async (params) => {
+    return await customFetch(`/website/news`, {
+      method: 'GET',
+      params
+    })
+  },
+  isLoadMorePagination: true,
+  defaultPerPage: 3
+})
 const { locale } = useI18n()
 const { getPage } = usePages()
 const newsPage = getPage('news')

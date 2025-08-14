@@ -1,16 +1,29 @@
+ /**
+ * @param {import('../types/paginatedFetcher').PaginatedFetcherOptions} options
+ * @returns {import('../types/paginatedFetcher').PaginatedFetcherApi}
+ */
+const _toValue = (v) => {
+  // If Vue 3.3's toValue exists, use it
+  const tv = (typeof globalThis !== 'undefined' && globalThis.Vue?.toValue) || undefined
+  if (typeof tv === 'function') return tv(v)
+  // else: unwrap refs and call getters
+  return typeof v === 'function' ? v() : unref(v)
+}
+
 export function usePaginatedFetcher(options) {
   const {
     service,
     defaultPerPage = 10,
     defaultIsLoading = false,
-    filterParams, //MaybeRefOrGetter
-    watch: watchSources = [], // Add the new watch option
+    filterParams = {}, // MaybeRefOrGetter<Record<string, any>>
+    watch: watchSources = [],
     rowsKey = 'data',
     paginationKey = 'meta',
     isLoadMorePagination = false,
     immediate = true,
     delay = 500
   } = options
+
   const isLoading = ref(defaultIsLoading)
   const isLoadingMore = ref(false)
   const rows = ref([])
@@ -19,30 +32,37 @@ export function usePaginatedFetcher(options) {
   const currentPage = ref(1)
   const totalPages = ref(1)
   const search = ref('')
-  //   const reactiveFilterParams = reactive(filterParams)
-  const reactiveFilterParams = toRef(filterParams)
-  const buildParams = () => ({
-    page: currentPage.value,
-    per_page: perPage.value,
-    ...(search.value && { keyword: search.value }),
-    ...Object.entries(reactiveFilterParams.value).reduce((acc, [key, value]) => {
-      if (value) acc[key] = value
+
+  // Always read the latest value of filterParams, whatever its shape (ref/getter/plain)
+  const filterParamsValue = computed(() => _toValue(filterParams) || {})
+
+  const buildParams = () => {
+    const fp = filterParamsValue.value || {}
+    const picked = Object.entries(fp).reduce((acc, [key, value]) => {
+      // keep 0 and false; drop only null/undefined and empty string
+      if (value !== '' && value !== null && value !== undefined) acc[key] = value
       return acc
     }, {})
-  })
+    return {
+      page: currentPage.value,
+      per_page: perPage.value,
+      ...(search.value ? { keyword: search.value } : {}),
+      ...picked
+    }
+  }
 
   const fetchData = async (queryParams) => {
-    // if (isLoading.value) return;
     isLoading.value = isLoadingMore.value ? false : true
     try {
       const result = await service(queryParams || buildParams())
-      rows.value = isLoadingMore.value
-        ? [...rows.value, ...(result?.[rowsKey] || [])]
-        : result?.[rowsKey]
+      const list = result?.[rowsKey] ?? []
+      rows.value = isLoadingMore.value ? rows.value.concat(list) : list
       totalPages.value = result?.[paginationKey]?.last_page || 1
       selectedRows.value = []
     } catch (error) {
-      useHandleErrorMsg(error)
+      try {
+        useHandleErrorMsg?.(error)
+      } catch (_) {}
       console.error('Fetch error:', error)
     } finally {
       isLoading.value = false
@@ -50,38 +70,42 @@ export function usePaginatedFetcher(options) {
     }
   }
 
+  // page changes (supports "load more")
   watchDebounced(
     currentPage,
     (newVal, oldVal) => {
       if (isLoadMorePagination && newVal > oldVal) {
         isLoadingMore.value = true
-        fetchData()
-      } else {
-        fetchData()
       }
+      fetchData()
     },
     { debounce: delay }
   )
 
+  // search / perPage / filters — snapshot object to avoid deep: true
   watchDebounced(
-    [search, perPage, () => ({ ...reactiveFilterParams.value })],
+    [search, perPage, () => ({ ...filterParamsValue.value })],
     () => {
       currentPage.value = 1
       fetchData()
     },
-    {
-      debounce: 100
-    }
+    { debounce: 100 }
   )
-  watchDebounced(
-    watchSources,
-    () => {
-      currentPage.value = 1
-      fetchData()
-    },
-    { debounce: delay }
-  )
-  immediate && fetchData()
+
+  // extra watch sources from caller
+  if (Array.isArray(watchSources) && watchSources.length) {
+    watchDebounced(
+      watchSources,
+      () => {
+        currentPage.value = 1
+        fetchData()
+      },
+      { debounce: delay }
+    )
+  }
+
+  if (immediate) fetchData()
+
   return {
     isLoading,
     isLoadingMore,
@@ -95,3 +119,4 @@ export function usePaginatedFetcher(options) {
     refresh: fetchData
   }
 }
+
