@@ -70,6 +70,8 @@
 </template>
 
 <script setup>
+import AboutTemplate from '~/pages/about/_components/AboutTemplate.vue'
+
 definePageMeta({
   layoutProps: {
     isWhiteLogo: true,
