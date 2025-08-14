@@ -9,16 +9,11 @@ export function messageFromError(err: unknown, fallback = 'An unknown error occu
   // Prefer $fetch/FetchError.data when present
   const data = e?.data ?? e
 
-  // 1) Simple string fields
-  for (const v of [data?.message, data?.error, e?.message, data?.statusMessage]) {
-    if (isStr(v) && v.trim()) return v.trim()
-  }
-
-  // 2) Array of strings (e.g., validation errors)
+  // -) Array of strings (e.g., validation errors)
   if (Array.isArray(data)) return joinStr(data)
   if (Array.isArray(data?.errors)) return joinStr(data.errors)
 
-  // 3) Object of field -> string|string[]
+  // -) Object of field -> string|string[]
   if (data?.errors && typeof data.errors === 'object') {
     const parts: string[] = []
     for (const v of Object.values(data.errors as Record<string, unknown>)) {
@@ -26,6 +21,11 @@ export function messageFromError(err: unknown, fallback = 'An unknown error occu
       else if (isStr(v)) parts.push(v)
     }
     if (parts.length) return parts.join(', ')
+  }
+
+  // -) Simple string fields
+  for (const v of [data?.message, data?.error, e?.message, data?.statusMessage]) {
+    if (isStr(v) && v.trim()) return v.trim()
   }
 
   return fallback
