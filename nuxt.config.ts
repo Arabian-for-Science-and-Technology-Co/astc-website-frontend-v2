@@ -73,6 +73,9 @@ export default defineNuxtConfig({
     }
   ],
   // ignore: ["pages/**/_*"],
+  pages: {
+    pattern: ['**/*.vue', '!**/_*']
+  },
 
   //----------------------others----------------------
   experimental: {
