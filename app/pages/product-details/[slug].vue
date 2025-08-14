@@ -34,7 +34,7 @@
         v-if="productData?.item_sections?.[0]"
         :data="productData?.item_sections?.[0]"
       />
-      <div :class="['mt-[59px]', 'lg:mt-[82px]']">
+      <div v-if="productData?.integrated_items?.length" :class="['mt-[59px]', 'lg:mt-[82px]']">
         <h2
           v-if="productData?.[`title_${locale}`]"
           :class="['app-container-small text-[30px] font-[600] leading-[33px] tracking-[0.3px]']"

@@ -7,7 +7,12 @@
     <section
       class="mt-[80px] flex flex-col justify-start gap-[83px] lg:mt-[97px] lg:gap-[126px] 3xl:mt-[123px] 3xl:gap-[166px]"
     >
-      <CategoryList :title="title" :items="categoryItems" />
+      <article>
+        <h2 class="main-title">{{ title }}</h2>
+        <div class="imgs-contianer mt-[74.47px]">
+          <ProductCard v-for="(item, i) in categoryItems || []" :data="item" />
+        </div>
+      </article>
     </section>
   </section>
 </template>
@@ -37,4 +42,15 @@ usePageHead(() => ({
   title: title.value
 }))
 </script>
-<style scoped></style>
+<style scoped>
+.main-title {
+  @apply text-[52px] font-[200] not-italic leading-[49.4px] tracking-[0.52px] text-[#18264A];
+  @apply 3xl:text-[90px] 3xl:leading-[85.5px] 3xl:tracking-[0.9px];
+}
+.imgs-contianer {
+  @apply flex w-full max-w-full flex-wrap justify-center gap-x-[14px] gap-y-[28.5px];
+  @apply xs:justify-start;
+  @apply lg:justify-start lg:gap-x-[50px] lg:gap-y-[103.45px];
+  @apply 3xl:max-w-[80%] 3xl:gap-x-[108px] 3xl:gap-y-[103px];
+}
+</style>

@@ -61,6 +61,7 @@ const solutions = computed(() =>
 /*------------------* */
 .imgs-contianer {
   @apply flex w-full max-w-full flex-wrap justify-center gap-x-[14px] gap-y-[28.5px];
+  @apply xs:justify-start;
   @apply lg:justify-start lg:gap-x-[50px] lg:gap-y-[103.45px];
   @apply 3xl:max-w-[80%] 3xl:gap-x-[108px] 3xl:gap-y-[103px];
 }
