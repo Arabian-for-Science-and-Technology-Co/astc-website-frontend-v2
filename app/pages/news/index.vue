@@ -31,7 +31,7 @@
       <section v-for="(item, index) in newsData" class="group">
         <h4
           :class="[
-            'group-hover:text-[#0ADF0A]',
+            'transition-colors group-hover:text-[#0ADF0A]',
             'text-[30px] font-[600] leading-[110%] tracking-[0.3px]'
           ]"
         >
@@ -39,7 +39,7 @@
         </h4>
         <p
           :class="[
-            'mt-[8px] text-[30px] font-[400] leading-[110%] group-hover:text-[#0ADF0A] lg:tracking-[0.3px]',
+            'mt-[8px] text-[30px] font-[400] leading-[110%] transition-colors group-hover:text-[#0ADF0A] lg:tracking-[0.3px]',
             'lg:mt-[6px] lg:text-[52px] lg:font-[200] lg:leading-[95%] lg:tracking-[0.52px]'
           ]"
         >
