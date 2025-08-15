@@ -1,6 +1,10 @@
 <template>
   <div class="mt-[85px] flex flex-col gap-[59px] lg:mt-[143px] lg:gap-[73px]">
-    <section v-for="(item, index) in newsData" class="group">
+    <NuxtLink
+      v-for="(item, index) in listData"
+      :to="`/news/${item.slug}`"
+      class="group hover:cursor-pointer"
+    >
       <h4
         :class="[
           'transition-colors group-hover:text-[#0ADF0A]',
@@ -33,11 +37,11 @@
       >
         #####################
       </div>
-    </section>
+    </NuxtLink>
     <BaseButton
       :isStyled="false"
       :disabled="isLoadingMore"
-      v-if="currentPage != totalPages && newsData?.length"
+      v-if="currentPage != totalPages && listData?.length"
       :isLoading="isLoadingMore"
       @click="$emit('update:currentPage', currentPage + 1)"
       :loadarProps="{
@@ -59,7 +63,7 @@
 
 <script setup>
 const props = defineProps({
-  newsData: { type: [Array, null], default: {} },
+  listData: { type: [Array, null], default: [] },
   isLoadingMore: { type: Boolean },
   totalPages: { type: Number },
   currentPage: { type: Number }
