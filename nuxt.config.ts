@@ -101,5 +101,4 @@ export default defineNuxtConfig({
       }
     }
   },
-  ignore: ['**/pages/**/_components/**']
 })
