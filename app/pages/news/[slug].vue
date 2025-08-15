@@ -1,5 +1,5 @@
 <template>
-  <div :class="['min-h-screen bg-[#F0F0F0] pt-[--header-height] font-zarid text-black']">
+  <div :class="['min-h-screen bg-[#F0F0F0] pt-[--header-height] font-zarid text-[#18264A]']">
     <section class="app-container-small mt-[128px] min-h-screen lg:mt-[129px]">
       <h1
         :class="[
@@ -8,10 +8,10 @@
       >
         {{ $t('news') }} /
       </h1>
-      <article>
+      <article :class="['mt-[64px]', 'lg:mt-[84px]']">
         <h4
           :class="[
-            'transition-colors group-hover:text-[#0ADF0A]',
+            'text-black transition-colors',
             'text-[30px] font-[600] leading-[110%] tracking-[0.3px]'
           ]"
         >
@@ -19,8 +19,8 @@
         </h4>
         <p
           :class="[
-            'mt-[8px] text-[30px] font-[400] leading-[110%] transition-colors group-hover:text-[#0ADF0A] lg:tracking-[0.3px]',
-            'lg:mt-[6px] lg:text-[52px] lg:font-[200] lg:leading-[95%] lg:tracking-[0.52px]'
+            'mt-[18px] text-[52px] font-[200] leading-[95%] tracking-[0.52px] transition-colors group-hover:text-[#0ADF0A]',
+            'lg:mt-[8px] lg:text-[90px] lg:leading-[95%] lg:tracking-[0.9px]'
           ]"
         >
           {{ newsData?.[`title_${locale}`] }}
@@ -30,25 +30,37 @@
           format="webp"
           v-if="newsData?.image"
           :src="newsData?.image"
-          class="mt-[24px] aspect-[180/103] w-[279.623px] self-end rounded-[10px] object-cover lg:mt-[42px] lg:aspect-[7/4] lg:w-[280px]"
+          class="mt-[50px] aspect-[180/103] w-full self-end rounded-[10px] object-cover lg:mt-[133px] lg:aspect-[173/99]"
           :alt="`video`"
         />
-        <NewsTemplate :content="newsData?.[`content_${locale}`]" />
-        <div>
-          <div>
-            <h3>{{ newsData?.testimonial?.[`content_${locale}`] }}</h3>
+        <NewsTemplate class="mt-[50px] lg:mt-[84px]" :content="newsData?.[`content_${locale}`]" />
+        <div :class="['mt-[60px]', 'lg:mt-[97.5px]']">
+          <div class="flex justify-between">
+            <h3
+              :class="[
+                'text-[30px] font-[200] leading-[110%] tracking-[0.3px]',
+                'lg:text-[52px] lg:leading-[95%] lg:tracking-[0.52px]'
+              ]"
+            >
+              {{ newsData?.testimonial?.[`content_${locale}`] }}
+            </h3>
             <BaseImg
               densities="x1 x2"
               format="webp"
               v-if="newsData?.testimonial?.image"
               :src="newsData?.testimonial?.image"
-              class="mt-[24px] aspect-[180/103] bg-slate-500/50 w-[279.623px] self-end rounded-[10px] object-cover lg:mt-[42px] lg:aspect-[7/4] lg:w-[280px]"
+              class="mt-[24px] aspect-square w-[89px] self-end rounded-full bg-slate-500/50 object-cover lg:mt-[42px] lg:w-[130px]"
               :alt="`video`"
             />
           </div>
-          <p>
-            {{ newsData?.testimonial?.[`name_${locale}`] }}
-            {{ newsData?.testimonial?.[`position_${locale}`] }}
+          <p
+            :class="[
+              'text-start text-[20px] font-[300] leading-[105%] tracking-[0.2px] text-black'
+            ]"
+          >
+            <span class="font-[600]">{{ newsData?.testimonial?.[`name_${locale}`] }}</span>
+            <br />
+            <span>{{ newsData?.testimonial?.[`position_${locale}`] }}</span>
           </p>
         </div>
       </article>

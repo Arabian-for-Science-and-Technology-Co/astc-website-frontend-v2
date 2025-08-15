@@ -3,7 +3,7 @@
     <article
       v-if="contentHtml"
       :class="[
-        'mt-[41px] space-y-[30px] text-[20px] font-[300] leading-[105%] tracking-[0.2px] rtl:leading-[130%]',
+        'space-y-[30px] text-[20px] font-[300] leading-[105%] tracking-[0.2px] rtl:leading-[130%]',
         'lg:mt-[90px] lg:space-y-[38px] lg:text-[30px] lg:leading-[110%] lg:tracking-[0.3px]',
         '[&_:is(strong)]:font-[600]',
         '[&_:is(ul,ol)]:w-[90%]',
