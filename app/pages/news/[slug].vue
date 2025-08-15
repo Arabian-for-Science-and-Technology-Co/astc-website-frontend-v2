@@ -34,7 +34,7 @@
           :alt="`video`"
         />
         <NewsTemplate class="mt-[50px] lg:mt-[84px]" :content="newsData?.[`content_${locale}`]" />
-        <div :class="['mt-[60px]', 'lg:mt-[97.5px]']">
+        <div :class="['mx-0 mt-[60px]', 'lg:me-[125px] lg:ms-[86px] lg:mt-[97.5px]']">
           <div class="flex justify-between">
             <h3
               :class="[
