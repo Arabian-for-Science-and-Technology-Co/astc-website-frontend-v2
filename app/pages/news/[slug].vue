@@ -29,7 +29,7 @@
     </div>
     <ClientOnly>
       <NewsList
-        :listData="newsListData"
+        :newsListData="newsListData"
         :isLoadingMore="isLoadingMore"
         :totalPages="totalPages"
         v-model:currentPage="currentPage"
@@ -40,7 +40,6 @@
 
 <script setup>
 import NewsList from './_components/NewsList.vue'
-
 definePageMeta({
   layoutProps: {
     isWhiteLogo: true,
@@ -48,7 +47,19 @@ definePageMeta({
     selectedTabClass: 'bg-[#465AE6] text-white'
   }
 })
+const route = useRoute()
+const { locale } = useI18n()
+
 const customFetch = useCustomFetch()
+const { data: newsData } = await useAsyncData(
+  () => `news-details:${route.params.slug}`,
+  () => customFetch(`/website/news${route.params.slug}`),
+  {
+    transform: (res) => res.data || [],
+    watch: [() => route.params.slug]
+  }
+)
+
 const {
   rows: newsListData,
   isLoading,
@@ -63,16 +74,13 @@ const {
     })
   },
   isLoadMorePagination: true,
-  defaultPerPage: 3
+  defaultPerPage: 3,
+  watch: [() => route.params.slug]
 })
-
-const { locale } = useI18n()
-const { getPage } = usePages()
-const newsPage = getPage('news')
 usePageHead(() => ({
-  title: newsPage?.[`meta_title_${locale.value}`],
-  description: newsPage?.[`meta_description_${locale.value}`],
-  keywords: newsPage?.[`meta_keywords_${locale.value}`]
+  title: newsData.value?.[`meta_title_${locale.value}`],
+  description: newsData.value?.[`meta_description_${locale.value}`],
+  keywords: newsData.value?.[`meta_keywords_${locale.value}`]
 }))
 </script>
 <style></style>
