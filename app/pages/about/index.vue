@@ -1,5 +1,6 @@
 <template>
   <div
+    :style="{ '--container-pe-lg-screens': '26.5vw' }"
     :class="[
       'bg flex min-h-screen flex-col bg-[#0D1667] pb-[209px] pt-[--header-height] font-zarid text-white lg:pb-[300px] 3xl:pb-[280px]'
     ]"
