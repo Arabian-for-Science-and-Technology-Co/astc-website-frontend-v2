@@ -1,6 +1,11 @@
 <template>
   <div :class="['min-h-screen bg-[#F0F0F0] pt-[--header-height] font-zarid text-[#18264A]']">
-    <section class="app-container-small mt-[128px] min-h-screen lg:mt-[129px]">
+    <section
+      :class="[
+        'app-container-small min-h-screen pb-[78px] pt-[78px]',
+        'lg:pb-[174px] lg:pt-[134px]'
+      ]"
+    >
       <h1
         :class="[
           'font-durke text-[28px] font-[500] leading-[120%] tracking-[0.28px] text-[#0ADF0A]'
@@ -17,14 +22,14 @@
         >
           {{ $fd(newsData?.updated_at, 'll') }}
         </h4>
-        <p
+        <h5
           :class="[
             'mt-[18px] text-[52px] font-[200] leading-[95%] tracking-[0.52px] transition-colors group-hover:text-[#0ADF0A]',
             'lg:mt-[8px] lg:text-[90px] lg:leading-[95%] lg:tracking-[0.9px]'
           ]"
         >
           {{ newsData?.[`title_${locale}`] }}
-        </p>
+        </h5>
         <BaseImg
           densities="x1 x2"
           format="webp"
@@ -34,28 +39,35 @@
           :alt="`video`"
         />
         <NewsTemplate class="mt-[50px] lg:mt-[84px]" :content="newsData?.[`content_${locale}`]" />
-        <div :class="['mx-0 mt-[60px]', 'lg:me-[125px] lg:ms-[86px] lg:mt-[97.5px]']">
-          <div class="flex justify-between">
-            <h3
-              :class="[
-                'text-[30px] font-[200] leading-[110%] tracking-[0.3px]',
-                'lg:text-[52px] lg:leading-[95%] lg:tracking-[0.52px]'
-              ]"
-            >
-              {{ newsData?.testimonial?.[`content_${locale}`] }}
-            </h3>
-            <BaseImg
-              densities="x1 x2"
-              format="webp"
-              v-if="newsData?.testimonial?.image"
-              :src="newsData?.testimonial?.image"
-              class="mt-[24px] aspect-square w-[89px] self-end rounded-full bg-slate-500/50 object-cover lg:mt-[42px] lg:w-[130px]"
-              :alt="`video`"
-            />
-          </div>
+        <div
+          :class="[
+            'ms-[17px] mt-[60px] grid max-w-[677px] grid-cols-[1fr_auto] grid-rows-2',
+            'lg:ms-[86px] lg:mt-[97.5px]'
+          ]"
+        >
+          <h3
+            :class="[
+              'col-span-2 col-start-1 row-start-1 text-[30px] font-[200] leading-[110%] tracking-[0.3px]',
+              'lg:col-span-1 lg:text-[52px] lg:leading-[95%] lg:tracking-[0.52px]'
+            ]"
+          >
+            {{ newsData?.testimonial?.[`content_${locale}`] }}
+          </h3>
+          <BaseImg
+            densities="x1 x2"
+            format="webp"
+            v-if="newsData?.testimonial?.image"
+            :src="newsData?.testimonial?.image"
+            :class="[
+              'col-start-2 row-start-2 aspect-square w-[89px] rounded-full bg-slate-500/50 object-cover',
+              'lg:col-start-2 lg:row-start-1 lg:w-[130px]'
+            ]"
+            :alt="`video`"
+          />
           <p
             :class="[
-              'text-start text-[20px] font-[300] leading-[105%] tracking-[0.2px] text-black'
+              'col-start-1 row-start-2 pt-[25px] text-start text-[20px] font-[300] leading-[105%] tracking-[0.2px] text-black',
+              'lg:pt-[39px]'
             ]"
           >
             <span class="font-[600]">{{ newsData?.testimonial?.[`name_${locale}`] }}</span>
@@ -67,7 +79,10 @@
     </section>
     <ClientOnly>
       <NewsList
-        class="app-container-small bg-[#465AE6] text-white"
+        :class="[
+          'app-container-small bg-[#465AE6] pb-[179px] pt-[80px] text-white',
+          'lg:pb-[145px] lg:pt-[100px]'
+        ]"
         :listData="newsListData"
         :isLoadingMore="isLoadingMore"
         :totalPages="totalPages"

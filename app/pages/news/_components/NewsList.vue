@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-[85px] flex flex-col gap-[59px] lg:mt-[143px] lg:gap-[73px]">
+  <div class="flex flex-col gap-[59px] lg:gap-[73px]">
     <NuxtLink
       v-for="(item, index) in listData"
       :to="`/news/${item.slug}`"
