@@ -29,6 +29,7 @@
     </div>
     <ClientOnly>
       <NewsList
+        :class="['mt-[85px]', 'lg:mt-[143px]']"
         :listData="newsListData"
         :isLoadingMore="isLoadingMore"
         :totalPages="totalPages"
