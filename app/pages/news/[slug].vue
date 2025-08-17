@@ -30,14 +30,26 @@
         >
           {{ newsData?.[`title_${locale}`] }}
         </h5>
-        <BaseImg
-          densities="x1 x2"
-          format="webp"
-          v-if="newsData?.image"
-          :src="newsData?.image"
+
+        <div
+          v-if="newsData?.video_url || newsData?.image"
           class="mt-[50px] aspect-[180/103] w-full self-end rounded-[10px] object-cover lg:mt-[133px] lg:aspect-[173/99]"
-          :alt="`video`"
-        />
+        >
+          <CustomVideo
+            v-if="newsData?.video_url"
+            :poster="newsData?.image"
+            :src="newsData?.video_url"
+          />
+
+          <BaseImg
+            v-else
+            densities="x1 x2"
+            format="webp"
+            :src="newsData?.image"
+            class="h-full w-full object-cover"
+            :alt="`video`"
+          />
+        </div>
         <NewsTemplate class="mt-[50px] lg:mt-[84px]" :content="newsData?.[`content_${locale}`]" />
         <div
           :class="[
@@ -131,13 +143,7 @@ const {
   defaultPerPage: 3,
   watch: [() => route.params.slug]
 })
-watch(
-  newsListData,
-  (newsListData) => {
-    console.log('newsListData', newsListData)
-  },
-  { deep: true }
-)
+
 usePageHead(() => ({
   title: newsData.value?.[`meta_title_${locale.value}`],
   description: newsData.value?.[`meta_description_${locale.value}`],
