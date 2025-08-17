@@ -11,13 +11,13 @@
 </template>
 
 <script setup>
-import NewsSection from '~/components/sections/NewsSection.vue'
-import AnnouncementSection from '~/components/sections/AnnouncementSection.vue'
-import PromoSection from '~/components/sections/PromoSection.vue'
-import CustomersSection from '~/components/sections/CustomersSection.vue'
-import ParallaxSection from '~/components/sections/parallax-section/ParallaxSection.vue'
-import PartnersSection from '~/components/sections/PartnersSection.vue'
-import SaudiVisionSection from '~/components/sections/SaudiVisionSection.vue'
+import NewsSection from '~/pages/home/_components/NewsSection.vue'
+import AnnouncementSection from '~/pages/home/_components/AnnouncementSection.vue'
+import PromoSection from '~/pages/home/_components/PromoSection.vue'
+import CustomersSection from '~/pages/home/_components/CustomersSection.vue'
+import ParallaxSection from '~/pages/home/_components/parallax-section/ParallaxSection.vue'
+import PartnersSection from '~/pages/home/_components/PartnersSection.vue'
+import SaudiVisionSection from '~/pages/home/_components/SaudiVisionSection.vue'
 definePageMeta({
   layoutProps: {
     showLeftLogo: false,
