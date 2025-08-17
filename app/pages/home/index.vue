@@ -11,6 +11,7 @@
 </template>
 
 <script setup>
+import HeroSection from '~/pages/home/_components/hero-section/HeroSection.vue'
 import NewsSection from '~/pages/home/_components/NewsSection.vue'
 import AnnouncementSection from '~/pages/home/_components/AnnouncementSection.vue'
 import PromoSection from '~/pages/home/_components/PromoSection.vue'
