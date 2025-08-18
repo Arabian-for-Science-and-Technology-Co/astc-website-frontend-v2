@@ -50,7 +50,11 @@
             :alt="`video`"
           />
         </div>
-        <NewsTemplate class="mt-[50px] lg:mt-[84px]" :content="newsData?.[`content_${locale}`]" />
+        <Contnet
+          v-if="newsData?.[`content_${locale}`]"
+          :content="newsData?.[`content_${locale}`]"
+          class="mt-[50px] lg:mt-[84px]"
+        />
         <div
           :class="[
             'ms-[17px] mt-[60px] grid max-w-[677px] grid-cols-[1fr_auto] grid-rows-2',
@@ -106,7 +110,6 @@
 
 <script setup>
 import NewsList from './_components/NewsList.vue'
-import NewsTemplate from './_components/NewsTemplate.vue'
 definePageMeta({
   layoutProps: {
     isWhiteLogo: false,
