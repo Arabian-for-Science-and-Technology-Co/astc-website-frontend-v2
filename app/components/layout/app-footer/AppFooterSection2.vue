@@ -71,16 +71,6 @@ const tabs = computed(() => [
       label: page?.[`title_${locale.value}`],
       value: `/${page.slug}`
     })),
-  {
-    id: 'privacy_policy',
-    label: t('privacy_policy'),
-    value: `/privacy-policy`
-  },
-  {
-    id: 'terms_and_conditions',
-    label: t('terms_and_conditions'),
-    value: `/terms-and-conditions`
-  }
 ])
 </script>
 <style scoped>
