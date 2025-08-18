@@ -40,7 +40,7 @@ const route = useRoute()
 const { locale } = useI18n()
 const tabs = computed(() =>
   pages.value
-    .filter((page) => page.slug != 'home')
+    .filter((page) => page.slug != 'home' && page.type != 'other')
     .map((page) => ({
       id: page.slug,
       label: page?.[`title_${locale.value}`],
