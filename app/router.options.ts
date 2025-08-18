@@ -1,14 +1,6 @@
 import type { RouterConfig } from '@nuxt/schema'
 
 export default <RouterConfig>{
-  routes: (_routes) => [
-    ..._routes, // keep all auto-generated routes
-     {
-      name: 'home',
-      path: '/',
-      component: () => import('~/pages/home/index.vue')
-    }
-  ],
   async scrollBehavior(to, from, savedPosition) {
     const nuxtApp = useNuxtApp()
 

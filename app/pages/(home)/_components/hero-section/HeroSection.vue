@@ -73,7 +73,7 @@
 </template>
 
 <script setup>
-import ServicesSlider from '~/pages/home/_components/hero-section/services-slider/ServicesSlider.vue'
+import ServicesSlider from '~/pages/(home)/_components/hero-section/services-slider/ServicesSlider.vue'
 
 const ASC_Logo_Main = '/Icons/ASC_Logo_Main.svg'
 
