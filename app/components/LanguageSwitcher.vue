@@ -1,6 +1,7 @@
 <template>
   <ClientOnly>
     <Tabs
+      :dir="'ltr'"
       :tabs="availableLocales"
       :modelValue="mapped[locale]"
       @update:model-value="switchLocale"

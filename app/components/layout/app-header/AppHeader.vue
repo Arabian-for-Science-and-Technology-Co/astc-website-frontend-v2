@@ -11,10 +11,9 @@
     <template #desktopMenu="{ floatingClass }">
       <ClientOnly>
         <DesktopMenu
-          :dir="'ltr'"
           ref="desktopMenuRef"
           :tabs="tabs"
-          :class="floatingClass"
+          :class="[floatingClass, 'navbar-dir']"
           :tabsClass="tabsClass"
           :selectedTabClass="selectedTabClass"
         />
