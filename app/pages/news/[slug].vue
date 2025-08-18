@@ -75,7 +75,7 @@
             v-if="newsData?.testimonial?.image"
             :src="newsData?.testimonial?.image"
             :class="[
-              'col-start-2 row-start-2 aspect-square w-[89px] rounded-full bg-slate-500/50 object-cover',
+              'col-start-2 row-start-2 aspect-square w-[89px] rounded-full object-cover object-top',
               'lg:col-start-2 lg:row-start-1 lg:w-[130px]'
             ]"
             :alt="`video`"
