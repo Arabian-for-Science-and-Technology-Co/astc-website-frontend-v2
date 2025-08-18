@@ -1,8 +1,7 @@
 <template>
   <section
-    :dir="'ltr'"
     :class="[
-      'app-container absolute z-40 flex h-fit w-full items-center justify-between bg-transparent transition-colors duration-300',
+      'app-container navbar-dir absolute z-40 flex h-fit w-full items-center justify-between bg-transparent transition-colors duration-300',
       'pt-[--header-pt]'
     ]"
   >
