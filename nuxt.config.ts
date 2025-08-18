@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   ssr: true, // SSR is default, but be explicit
   compatibilityDate: '2024-05-07', // unlock Netlify Functions v2 features in Nitro
+
   // Nitro will auto-detect Netlify, no preset required for serverless
   app: {
     pageTransition: {
