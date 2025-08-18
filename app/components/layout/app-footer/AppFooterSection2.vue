@@ -23,24 +23,32 @@
     </h3>
     <div
       :class="[
-        'pages',
-        'grid-rows-col grid-col-1 grid w-fit gap-x-[0px] gap-y-[28px]',
-        'lg:col-span-4 lg:mt-[4px] lg:grid lg:grid-cols-[auto_auto_auto] lg:gap-x-[40px] lg:gap-y-[0px]',
-        'xl:gap-x-[60px]',
-        '3xl:col-span-4 3xl:ms-[14px] 3xl:mt-[14px]'
+        'grid-col-1 flex w-fit flex-col gap-y-[28px]',
+        'lg:col-span-4 lg:mt-[4px] lg:gap-y-[14px]',
+        '3xl:ms-[14px] 3xl:mt-[14px]'
       ]"
     >
-      <button
-        v-for="item in tabs"
-        :key="item.id"
-        @click="navigateTo(item.value)"
+      <div
+        v-for="(tabsRow, index) in tabsRows"
         :class="[
-          'text-start text-[52px] font-[200] not-italic leading-[49.4px] tracking-[0.52px]',
-          'lg:whitespace-nowrap lg:text-xl lg:font-normal lg:leading-[105%] lg:tracking-[0.2px]'
+          index == 0 && tabsRows.length == 1 && 'pages',
+          'grid-rows-col grid w-fit gap-x-[0px] gap-y-[28px]',
+          'lg:grid-flow-col lg:grid-rows-2 lg:gap-x-[40px] lg:gap-y-[0px]',
+          'xl:gap-x-[60px]'
         ]"
       >
-        {{ item.label }}
-      </button>
+        <button
+          v-for="item in tabsRow"
+          :key="item.id"
+          @click="navigateTo(item.value)"
+          :class="[
+            'text-start text-[52px] font-[200] not-italic leading-[49.4px] tracking-[0.52px]',
+            'lg:whitespace-nowrap lg:text-xl lg:font-normal lg:leading-[105%] lg:tracking-[0.2px]'
+          ]"
+        >
+          {{ item.label }}
+        </button>
+      </div>
     </div>
     <div
       :class="[
@@ -58,6 +66,7 @@
 </template>
 
 <script setup>
+import { chunkArray } from '~/utils/arraysFns'
 const { t, locale } = useI18n()
 const { settings } = useWebsiteSettings()
 
@@ -70,8 +79,9 @@ const tabs = computed(() => [
       id: page.slug,
       label: page?.[`title_${locale.value}`],
       value: `/${page.slug}`
-    })),
+    }))
 ])
+const tabsRows = computed(() => chunkArray(tabs.value, 6))
 </script>
 <style scoped>
 .pages button:last-child {
