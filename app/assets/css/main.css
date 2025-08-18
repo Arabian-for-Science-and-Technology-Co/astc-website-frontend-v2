@@ -13,6 +13,7 @@
 
 @import './utilities/_mixins.css';
 @import './utilities/_scrollbar.css';
+@import './utilities/_nav_direction.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
