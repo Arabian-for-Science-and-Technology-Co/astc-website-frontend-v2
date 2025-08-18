@@ -2,6 +2,7 @@
 @import './base/_typography.css';
 @import './base/_root.css';
 @import './base/_inputs.css';
+@import './base/_content-typography.css';
 
 @import './animation/_language_transitions.css';
 @import './animation/_navigation_transitions.css';
