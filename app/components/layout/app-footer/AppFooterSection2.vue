@@ -25,7 +25,7 @@
       :class="[
         'pages',
         'grid-rows-col grid-col-1 grid w-fit gap-x-[0px] gap-y-[28px]',
-        'lg:col-span-4 lg:mt-[4px] lg:grid lg:grid-flow-col lg:grid-rows-2 lg:gap-x-[40px] lg:gap-y-[0px]',
+        'lg:col-span-4 lg:mt-[4px] lg:grid lg:grid-cols-[auto_auto_auto] lg:gap-x-[40px] lg:gap-y-[0px]',
         'xl:gap-x-[60px]',
         '3xl:col-span-4 3xl:ms-[14px] 3xl:mt-[14px]'
       ]"
