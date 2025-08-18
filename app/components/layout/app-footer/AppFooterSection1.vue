@@ -25,35 +25,44 @@
     </div>
     <div
       :class="[
-        'mx-0 mt-[35px] flex items-center gap-[21px]',
+        'mx-0 mt-[35px] flex flex-wrap items-center gap-[21px]',
         'lg:col-span-3 lg:mx-auto lg:mt-0 lg:gap-8 lg:self-start',
         '3xl:col-span-2 3xl:mx-0 3xl:gap-8 3xl:self-center'
       ]"
     >
-      <a
-        v-if="settings?.social_links?.twitter"
-        :href="settings?.social_links?.twitter"
-        target="_blank"
-      >
-        <XTwitterIcon class="w-[45px] lg:w-[68px]" :color="themeColor" :hoverColor="'#1778FF'" />
-      </a>
-      <a
-        v-if="settings?.social_links?.linkedin"
-        :href="settings?.social_links?.linkedin"
-        target="_blank"
-      >
-        <LinkedinIcon class="w-[45px] lg:w-[68px]" :color="themeColor" :hoverColor="'#1778FF'" />
-      </a>
+      <template v-for="(value, key) in settings?.social_links || {}" :key="key">
+        <a v-if="value" :href="value" :title="value" target="_blank">
+          <component
+            :is="socials?.[key]"
+            :key="key"
+            class="w-[45px] lg:w-[68px]"
+            :color="themeColor"
+            :hoverColor="'#1778FF'"
+          />
+        </a>
+      </template>
     </div>
   </article>
 </template>
 
 <script setup>
+import XTwitterIcon from '~/components/icons/XTwitterIcon.vue'
+import LinkedinIcon from '~/components/icons/LinkedinIcon.vue'
+import FacebookIcon from '~/components/icons/FacebookIcon.vue'
+import InstagramIcon from '~/components/icons/InstagramIcon.vue'
+import YoutubeIcon from '~/components/icons/YoutubeIcon.vue'
 defineProps({
   themeColor: { type: String }
 })
 const { locale } = useI18n()
 const { settings } = useWebsiteSettings()
+const socials = {
+  twitter: XTwitterIcon,
+  linkedin: LinkedinIcon,
+  facebook: FacebookIcon,
+  instagram: InstagramIcon,
+  youtube: YoutubeIcon
+}
 </script>
 <style scoped>
 .phone-number {
