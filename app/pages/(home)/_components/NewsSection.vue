@@ -10,7 +10,7 @@
           v-for="(item, index) in newsData"
           :to="`/news/${item.slug}`"
         >
-          <div class="not-italic text-white hover:text-[#0ADF0A]">
+          <div class="not-italic text-white transition-colors hover:text-[#0ADF0A]">
             <h4
               :class="[
                 'main-title mb-[14px] text-[16px] font-[500] uppercase leading-[19.2px] tracking-[0.16px]',
