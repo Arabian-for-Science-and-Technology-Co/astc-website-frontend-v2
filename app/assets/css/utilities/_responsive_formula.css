@@ -1,0 +1,3 @@
+/* k = 100 * (maxSize - minSize) / (maxW - minW)
+c = minSize - (minW / 100) * k
+font-size: clamp(minSizepx, calc(cpx + kvw), maxSizepx); */
