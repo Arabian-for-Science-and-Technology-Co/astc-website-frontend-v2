@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-throw navigateTo('/', { redirectCode: 307 })
+throw navigateTo('/', { redirectCode: 307, replace: true })
 const route = useRoute()
 const { locale } = useI18n()
 const slug = computed(() =>
