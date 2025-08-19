@@ -102,7 +102,8 @@
         :listData="newsListData"
         :isLoadingMore="isLoadingMore"
         :totalPages="totalPages"
-        v-model:currentPage="currentPage"
+        :loadMore="loadMore"
+        :currentPage="currentPage"
       />
     </ClientOnly>
   </div>
@@ -131,7 +132,7 @@ const { data: newsData } = await useAsyncData(
 
 const {
   rows: newsListData,
-  isLoading,
+  loadMore,
   isLoadingMore,
   currentPage,
   totalPages
