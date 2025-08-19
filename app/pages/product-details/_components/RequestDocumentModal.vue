@@ -88,8 +88,16 @@
           {{ $t('by_submitting_your_data_you_agree') }}
           <br />
           {{ $t('to_the') }}
-          <span class="text-[#0D1667]">{{ $t('privacy_policy') }}</span> &
-          <span class="text-[#0D1667]">{{ $t('terms_and_conditions') }}</span>
+          <NuxtLink :to="`/${privacyPolicyPage.slug}`" class="inline text-[#0D1667] no-underline">
+            {{ privacyPolicyPage?.[`title_${locale}`] }}
+          </NuxtLink>
+          &
+          <NuxtLink
+            :to="`/${termsAndConditionsPage.slug}`"
+            class="inline text-[#0D1667] no-underline"
+          >
+            {{ termsAndConditionsPage?.[`title_${locale}`] }}
+          </NuxtLink>
         </p>
       </div>
     </div>
@@ -102,8 +110,12 @@ const props = defineProps({
   itemId: { type: [String, Number] }
 })
 const emits = defineEmits(['update:open'])
-
+const { locale } = useI18n()
 const { $toast } = useNuxtApp()
+const { getPage } = usePages()
+const privacyPolicyPage = getPage('privacy-policy')
+const termsAndConditionsPage = getPage('terms-and-conditions')
+
 const formData = reactive({
   email: '',
   phone: '',
