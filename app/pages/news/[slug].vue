@@ -58,7 +58,7 @@
         <div
           :class="[
             'ms-[17px] mt-[60px] grid max-w-[677px] grid-cols-[1fr_auto] grid-rows-2',
-            'lg:ms-[86px] lg:mt-[97.5px]'
+            'lg:ms-[86px] lg:mt-[97.5px] lg:gap-x-[62px]'
           ]"
         >
           <h3
