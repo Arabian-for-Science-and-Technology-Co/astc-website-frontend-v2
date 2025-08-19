@@ -11,6 +11,6 @@ export default <RouterConfig>{
       await nuxtApp.$i18n.waitForPendingLocaleChange()
     }
 
-    return savedPosition || { top: 0 }
+    return { top: 0 }
   }
 }
