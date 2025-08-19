@@ -41,9 +41,9 @@
     <BaseButton
       :isStyled="false"
       :disabled="isLoadingMore"
-      v-if="currentPage != totalPages && listData?.length"
       :isLoading="isLoadingMore"
-      @click="$emit('update:currentPage', currentPage + 1)"
+      v-if="isLoadingMore || (currentPage != totalPages && listData?.length)"
+      @click="loadMore"
       :loadarProps="{
         color: '#0ADF0A',
         size: 26
@@ -66,7 +66,8 @@ const props = defineProps({
   listData: { type: [Array, null], default: [] },
   isLoadingMore: { type: Boolean },
   totalPages: { type: Number },
-  currentPage: { type: Number }
+  currentPage: { type: Number },
+  loadMore: { type: Function }
 })
 const { locale } = useI18n()
 </script>

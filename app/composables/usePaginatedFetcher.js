@@ -1,4 +1,4 @@
- /**
+/**
  * @param {import('../types/paginatedFetcher').PaginatedFetcherOptions} options
  * @returns {import('../types/paginatedFetcher').PaginatedFetcherApi}
  */
@@ -19,8 +19,8 @@ export function usePaginatedFetcher(options) {
     watch: watchSources = [],
     rowsKey = 'data',
     paginationKey = 'meta',
-    isLoadMorePagination = false,
     immediate = true,
+    isLoadMorePagination = false,
     delay = 500
   } = options
 
@@ -69,18 +69,13 @@ export function usePaginatedFetcher(options) {
       isLoadingMore.value = false
     }
   }
-
+  const loadMore = () => {
+    isLoadingMore.value = true
+    currentPage.value++
+    fetchData()
+  }
   // page changes (supports "load more")
-  watchDebounced(
-    currentPage,
-    (newVal, oldVal) => {
-      if (isLoadMorePagination && newVal > oldVal) {
-        isLoadingMore.value = true
-      }
-      fetchData()
-    },
-    { debounce: delay }
-  )
+  watchDebounced(currentPage, () => !isLoadMorePagination && fetchData(), { debounce: delay })
 
   // search / perPage / filters — snapshot object to avoid deep: true
   watchDebounced(
@@ -116,7 +111,7 @@ export function usePaginatedFetcher(options) {
     totalPages,
     search,
     fetchData,
+    loadMore,
     refresh: fetchData
   }
 }
-
