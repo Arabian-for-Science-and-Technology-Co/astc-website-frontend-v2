@@ -83,24 +83,20 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['update:open'])
+const open = computed({
+  get: () => props.open,
+  set: (val) => emit('update:open', val)
+})
 
-const open = ref(props.open)
 const { gte } = useBreakpoints()
 
-watch(
-  () => props.open,
-  (val) => {
-    open.value = val
-    if (val) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
+useHead(() => ({
+  bodyAttrs: {
+    class: open.value ? 'overflow-hidden' : undefined
   }
-)
-
+}))
 function close() {
-  emit('update:open', false)
+  open.value = false
 }
 
 async function handleSubmit(e) {
