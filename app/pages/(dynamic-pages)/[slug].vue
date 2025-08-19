@@ -7,7 +7,7 @@
       ]"
     >
       <dynamicPageTemplate
-        v-for="item in aboutData"
+        v-for="item in pageDetailsData"
         :key="item?.id"
         :data="item"
         class="first-of-type:mt-[68px] first-of-type:lg:mt-[62px] first-of-type:3xl:mt-[106px]"
@@ -26,7 +26,7 @@ if (!route.params.slug || !route.query.id) {
 }
 
 const customFetch = useCustomFetch()
-const { data: aboutData } = await useAsyncData(
+const { data: pageDetailsData } = await useAsyncData(
   () => `dynamic-pages:${route.params.slug}`,
   () => customFetch(`/website/home/page/${route.query.id}/sections`),
   {
