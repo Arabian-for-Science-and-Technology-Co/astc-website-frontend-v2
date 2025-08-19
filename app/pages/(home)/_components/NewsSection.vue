@@ -9,7 +9,7 @@
           class="group relative flex h-full flex-shrink-0 items-start justify-start pe-[100px] last-of-type:pe-0"
           v-for="(item, index) in newsData"
         >
-          <div class="not-italic text-white hover:text-[#0ADF0A]">
+          <div class="not-italic text-white transition-colors hover:text-[#0ADF0A]">
             <h4
               :class="[
                 'main-title mb-[14px] text-[16px] font-[500] uppercase leading-[19.2px] tracking-[0.16px]',
