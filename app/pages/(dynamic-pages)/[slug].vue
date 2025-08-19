@@ -22,7 +22,7 @@ const route = useRoute()
 const { locale } = useI18n()
 
 if (!route.params.slug || !route.query.id) {
-  throw navigateTo('/', { redirectCode: 307 })
+  throw navigateTo('/', { redirectCode: 307, replace: true })
 }
 
 const customFetch = useCustomFetch()
