@@ -1,9 +1,9 @@
 export const usePages = () => {
   const pages = useState('pages', () => [])
+  const customFetch = useCustomFetch()
 
   const fetchPages = async () => {
     if (pages.value.length > 0) return
-    const customFetch = useCustomFetch()
     try {
       const { data } = await customFetch('/website/home/page')
       pages.value = data || []
