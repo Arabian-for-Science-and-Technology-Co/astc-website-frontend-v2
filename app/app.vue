@@ -15,9 +15,12 @@
 const config = useRuntimeConfig()
 const baseUrl = config?.public?.siteUrl || 'https://astc.com.sa/astc/'
 const { locale } = useI18n()
- const { settings, fetchSettings } = useWebsiteSettings()
 
+const { fetchPages } = usePages()
+const { settings, fetchSettings } = useWebsiteSettings()
 await fetchSettings()
+await fetchPages()
+
 const staticMetaData = computed(() => ({
   title: settings?.value?.[`meta_title_${locale.value}`] || 'ASTC',
   description:
