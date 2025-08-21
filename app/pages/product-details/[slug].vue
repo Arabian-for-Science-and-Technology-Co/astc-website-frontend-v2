@@ -98,8 +98,8 @@ const { data: productData } = await useAsyncData(
   () => `product-details:${route.params.slug}`,
   () => customFetch(`/website/home/item/${route.params.slug}`),
   {
-    // transform: (res) => res.data || [],
-    transform: (res) => dummyRes.data || [],
+    transform: (res) => res.data || [],
+    // transform: (res) => dummyRes.data || [],
     watch: [() => route.params.slug]
   }
 )
