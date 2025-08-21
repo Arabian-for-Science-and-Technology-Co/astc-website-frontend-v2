@@ -3,7 +3,6 @@ module.exports = {
     {
       name: "my-new-app",
       script: ".output/server/index.mjs", // Nuxt 3; for Nuxt 2 use "npm", args: "start"
-      // args: "start",                   // (uncomment for Nuxt 2)
       env: {
         NODE_ENV: "production",
         HOST: "127.0.0.1",
