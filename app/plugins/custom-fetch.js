@@ -103,6 +103,6 @@ export default defineNuxtPlugin((nuxtApp) => {
       throw error.data || error
     }
   }
-
+  nuxtApp.vueApp.config.globalProperties.$customFetch = useCustomeFetch
   nuxtApp.provide('customFetch', useCustomeFetch)
 })

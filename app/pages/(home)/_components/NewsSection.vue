@@ -5,9 +5,10 @@
   >
     <ScrollWithDragWrapper class="app-container h-full !overflow-y-visible">
       <div class="flex h-full items-start justify-start gap-[70px] lg:gap-[95px]">
-        <div
+        <NuxtLink
           class="group relative flex h-full flex-shrink-0 items-start justify-start pe-[100px] last-of-type:pe-0"
           v-for="(item, index) in newsData"
+          :to="`/news/${item.slug}`"
         >
           <div class="not-italic text-white transition-colors hover:text-[#0ADF0A]">
             <h4
@@ -16,7 +17,7 @@
                 'lg:mb-[2px] lg:text-[32px] lg:font-[700] lg:leading-[38.4px] lg:tracking-[0.32px]'
               ]"
             >
-              {{ $fd(item.updated_at, locale == 'en' ? 'MMM DD, YYYY' : 'DD MMM, YYYY') }}
+              {{ $fd(item.updated_at, 'll') }}
             </h4>
             <h4
               :class="[
@@ -42,8 +43,9 @@
             <span>#</span>
             <span>#</span>
           </div>
-        </div>
+        </NuxtLink>
         <button
+          @click="navigateTo('/news')"
           class="my-auto whitespace-nowrap pe-[50px] text-center align-middle font-durke text-[20px] font-medium uppercase not-italic leading-[120%] tracking-[0.32px] text-[#0ADF0A] hover:text-white lg:pe-[151px] lg:text-[32px] rtl:font-[800]"
         >
           {{ $t('all_news') }} /

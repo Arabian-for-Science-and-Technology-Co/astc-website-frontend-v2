@@ -22,6 +22,8 @@ export default {
   terms_and_conditions: 'Terms and Conditions',
   leave_your_contacts_to_receive_all_the_files_on_the_project:
     'Leave your contacts to receive all the files on the project',
+  news: 'news',
+  more_news: 'more news',
   error: {
     404: { title: 'Page not found', desc: 'We couldn’t find the page you’re looking for.' },
     401: { title: 'You need to sign in', desc: 'This page requires authentication.' },

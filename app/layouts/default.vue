@@ -26,8 +26,4 @@ const layoutProps = computed(() => {
     ...meta
   }
 })
-const { fetchSettings } = useWebsiteSettings()
-const { fetchPages } = usePages()
-await fetchSettings()
-await fetchPages()
 </script>

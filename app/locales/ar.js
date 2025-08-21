@@ -22,6 +22,8 @@ export default {
   terms_and_conditions: 'الشروط والأحكام',
   leave_your_contacts_to_receive_all_the_files_on_the_project:
     'اترك بيانات الاتصال الخاصة بك لتلقي جميع الملفات المتعلقة بالمشروع',
+  news: 'الأخبار',
+  more_news: 'المزيد من الأخبار',
   error: {
     404: { title: 'الصفحة غير موجودة', desc: 'تعذّر العثور على الصفحة المطلوبة.' },
     401: { title: 'يلزم تسجيل الدخول', desc: 'هذه الصفحة تتطلب مصادقة.' },
