@@ -61,7 +61,7 @@
         :src="currentImg?.image_url"
         :alt="img?.alt || `Image ${index + 1}`"
         loading="lazy"
-        class="h-full max-w-[1080px] cursor-pointer rounded-[8px] object-contain"
+        class="mx-auto block h-auto max-h-[90svh] max-w-full rounded-[8px] object-contain"
       />
     </BaseModal>
   </div>
