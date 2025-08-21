@@ -2,7 +2,19 @@ import productImage1 from '~/assets/Images/main/products_cards/product_1.png?url
 import productImage2 from '~/assets/Images/main/products_cards/product_2.png?url'
 import productImage3 from '~/assets/Images/main/products_cards/product_3.png?url'
 import productImage4 from '~/assets/Images/main/products_cards/product_4.png?url'
-
+function generateId() {
+  return `id-${Date.now()}-${Math.floor(Math.random() * 1e6)}`
+}
+const imgs = Array.from(Array(0)).map((i) => ({
+  id: generateId(),
+  item_section_id: 2,
+  title_en: null,
+  title_ar: null,
+  type: 'slider',
+  image_url: productImage1,
+  created_at: '2025-08-21T12:13:38.000000Z',
+  updated_at: '2025-08-21T12:13:38.000000Z'
+}))
 export const res = {
   message: 'messages.success',
   status: 200,
@@ -126,7 +138,8 @@ export const res = {
             image_url: productImage3,
             created_at: '2025-08-21T12:13:38.000000Z',
             updated_at: '2025-08-21T12:13:38.000000Z'
-          }
+          },
+          ...imgs
         ]
       },
       {

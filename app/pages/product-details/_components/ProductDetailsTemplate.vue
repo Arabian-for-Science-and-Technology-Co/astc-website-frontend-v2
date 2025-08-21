@@ -10,7 +10,11 @@
       {{ data?.[`title_${locale}`] }}
     </h2>
 
-    <ProductSlider v-if="data.type == 'image' && data?.content.length" :images="data?.content" />
+    <ProductSlider
+      v-if="data.type == 'image' && data?.content.length"
+      :images="data?.content"
+      class="mt-[41px] lg:mt-[90px]"
+    />
     <Contnet
       v-if="data.type == 'paragraph' && data?.content?.[`content_${locale}`]"
       :content="data?.content?.[`content_${locale}`]"
