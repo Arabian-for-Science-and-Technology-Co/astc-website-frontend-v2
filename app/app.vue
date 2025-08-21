@@ -15,7 +15,7 @@
 const config = useRuntimeConfig()
 const baseUrl = config?.public?.siteUrl || 'https://astc.com.sa/astc/'
 const { locale } = useI18n()
-  
+
 const { fetchPages } = usePages()
 const { settings, fetchSettings } = useWebsiteSettings()
 await fetchSettings()
