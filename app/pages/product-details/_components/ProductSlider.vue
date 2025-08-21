@@ -6,10 +6,10 @@
       width="1124"
       height="635"
       loading="lazy"
-      class="h-full max-h-[664px] w-full cursor-pointer rounded-[8px] object-cover"
+      class=" max-h-[90svh]  xl:aspect-[118/75] aspect-[323/205] w-full cursor-pointer rounded-[8px] object-cover"
     />
     <ScrollWithDragWrapper class="mt-[21px] !cursor-pointer">
-      <div class="flex ">
+      <div class="flex gap-[10px]">
         <img
           v-for="(item, index) in images"
           :key="`list-${index}`"
