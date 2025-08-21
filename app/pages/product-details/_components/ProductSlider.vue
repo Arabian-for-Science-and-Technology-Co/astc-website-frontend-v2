@@ -33,8 +33,8 @@
 
     <BaseModal
       v-model:open="modalOpen"
-      containerClass="3xl:!max-w-[1080px]"
-      bodyClass="relative sm:!px-0 px-[30px] 3xl:!max-w-[1080px]"
+      containerClass="3xl:!max-w-fit"
+      bodyClass="relative sm:!px-0 px-[10px] "
     >
       <template #floating>
         <button
@@ -61,7 +61,7 @@
         :src="currentImg?.image_url"
         :alt="img?.alt || `Image ${index + 1}`"
         loading="lazy"
-        class="h-full w-full cursor-pointer rounded-[8px] object-contain"
+        class="h-full max-w-[1080px] cursor-pointer rounded-[8px] object-contain"
       />
     </BaseModal>
   </div>
