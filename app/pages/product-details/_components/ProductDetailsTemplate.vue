@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import ProductSlider from './product-slider/ProductSlider.vue'
+import ProductSlider from './ProductSlider.vue'
 const props = defineProps<{ data: Record<string, any> }>()
 const { locale } = useI18n()
 </script>
