@@ -82,6 +82,8 @@
 <script setup>
 import RequestDocumentModal from '~/pages/product-details/_components/RequestDocumentModal.vue'
 import ProductDetailsTemplate from '~/pages/product-details/_components/ProductDetailsTemplate.vue'
+import { res as dummyRes } from '~/pages/product-details/_components/dummy'
+
 const route = useRoute()
 definePageMeta({
   layoutProps: {
@@ -96,7 +98,8 @@ const { data: productData } = await useAsyncData(
   () => `product-details:${route.params.slug}`,
   () => customFetch(`/website/home/item/${route.params.slug}`),
   {
-    transform: (res) => res.data || [],
+    // transform: (res) => res.data || [],
+    transform: (res) => dummyRes.data || [],
     watch: [() => route.params.slug]
   }
 )
