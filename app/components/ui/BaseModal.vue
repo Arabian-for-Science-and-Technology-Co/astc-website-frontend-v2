@@ -18,7 +18,7 @@
         >
           ✕
         </button>
-
+        <slot name="floating" />
         <!-- Modal container -->
         <component
           :is="formMode ? 'form' : 'div'"

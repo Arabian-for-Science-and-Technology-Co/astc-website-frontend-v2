@@ -34,6 +34,13 @@
         v-if="productData?.item_sections?.[0]"
         :data="productData?.item_sections?.[0]"
       />
+
+      <ProductDetailsTemplate
+        v-for="item in productData?.item_sections?.slice?.(1)"
+        :key="item?.id"
+        class="app-container-small"
+        :data="item"
+      />
       <div v-if="productData?.integrated_items?.length" :class="['mt-[59px]', 'lg:mt-[82px]']">
         <h2
           v-if="productData?.[`title_${locale}`]"
@@ -56,13 +63,6 @@
           />
         </div>
       </div>
-      <ProductDetailsTemplate
-        v-for="item in productData?.item_sections?.slice?.(1)"
-        :key="item?.id"
-        class="app-container-small"
-        :data="item"
-      />
-
       <div class="app-container-small">
         <BaseButton
           @click="modalOpen = true"
@@ -82,6 +82,7 @@
 <script setup>
 import RequestDocumentModal from '~/pages/product-details/_components/RequestDocumentModal.vue'
 import ProductDetailsTemplate from '~/pages/product-details/_components/ProductDetailsTemplate.vue'
+
 const route = useRoute()
 definePageMeta({
   layoutProps: {
