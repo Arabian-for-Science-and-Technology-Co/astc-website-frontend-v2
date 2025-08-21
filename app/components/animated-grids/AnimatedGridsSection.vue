@@ -19,13 +19,16 @@
   </div>
 </template>
 
-<script setup>
-const props = defineProps({
-  color: {
-    type: String,
-    default: '#6f80f5'
+<script setup lang="ts">
+const props = withDefaults(
+  defineProps<{
+    color?: string
+  }>(),
+  {
+    color: '#6f80f5'
   }
-})
+)
+
 const { gte } = useBreakpoints()
 const smallDotPosition = computed(() => {
   if (gte('lg')) return 15
@@ -42,7 +45,7 @@ const smallDotPosition = computed(() => {
 
   --grid-contianer-padding-top: 1px;
   --grid-contianer-padding-bottom: 1px;
-  --grid-contianer-padding-end:0px;
+  --grid-contianer-padding-end: 0px;
   --grid-contianer-padding-start: 0px;
 
   @media (min-width: 1024px) {
