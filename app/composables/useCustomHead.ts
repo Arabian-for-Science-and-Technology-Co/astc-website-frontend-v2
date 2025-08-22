@@ -1,6 +1,6 @@
 import type { MaybeRefOrGetter } from 'vue'
 
-export default function usePageHead(
+export default function useCustomHead(
   metadata: MaybeRefOrGetter<{
     title: string
     description: string
