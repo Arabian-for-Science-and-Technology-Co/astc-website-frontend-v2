@@ -19,12 +19,10 @@
 <script setup>
 import dynamicPageTemplate from '~/pages/(dynamic-pages)/_components/dynamicPageTemplate.vue'
 const route = useRoute()
-const { locale } = useI18n()
-
 if (!route.params.slug || !route.query.id) {
   throw navigateTo('/', { redirectCode: 307, replace: true })
 }
-
+usePageHead(route.params.slug)
 const customFetch = useCustomFetch()
 const { data: pageDetailsData } = await useAsyncData(
   () => `dynamic-pages:${route.params.slug}`,
@@ -34,13 +32,5 @@ const { data: pageDetailsData } = await useAsyncData(
     watch: [() => route.params.slug]
   }
 )
-
-const { getPage } = usePages()
-const pageData = getPage(route.params.slug)
-useCustomHead(() => ({
-  title: pageData?.[`meta_title_${locale.value}`],
-  description: pageData?.[`meta_description_${locale.value}`],
-  keywords: pageData?.[`meta_keywords_${locale.value}`]
-}))
 </script>
 <style scoped></style>
