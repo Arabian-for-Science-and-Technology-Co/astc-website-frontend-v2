@@ -25,7 +25,7 @@ definePageMeta({
     tabsClass: null
   }
 })
-usePageHead('home')
+usePageHead()
 
 const customFetch = useCustomFetch()
 const componentMap = {

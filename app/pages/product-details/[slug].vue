@@ -102,8 +102,12 @@ const { data: productData } = await useAsyncData(
   }
 )
 useCustomHead(() => ({
-  title: productData.value?.[`meta_title_${locale.value}`],
-  description: productData.value?.[`meta_description_${locale.value}`],
+  title:
+    productData.value?.[`meta_title_${locale.value}`] ||
+    productData.value?.[`title_${locale.value}`],
+  description:
+    productData.value?.[`meta_description_${locale.value}`] ||
+    productData.value?.[`description_${locale.value}`],
   keywords: productData.value?.[`meta_keywords_${locale.value}`]
 }))
 </script>

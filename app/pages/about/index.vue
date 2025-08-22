@@ -78,7 +78,7 @@ definePageMeta({
     selectedTabClass: 'bg-[#0D1667] text-white'
   }
 })
-usePageHead('about')
+usePageHead()
 
 const selectedCertificate = ref(null)
 const modalOpen = ref(false)

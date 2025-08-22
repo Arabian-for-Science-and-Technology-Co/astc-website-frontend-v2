@@ -50,7 +50,7 @@ definePageMeta({
     selectedTabClass: 'bg-[#465AE6] text-white'
   }
 })
-usePageHead('news')
+usePageHead()
 
 const customFetch = useCustomFetch()
 const {

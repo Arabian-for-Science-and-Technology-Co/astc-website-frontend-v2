@@ -32,7 +32,7 @@ definePageMeta({
     showProductsSection: false
   }
 })
-usePageHead('products-and-solutions')
+usePageHead()
 
 const { locale } = useI18n()
 const { productsAndSolutions, fetchProductsAndSolutions } = useProductsAndSolutions()

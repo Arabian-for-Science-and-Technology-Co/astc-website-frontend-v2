@@ -1,9 +1,9 @@
-export default function usePageHead(pageSlug = 'home') {
+export default function usePageHead(pageSlug) {
   const route = useRoute()
-  // console.log('route', route)
+  const formattedPageSlug = pageSlug || (route.name == 'index' ? 'home' : route.name)
   const { locale } = useI18n()
   const { getPage } = usePages()
-  const PageInfo = getPage(pageSlug)
+  const PageInfo = getPage(formattedPageSlug)
   useCustomHead(() => ({
     title: PageInfo?.[`meta_title_${locale.value}`],
     description: PageInfo?.[`meta_description_${locale.value}`],

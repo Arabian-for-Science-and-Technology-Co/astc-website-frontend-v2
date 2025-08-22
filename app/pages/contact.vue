@@ -64,7 +64,7 @@
 </template>
 
 <script setup>
-usePageHead('contact')
+usePageHead()
 
 const { t, locale } = useI18n()
 const { settings } = useWebsiteSettings()
