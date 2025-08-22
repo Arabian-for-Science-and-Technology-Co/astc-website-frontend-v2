@@ -95,7 +95,7 @@ const certificatesSlider = computed(() =>
 )
 const { getPage } = usePages()
 const aboutPage = getPage('about')
-usePageHead(() => ({
+useCustomHead(() => ({
   title: aboutPage?.[`meta_title_${locale.value}`],
   description: aboutPage?.[`meta_description_${locale.value}`],
   keywords: aboutPage?.[`meta_keywords_${locale.value}`]

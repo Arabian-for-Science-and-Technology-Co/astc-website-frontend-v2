@@ -67,7 +67,7 @@
 const { t, locale } = useI18n()
 const { getPage } = usePages()
 const contactPage = getPage('contact')
-usePageHead(() => ({
+useCustomHead(() => ({
   title: contactPage?.[`meta_title_${locale.value}`],
   description: contactPage?.[`meta_description_${locale.value}`],
   keywords: contactPage?.[`meta_keywords_${locale.value}`]

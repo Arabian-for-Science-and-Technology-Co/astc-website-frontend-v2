@@ -35,7 +35,7 @@ definePageMeta({
 const { locale } = useI18n()
 const { getPage } = usePages()
 const productsAndSolutionsPage = getPage('products-and-solutions')
-usePageHead(() => ({
+useCustomHead(() => ({
   title: productsAndSolutionsPage?.[`meta_title_${locale.value}`],
   description: productsAndSolutionsPage?.[`meta_description_${locale.value}`],
   keywords: productsAndSolutionsPage?.[`meta_keywords_${locale.value}`]

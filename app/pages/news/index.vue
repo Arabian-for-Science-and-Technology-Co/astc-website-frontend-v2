@@ -71,7 +71,7 @@ const {
 const { locale } = useI18n()
 const { getPage } = usePages()
 const newsPage = getPage('news')
-usePageHead(() => ({
+useCustomHead(() => ({
   title: newsPage?.[`meta_title_${locale.value}`],
   description: newsPage?.[`meta_description_${locale.value}`],
   keywords: newsPage?.[`meta_keywords_${locale.value}`]

@@ -37,7 +37,7 @@ const { data: pageDetailsData } = await useAsyncData(
 
 const { getPage } = usePages()
 const pageData = getPage(route.params.slug)
-usePageHead(() => ({
+useCustomHead(() => ({
   title: pageData?.[`meta_title_${locale.value}`],
   description: pageData?.[`meta_description_${locale.value}`],
   keywords: pageData?.[`meta_keywords_${locale.value}`]

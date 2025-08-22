@@ -101,7 +101,7 @@ const { data: productData } = await useAsyncData(
     watch: [() => route.params.slug]
   }
 )
-usePageHead(() => ({
+useCustomHead(() => ({
   title: productData.value?.[`meta_title_${locale.value}`],
   description: productData.value?.[`meta_description_${locale.value}`],
   keywords: productData.value?.[`meta_keywords_${locale.value}`]

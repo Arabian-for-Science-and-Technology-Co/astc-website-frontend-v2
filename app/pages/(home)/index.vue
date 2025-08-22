@@ -29,7 +29,7 @@ definePageMeta({
 const { locale } = useI18n()
 const { getPage } = usePages()
 const homePage = getPage('home')
-usePageHead(() => ({
+useCustomHead(() => ({
   title: homePage?.[`meta_title_${locale.value}`],
   description: homePage?.[`meta_description_${locale.value}`],
   keywords: homePage?.[`meta_keywords_${locale.value}`]

@@ -148,7 +148,7 @@ const {
   watch: [() => route.params.slug]
 })
 
-usePageHead(() => ({
+useCustomHead(() => ({
   title: newsData.value?.[`meta_title_${locale.value}`],
   description: newsData.value?.[`meta_description_${locale.value}`],
   keywords: newsData.value?.[`meta_keywords_${locale.value}`]
