@@ -1,9 +1,19 @@
 {
   "extends": "./.nuxt/tsconfig.app.json",
-
   "compilerOptions": {
     "strict": true,
     "moduleResolution": "bundler",
+    // useful during migration to reduce third-party type noise:
+    "skipLibCheck": true,
+    // keep these if you want extra safety (strict already enables many):
+    "noImplicitAny": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true
+    // baseUrl / paths normally provided by .nuxt config, but you can add local fallbacks:
+    // "baseUrl": ".",
+    // "paths": { "~/*": ["./*"], "@/*": ["./*"] }
+
+    // "moduleResolution": "bundler",
     // "verbatimModuleSyntax": true,
     // "noUncheckedIndexedAccess": true,
     // "exactOptionalPropertyTypes": true,
@@ -13,8 +23,5 @@
     // "strictBindCallApply": true,
     // "strictPropertyInitialization": true,
     // "noImplicitThis": false,
-    "noImplicitAny": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
   }
 }
