@@ -1,9 +1,15 @@
 // composables/useBreakpoint.js
 import { ref, onMounted, onUnmounted } from 'vue'
+const ORDER = ['sm', 'md', 'lg', 'xl', '2xl'] as const
+export type Breakpoint = (typeof ORDER)[number]
 
-export default function useBreakpoints() {
-  const breakpoint = ref('sm')
-  const order = ['sm', 'md', 'lg', 'xl', '2xl']
+export interface UseBreakpoints {
+  breakpoint: Ref<Breakpoint>
+  gte: (name: Breakpoint) => boolean
+  lte: (name: Breakpoint) => boolean
+}
+export default function useBreakpoints(): UseBreakpoints {
+  const breakpoint = ref<Breakpoint>('sm')
 
   const update = () => {
     const w = window.innerWidth
@@ -23,12 +29,12 @@ export default function useBreakpoints() {
   if (typeof window !== 'undefined') update()
   onMounted(() => window.addEventListener('resize', update))
   onUnmounted(() => window.removeEventListener('resize', update))
-
-  function gte(name) {
-    return order.indexOf(breakpoint.value) >= order.indexOf(name)
+  const idx = (name: Breakpoint) => ORDER.indexOf(name)
+  function gte(name: Breakpoint) {
+    return idx(breakpoint.value) >= idx(name)
   }
-  function lte(name) {
-    return order.indexOf(breakpoint.value) <= order.indexOf(name)
+  function lte(name: Breakpoint) {
+    return idx(breakpoint.value) <= idx(name)
   }
 
   return { breakpoint, gte, lte }
