@@ -11,9 +11,11 @@ export function getYouTubeId(u = '') {
     if (host === 'youtu.be') return url.pathname.slice(1)
     if (host.endsWith('youtube.com')) {
       if (url.pathname.startsWith('/watch')) return url.searchParams.get('v') || ''
-      if (url.pathname.startsWith('/embed/')) return url.pathname.split('/embed/')[1]
-      if (url.pathname.startsWith('/shorts/')) return url.pathname.split('/shorts/')[1]
+      if (url.pathname.startsWith('/embed/')) return url.pathname.split('/embed/')[1] || ''
+      if (url.pathname.startsWith('/shorts/')) return url.pathname.split('/shorts/')[1] || ''
     }
-  } catch {}
+  } catch {
+    return ''
+  }
   return ''
 }
