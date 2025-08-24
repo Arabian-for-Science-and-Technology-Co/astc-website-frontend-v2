@@ -9,14 +9,24 @@
     >
       {{ data?.[`title_${locale}`] }}
     </h2>
-    <Contnet v-if="rawContent" :content="rawContent" class="mt-[41px] lg:mt-[90px]" />
+
+    <ProductSlider
+      v-if="data.type == 'image' && data?.content.length"
+      :images="data?.content"
+      class="mt-[41px] lg:mt-[90px]"
+    />
+    <Contnet
+      v-if="data.type == 'paragraph' && data?.content?.[`content_${locale}`]"
+      :content="data?.content?.[`content_${locale}`]"
+      class="mt-[41px] lg:mt-[90px]"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
+import ProductSlider from './ProductSlider.vue'
 const props = defineProps<{ data: Record<string, any> }>()
 const { locale } = useI18n()
-const rawContent = computed(() => props.data?.paragraph_block?.[`content_${locale.value}`] ?? '')
 </script>
 
 <style>

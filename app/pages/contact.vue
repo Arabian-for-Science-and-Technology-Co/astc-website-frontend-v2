@@ -64,15 +64,9 @@
 </template>
 
 <script setup>
-const { t, locale } = useI18n()
-const { getPage } = usePages()
-const contactPage = getPage('contact')
-usePageHead(() => ({
-  title: contactPage?.[`meta_title_${locale.value}`],
-  description: contactPage?.[`meta_description_${locale.value}`],
-  keywords: contactPage?.[`meta_keywords_${locale.value}`]
-}))
+usePageHead()
 
+const { t, locale } = useI18n()
 const { settings } = useWebsiteSettings()
 const informations = computed(() => [
   {
@@ -99,13 +93,7 @@ const mapType = ref(mapTypes.value[0].value)
 const position = computed(() => ({
   lat: Number(settings.value?.latitude),
   lng: Number(settings.value?.longitude)
-  // lat: Number(24.7496182),
-  // lng: Number(46.7230664),
 }))
-const airportPosition = {
-  lat: Number(24.9454935),
-  lng: Number(46.7089092)
-}
 </script>
 <style>
 #contact .font-section {

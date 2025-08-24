@@ -50,7 +50,7 @@
         </button>
       </div>
     </div>
-    <div
+    <!-- <div
       :class="[
         'ms-auto hidden flex-col items-center gap-[3px] text-[14px] font-[400] leading-[14.7px] tracking-[0.14px]',
         'lg:col-span-3 lg:flex',
@@ -61,7 +61,7 @@
       <h3>Designed by</h3>
       <FedorAndWolfIcon />
       <h3>in 2025</h3>
-    </div>
+    </div> -->
   </article>
 </template>
 

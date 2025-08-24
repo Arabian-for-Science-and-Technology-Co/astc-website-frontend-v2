@@ -50,6 +50,8 @@ definePageMeta({
     selectedTabClass: 'bg-[#465AE6] text-white'
   }
 })
+usePageHead()
+
 const customFetch = useCustomFetch()
 const {
   rows: newsListData,
@@ -67,14 +69,5 @@ const {
   isLoadMorePagination: true,
   defaultPerPage: 5
 })
-
-const { locale } = useI18n()
-const { getPage } = usePages()
-const newsPage = getPage('news')
-usePageHead(() => ({
-  title: newsPage?.[`meta_title_${locale.value}`],
-  description: newsPage?.[`meta_description_${locale.value}`],
-  keywords: newsPage?.[`meta_keywords_${locale.value}`]
-}))
 </script>
 <style></style>
