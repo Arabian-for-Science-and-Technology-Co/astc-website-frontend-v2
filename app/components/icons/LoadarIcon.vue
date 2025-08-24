@@ -12,7 +12,7 @@
     />
   </svg>
 </template>
-<script setup>
+<script setup lang="ts">
 const props = defineProps({
   name: { type: String },
   size: { type: [String, Number], default: 24 },

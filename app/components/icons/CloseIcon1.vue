@@ -17,7 +17,7 @@
     />
   </svg>
 </template>
-<script setup>
+<script setup lang="ts">
 const props = defineProps({
   size: { type: [String, Number], default: 22 },
   color: { type: String, default: 'white' }

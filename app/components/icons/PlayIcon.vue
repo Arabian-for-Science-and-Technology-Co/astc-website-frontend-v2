@@ -9,7 +9,7 @@
     <path d="M34 25V55L55 40L34 25Z" :fill="color" />
   </svg>
 </template>
-<script setup>
+<script setup lang="ts">
 const props = defineProps({
   size: {
     type: Number

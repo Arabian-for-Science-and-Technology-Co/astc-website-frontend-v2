@@ -50,6 +50,6 @@
     />
   </svg>
 </template>
-<script setup>
+<script setup lang="ts">
 const { gte } = useBreakpoints()
 </script>

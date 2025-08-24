@@ -1,7 +1,14 @@
 <template>
-  <component :is="icon" :class="props.class" :width="size" :height="size" aria-hidden="true" v-bind="$attrs" />
+  <component
+    :is="icon"
+    :class="props.class"
+    :width="size"
+    :height="size"
+    aria-hidden="true"
+    v-bind="$attrs"
+  />
 </template>
-<script setup>
+<script setup lang="ts">
 const props = defineProps({
   name: { type: String, required: true },
   class: { type: String, default: '' },
