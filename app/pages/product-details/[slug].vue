@@ -10,7 +10,7 @@
         backgroundImage: `url(${productData?.cover_image})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundPosition: 'no-repeat'
+        backgroundRepeat: 'no-repeat'
       }"
     >
       <header class="app-container text-white">
@@ -79,9 +79,10 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import RequestDocumentModal from '~/pages/product-details/_components/RequestDocumentModal.vue'
 import ProductDetailsTemplate from '~/pages/product-details/_components/ProductDetailsTemplate.vue'
+import type { Product, ProductResponse } from '~/types/api/index'
 
 const route = useRoute()
 definePageMeta({
@@ -92,21 +93,23 @@ definePageMeta({
 })
 const modalOpen = ref(false)
 const { locale } = useI18n()
-const customFetch = useCustomFetch()
-const { data: productData } = await useAsyncData(
+const { apiFetch } = useApi()
+const { data: productData } = await useApiAsyncData<Product | null>(
   () => `product-details:${route.params.slug}`,
-  () => customFetch(`/website/home/item/${route.params.slug}`),
-  {
-    transform: (res) => res.data || [],
-    watch: [() => route.params.slug]
-  }
+  async () => {
+    const res = await apiFetch<ProductResponse>(`/website/home/item/${route.params.slug}`)
+    return res.data ?? null
+  },
+  { watch: [() => route.params.slug] }
 )
+
 useCustomHead(() => ({
   title:
-    productData.value?.[`meta_title_${locale.value}`] ||
+    productData.value?.[`meta_title_${locale.value}`] ??
     productData.value?.[`title_${locale.value}`],
   description:
-    productData.value?.[`meta_description_${locale.value}`] ||
+    productData.value?.[`meta_description_${locale.value}`] ??
+    productData.value?.[`meta_desc_${locale.value}`] ??
     productData.value?.[`description_${locale.value}`],
   keywords: productData.value?.[`meta_keywords_${locale.value}`]
 }))

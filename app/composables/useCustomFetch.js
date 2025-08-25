@@ -1,4 +1,1 @@
-export const useCustomFetch = () => {
-  const { $customFetch } = useNuxtApp()
-  return $customFetch
-}
+export const useCustomFetch = () => useNuxtApp().$apiFetch

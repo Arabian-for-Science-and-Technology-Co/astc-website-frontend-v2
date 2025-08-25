@@ -2,13 +2,13 @@ import type { MaybeRefOrGetter } from 'vue'
 
 export default function useCustomHead(
   metadata: MaybeRefOrGetter<{
-    title: string
-    description: string
-    author: string
-    keywords: string
-    type: string
-    image: string
-    url: string
+    title?: string
+    description?: string
+    author?: string
+    keywords?: string
+    type?: string
+    image?: string
+    url?: string
   }>
 ) {
   const metaRef = toRef(metadata)
