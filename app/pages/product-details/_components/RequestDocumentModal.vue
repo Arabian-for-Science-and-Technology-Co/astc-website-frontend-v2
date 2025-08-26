@@ -125,7 +125,7 @@ const formData = reactive({
 })
 const isLoading = ref(false)
 const canSubmit = computed(() => Object.keys(formData).every((k) => formData[k]))
-const customFetch = useCustomFetch()
+const { apiFetch } = useApi()
 const resetFormData = () => Object.keys(formData).forEach((k) => (formData[k] = ''))
 
 async function submit() {
@@ -142,7 +142,7 @@ async function submit() {
   }
 
   try {
-    const response = await customFetch('/website/home/request-files', {
+    const response = await apiFetch('/website/home/request-files', {
       method: 'POST',
       body: payload
     })

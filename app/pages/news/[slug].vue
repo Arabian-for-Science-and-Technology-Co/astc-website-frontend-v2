@@ -120,10 +120,10 @@ definePageMeta({
 const route = useRoute()
 const { locale } = useI18n()
 
-const customFetch = useCustomFetch()
-const { data: newsData } = await useAsyncData(
+const { apiFetch } = useApi()
+const { data: newsData } = await useApiAsyncData(
   () => `news-details:${route.params.slug}`,
-  () => customFetch(`/website/news/${route.params.slug}`),
+  () => apiFetch(`/website/news/${route.params.slug}`),
   {
     transform: (res) => res.data || [],
     watch: [() => route.params.slug]
@@ -138,7 +138,7 @@ const {
   totalPages
 } = usePaginatedFetcher({
   service: async (params) => {
-    return await customFetch(`/website/news`, {
+    return await apiFetch(`/website/news`, {
       method: 'GET',
       params
     })
