@@ -65,10 +65,10 @@
 const props = defineProps({
   sectionData: { type: Object, defaults: {} }
 })
-const customFetch = useCustomFetch()
+const { apiFetch } = useApi()
 const { locale } = useI18n()
-const { data: customers } = await useAsyncData(
-  () => customFetch('/website/home/partners?type=government'),
+const { data: customers } = await useApiAsyncData(
+  () => apiFetch('/website/home/partners?type=government'),
   {
     transform: (res) => res.data || []
   }

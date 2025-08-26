@@ -24,10 +24,10 @@ definePageMeta({
   }
 })
 const route = useRoute()
-const customFetch = useCustomFetch()
-const { data: categoryItems } = await useAsyncData(
+const { apiFetch } = useApi()
+const { data: categoryItems } = await useApiAsyncData(
   () => `category-details:${route.params.id}`,
-  () => customFetch(`/website/home/categories/${route.params.id}/items`),
+  () => apiFetch(`/website/home/categories/${route.params.id}/items`),
   {
     transform: (res) => res.data || [],
     watch: [() => route.params.id]

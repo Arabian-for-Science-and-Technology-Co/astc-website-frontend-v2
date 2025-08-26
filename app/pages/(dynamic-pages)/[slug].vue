@@ -23,10 +23,10 @@ if (!route.params.slug || !route.query.id) {
   throw navigateTo('/', { redirectCode: 307, replace: true })
 }
 usePageHead(route.params.slug)
-const customFetch = useCustomFetch()
-const { data: pageDetailsData } = await useAsyncData(
+const { apiFetch } = useApi()
+const { data: pageDetailsData } = await useApiAsyncData(
   () => `dynamic-pages:${route.params.slug}`,
-  () => customFetch(`/website/home/page/${route.query.id}/sections`),
+  () => apiFetch(`/website/home/page/${route.query.id}/sections`),
   {
     transform: (res) => res.data || [],
     watch: [() => route.params.slug]
