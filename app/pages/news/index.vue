@@ -52,7 +52,7 @@ definePageMeta({
 })
 usePageHead()
 
-const customFetch = useCustomFetch()
+const { apiFetch } = useApi()
 const {
   rows: newsListData,
   loadMore,
@@ -61,7 +61,7 @@ const {
   totalPages
 } = usePaginatedFetcher({
   service: async (params) => {
-    return await customFetch(`/website/news`, {
+    return await apiFetch(`/website/news`, {
       method: 'GET',
       params
     })

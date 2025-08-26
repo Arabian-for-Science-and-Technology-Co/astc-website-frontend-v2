@@ -60,10 +60,10 @@ import newsVideo from '~/assets/images/news-video.png'
 const props = defineProps({
   sectionData: { type: Object, defaults: {} }
 })
-const customFetch = useCustomFetch()
+const { apiFetch } = useApi()
 const { locale } = useI18n()
-const { data: newsData } = await useAsyncData(
-  () => customFetch('/website/news?per_page=3&page=1'),
+const { data: newsData } = await useApiAsyncData(
+  () => apiFetch('/website/news?per_page=3&page=1'),
   {
     transform: (res) => res.data || []
   }

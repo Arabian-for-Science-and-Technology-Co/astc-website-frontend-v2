@@ -45,9 +45,9 @@
 </template>
 
 <script setup>
-const customFetch = useCustomFetch()
+const { apiFetch } = useApi()
 const { locale } = useI18n()
-const { data: categories } = await useAsyncData(() => customFetch('/website/home/categories'), {
+const { data: categories } = await useApiAsyncData(() => apiFetch('/website/home/categories'), {
   transform: (res) => res.data || []
 })
 </script>

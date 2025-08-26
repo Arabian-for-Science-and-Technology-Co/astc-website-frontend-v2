@@ -1,4 +1,3 @@
-// types/paginatedFetcher.d.ts
 export type ServiceFn = (params: any) => Promise<any>
 
 export interface PaginatedFetcherOptions {
