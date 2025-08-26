@@ -1,4 +1,4 @@
-import type { Locale } from '~/types/api/common'
+import type { Locale } from '~/modules/api/types/common'
 export function pickLocalized<TBase extends string>(
   obj: Record<string, unknown> | null | undefined,
   base: TBase,

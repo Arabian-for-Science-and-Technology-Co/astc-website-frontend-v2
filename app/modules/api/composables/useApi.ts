@@ -1,4 +1,3 @@
-// composables/useApi.ts
 import type { $Fetch } from 'ofetch'
 
 type CacheValue = { v: unknown; t: number }

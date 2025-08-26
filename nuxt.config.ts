@@ -28,7 +28,14 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
   //----------------------for modules----------------------
-  modules: ['@nuxt/image', '@nuxtjs/tailwindcss', 'nuxt-svgo', '@nuxtjs/i18n', 'vue-sonner/nuxt'],
+  modules: [
+    '~/modules/api',
+    '@nuxt/image',
+    '@nuxtjs/tailwindcss',
+    'nuxt-svgo',
+    '@nuxtjs/i18n',
+    'vue-sonner/nuxt'
+  ],
   //  image: {
   //   dir: '~/assets',  // Point to where your images are
   // },
@@ -60,8 +67,8 @@ export default defineNuxtConfig({
   imports: {
     autoImport: true,
     dirs: [
-      "services", // Auto-import .js/.ts files from the 'services' directory
-    ],
+      'services' // Auto-import .js/.ts files from the 'services' directory
+    ]
     // dirs: [
     //   // only auto-import from these directories
     //   "composables",
@@ -104,5 +111,5 @@ export default defineNuxtConfig({
         types: ['@nuxt/types', '@nuxtjs/tailwindcss']
       }
     }
-  },
+  }
 })

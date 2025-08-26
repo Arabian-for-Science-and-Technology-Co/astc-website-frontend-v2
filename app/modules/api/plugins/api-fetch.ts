@@ -1,6 +1,6 @@
 import { defineNuxtPlugin } from '#app'
 import type { $Fetch, FetchOptions, FetchRequest } from 'ofetch'
-import { applyPolicyOrThrow } from '~/utils/api-error-policy'
+import { applyPolicyOrThrow } from '~/modules/api/utils/api-error-policy'
 import type { Composer } from 'vue-i18n'
 
 export default defineNuxtPlugin((nuxtApp) => {
