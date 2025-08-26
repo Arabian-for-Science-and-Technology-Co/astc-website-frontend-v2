@@ -58,7 +58,10 @@ export default defineNuxtConfig({
   },
   //----------------------for auto imports----------------------
   imports: {
-    autoImport: true
+    autoImport: true,
+    dirs: [
+      "services", // Auto-import .js/.ts files from the 'services' directory
+    ],
     // dirs: [
     //   // only auto-import from these directories
     //   "composables",

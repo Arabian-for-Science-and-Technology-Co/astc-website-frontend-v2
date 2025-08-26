@@ -78,7 +78,7 @@ const tabs = computed(() => [
     .map((page) => ({
       id: page.slug,
       label: page?.[`title_${locale.value}`],
-      value: page.type == 'other' ? `/${page.slug}?id=${page.id}` : `/${page.slug}`
+      value: `/${page.slug}`
     }))
 ])
 const tabsRows = computed(() => chunkArray(tabs.value, 6))
