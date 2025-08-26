@@ -1,4 +1,3 @@
-<!-- components/ClickZoom.vue -->
 <template>
   <div
     ref="wrap"
