@@ -38,6 +38,7 @@
         <NuxtLink
           class="inline-flex cursor-pointer appearance-none items-center justify-center rounded-[10px] border border-black/10 bg-transparent px-[14px] py-[10px] font-semibold text-gray-900 transition-all duration-200 ease-out hover:bg-black/5 active:translate-y-px"
           to="/"
+          replace
         >
           {{ t('error.actions.home') }}
         </NuxtLink>

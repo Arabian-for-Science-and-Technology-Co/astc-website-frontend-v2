@@ -27,7 +27,6 @@ definePageMeta({
 })
 usePageHead()
 
-const { apiFetch } = useApi()
 const componentMap = {
   news_bar: NewsSection,
   vision: AnnouncementSection,
@@ -37,7 +36,7 @@ const componentMap = {
   trusted_partners: PartnersSection,
   vision2030: SaudiVisionSection
 }
-const { data: sections } = await useApiAsyncData(() => apiFetch('/website/home/page/1/sections'), {
+const { data: sections } = await useApiAsyncData(() => fetchPageSection('home'), {
   transform: (res) => res.data || []
 })
 </script>
