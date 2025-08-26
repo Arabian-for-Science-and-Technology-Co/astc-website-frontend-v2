@@ -98,7 +98,7 @@ export default defineNuxtConfig({
     typeCheck: false, // Disable if you don't need runtime type checking
     tsConfig: {
       compilerOptions: {
-        types: ['@nuxt/types', '@nuxtjs/tailwindcss']
+        // types: ['nuxt', 'vite/client']
       }
     }
   }

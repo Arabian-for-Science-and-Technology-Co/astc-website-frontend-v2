@@ -56,7 +56,6 @@
 </template>
 
 <script setup>
-import newsVideo from '~/assets/images/news-video.png'
 const props = defineProps({
   sectionData: { type: Object, defaults: {} }
 })
@@ -68,23 +67,6 @@ const { data: newsData } = await useApiAsyncData(
     transform: (res) => res.data || []
   }
 )
-const data = [
-  {
-    title: 'June 3, 2025',
-    desc: `Arabian for Sience and Technology.  Empowering the Future with Cutting-Edge   TechnologyTechnology Technology Technology Technology Technology Technology Technology `,
-    video: newsVideo
-  },
-  {
-    title: 'June 3, 2025',
-    desc: 'Arabian for Sience and Technology.',
-    video: null
-  },
-  {
-    title: 'June 3, 2025',
-    desc: 'Arabian for Sience and Technology. Empowering the Future with Cutting-Edge Technology...',
-    video: null
-  }
-]
 </script>
 <style>
 #NewsSection .main-title {
