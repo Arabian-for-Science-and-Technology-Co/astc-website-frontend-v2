@@ -36,7 +36,5 @@ const componentMap = {
   trusted_partners: PartnersSection,
   vision2030: SaudiVisionSection
 }
-const { data: sections } = await useApiAsyncData(() => fetchPageSection('home'), {
-  transform: (res) => res.data || []
-})
+const { data: sections } = await useApiAsyncData(() => getPageSection('home'))
 </script>

@@ -25,9 +25,8 @@ if (!route.params.slug) {
 usePageHead(route.params.slug)
 const { data: pageDetailsData } = await useApiAsyncData(
   () => `dynamic-pages:${route.params.slug}`,
-  () => fetchPageSection(route.params.slug),
+  () => getPageSection(route.params.slug),
   {
-    transform: (res) => res.data || [],
     watch: [() => route.params.slug]
   }
 )

@@ -84,9 +84,7 @@ const selectedCertificate = ref(null)
 const modalOpen = ref(false)
 const { locale } = useI18n()
 const { apiFetch } = useApi()
-const { data: aboutData } = await useApiAsyncData(() => fetchPageSection('about'), {
-  transform: (res) => res.data || []
-})
+const { data: aboutData } = await useApiAsyncData(() => getPageSection('about'))
 const { data: certificates } = await useApiAsyncData(() => apiFetch(`/website/home/certificates`), {
   transform: (res) => res.data || []
 })
