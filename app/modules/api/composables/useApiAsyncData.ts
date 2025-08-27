@@ -1,7 +1,7 @@
 import { getCurrentInstance } from 'vue'
 import { useAsyncData, useRoute } from '#imports'
 import type { AsyncData, AsyncDataOptions, NuxtApp } from 'nuxt/app'
-import { applyPolicyOrThrow } from '~/utils/api-error-policy'
+import { applyPolicyOrThrow } from '~/modules/api/utils/api-error-policy'
 
 type Handler<T> = (ctx?: NuxtApp) => Promise<T>
 

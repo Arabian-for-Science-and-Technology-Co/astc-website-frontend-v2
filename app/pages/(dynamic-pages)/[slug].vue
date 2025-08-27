@@ -19,16 +19,14 @@
 <script setup>
 import dynamicPageTemplate from '~/pages/(dynamic-pages)/_components/dynamicPageTemplate.vue'
 const route = useRoute()
-if (!route.params.slug || !route.query.id) {
+if (!route.params.slug) {
   throw navigateTo('/', { redirectCode: 307, replace: true })
 }
 usePageHead(route.params.slug)
-const { apiFetch } = useApi()
 const { data: pageDetailsData } = await useApiAsyncData(
   () => `dynamic-pages:${route.params.slug}`,
-  () => apiFetch(`/website/home/page/${route.query.id}/sections`),
+  () => getPageSection(route.params.slug),
   {
-    transform: (res) => res.data || [],
     watch: [() => route.params.slug]
   }
 )

@@ -1,4 +1,4 @@
-import type { ApiResponse, LocalizedPartial } from './common'
+import type { ApiResponse, LocalizedPartial } from '~/modules/api/types'
 
 export interface Category {
   id: number
