@@ -5,12 +5,14 @@ import type { Composer } from 'vue-i18n'
 
 export default defineNuxtPlugin((nuxtApp) => {
   const config = useRuntimeConfig()
+  const apiCfg = config.public.api
+
   const i18n = nuxtApp.$i18n as unknown as Composer
 
   const raw = $fetch.create({
-    baseURL: config.public.BASE_URL,
-    retry: 1,
-    timeout: 30_000,
+    baseURL: apiCfg.baseURL ?? config.public.BASE_URL,
+    retry: apiCfg.retry ?? 1,
+    timeout: apiCfg.timeout ?? 30_000,
     async onRequest({ options }) {
       const token = useCookie<string | null>('redirect_token').value
       const lang = String(i18n?.locale?.value ?? 'en')
