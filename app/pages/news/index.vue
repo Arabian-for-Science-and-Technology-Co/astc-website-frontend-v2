@@ -40,7 +40,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import NewsList from './_components/NewsList.vue'
 
 definePageMeta({
@@ -52,7 +52,6 @@ definePageMeta({
 })
 usePageHead()
 
-const { apiFetch } = useApi()
 const {
   rows: newsListData,
   loadMore,
@@ -60,12 +59,7 @@ const {
   currentPage,
   totalPages
 } = usePaginatedFetcher({
-  service: async (params) => {
-    return await apiFetch(`/website/news`, {
-      method: 'GET',
-      params
-    })
-  },
+  service: getNews,
   isLoadMorePagination: true,
   defaultPerPage: 5
 })
