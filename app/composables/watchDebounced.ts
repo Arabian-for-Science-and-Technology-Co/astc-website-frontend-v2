@@ -4,7 +4,7 @@ import {
   type WatchCallback,
   type WatchOptions,
   type WatchSource,
-  type WatchStopHandle,
+  type WatchStopHandle
 } from 'vue'
 
 type FlushMode = 'pre' | 'post' | 'sync'
@@ -48,19 +48,15 @@ type DebouncedExtras = {
 
 /**
  * A tiny wrapper around `watch` that debounces the callback.
+ *
+ * NOTE: signature intentionally accepts mixed/heterogeneous watch arrays to be ergonomic
+ * for callers like: watchDebounced([search, perPage, () => ({ ...filterParams })], ...)
  */
-export function watchDebounced<
-  T = unknown,
-  Immediate extends Readonly<boolean> | boolean = false
->(
-  source:
-    | WatchSource<T>
-    | WatchSource<T>[]
-    | T
-    | T[],
+export function watchDebounced(
+  source: WatchSource<any> | WatchSource<any>[] | any | any[],
   cb: WatchCallback<any, any>,
-  options: WatchDebouncedOptions<Immediate> = {},
-): (WatchStopHandle & DebouncedExtras) {
+  options: WatchDebouncedOptions = {}
+): WatchStopHandle & DebouncedExtras {
   const {
     debounce = 0,
     leading = false,
@@ -68,7 +64,7 @@ export function watchDebounced<
     maxWait,
     immediate,
     deep,
-    flush,
+    flush
   } = options
 
   type Timer = ReturnType<typeof setTimeout> | null
@@ -79,8 +75,14 @@ export function watchDebounced<
   let didLead = false
 
   const clearTimers = () => {
-    if (timer) { clearTimeout(timer); timer = null }
-    if (maxTimer) { clearTimeout(maxTimer); maxTimer = null }
+    if (timer) {
+      clearTimeout(timer)
+      timer = null
+    }
+    if (maxTimer) {
+      clearTimeout(maxTimer)
+      maxTimer = null
+    }
   }
 
   const invoke = () => {
@@ -117,7 +119,10 @@ export function watchDebounced<
     if (maxWait != null && maxWait > 0 && !maxTimer) {
       maxTimer = setTimeout(() => {
         // flush immediately when maxWait hits
-        if (timer) { clearTimeout(timer); timer = null }
+        if (timer) {
+          clearTimeout(timer)
+          timer = null
+        }
         invoke()
       }, maxWait)
     }
@@ -128,7 +133,7 @@ export function watchDebounced<
     // We forward as-is.
     source as any,
     (...args) => schedule(...args),
-    { immediate: immediate as any, deep, flush },
+    { immediate: immediate as any, deep, flush }
   )
 
   const wrappedStop = (() => {

@@ -109,7 +109,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import NewsList from './_components/NewsList.vue'
 definePageMeta({
   layoutProps: {
@@ -120,12 +120,15 @@ definePageMeta({
 const route = useRoute()
 const { locale } = useI18n()
 
-const { apiFetch } = useApi()
 const { data: newsData } = await useApiAsyncData(
   () => `news-details:${route.params.slug}`,
-  () => apiFetch(`/website/news/${route.params.slug}`),
+  async () => {
+    const res = await getNewsDetail(route.params.slug as string)
+    return res.data
+  },
+
   {
-    transform: (res) => res.data || [],
+    // transform: (res) => res.data ?? ({} as NewsDetail),
     watch: [() => route.params.slug]
   }
 )
@@ -137,12 +140,7 @@ const {
   currentPage,
   totalPages
 } = usePaginatedFetcher({
-  service: async (params) => {
-    return await apiFetch(`/website/news`, {
-      method: 'GET',
-      params
-    })
-  },
+  service: getNews,
   isLoadMorePagination: true,
   defaultPerPage: 3,
   watch: [() => route.params.slug]
@@ -150,8 +148,7 @@ const {
 
 useCustomHead(() => ({
   title: newsData.value?.[`meta_title_${locale.value}`],
-  description: newsData.value?.[`meta_description_${locale.value}`],
-  keywords: newsData.value?.[`meta_keywords_${locale.value}`]
+  description: newsData.value?.[`meta_desc_${locale.value}`]
 }))
 </script>
 <style></style>
