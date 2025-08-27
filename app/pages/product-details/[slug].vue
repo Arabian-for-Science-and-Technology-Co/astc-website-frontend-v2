@@ -82,7 +82,7 @@
 <script setup lang="ts">
 import RequestDocumentModal from '~/pages/product-details/_components/RequestDocumentModal.vue'
 import ProductDetailsTemplate from '~/pages/product-details/_components/ProductDetailsTemplate.vue'
-import type { Product, ProductResponse } from '~/modules/api/types/index'
+import type { Product, ProductResponse } from '~/types/api'
 
 const route = useRoute()
 definePageMeta({
