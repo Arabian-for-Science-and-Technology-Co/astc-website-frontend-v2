@@ -33,7 +33,7 @@
 
     <BaseModal
       v-model:open="modalOpen"
-      containerClass="3xl:!max-w-fit"
+      containerClass="xl:!max-w-fit"
       bodyClass="relative sm:!px-0 px-[10px] "
     >
       <template #floating>

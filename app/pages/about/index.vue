@@ -97,11 +97,10 @@ const certificatesSlider = computed(() =>
 </script>
 <style scoped>
 .bg {
-  background:
-    linear-gradient(191deg, rgba(13, 22, 103, 0) 23.08%, #0d1667 70.2%),
-    url('~/assets/images/about/background.jpg');
-    background-repeat: no-repeat;
-    background-size: contain;
+  background-image: url('~/assets/images/about/background.jpg');
+  background-color: #000e69;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .font-section {
