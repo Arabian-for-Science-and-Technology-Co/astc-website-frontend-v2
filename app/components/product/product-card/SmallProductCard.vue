@@ -8,7 +8,10 @@
       format="webp"
       :key="data?.id"
       :src="data?.image"
-      :class="['imgs-contianer__card__img']"
+      :class="[
+        'imgs-contianer__card__img'
+        // wide && 'object-cover object-[0_20%]'
+      ]"
       :alt="`Image ${data?.id} representing solution`"
       loading="lazy"
       decoding="async"
