@@ -13,12 +13,12 @@ export default defineNuxtRouteMiddleware((to) => {
   //   return navigateTo('/')
   // }
   
-  const nearbyRoutes = {
-    ['/about']: ['/about-us']
-  }
-  const matchedRoute = Object.keys(nearbyRoutes).find((key) => nearbyRoutes[key].includes(to.path))
+  // const nearbyRoutes = {
+  //   ['/about']: ['/about-us']
+  // }
+  // const matchedRoute = Object.keys(nearbyRoutes).find((key) => nearbyRoutes[key].includes(to.path))
 
-  if (matchedRoute) {
-    return navigateTo(matchedRoute)
-  }
+  // if (matchedRoute) {
+  //   return navigateTo(matchedRoute)
+  // }
 })

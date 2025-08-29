@@ -49,11 +49,10 @@
   </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const promoImg = 'promo.png'
-const props = defineProps({
-  sectionData: { type: Object, defaults: {} }
-})
+import type { PageSectionItem } from '~/services/pages-section.service'
+defineProps<{ sectionData: PageSectionItem }>()
 const { locale } = useI18n()
 </script>
 <style scoped>

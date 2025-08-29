@@ -27,10 +27,10 @@
   </section>
 </template>
 
-<script setup>
-const props = defineProps({
-  sectionData: { type: Object, defaults: {} }
-})
+<script setup lang="ts">
+import type { PageSectionItem } from '~/services/pages-section.service'
+defineProps<{ sectionData: PageSectionItem }>()
+
 const { locale } = useI18n()
 </script>
 <style scoped>

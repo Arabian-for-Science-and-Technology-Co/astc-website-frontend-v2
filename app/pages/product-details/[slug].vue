@@ -82,7 +82,6 @@
 <script setup lang="ts">
 import RequestDocumentModal from '~/pages/product-details/_components/RequestDocumentModal.vue'
 import ProductDetailsTemplate from '~/pages/product-details/_components/ProductDetailsTemplate.vue'
-import type { Product, ProductResponse } from '~/types/api'
 
 const route = useRoute()
 definePageMeta({
@@ -93,13 +92,9 @@ definePageMeta({
 })
 const modalOpen = ref(false)
 const { locale } = useI18n()
-const { apiFetch } = useApi()
-const { data: productData } = await useApiAsyncData<Product | null>(
+const { data: productData } = await useApiAsyncData(
   () => `product-details:${route.params.slug}`,
-  async () => {
-    const res = await apiFetch<ProductResponse>(`/website/home/item/${route.params.slug}`)
-    return res.data ?? null
-  },
+  async () => getProductDetails(route.params.slug as string),
   { watch: [() => route.params.slug] }
 )
 

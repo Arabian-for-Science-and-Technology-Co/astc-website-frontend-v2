@@ -1,6 +1,6 @@
 import type { PaginatedResponse, ApiResponse } from '~/modules/api/types'
 
-type NewsItem = {
+export type NewsItem = {
   id: number
   testimonial_id: number
   title_en: string

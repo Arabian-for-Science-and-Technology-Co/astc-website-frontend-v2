@@ -8,7 +8,7 @@
     <button
       v-for="(tab, index) in tabs"
       :key="index"
-      @click="() => onTabChange(returnObject ? tab : isObject(tab) ? tab?.[valueKey] : tab)"
+      @click="() => onTabChange(returnObject ? tab : isObject(tab) ? getTabValue(tab) : tab)"
       :class="[
         'relative flex h-full items-center text-nowrap rounded-xl border-none px-[20px] capitalize',
         isTabSelected(tab) && (selectedTabClass || 'bg-[#010101] text-white'),
@@ -16,32 +16,90 @@
       ]"
     >
       <slot name="tab" :tab="tab" :isSelected="isTabSelected(tab)">
-        {{ isObject(tab) ? tab.label : tab }}
+        {{ getTabLabel(tab) }}
       </slot>
     </button>
   </div>
 </template>
 
-<script setup>
-const props = defineProps({
-  tabs: { type: Array, required: true },
-  modelValue: { type: [String, Number, Object, null], required: true },
-  tabClass: { type: [String, Array, Boolean, null] },
-  selectedTabClass: { type: [String, Array, Boolean, null] },
-  returnObject: { type: Boolean, default: true },
-  valueKey: { type: String, default: 'value' }
+<script
+  setup
+  lang="ts"
+  generic="
+    T = any,
+    R extends boolean = true,
+    LK extends string = 'label',
+    VK extends string = 'value'
+  "
+>
+import type { Ref } from 'vue'
+import type { Classish } from '~/types/utils'
+
+/** Element type of tabs (object stays object; primitives narrowed to string|number) */
+type TabType = T extends object ? T : string | number
+
+/** Value type extracted from a tab when returnObject=false */
+type ValueOfTab<XT> = XT extends object ? (VK extends keyof XT ? XT[VK] : never) : XT
+
+/** Props (discriminated by returnObject) */
+interface BaseProps {
+  tabs: TabType[]
+  tabClass?: Classish
+  selectedTabClass?: Classish
+  labelKey?: LK
+  valueKey?: VK
+}
+type PropsRTrue = BaseProps & { returnObject: true; modelValue: TabType | null }
+type PropsRFalse = BaseProps & { returnObject?: false; modelValue: ValueOfTab<TabType> }
+type Props = PropsRTrue | PropsRFalse
+
+const props = withDefaults(defineProps<Props>(), {
+  returnObject: true as const,
+  labelKey: () => 'label' as LK,
+  valueKey: () => 'value' as VK
 })
-const emits = defineEmits(['update:modelValue'])
-const isObject = (d) => typeof d == 'object' && Object.keys(d).length
-const containerRef = ref(null)
+// runtime default without touching the union typing
+/** Strongly-typed slot */
+defineSlots<{
+  tab(p: { tab: TabType; isSelected: boolean }): any
+}>()
+
+const emits = defineEmits<
+  | { (e: 'update:modelValue', value: TabType | null): void } // returnObject === true
+  | { (e: 'update:modelValue', value: ValueOfTab<TabType>): void } // returnObject === false
+>()
+
+/** Utils */
+const isObject = (d: unknown): d is Record<string, unknown> =>
+  typeof d === 'object' && d !== null && Object.keys(d).length > 0
+
+const getTabValue = (tab: TabType): any =>
+  isObject(tab) ? (tab as any)[props.valueKey as string] : tab
+
+const getTabLabel = (tab: TabType): string => {
+  if (isObject(tab)) {
+    const byLabel = (tab as any)[props.labelKey as string]
+    if (byLabel != null) return String(byLabel)
+    const byValue = (tab as any)[props.valueKey as string]
+    if (byValue != null) return String(byValue)
+    return ''
+  }
+  return String(tab)
+}
+
+const containerRef: Ref<HTMLDivElement | null> = ref(null)
 const containerWidth = ref(0)
-const onTabChange = (val) => {
+
+const onTabChange = (val: any) => {
   emits('update:modelValue', val)
 }
-const isTabSelected = (tab) => {
-  return props.returnObject
-    ? tab?.[props.valueKey] == props.modelValue?.[props.valueKey]
-    : (isObject(tab) ? tab?.[props.valueKey] : tab) == props.modelValue
+
+const isTabSelected = (tab: TabType): boolean => {
+  if (props.returnObject) {
+    return getTabValue(tab) === getTabValue(props.modelValue as TabType)
+  } else {
+    return getTabValue(tab) === props.modelValue
+  }
 }
 
 const updateWidth = () => {
@@ -52,17 +110,15 @@ const updateWidth = () => {
 
 onMounted(() => {
   updateWidth()
-
   const resizeObserver = new ResizeObserver(updateWidth)
-  if (containerRef.value) {
-    resizeObserver.observe(containerRef.value)
-  }
+  if (containerRef.value) resizeObserver.observe(containerRef.value)
+  onBeforeUnmount(() => resizeObserver.disconnect())
+})
 
-  onBeforeUnmount(() => {
-    resizeObserver.disconnect()
-  })
-})
-defineExpose({
-  containerWidth
-})
+defineExpose<TabsExpose>({ containerWidth })
+</script>
+<script lang="ts">
+export type TabsExpose = {
+  containerWidth: Ref<number>
+}
 </script>

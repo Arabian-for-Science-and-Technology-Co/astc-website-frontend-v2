@@ -13,10 +13,10 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+type Timer = ReturnType<typeof setTimeout>
 
-// Configuration
 const config = {
   rows: 14,
   cols: 14,
@@ -29,23 +29,22 @@ const config = {
   rowDelay: 150
 }
 
-// Reactive state
-const activeDots = ref(Array.from({ length: config.rows }, () => Array(config.cols).fill(false)))
+const activeDots = ref<boolean[][]>(
+  Array.from({ length: config.rows }, () => Array(config.cols).fill(false))
+)
 
-// Animation controllers
-const animationTimeouts = ref([])
+const animationTimeouts = ref<Timer[]>([])
 
-// Initialize grid dimensions
-const rows = Array(config.rows).fill(null)
-const cols = Array(config.cols).fill(null)
+const rows: null[] = Array(config.rows).fill(null)
+const cols: null[] = Array(config.cols).fill(null)
 
 // Dot activation helper
-const isActive = (row, col) => activeDots.value[row][col]
+const isActive = (row: number, col: number): boolean => !!activeDots.value[row]?.[col]
 
 // Animation functions
-const animateRow = (row) => {
+const animateRow = (row: number): (() => void) => {
   let cancelled = false
-  let currentTimeout = null
+  let currentTimeout: Timer | null = null
 
   const cycle = () => {
     if (cancelled) return
@@ -53,12 +52,12 @@ const animateRow = (row) => {
     const targetCount =
       Math.floor(Math.random() * (config.maxActive - config.minActive + 1)) + config.minActive
 
-    const fill = (index) => {
+    const fill = (index: number) => {
       if (cancelled || index >= config.cols) return
 
       if (index < targetCount) {
         // Update dot state reactively
-        activeDots.value[row][index] = true
+        activeDots.value[row]![index] = true
         currentTimeout = setTimeout(() => fill(index + 1), config.fillSpeed)
         animationTimeouts.value.push(currentTimeout)
       } else {
@@ -80,7 +79,7 @@ const animateRow = (row) => {
           return
         }
 
-        activeDots.value[row][index] = false
+        activeDots.value[row]![index] = false
         index--
         currentTimeout = setTimeout(clearNext, config.clearSpeed)
         animationTimeouts.value.push(currentTimeout)
@@ -104,8 +103,8 @@ const animateRow = (row) => {
 }
 
 // Lifecycle hooks
+const cancelFunctions: Array<() => void> = []
 onMounted(() => {
-  const cancelFunctions = []
   for (let row = 0; row < config.rows; row++) {
     cancelFunctions.push(animateRow(row))
   }
@@ -143,7 +142,7 @@ onMounted(() => {
 }
 
 .dot {
- height: var(--grid-height);
+  height: var(--grid-height);
   width: var(--grid-width);
   border-radius: 50%;
   background-color: transparent;

@@ -1,6 +1,5 @@
 import type { ApiResponse, LocalizedPartial } from '~/modules/api/types'
-
-export interface Category {
+export interface ProductCategory {
   id: number
   title_en: string
   title_ar: string
@@ -16,6 +15,7 @@ export interface IntegratedItem {
   title_ar: string
   slug: string
   image: string
+  image_url: string
   pivot: IntegratedPivot
 }
 
@@ -57,8 +57,11 @@ export interface Product
   updated_at: string
 
   integrated_items: IntegratedItem[]
-  category: Category
+  category: ProductCategory
   item_sections: ItemSection[]
 }
-
-export type ProductResponse = ApiResponse<Product>
+export async function getProductDetails(slug: string) {
+  const { apiFetch } = useApi()
+  const res = await apiFetch<ApiResponse<Product>>(`/website/home/item/${slug}`)
+  return res.data ?? null
+}

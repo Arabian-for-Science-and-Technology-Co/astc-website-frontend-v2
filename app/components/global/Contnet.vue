@@ -1,4 +1,3 @@
-<!-- components/Content.vue -->
 <template>
   <article
     :class="[

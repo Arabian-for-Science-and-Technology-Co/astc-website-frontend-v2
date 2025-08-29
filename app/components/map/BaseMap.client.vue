@@ -2,48 +2,46 @@
   <div ref="mapContainer" class="h-full w-full"></div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import type {
+  DirectionsRenderer,
+  Map,
+  Marker,
+  PlacesService,
+  PlaceSearchRequest,
+  LatLngLike
+} from '~/types/google-maps'
+
 import standardStyle from '~/assets/maps-standard.json'
 
-import { watch } from 'vue'
+const props = withDefaults(
+  defineProps<{
+    center: LatLngLike
+    zoom?: number
+    markers?: LatLngLike[]
+    type?: string
+    airportPosition?: LatLngLike | null
+  }>(),
+  { zoom: 12, markers: () => [], type: '', airportPosition: null }
+)
 
-const mapContainer = ref(null)
-const mapInstance = ref(null)
-const directionsRenderer = ref(null)
+/* ---------------- Local refs & vars (typed) ---------------- */
+const mapContainer = ref<HTMLDivElement | null>(null)
+const mapInstance = ref<Map | null>(null)
+const directionsRenderer = ref<DirectionsRenderer | null>(null)
+
+let placesService: PlacesService | null = null
+let markerRefs: Marker[] = []
 
 const { $googleMapsLoader } = useNuxtApp()
 
-const props = defineProps({
-  center: {
-    type: Object,
-    required: true // passed as `:center="position"`
-  },
-  zoom: {
-    type: Number,
-    default: 12
-  },
-  markers: {
-    type: Array,
-    default: () => []
-  },
-  type: {
-    type: String,
-    default: ''
-  },
-  airportPosition: {
-    type: Object,
-    default: null
-  }
-})
-
-let placesService = null
-let markerRefs = []
-function getMapOptions() {
-  const google = window.google
+/* ---------------- Helpers / options ---------------- */
+function getMapOptions(centerArg?: LatLngLike, zoomArg?: number): google.maps.MapOptions {
+  const g = (window as unknown as { google?: typeof google }).google
   return {
-    center: props.center,
-    zoom: props.zoom,
-    mapTypeId: google.maps.MapTypeId.HYBRID, // or SATELLITE / ROADMAP
+    center: (centerArg ?? props.center) as LatLngLike,
+    zoom: (zoomArg ?? props.zoom) as number,
+    mapTypeId: g?.maps?.MapTypeId?.HYBRID ?? google.maps.MapTypeId.HYBRID,
     disableDefaultUI: true,
     zoomControl: true,
     zoomControlOptions: {
@@ -55,65 +53,78 @@ function getMapOptions() {
     }
   }
 }
+
+/* ---------------- Mount / init ---------------- */
 onMounted(async () => {
   try {
     const google = await $googleMapsLoader.load()
+    // create map (assert container present)
+    if (!mapContainer.value) throw new Error('mapContainer not found')
 
     const map = new google.maps.Map(mapContainer.value, getMapOptions())
-
     mapInstance.value = map
+
     directionsRenderer.value = new google.maps.DirectionsRenderer({ map })
     placesService = new google.maps.places.PlacesService(map)
 
     renderMarkers()
     applyMapAction(props.type)
   } catch (error) {
+    // preserve existing behaviour
+    // eslint-disable-next-line no-console
     console.error('Google Maps failed to load:', error)
   }
 })
 
+/* ---------------- Watchers ---------------- */
 watch(
   () => props.type,
   (newVal) => {
-    if (mapInstance.value) {
-      resetMapSettings()
-      clearMap()
+    if (!mapInstance.value) return
+    resetMapSettings()
+    clearMap()
 
-      // only render markers if the type is NOT using directions
-      if (newVal !== 'get-from-the-airport') {
-        renderMarkers()
-      }
-
-      applyMapAction(newVal)
+    if (newVal !== 'get-from-the-airport') {
+      renderMarkers()
     }
+    applyMapAction(newVal)
   }
 )
-// Watch for center change (reactivity)
+
 watch(
   () => props.center,
   (newCenter) => {
     if (mapInstance.value) {
-      mapInstance.value.setCenter(newCenter)
+      mapInstance.value.setCenter(newCenter as LatLngLike)
     }
   }
 )
 
-// Add markers from props
-function renderMarkers() {
-  const google = window.google
+/* ---------------- Markers rendering ---------------- */
+function renderMarkers(): void {
+  const g = (window as unknown as { google?: typeof google }).google
+  if (!g || !mapInstance.value) return
 
-  markerRefs = props.markers.map((markerData) => {
-    const marker = new google.maps.Marker({
-      position: markerData,
-      map: mapInstance.value
-    })
+  // clear old markers
+  markerRefs.forEach((m) => {
+    try {
+      m.setMap(null)
+    } catch {}
+  })
+  markerRefs = []
 
-    // ✅ Create InfoWindow with link
-    const infoWindow = new google.maps.InfoWindow({
+  markerRefs = (props.markers || []).map((markerData) => {
+    const position = markerData as LatLngLike
+    const marker = new g.maps.Marker({
+      position,
+      map: mapInstance.value as Map
+    }) as Marker
+
+    const infoWindow = new g.maps.InfoWindow({
       content: `
         <div>
           <a 
-            href="https://www.google.com/maps?q=${markerData.lat},${markerData.lng}" 
+            href="https://www.google.com/maps?q=${position.lat},${position.lng}" 
             target="_blank"
             style="text-decoration: none; color: #4285F4; height:20px;"
           >
@@ -123,44 +134,64 @@ function renderMarkers() {
       `
     })
 
-    // ✅ Add click listener
     marker.addListener('click', () => {
-      infoWindow.open(mapInstance.value, marker)
+      try {
+        infoWindow.open(mapInstance.value as Map, marker as Marker)
+      } catch {}
     })
 
     return marker
   })
 }
 
-// Clean up markers and directions
-function clearMap() {
-  directionsRenderer.value.set('directions', null)
+/* ---------------- Clear / reset ---------------- */
+function clearMap(): void {
+  if (directionsRenderer.value) {
+    try {
+      directionsRenderer.value.set('directions', null)
+    } catch {}
+  }
 
-  markerRefs.forEach((marker) => marker.setMap(null))
+  markerRefs.forEach((marker) => {
+    try {
+      marker.setMap(null)
+    } catch {}
+  })
   markerRefs = []
 }
-function resetMapSettings() {
-  const google = window.google
+
+function resetMapSettings(): void {
+  const g = (window as unknown as { google?: typeof google }).google
   if (!mapInstance.value) return
   const options = getMapOptions(props.center, props.zoom)
-  // Apply center, zoom, and type
-  mapInstance.value.setCenter(options.center)
-  mapInstance.value.setZoom(options.zoom)
-  mapInstance.value.setMapTypeId(options.mapTypeId)
+  try {
+    mapInstance.value.setCenter(options.center as LatLngLike)
+    mapInstance.value.setZoom(options.zoom as number)
+    if (options.mapTypeId != null) mapInstance.value.setMapTypeId(options.mapTypeId)
+  } catch {}
 
-  // Clear directions and markers
-  directionsRenderer.value.set('directions', null)
-  markerRefs.forEach((marker) => marker.setMap(null))
+  if (directionsRenderer.value) {
+    try {
+      directionsRenderer.value.set('directions', null)
+    } catch {}
+  }
+
+  markerRefs.forEach((marker) => {
+    try {
+      marker.setMap(null)
+    } catch {}
+  })
   markerRefs = []
 }
-// Handle actions based on tab
-function applyMapAction(type) {
-  const google = window.google
-  if (!mapInstance.value) return
+
+/* ---------------- Actions & routing/directions ---------------- */
+function applyMapAction(type?: string): void {
+  const g = (window as unknown as { google?: typeof google }).google
+  if (!mapInstance.value || !g) return
 
   switch (type) {
     case 'map':
-      // mapInstance.value.setMapTypeId(google.maps.MapTypeId.SATELLITE)
+      // intentionally left commented as original
       break
 
     case 'get-from-the-airport':
@@ -180,107 +211,155 @@ function applyMapAction(type) {
       break
 
     default:
-      mapInstance.value.setMapTypeId(google.maps.MapTypeId.ROADMAP)
+      try {
+        mapInstance.value.setMapTypeId(g.maps.MapTypeId.ROADMAP)
+      } catch {}
       break
   }
 }
 
-function drawRouteFromAirport(origin) {
-  const google = window.google
-  const directionsService = new google.maps.DirectionsService()
+/* ---------------- Directions drawing ---------------- */
+function drawRouteFromAirport(origin: LatLngLike): void {
+  const g = (window as unknown as { google?: typeof google }).google
+  if (!g || !mapInstance.value) return
+
+  const directionsService = new g.maps.DirectionsService()
 
   directionsService.route(
     {
-      origin,
-      destination: props.center,
-      travelMode: google.maps.TravelMode.DRIVING
+      origin: origin as LatLngLike,
+      destination: props.center as LatLngLike,
+      travelMode: g.maps.TravelMode.DRIVING
     },
-    (result, status) => {
-      if (status === google.maps.DirectionsStatus.OK) {
-        directionsRenderer.value.setOptions({
-          suppressMarkers: true,
-          polylineOptions: {
-            strokeColor: '#0F53FF',
-            strokeWeight: 5,
-            strokeOpacity:0.7,
-          }
-        })
+    (result: google.maps.DirectionsResult | null, status: google.maps.DirectionsStatus) => {
+      if (status === g.maps.DirectionsStatus.OK) {
+        if (directionsRenderer.value) {
+          try {
+            directionsRenderer.value.setOptions({
+              suppressMarkers: true,
+              polylineOptions: {
+                strokeColor: '#0F53FF',
+                strokeWeight: 5,
+                strokeOpacity: 0.7
+              }
+            })
+            directionsRenderer.value.setDirections(result as google.maps.DirectionsResult)
+          } catch {}
+        }
 
-        directionsRenderer.value.setDirections(result)
+        // fit map to route
+        try {
+          const bounds = new g.maps.LatLngBounds()
+          result!?.routes?.[0]!.overview_path.forEach((point) => bounds.extend(point))
+          mapInstance.value!.fitBounds(bounds)
 
-        // ✅ Fix: fit map view to show entire route
-        const bounds = new google.maps.LatLngBounds()
-        result.routes[0].overview_path.forEach((point) => bounds.extend(point))
-        mapInstance.value.fitBounds(bounds)
+          const leg = result!.routes[0]!.legs[0]
 
-        const leg = result.routes[0].legs[0]
+          const originMarker = new g.maps.Marker({
+            position: leg?.start_location,
+            map: mapInstance.value,
+            icon: {
+              path: g.maps.SymbolPath.CIRCLE,
+              fillColor: 'white',
+              fillOpacity: 1,
+              scale: 6,
+              strokeColor: '#A9AEB8',
+              strokeWeight: 2
+            }
+          })
 
-        const originMarker = new google.maps.Marker({
-          position: leg.start_location,
-          map: mapInstance.value,
-          icon: {
-            path: google.maps.SymbolPath.CIRCLE,
-            fillColor: 'white',
-            fillOpacity: 1,
-            scale: 6,
-            strokeColor: '#A9AEB8',
-            strokeWeight: 2
-          }
-        })
+          const destinationMarker = new g.maps.Marker({
+            position: leg?.end_location,
+            map: mapInstance.value
+          })
 
-        const destinationMarker = new google.maps.Marker({
-          position: leg.end_location,
-          map: mapInstance.value
-        })
-
-        markerRefs.push(originMarker, destinationMarker)
+          markerRefs.push(originMarker as Marker, destinationMarker as Marker)
+        } catch {}
       } else {
+        // keep behaviour identical
+        // eslint-disable-next-line no-console
         console.error('Failed to fetch directions', status)
       }
     }
   )
 }
 
-function findNearestAirport(center) {
-  const google = window.google
+/* ---------------- Places / nearest airport ---------------- */
+function findNearestAirport(center: LatLngLike): void {
+  const g = (window as unknown as { google?: typeof google }).google
+  if (!g || !placesService) return
 
-  const request = {
-    location: center,
-    radius: 50000, // in meters (adjust based on expected area)
+  const request: google.maps.places.PlaceSearchRequest = {
+    location: center as LatLngLike,
+    radius: 50000,
     keyword: 'airport'
   }
 
-  placesService.nearbySearch(request, (results, status) => {
-    if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 0) {
-      const nearestAirport = results[0].geometry.location
-      drawRouteFromAirport(nearestAirport)
-    } else {
-      console.error('No nearby airports found or request failed:', status)
+  placesService.nearbySearch(
+    request,
+    (
+      results: google.maps.places.PlaceResult[] | null,
+      status: google.maps.places.PlacesServiceStatus
+    ) => {
+      if (status === g.maps.places.PlacesServiceStatus.OK && results && results.length > 0) {
+        const nearestAirport = results[0]!?.geometry!.location
+        drawRouteFromAirport(nearestAirport as LatLngLike)
+      } else {
+        // eslint-disable-next-line no-console
+        console.error('No nearby airports found or request failed:', status)
+      }
     }
-  })
+  )
 }
-// Search nearby places (hotels, metro, etc.)
-function searchNearby(keyword) {
-  const google = window.google
-  const request = {
-    location: props.center,
+
+/* ---------------- Search nearby (hotels, metro, ...) ---------------- */
+function searchNearby(keyword: string): void {
+  const g = (window as unknown as { google?: typeof google }).google
+  if (!g || !placesService) return
+
+  const request: PlaceSearchRequest = {
+    location: props.center as LatLngLike,
     radius: 3000,
     keyword
   }
 
-  placesService.nearbySearch(request, (results, status) => {
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
-      markerRefs = results.map(
-        (place) =>
-          new google.maps.Marker({
-            map: mapInstance.value,
-            position: place.geometry.location,
+  placesService.nearbySearch(
+    request,
+    (
+      results: google.maps.places.PlaceResult[] | null,
+      status: google.maps.places.PlacesServiceStatus
+    ) => {
+      if (status === g.maps.places.PlacesServiceStatus.OK && results) {
+        // map results to markers
+        markerRefs = results.map((place) => {
+          const marker = new g.maps.Marker({
+            map: mapInstance.value as google.maps.Map,
+            position: place?.geometry?.location,
             title: place.name
           })
-      )
-    } else {
-      console.error('Places search failed:', status)
+          return marker as Marker
+        })
+      } else {
+        // eslint-disable-next-line no-console
+        console.error('Places search failed:', status)
+      }
     }
-  })
+  )
 }
+
+/* ---------------- Cleanup ---------------- */
+onBeforeUnmount(() => {
+  if (directionsRenderer.value) {
+    try {
+      directionsRenderer.value.set('directions', null)
+    } catch {}
+  }
+
+  markerRefs.forEach((m) => {
+    try {
+      m.setMap(null)
+    } catch {}
+  })
+  markerRefs = []
+})
 </script>

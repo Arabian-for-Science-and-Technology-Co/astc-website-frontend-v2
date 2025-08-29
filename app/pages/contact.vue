@@ -63,7 +63,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 usePageHead()
 
 const { t, locale } = useI18n()
@@ -72,7 +72,7 @@ const informations = computed(() => [
   {
     id: 'contact',
     title: t('contact'),
-    items: [...settings.value?.phones, settings.value?.mail]
+    items: [...(settings.value?.phones ?? []), settings.value?.mail]
   },
   {
     id: 'address',
@@ -89,7 +89,7 @@ const mapTypes = computed(() => [
   { label: t('hotels_around'), value: 'hotels-around' },
   { label: t('nearest_metro_station'), value: 'nearest-metro-station' }
 ])
-const mapType = ref(mapTypes.value[0].value)
+const mapType = ref(mapTypes.value[0]!.value)
 const position = computed(() => ({
   lat: Number(settings.value?.latitude),
   lng: Number(settings.value?.longitude)

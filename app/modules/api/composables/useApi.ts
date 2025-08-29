@@ -1,9 +1,9 @@
-import type { $Fetch } from 'ofetch'
+import type { ApiFetch } from '~/modules/api/plugins/api-fetch'
 
 type CacheValue = { v: unknown; t: number }
 
 export function useApi() {
-  const apiFetch = useNuxtApp().$apiFetch as $Fetch
+  const apiFetch = useNuxtApp().$apiFetch as ApiFetch
   
   // client-only, per-tab cache with Nuxt state (survives within the SPA session)
   const cache = import.meta.client

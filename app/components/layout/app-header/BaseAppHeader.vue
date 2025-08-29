@@ -12,10 +12,10 @@
       class="-mt-[17px] hidden gap-[27px] lg:flex"
     >
       <BaseImg
-        :key="isWhiteLogo"
+        :key="String(isWhiteLogo)"
         densities="x1 x2"
         format="webp"
-        :src="isWhiteLogo ? settings.logo_light : settings.logo_dark"
+        :src="isWhiteLogo ? settings?.logo_light : settings?.logo_dark"
         :class="['mb-[7px] h-[68px] w-[130px] self-start hover:cursor-pointer']"
         :fallback="ASC_Logo_Main"
       />
@@ -47,7 +47,7 @@
         <BaseImg
           densities="x1 x2"
           format="webp"
-          :src="isWhiteLogo ? settings.logo_light : settings.logo_dark"
+          :src="isWhiteLogo ? settings?.logo_light : settings?.logo_dark"
           class="h-full w-full"
           :fallback="ASC_Logo_Main"
         />
@@ -78,14 +78,20 @@
   </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const ASC_Logo_Main = '/Icons/ASC_Logo_Main.svg'
-
-const props = defineProps({
-  showLeftLogo: { type: Boolean, default: true },
-  isWhiteLogo: { type: Boolean, default: false },
-  desktopMenuWidth: { type: [String, Number], default: '' }
-})
+withDefaults(
+  defineProps<{
+    showLeftLogo?: boolean
+    isWhiteLogo?: boolean
+    desktopMenuWidth?: string | number
+  }>(),
+  {
+    showLeftLogo: true,
+    isWhiteLogo: false,
+    desktopMenuWidth: ''
+  }
+)
 
 const { locale } = useI18n()
 const { settings } = useWebsiteSettings()

@@ -61,17 +61,9 @@
   </section>
 </template>
 
-<script setup>
-const props = defineProps({
-  sectionData: { type: Object, defaults: {} }
-})
-const { apiFetch } = useApi()
+<script setup lang="ts">
+import type { PageSectionItem } from '~/services/pages-section.service'
+defineProps<{ sectionData: PageSectionItem }>()
 const { locale } = useI18n()
-const { data: customers } = await useApiAsyncData(
-  () => apiFetch('/website/home/partners?type=government'),
-  {
-    transform: (res) => res.data || []
-  }
-)
+const { data: customers } = await useApiAsyncData(() => getPartners('government'))
 </script>
-<style scoped></style>

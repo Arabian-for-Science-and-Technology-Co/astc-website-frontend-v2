@@ -2,7 +2,15 @@ import { defineNuxtPlugin } from '#app'
 import type { $Fetch, FetchOptions, FetchRequest } from 'ofetch'
 import { applyPolicyOrThrow } from '~/modules/api/utils/api-error-policy'
 import type { Composer } from 'vue-i18n'
+import type { ApiResponse } from '~/modules/api/types'
 
+export type ApiFetch = {
+  /** Polymorphic per-call generic, defaulting to ApiResponse */
+  <T = ApiResponse>(request: FetchRequest, opts?: FetchOptions): Promise<T>
+  raw: $Fetch['raw']
+  native: $Fetch['native']
+  create(defaults: FetchOptions): ApiFetch
+}
 export default defineNuxtPlugin((nuxtApp) => {
   const config = useRuntimeConfig()
   const apiCfg = config.public.api
@@ -35,7 +43,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   })
 
   // Wrap and FORWARD generics to `raw<T>`
-  const apiFetch = async function apiFetch<T>(
+  const apiFetch = async function apiFetch<T = ApiResponse>(
     request: FetchRequest,
     opts?: FetchOptions
   ): Promise<T> {
@@ -45,7 +53,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       applyPolicyOrThrow(e)
       throw e
     }
-  } as unknown as $Fetch
+  } as unknown as ApiFetch
 
   // keep helpers
   // @ts-expect-error - assign runtime helpers for parity with $fetch
@@ -55,14 +63,17 @@ export default defineNuxtPlugin((nuxtApp) => {
   apiFetch.create = (defaults: any) => {
     const created = raw.create(defaults)
     // wrap the created instance too
-    const wrap = async function apiFetchCreated<T>(req: any, o?: FetchOptions): Promise<T> {
+    const wrap = async function apiFetchCreated<T = ApiResponse>(
+      req: any,
+      o?: FetchOptions
+    ): Promise<T> {
       try {
         return await created<T>(req, o as any)
       } catch (e) {
         applyPolicyOrThrow(e)
         throw e
       }
-    } as unknown as $Fetch
+    } as unknown as ApiFetch
     // @ts-expect-error
     wrap.raw = created.raw
     // @ts-expect-error

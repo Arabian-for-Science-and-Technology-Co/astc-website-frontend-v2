@@ -24,7 +24,8 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ data: Record<string, any> }>()
+import type { AboutSectionItem } from '../index.vue'
+const props = defineProps<{ data: AboutSectionItem }>()
 const { locale } = useI18n()
 const rawContent = computed(() => props.data?.[`content_${locale.value}`] ?? '')
 </script>

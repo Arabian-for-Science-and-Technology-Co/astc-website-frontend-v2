@@ -73,14 +73,13 @@
     <path d="M126.934 85.8232L156.916 102.562L165.827 80.1055L126.934 85.8232Z" fill="#1E2D6E" />
   </svg>
 </template>
-<script setup>
+<script setup lang="ts">
 const props = defineProps({
-  name: { type: String },
   size: { type: [String, Number], default: 24 },
-  logoColor_1: { type: String, required: '#3246A9' },
-  logoColor_2: { type: String, required: '#465AE5' },
-  logoColor_3: { type: String, required: '#1E2D6E' },
-  textColor: { type: String, required: 'black' },
+  logoColor_1: { type: String, default: '#3246A9' },
+  logoColor_2: { type: String, default: '#465AE5' },
+  logoColor_3: { type: String, default: '#1E2D6E' },
+  textColor: { type: String, default: 'black' },
   color: { type: String }
 })
 </script>

@@ -13,12 +13,19 @@
   </ClientOnly>
 </template>
 
-<script setup>
-const props = defineProps({
-  tabsClass: { type: [String, Array, Boolean, null], default: '' },
-  tabClass: { type: [String, Array, Boolean, null] },
-  selectedTabClass: { type: [String, Array, Boolean, null], default: '' }
-})
+<script setup lang="ts">
+import type { Classish } from '~/types/utils'
+withDefaults(
+  defineProps<{
+    tabsClass?: Classish
+    tabClass?: Classish
+    selectedTabClass?: Classish
+  }>(),
+  {
+    tabsClass: '',
+    selectedTabClass: ''
+  }
+)
 
 const { locale, locales, setLocale } = useI18n()
 const isTransitioning = ref(false)
@@ -27,13 +34,14 @@ const transitionDirection = ref('fade')
 const mapped = {
   en: { label: 'Eng', value: 'en' },
   ar: { label: 'عربى', value: 'ar' }
-}
+} as const
 
 const availableLocales = computed(() => {
   return locales.value.map((i) => mapped[i.code])
 })
-
-const switchLocale = async (newLocale) => {
+type SelectedLcoale = typeof availableLocales extends ComputedRef<Array<infer I>> ? I : never
+const switchLocale = async (newLocale: SelectedLcoale | null) => {
+  if (!newLocale) return
   if (newLocale.value === locale.value) return
   const currentLocaleIndex = availableLocales.value.findIndex((l) => l.value === locale.value)
   const newLocaleIndex = availableLocales.value.findIndex((l) => l.value === newLocale.value)

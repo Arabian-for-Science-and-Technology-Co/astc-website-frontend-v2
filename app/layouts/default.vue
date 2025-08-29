@@ -13,7 +13,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const route = useRoute()
 const layoutProps = computed(() => {
   const meta = route.meta.layoutProps || {}

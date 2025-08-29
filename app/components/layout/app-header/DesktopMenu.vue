@@ -1,6 +1,7 @@
 <template>
   <teleport to="body">
     <Tabs
+      :tabs="tabs"
       v-bind="$attrs"
       :returnObject="false"
       ref="tabsRef"
@@ -8,17 +9,16 @@
       :selectedTabClass="!isHovering && selectedTabClass"
       :modelValue="route.path"
       @update:modelValue="
-        (val) => {
+        (val: string) => {
           navigateTo(val)
           isHovering = false
         }
       "
-      :tabs="tabs"
     >
       <template #tab="{ tab, isSelected }">
         <h2
           @mouseenter="
-            !disableHoverOnTab && tab.id == 'products-and-solutions'
+            !disableHoverOnTab && tab?.id == 'products-and-solutions'
               ? (isHovering = true)
               : (isHovering = false)
           "
@@ -55,13 +55,22 @@
   </teleport>
 </template>
 
-<script setup>
-const props = defineProps({
-  tabs: { type: Array, required: true },
-  tabsClass: { type: String, default: '' },
-  selectedTabClass: { type: String, default: '' }
-})
-const tabsRef = ref(null)
+<script setup lang="ts">
+import type { Tab } from '~/components/layout/app-header/AppHeader.vue'
+import Tabs, { type TabsExpose } from '~/components/ui/tabs.vue'
+ 
+withDefaults(
+  defineProps<{
+    tabs: Tab[]
+    tabsClass?: string
+    selectedTabClass?: string
+  }>(),
+  {
+    tabsClass: '',
+    selectedTabClass: ''
+  }
+)
+const tabsRef = ref<TabsExpose | null>(null)
 const route = useRoute()
 
 const isHovering = ref(false)
@@ -73,7 +82,7 @@ watch(isHovering, (val) => {
     document.body.style.overflow = ''
   }
 })
-let timeoutId = null
+let timeoutId: ReturnType<typeof setTimeout> | null = null
 
 watch(
   route,

@@ -42,8 +42,8 @@ export default defineNuxtConfig({
   vueSonner: { css: true },
   i18n: {
     locales: [
-      { code: 'en', iso: 'en-US', file: 'en.js', name: 'English' },
-      { code: 'ar', iso: 'ar-AR', file: 'ar.js', name: 'العربية', dir: 'rtl' }
+      { code: 'en', iso: 'en-US', file: 'en.ts', name: 'English' },
+      { code: 'ar', iso: 'ar-AR', file: 'ar.ts', name: 'العربية', dir: 'rtl' }
     ],
     defaultLocale: 'en',
     strategy: 'no_prefix',
@@ -108,7 +108,10 @@ export default defineNuxtConfig({
     typeCheck: false, // Disable if you don't need runtime type checking
     tsConfig: {
       compilerOptions: {
-        types: ['@nuxt/types', '@nuxtjs/tailwindcss']
+        // types: ['nuxt', 'vite/client']
+        include: ['types/**/*.d.ts'],
+        // you can also tuck vueCompilerOptions here if you prefer:
+        vueCompilerOptions: { strictTemplates: true }
       }
     }
   }

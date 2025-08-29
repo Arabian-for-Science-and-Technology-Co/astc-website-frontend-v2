@@ -45,15 +45,15 @@
   </article>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import XTwitterIcon from '~/components/icons/XTwitterIcon.vue'
 import LinkedinIcon from '~/components/icons/LinkedinIcon.vue'
 import FacebookIcon from '~/components/icons/FacebookIcon.vue'
 import InstagramIcon from '~/components/icons/InstagramIcon.vue'
 import YoutubeIcon from '~/components/icons/YoutubeIcon.vue'
-defineProps({
-  themeColor: { type: String }
-})
+defineProps<{
+  themeColor?: string
+}>()
 const { locale } = useI18n()
 const { settings } = useWebsiteSettings()
 const socials = {

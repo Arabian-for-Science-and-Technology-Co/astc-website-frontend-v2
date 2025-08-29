@@ -22,7 +22,7 @@
     </g>
   </svg>
 </template>
-<script setup>
+<script setup lang="ts">
 const props = defineProps({
   color: { type: String, default: 'black' },
   hoverColor: { type: String, default: 'black' },

@@ -55,36 +55,14 @@
   </section>
 </template>
 
-<script setup>
-import newsVideo from '~/assets/images/news-video.png'
-const props = defineProps({
-  sectionData: { type: Object, defaults: {} }
-})
-const { apiFetch } = useApi()
+<script setup lang="ts">
+import type { PageSectionItem } from '~/services/pages-section.service'
+defineProps<{ sectionData: PageSectionItem }>()
 const { locale } = useI18n()
-const { data: newsData } = await useApiAsyncData(
-  () => apiFetch('/website/news?per_page=3&page=1'),
-  {
-    transform: (res) => res.data || []
-  }
-)
-const data = [
-  {
-    title: 'June 3, 2025',
-    desc: `Arabian for Sience and Technology.  Empowering the Future with Cutting-Edge   TechnologyTechnology Technology Technology Technology Technology Technology Technology `,
-    video: newsVideo
-  },
-  {
-    title: 'June 3, 2025',
-    desc: 'Arabian for Sience and Technology.',
-    video: null
-  },
-  {
-    title: 'June 3, 2025',
-    desc: 'Arabian for Sience and Technology. Empowering the Future with Cutting-Edge Technology...',
-    video: null
-  }
-]
+const { data: newsData } = await useApiAsyncData(async () => {
+  const res = await getNews({ per_page: 3, page: 1 })
+  return res.data || []
+})
 </script>
 <style>
 #NewsSection .main-title {

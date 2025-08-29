@@ -10,32 +10,33 @@
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+<script setup lang="ts">
+import { ref, onBeforeUnmount } from 'vue'
 
-const isDragging = ref(false)
-const startX = ref(0)
-const scrollLeft = ref(0)
-const wrapperRef = ref(null)
+const isDragging = ref<boolean>(false)
+const startX = ref<number>(0)
+const scrollLeft = ref<number>(0)
+const wrapperRef = ref<HTMLDivElement | null>(null)
 
-const startDragging = (e) => {
+const startDragging = (e: MouseEvent): void => {
   isDragging.value = true
-  startX.value = e.pageX - wrapperRef.value.offsetLeft
-  scrollLeft.value = wrapperRef.value.scrollLeft
-  wrapperRef.value.classList.add('dragging')
+  const wrapper = wrapperRef.value! // non-null: element exists when mousedown fires
+  startX.value = e.pageX - wrapper.offsetLeft
+  scrollLeft.value = wrapper.scrollLeft
+  wrapper.classList.add('dragging')
   document.addEventListener('mousemove', handleDragging)
   document.addEventListener('mouseup', stopDragging)
   e.preventDefault()
 }
 
-const stopDragging = () => {
+const stopDragging = (): void => {
   isDragging.value = false
   wrapperRef.value?.classList.remove('dragging')
   document.removeEventListener('mousemove', handleDragging)
   document.removeEventListener('mouseup', stopDragging)
 }
 
-const handleDragging = (e) => {
+const handleDragging = (e: MouseEvent): void => {
   if (!isDragging.value || !wrapperRef.value) return
   const x = e.pageX - wrapperRef.value.offsetLeft
   const walk = (x - startX.value) * 1.5 // control scroll speed

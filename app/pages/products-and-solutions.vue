@@ -26,7 +26,7 @@
   </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 definePageMeta({
   layoutProps: {
     showProductsSection: false

@@ -24,16 +24,19 @@
 <script setup lang="ts">
 import { computed, watch } from 'vue'
 import { useNearestAirport } from '~/composables/useNearestAirport'
+import type { LatLngLike } from '~/types/google-maps'
+const props = withDefaults(
+  defineProps<{
+    center: LatLngLike
+    zoom?: number
+    markers?: LatLngLike[]
+    type?: string
+    airportPosition?: LatLngLike | null
+  }>(),
+  { zoom: 12, markers: () => [], type: '', airportPosition: null }
+)
 
-const props = defineProps({
-  center: { type: Object, required: true },
-  zoom: { type: Number, default: 12 },
-  markers: { type: Array, default: () => [] },
-  type: { type: String, default: '' },
-  airportPosition: { type: Object, default: null }
-})
-
-const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
+const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string
 
 const {
   nearestAirport,

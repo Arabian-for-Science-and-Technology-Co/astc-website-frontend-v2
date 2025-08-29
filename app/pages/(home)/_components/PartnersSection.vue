@@ -46,22 +46,9 @@
   </section>
 </template>
 
-<script setup>
-const props = defineProps({
-  sectionData: { type: Object, defaults: {} }
-})
-const { apiFetch } = useApi()
+<script setup lang="ts">
+import type { PageSectionItem } from '~/services/pages-section.service'
+defineProps<{ sectionData: PageSectionItem }>()
 const { locale } = useI18n()
-const { data: partners } = await useApiAsyncData(
-  () => apiFetch('/website/home/partners?type=corporate'),
-  {
-    transform: (res) => res.data || []
-  }
-)
+const { data: partners } = await useApiAsyncData(() => getPartners('corporate'))
 </script>
-
-<style scoped>
-.partner-img {
-  /* background: url(<path-to-image>) lightgray -35.778px -33.562px / 142.396% 259.82% no-repeat; */
-}
-</style>

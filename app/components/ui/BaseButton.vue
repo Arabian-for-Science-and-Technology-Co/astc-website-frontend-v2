@@ -10,17 +10,25 @@
     ]"
   >
     <slot></slot>
-    <span v-if="isLoading" class="absolute z-30 end-[12%] top-1/2 -translate-y-1/2">
+    <span v-if="isLoading" class="absolute end-[12%] top-1/2 z-30 -translate-y-1/2">
       <LoadarIcon v-bind="loadarProps" />
     </span>
   </button>
 </template>
 
-<script setup>
-const props = defineProps({
-  btnClass: { type: [String, Array, Boolean, null] },
-  isStyled: { type: [Boolean, null], default: true },
-  isLoading: { type: [Boolean, null], default: false },
-  loadarProps: { type: Object, default: () => ({}) }
-})
+<script setup lang="ts">
+import type { Classish } from '~/types/utils'
+withDefaults(
+  defineProps<{
+    btnClass?: Classish
+    isStyled?: boolean | null
+    isLoading?: boolean | null
+    loadarProps?: Record<string, any>
+  }>(),
+  {
+    isStyled: true,
+    isLoading: false,
+    loadarProps: () => ({})
+  }
+)
 </script>

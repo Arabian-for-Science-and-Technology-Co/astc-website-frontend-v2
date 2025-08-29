@@ -27,11 +27,22 @@
   </figure>
 </template>
 
-<script setup>
-defineProps({
-  data: { type: Object, default: () => ({}) },
-  wide: { type: Boolean, default: false }
-})
+<script setup lang="ts">
+import type { IntegratedItem } from '~/services/products.service'
+import type { ProductSolutionItem } from '~/composables/useProductsAndSolutions'
+import type { CategoryItem } from '~/services/categories.service'
+
+type GeneralIntegratedItem = IntegratedItem & ProductSolutionItem & CategoryItem
+
+withDefaults(
+  defineProps<{
+    data: Partial<GeneralIntegratedItem>
+    wide?: boolean
+  }>(),
+  {
+    wide: false
+  }
+)
 const { locale } = useI18n()
 </script>
 <style scoped>

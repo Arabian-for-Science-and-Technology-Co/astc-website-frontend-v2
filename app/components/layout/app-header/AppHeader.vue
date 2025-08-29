@@ -27,14 +27,16 @@
   </BaseAppHeader>
 </template>
 
-<script setup>
-const props = defineProps({
+<script setup lang="ts">
+import DesktopMenu from '~/components/layout/app-header/DesktopMenu.vue'
+type DesktopMenuInstance = InstanceType<typeof DesktopMenu>
+defineProps({
   showLeftLogo: { type: Boolean, default: true },
   isWhiteLogo: { type: Boolean, default: false },
   tabsClass: { type: String, default: '' },
   selectedTabClass: { type: String, default: '' }
-})
-const desktopMenuRef = ref(null)
+} as const)
+const desktopMenuRef = ref<DesktopMenuInstance | null>(null)
 const { pages } = usePages()
 const route = useRoute()
 const { locale } = useI18n()
@@ -48,4 +50,5 @@ const tabs = computed(() =>
       isNew: page.slug == 'news' && route.path != '/news'
     }))
 )
+export type Tab = typeof tabs extends ComputedRef<Array<infer I>> ? I : never
 </script>

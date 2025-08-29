@@ -6,7 +6,7 @@
     />
   </svg>
 </template>
-<script setup>
+<script setup lang="ts">
 const props = defineProps({
   color: { type: String, default: '#A9AEB8' }
 })

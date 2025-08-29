@@ -17,21 +17,22 @@
       <h3 v-if="data?.[`title_${locale}`]" class="imgs-contianer__card__title">
         {{ data?.[`title_${locale}`] }}
       </h3>
-      <!-- <p
-        v-if="data?.[`meta_desc_${locale}`]"
-        :class="['imgs-contianer__card__desc', wide && 'imgs-contianer__card__desc--wide']"
-      >
-        {{ data?.[`meta_desc_${locale}`] }}
-      </p> -->
     </figcaption>
   </figure>
 </template>
 
-<script setup>
-defineProps({
-  data: { type: Object, default: () => ({}) },
-  wide: { type: Boolean, default: false }
-})
+<script setup lang="ts">
+import type { IntegratedItem } from '~/services/products.service'
+import type { ProductSolutionItem } from '~/composables/useProductsAndSolutions'
+withDefaults(
+  defineProps<{
+    data: IntegratedItem | ProductSolutionItem
+    wide?: boolean
+  }>(),
+  {
+    wide: false
+  }
+)
 const { locale } = useI18n()
 </script>
 <style scoped>

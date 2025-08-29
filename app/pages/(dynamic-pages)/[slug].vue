@@ -16,16 +16,17 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import dynamicPageTemplate from '~/pages/(dynamic-pages)/_components/dynamicPageTemplate.vue'
 const route = useRoute()
 if (!route.params.slug) {
   throw navigateTo('/', { redirectCode: 307, replace: true })
 }
-usePageHead(route.params.slug)
+usePageHead(route.params.slug as string)
+
 const { data: pageDetailsData } = await useApiAsyncData(
   () => `dynamic-pages:${route.params.slug}`,
-  () => getPageSection(route.params.slug),
+  () => getPageSection(route.params.slug as string),
   {
     watch: [() => route.params.slug]
   }

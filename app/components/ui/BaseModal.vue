@@ -64,25 +64,36 @@
   </Teleport>
 </template>
 
-<script setup>
-import { ref, watch, onMounted, onUnmounted } from 'vue'
+<script setup lang="ts">
+import type { Classish } from '~/types/utils'
 
-const props = defineProps({
-  open: Boolean,
-  title: String,
-  formMode: Boolean,
-  onConfirm: Function,
-  onCancel: Function,
-  canCloseByBackdrop: { type: Boolean, default: true },
-  canCloseByEsc: { type: Boolean, default: true },
-  showOutsideCloseBtn: { type: Boolean, default: true },
-  containerClass: String,
-  headerClass: String,
-  bodyClass: String,
-  footerClass: String
-})
+const props = withDefaults(
+  defineProps<{
+    open?: boolean
+    formMode?: boolean
+    onConfirm?: () => void | Promise<void>
+    onCancel?: () => void
+    canCloseByBackdrop?: boolean
+    canCloseByEsc?: boolean
+    showOutsideCloseBtn?: boolean
+    title?: string
+    containerClass?: Classish
+    headerClass?: Classish
+    bodyClass?: Classish
+    footerClass?: Classish
+  }>(),
+  {
+    open: false,
+    formMode: false,
+    canCloseByBackdrop: true,
+    canCloseByEsc: true,
+    showOutsideCloseBtn: true
+  }
+)
 
-const emit = defineEmits(['update:open'])
+const emit = defineEmits<{
+  (e: 'update:open', value: boolean): void
+}>()
 const open = computed({
   get: () => props.open,
   set: (val) => emit('update:open', val)
@@ -99,17 +110,12 @@ function close() {
   open.value = false
 }
 
-async function handleSubmit(e) {
-  // if form is invalid -> show native validation UI and do nothing
-  if (props.formMode && !e.target.checkValidity()) {
-    // show default browser validation UI
-    if (typeof e.target.reportValidity === 'function') {
-      e.target.reportValidity()
-    }
+async function handleSubmit(e: SubmitEvent) {
+  const form = e.currentTarget as HTMLFormElement | null
+  if (props.formMode && form && !form.checkValidity()) {
+    form.reportValidity?.()
     return
   }
-
-  // valid -> prevent normal navigation and handle in Vue
   await props.onConfirm?.()
 }
 
@@ -124,7 +130,7 @@ function handleBackdropClose() {
   }
 }
 
-function handleEsc(e) {
+function handleEsc(e: KeyboardEvent) {
   if (e.key === 'Escape' && props.canCloseByEsc) {
     handleCancel()
   }

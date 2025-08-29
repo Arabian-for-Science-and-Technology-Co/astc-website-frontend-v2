@@ -24,9 +24,9 @@
 <script setup lang="ts">
 const sky1 = '/Images/main/sky_parallax_1.png'
 import sky2 from '~/assets/images/main/sky_parallax_2.png?url'
-const props = defineProps({
-  sectionData: { type: Object, defaults: {} }
-})
+import type { PageSectionItem } from '~/services/pages-section.service'
+defineProps<{ sectionData: PageSectionItem }>()
+
 const sectionEl = ref<HTMLElement | null>(null)
 const maskEl = ref<HTMLElement | null>(null)
 const fgImg = ref<HTMLElement | null>(null)

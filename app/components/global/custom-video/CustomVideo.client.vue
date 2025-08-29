@@ -61,21 +61,28 @@
   </div>
 </template>
 
-<script setup>
-import { ref, computed, onMounted, nextTick } from 'vue'
-import { isHls, getNativeHls, getYouTubeId } from '~/utils/videoFns.js'
+<script setup lang="ts">
+import { isHls, getNativeHls, getYouTubeId } from '~/utils/videoFns'
+const props = withDefaults(
+  defineProps<{
+    src: string
+    poster?: string
+    autoplay?: boolean
+    muted?: boolean
+    loop?: boolean
+    playsinline?: boolean
+    preload?: 'none' | 'metadata' | 'auto'
+  }>(),
+  {
+    autoplay: false,
+    muted: false,
+    loop: false,
+    playsinline: true,
+    preload: 'metadata'
+  }
+)
 
-const props = defineProps({
-  src: String, // MP4/WebM/HLS URL or any YouTube URL
-  poster: String,
-  autoplay: { type: Boolean, default: false },
-  muted: { type: Boolean, default: false },
-  loop: { type: Boolean, default: false },
-  playsinline: { type: Boolean, default: true },
-  preload: { type: String, default: 'metadata' }
-})
-
-const videoEl = ref(null)
+const videoEl = ref<HTMLVideoElement | null>(null)
 const isPlaying = ref(false)
 const autoplayFailed = ref(false)
 
@@ -142,7 +149,7 @@ async function startPlayback({ reset = false } = {}) {
   }
 
   const el = videoEl.value
-  if (!el) return
+  if (!(el instanceof HTMLVideoElement)) return
 
   if (!canUseSrc.value) {
     isPlaying.value = false

@@ -1,18 +1,16 @@
-import type { $Fetch } from 'ofetch'
-// import { formatDate } from '~/plugins/dateFormat'
-type FormatDateFn = (dateInput: Date | string | number | null | undefined, format?: string) => string
+import type { ApiFetch } from '~/modules/api/plugins/api-fetch'
 
 declare module '#app' {
   interface NuxtApp {
-    $apiFetch: $Fetch
-    $fd: FormatDateFn
+    $apiFetch: ApiFetch
+    $googleMapsLoader: { load(): Promise<typeof google> }
   }
 }
 
 declare module 'vue' {
   interface ComponentCustomProperties {
-    $apiFetch: $Fetch
-    $fd: FormatDateFn
+    $apiFetch: ApiFetch
+    $googleMapsLoader: { load(): Promise<typeof google> }
   }
 }
 
