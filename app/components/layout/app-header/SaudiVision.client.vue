@@ -3,7 +3,7 @@
     <BaseImg
       densities="x1 x2"
       format="webp"
-      :src="settings.saudi_vision"
+      :src="settings?.saudi_vision"
       :class="[
         'gray-overlay w-[50px]',
         'lg:w-[62px]',
@@ -35,13 +35,20 @@
   </article>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const saudi_vision = '/Icons/vision_2030.svg'
-const props = defineProps({
-  showLeftLogo: { type: Boolean, default: true },
-  isWhiteLogo: { type: Boolean, default: false },
-  enableHover: { type: Boolean, default: true }
-})
+withDefaults(
+  defineProps<{
+    showLeftLogo?: boolean
+    isWhiteLogo?: boolean
+    enableHover?: boolean
+  }>(),
+  {
+    showLeftLogo: true,
+    isWhiteLogo: false,
+    enableHover: true
+  }
+)
 
 const { locale } = useI18n()
 const { settings } = useWebsiteSettings()

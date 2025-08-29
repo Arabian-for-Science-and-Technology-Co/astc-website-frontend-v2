@@ -43,7 +43,7 @@
           <BaseImg
             densities="x1 x2"
             format="webp"
-            :src="settings.logo_dark || ASC_Logo_Main"
+            :src="settings?.logo_dark || ASC_Logo_Main"
             :class="['h-full w-full']"
             :fallback="ASC_Logo_Main"
           />
@@ -72,14 +72,9 @@
   </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import ServicesSlider from '~/pages/(home)/_components/hero-section/services-slider/ServicesSlider.vue'
-
 const ASC_Logo_Main = '/Icons/ASC_Logo_Main.svg'
-
-const props = defineProps({
-  sectionData: { type: Object, defaults: {} }
-})
 const { locale } = useI18n()
 const { settings } = useWebsiteSettings()
 </script>

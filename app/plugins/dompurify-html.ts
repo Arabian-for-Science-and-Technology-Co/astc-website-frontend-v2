@@ -15,7 +15,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       FORBID_TAGS: ['style','script','iframe','object','embed','link','meta']
     },
     hooks: {
-      afterSanitizeAttributes(node) {
+      afterSanitizeAttributes(node: { tagName: string; getAttribute: (arg0: string) => string; setAttribute: (arg0: string, arg1: string) => void }) {
         if (node.tagName === 'A' && node.getAttribute) {
           const href = node.getAttribute('href') || ''
           node.setAttribute('rel', 'ugc nofollow noopener noreferrer')

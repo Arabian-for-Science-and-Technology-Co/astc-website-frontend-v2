@@ -1,16 +1,20 @@
 <template>
-  <NuxtImg class="content-transition" v-bind="$attrs" :src="resolvedSrc" @error="handleImageError" />
+  <NuxtImg
+    class="content-transition"
+    v-bind="$attrs"
+    :src="resolvedSrc"
+    @error="handleImageError"
+  />
 </template>
 
-<script setup>
-const props = defineProps({
-  fallback: { type: String },
-  src: { type: String, required: true }
-})
-
-const fallbackSrc = ref(null)
+<script setup lang="ts">
+const props = defineProps<{
+  fallback?: string
+  src?: string
+}>()
+const fallbackSrc = ref<string | null>(null)
 function handleImageError() {
-  fallbackSrc.value = props.fallback
+  fallbackSrc.value = props.fallback ?? ''
 }
 const resolvedSrc = computed(() => fallbackSrc.value || props.src)
 </script>

@@ -87,13 +87,17 @@
   </teleport>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const ASC_Logo_Main = '/Icons/ASC_Logo_Main.svg'
-
-defineProps({
-  tabs: { type: Array, required: true },
-  isWhiteLogo: { type: Boolean, default: false }
-})
+withDefaults(
+  defineProps<{
+    tabs: any[]
+    isWhiteLogo?: boolean
+  }>(),
+  {
+    isWhiteLogo: false
+  }
+)
 const { settings } = useWebsiteSettings()
 
 const isOpen = ref(false)

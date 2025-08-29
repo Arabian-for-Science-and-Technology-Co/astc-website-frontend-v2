@@ -10,7 +10,9 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import type { SectionCode } from '~/services/pages-section.service'
+
 import HeroSection from '~/pages/(home)/_components/hero-section/HeroSection.vue'
 import NewsSection from '~/pages/(home)/_components/NewsSection.vue'
 import AnnouncementSection from '~/pages/(home)/_components/AnnouncementSection.vue'
@@ -27,7 +29,7 @@ definePageMeta({
 })
 usePageHead()
 
-const componentMap = {
+const componentMap: Partial<Record<SectionCode, any>> = {
   news_bar: NewsSection,
   vision: AnnouncementSection,
   custom_development: PromoSection,

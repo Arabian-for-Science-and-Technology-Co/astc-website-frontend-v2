@@ -5,7 +5,7 @@
   >
     <figure
       v-for="(category, index) in categories"
-      :key="category.id"
+      :key="category?.id"
       :class="[
         'group relative h-full w-[258px] shrink-0 overflow-hidden rounded-[34px] bg-gray-950',
         'lg:w-[360px] lg:rounded-[48px]'
@@ -44,11 +44,11 @@
   </SliderCarousel>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { getCategories } from '~/services/categories.service'
+
 const { apiFetch } = useApi()
 const { locale } = useI18n()
-const { data: categories } = await useApiAsyncData(() => apiFetch('/website/home/categories'), {
-  transform: (res) => res.data || []
-})
+const { data: categories } = await useApiAsyncData(getCategories)
 </script>
 <style></style>

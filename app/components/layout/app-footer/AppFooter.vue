@@ -14,9 +14,14 @@
   </div>
 </template>
 
-<script setup>
-const props = defineProps({
-  showProductsSection: { type: Boolean, default: true }
-})
+<script setup lang="ts">
+withDefaults(
+  defineProps<{
+    showProductsSection?: boolean
+  }>(),
+  {
+    showProductsSection: true
+  }
+)
 </script>
 <style scoped></style>

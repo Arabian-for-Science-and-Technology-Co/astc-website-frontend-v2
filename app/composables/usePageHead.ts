@@ -1,6 +1,6 @@
-export default function usePageHead(pageSlug) {
+export default function usePageHead(pageSlug?: string) {
   const route = useRoute()
-  const formattedPageSlug = pageSlug || (route.name == 'index' ? 'home' : route.name)
+  const formattedPageSlug = pageSlug || (route.name == 'index' ? 'home' : (route.name as string))
   const { locale } = useI18n()
   const { getPage } = usePages()
   const PageInfo = getPage(formattedPageSlug)

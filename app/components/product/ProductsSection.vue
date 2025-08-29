@@ -21,10 +21,15 @@
   </section>
 </template>
 
-<script setup>
-const props = defineProps({
-  sectionData: { type: Object, defaults: {} }
-})
+<script setup lang="ts">
+withDefaults(
+  defineProps<{
+    sectionData?: Record<string, any>
+  }>(),
+  {
+    sectionData: () => ({})
+  }
+)
 const { locale } = useI18n()
 const { productsAndSolutions, fetchProductsAndSolutions } = useProductsAndSolutions()
 await fetchProductsAndSolutions()

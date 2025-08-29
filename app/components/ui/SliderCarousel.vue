@@ -38,42 +38,46 @@
   </div>
 </template>
 
-<script setup>
-import { ref, computed, onMounted, nextTick, watch } from 'vue'
-import { useI18n } from 'vue-i18n'
+<script setup lang="ts">
+const props = withDefaults(
+  defineProps<{
+    loadMore?: (() => void | Promise<void>) | null
+    isLoading?: boolean
+    debounceTime?: number
+    trackClass?: string
+  }>(),
+  {
+    loadMore: null,
+    isLoading: false,
+    debounceTime: 100,
+    trackClass: ''
+  }
+)
 
-// Props
-const props = defineProps({
-  loadMore: { type: Function, default: null },
-  isLoading: { type: Boolean, default: false },
-  debounceTime: { type: Number, default: 100 },
-  trackClass: { type: String, default: '' }
-})
-
-// Refs
-const trackRef = ref(null)
-const containerRef = ref(null)
-const scrollTimeout = ref(null)
+const trackRef = ref<HTMLDivElement | null>(null)
+const containerRef = ref<HTMLDivElement | null>(null)
+const scrollTimeout = ref<number | null>(null)
 const atStart = ref(true)
 const atEnd = ref(false)
 const showPrev = ref(false)
 const showNext = ref(false)
 
-// RTL detection
 const { locale } = useI18n()
 const isRTL = computed(() => locale.value === 'ar')
 
 // Compute scroll amount (one-third of container)
-const scrollAmount = () => (containerRef.value?.clientWidth || 0) / 3
+const scrollAmount = (): number => (containerRef.value?.clientWidth ?? 0) / 3
 
 // Scroll handler (debounced)
-const onScroll = () => {
-  clearTimeout(scrollTimeout.value)
-  scrollTimeout.value = setTimeout(checkEdges, props.debounceTime)
+const onScroll = (): void => {
+  if (scrollTimeout.value !== null) {
+    window.clearTimeout(scrollTimeout.value)
+  }
+  scrollTimeout.value = window.setTimeout(checkEdges, props.debounceTime)
 }
 
 // Check whether we’re at start/end and if arrows should show
-function checkEdges() {
+function checkEdges(): void {
   const el = trackRef.value
   if (!el) return
 
@@ -96,7 +100,7 @@ function checkEdges() {
 }
 
 // Imperative scroll by pages
-function scrollBy(direction = 1) {
+function scrollBy(direction = 1): void {
   const el = trackRef.value
   if (!el) return
   const delta = scrollAmount() * direction * (isRTL.value ? -1 : 1)
@@ -115,7 +119,9 @@ onMounted(() => {
 // cleanup
 onUnmounted(() => {
   window.removeEventListener('resize', checkEdges)
-  clearTimeout(scrollTimeout.value)
+  if (scrollTimeout.value !== null) {
+    window.clearTimeout(scrollTimeout.value)
+  }
 })
 </script>
 

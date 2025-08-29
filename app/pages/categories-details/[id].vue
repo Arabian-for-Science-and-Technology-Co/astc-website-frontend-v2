@@ -17,19 +17,17 @@
   </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 definePageMeta({
   layoutProps: {
     showProductsSection: false
   }
 })
 const route = useRoute()
-const { apiFetch } = useApi()
 const { data: categoryItems } = await useApiAsyncData(
   () => `category-details:${route.params.id}`,
-  () => apiFetch(`/website/home/categories/${route.params.id}/items`),
+  () => getCategoryDetails(route.params.id as string),
   {
-    transform: (res) => res.data || [],
     watch: [() => route.params.id]
   }
 )

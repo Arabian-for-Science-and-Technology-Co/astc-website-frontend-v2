@@ -6,7 +6,7 @@
     ]"
   >
     <NuxtImg
-      :src="aboutIntro?.image"
+      :src="aboutIntro?.image ?? ''"
       :class="[
         'mx-[7px] mt-[73px] min-h-[30vh] object-contain',
         'lg:mx-[80px] lg:mt-[43px] lg:min-h-[50vh]',
@@ -41,7 +41,7 @@
                 }
               "
               :key="certificate.id"
-              :src="certificate.image"
+              :src="certificate?.image ?? ''"
               class="inline-block h-auto w-auto max-w-[205px] object-contain align-bottom"
               alt=""
             />
@@ -62,7 +62,7 @@
     >
       <ClickZoom
         img-class="max-h-[85vh] !object-contain"
-        :src="selectedCertificate.image"
+        :src="selectedCertificate?.image ?? ''"
         :tap-zoom="2.5"
         :max-scale="5"
       />
@@ -70,8 +70,13 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import AboutTemplate from '~/pages/about/_components/AboutTemplate.vue'
+import type { Certificate } from '~/services/certificates.service'
+import type { PageSectionItem } from '~/services/pages-section.service'
+export type AboutSectionItem = PageSectionItem & {
+  code: 'about_intro' | 'certificates_slider' | 'about_goals' | 'about_mission'
+}
 definePageMeta({
   layoutProps: {
     isWhiteLogo: true,
@@ -80,14 +85,11 @@ definePageMeta({
 })
 usePageHead()
 
-const selectedCertificate = ref(null)
+const selectedCertificate = ref<Certificate | null>(null)
 const modalOpen = ref(false)
 const { locale } = useI18n()
-const { apiFetch } = useApi()
-const { data: aboutData } = await useApiAsyncData(() => getPageSection('about'))
-const { data: certificates } = await useApiAsyncData(() => apiFetch(`/website/home/certificates`), {
-  transform: (res) => res.data || []
-})
+const { data: aboutData } = await useApiAsyncData(() => getPageSection<AboutSectionItem[]>('about'))
+const { data: certificates } = await useApiAsyncData(getCertificates)
 const aboutIntro = computed(() => aboutData.value?.find((d) => d?.code == 'about_intro'))
 const certificatesSlider = computed(() =>
   aboutData.value?.find((d) => d?.code == 'certificates_slider')
@@ -98,6 +100,8 @@ const certificatesSlider = computed(() =>
   background:
     linear-gradient(191deg, rgba(13, 22, 103, 0) 23.08%, #0d1667 70.2%),
     url('~/assets/images/about/background.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .font-section {

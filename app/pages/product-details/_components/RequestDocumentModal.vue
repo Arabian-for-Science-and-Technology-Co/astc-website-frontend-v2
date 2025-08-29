@@ -88,12 +88,12 @@
           {{ $t('by_submitting_your_data_you_agree') }}
           <br />
           {{ $t('to_the') }}
-          <NuxtLink :to="`/${privacyPolicyPage.slug}`" class="inline text-[#0D1667] no-underline">
+          <NuxtLink :to="`/${privacyPolicyPage?.slug}`" class="inline text-[#0D1667] no-underline">
             {{ privacyPolicyPage?.[`title_${locale}`] }}
           </NuxtLink>
           &
           <NuxtLink
-            :to="`/${termsAndConditionsPage.slug}`"
+            :to="`/${termsAndConditionsPage?.slug}`"
             class="inline text-[#0D1667] no-underline"
           >
             {{ termsAndConditionsPage?.[`title_${locale}`] }}
@@ -104,7 +104,7 @@
   </BaseModal>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const props = defineProps({
   open: { type: Boolean },
   itemId: { type: [String, Number] }
@@ -116,7 +116,14 @@ const { getPage } = usePages()
 const privacyPolicyPage = getPage('privacy-policy')
 const termsAndConditionsPage = getPage('terms-and-conditions')
 
-const formData = reactive({
+type FormData = {
+  email: string
+  phone: string
+  name: string
+  positionInCompany: string
+  companyName: string
+}
+const formData = reactive<FormData>({
   email: '',
   phone: '',
   name: '',
@@ -124,10 +131,13 @@ const formData = reactive({
   companyName: ''
 })
 const isLoading = ref(false)
-const canSubmit = computed(() => Object.keys(formData).every((k) => formData[k]))
-const { apiFetch } = useApi()
-const resetFormData = () => Object.keys(formData).forEach((k) => (formData[k] = ''))
 
+const canSubmit = computed(() =>
+  (Object.keys(formData) as (keyof FormData)[]).every((k) => !!formData[k])
+)
+const resetFormData = () =>
+  (Object.keys(formData) as (keyof FormData)[]).forEach((k) => (formData[k] = ''))
+const { apiFetch } = useApi()
 async function submit() {
   if (isLoading.value) return
   isLoading.value = true

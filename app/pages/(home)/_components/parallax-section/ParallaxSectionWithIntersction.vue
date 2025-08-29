@@ -20,7 +20,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
 import sky1 from '~/assets/images/main/sky_parallax_1.png?url'
 import sky2 from '~/assets/images/main/sky_parallax_2.png?url'
 

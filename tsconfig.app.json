@@ -1,6 +1,7 @@
 {
   "extends": "./.nuxt/tsconfig.app.json",
   "compilerOptions": {
+    // "types": ["google.maps"],
     "strict": true,
     "moduleResolution": "bundler",
     "module": "ESNext",

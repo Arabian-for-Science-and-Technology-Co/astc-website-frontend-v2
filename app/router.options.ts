@@ -1,16 +1,10 @@
+// app/router.options.ts
 import type { RouterConfig } from '@nuxt/schema'
 
 export default <RouterConfig>{
-  async scrollBehavior(to, from, savedPosition) {
-    const nuxtApp = useNuxtApp()
-
-    // make sure the route has changed.
-    if (nuxtApp.$i18n && to.name !== from.name) {
-      // `$i18n` is injected in the `setup` of the nuxtjs/i18n module.
-      // `scrollBehavior` is guarded against being called even when it is not completed
-      await nuxtApp.$i18n.waitForPendingLocaleChange()
-    }
-
-    return { top: 0 }
+  scrollBehavior(to, _from, savedPosition) {
+    if (savedPosition) return savedPosition
+    if (to.hash) return { el: to.hash, behavior: 'smooth' }
+    return { left: 0, top: 0 }
   }
 }

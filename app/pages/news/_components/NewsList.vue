@@ -61,14 +61,20 @@
   </div>
 </template>
 
-<script setup>
-const props = defineProps({
-  listData: { type: [Array, null], default: [] },
-  isLoadingMore: { type: Boolean },
-  totalPages: { type: Number },
-  currentPage: { type: Number },
-  loadMore: { type: Function }
-})
+<script setup lang="ts">
+import type { NewsItem } from '~/services/news.service'
+withDefaults(
+  defineProps<{
+    listData: NewsItem[]
+    isLoadingMore: boolean
+    totalPages: number
+    currentPage: number
+    loadMore: (...args: any) => void
+  }>(),
+  {
+    listData: () => []
+  }
+)
 const { locale } = useI18n()
 </script>
 <style></style>

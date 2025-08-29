@@ -59,7 +59,7 @@
       <img
         @click="modalOpen = true"
         :src="currentImg?.image_url"
-        :alt="img?.alt || `Image ${index + 1}`"
+        :alt="currentImg?.alt || `Image`"
         loading="lazy"
         class="mx-auto block h-auto max-h-[90svh] max-w-full rounded-[8px] object-contain"
       />
@@ -67,34 +67,41 @@
   </div>
 </template>
 
-<script setup>
-import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
+<script setup lang="ts">
+import { ref, computed, onMounted, onBeforeUnmount, watch, type PropType } from 'vue'
+
+type ImageItem = {
+  id?: number | string
+  image_url?: string
+  alt?: string | null
+  [k: string]: unknown
+}
 
 const props = defineProps({
   images: {
-    type: Array,
+    type: Array as PropType<ImageItem[]>,
     required: true,
     default: () => []
   }
 })
 
-const modalOpen = ref(false)
+const modalOpen = ref<boolean>(false)
 
-const currentIndex = ref(0)
-const currentImg = computed(() => props.images[currentIndex.value] ?? null)
+const currentIndex = ref<number>(0)
+const currentImg = computed<ImageItem | null>(() => props.images[currentIndex.value] ?? null)
 
-function goToSlide(index) {
+function goToSlide(index: number): void {
   if (!props.images.length) return
   const clamped = Math.min(Math.max(index, 0), props.images.length - 1)
   currentIndex.value = clamped
 }
 
-function next() {
+function next(): void {
   if (!props.images.length) return
   currentIndex.value = (currentIndex.value + 1) % props.images.length
 }
 
-function prev() {
+function prev(): void {
   if (!props.images.length) return
   currentIndex.value = (currentIndex.value - 1 + props.images.length) % props.images.length
 }
@@ -105,7 +112,7 @@ onMounted(() => {
   }
 })
 
-function onKeydown(e) {
+function onKeydown(e: KeyboardEvent): void {
   if (!modalOpen.value) return
   if (e.key === 'ArrowRight') next()
   else if (e.key === 'ArrowLeft') prev()
@@ -123,6 +130,7 @@ onBeforeUnmount(() => {
   }
 })
 </script>
+
 <style scoped>
 .navigation-btn {
   @apply absolute top-1/2 z-10 flex h-[40px] w-[40px] -translate-y-1/2 place-items-center items-center justify-center rounded-full bg-white/50 p-2 shadow backdrop-blur-sm transition-colors hover:bg-white;

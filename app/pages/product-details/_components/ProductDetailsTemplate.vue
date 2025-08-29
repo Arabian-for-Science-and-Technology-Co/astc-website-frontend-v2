@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import ProductSlider from './ProductSlider.vue'
-const props = defineProps<{ data: Record<string, any> }>()
+defineProps<{ data: Record<string, any> }>()
 const { locale } = useI18n()
 </script>
 
