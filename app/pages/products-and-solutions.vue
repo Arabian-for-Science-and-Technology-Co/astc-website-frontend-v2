@@ -18,8 +18,8 @@
       </article>
       <article>
         <h2 class="main-title">{{ solutions?.[`title_${locale}`] }}</h2>
-        <div class="imgs-contianer imgs-contianer--wide mt-[29px]">
-          <ProductCard v-for="(item, i) in solutions?.items || []" :data="item" wide />
+        <div class="imgs-contianer mt-[29px]">
+          <ProductCard v-for="(item, i) in solutions?.items || []" :data="item"/>
         </div>
       </article>
     </section>
