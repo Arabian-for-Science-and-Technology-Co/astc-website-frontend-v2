@@ -9,7 +9,8 @@
       :key="data?.id"
       :src="data?.image"
       :class="[
-        'imgs-contianer__card__img'
+        'imgs-contianer__card__img',
+        wide && 'imgs-contianer__card__img--wide'
         // wide && 'object-cover object-[0_20%]'
       ]"
       :alt="`Image ${data?.id} representing solution`"
@@ -48,13 +49,17 @@ const { locale } = useI18n()
   @apply w-[180px] lg:w-[120px] 3xl:w-[160px];
 }
 .imgs-contianer__card__img {
-  @apply h-[90.3px] w-full overflow-hidden rounded-[20.845px] transition-all hover:translate-y-[-5px];
-  @apply lg:h-[120px] lg:rounded-[27.692px];
-  @apply 3xl:h-[160px] 3xl:rounded-[36.923px];
+  @apply aspect-[1/1] w-full overflow-hidden rounded-[20.845px] transition-all hover:translate-y-[-5px];
+  @apply lg:rounded-[27.692px];
+  @apply 3xl:rounded-[36.923px];
 
   &:hover {
     filter: drop-shadow(0 16px 28px rgba(23, 120, 255, 0.5));
   }
+}
+.imgs-contianer__card__img--wide {
+  @apply !aspect-[180/90.3] !w-full;
+  @apply lg:!aspect-[1/1];
 }
 .imgs-contianer__card__title {
   @apply w-full text-center text-[16px] font-[500] uppercase not-italic leading-[normal] tracking-[1.28px];
