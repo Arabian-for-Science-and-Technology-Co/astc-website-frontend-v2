@@ -74,6 +74,7 @@ const { locale } = useI18n()
 }
 .imgs-contianer__card__img--wide {
   @apply h-[131px] w-full;
+  @apply lg:!h-auto lg:!aspect-[521/260] w-full;
 }
 /*------------------* */
 .imgs-contianer__card__title {
@@ -87,6 +88,6 @@ const { locale } = useI18n()
 .imgs-contianer__card__desc--wide {
   @apply mx-auto max-w-[221px];
   @apply lg:max-w-[284px];
-  @apply 3xl:max-w-[220px];
+  @apply xl:max-w-[220px];
 }
 </style>
