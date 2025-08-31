@@ -2,9 +2,9 @@
   <div :class="['bg-[#F0F0F0] font-zarid']">
     <div
       :class="[
-        'flex h-screen max-h-[700px] flex-col justify-end bg-[#0D1667] pb-[60px] pt-[--header-height] text-white',
-        'lg:max-h-[720px] lg:pb-[117px]',
-        '3xl:max-h-[968px] 3xl:pb-[147px]'
+        'flex min-h-[700px] flex-col justify-end bg-[#0D1667] pb-[60px] pt-[--header-height] text-white',
+        'xl:min-h-[720px] xl:pb-[117px]',
+        '3xl:min-h-[968px] 3xl:pb-[147px]'
       ]"
       :style="{
         backgroundImage: `url(${productData?.cover_image})`,
@@ -13,7 +13,7 @@
         backgroundRepeat: 'no-repeat'
       }"
     >
-      <header class="app-container text-white">
+      <header class="app-container text-white sm:mt-0 lg:mt-16 xl:mt-0">
         <h6
           v-if="productData?.category?.[`title_${locale}`]"
           :class="[
