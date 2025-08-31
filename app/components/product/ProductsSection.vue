@@ -15,7 +15,7 @@
     <article>
       <h2 class="main-title">{{ solutions?.[`title_${locale}`] }}</h2>
       <div class="imgs-contianer mt-[29px]">
-        <SmallProductCard v-for="(item, i) in solutions?.items || []" :data="item" wide />
+        <SmallProductCard v-for="(item, i) in solutions?.items || []" :data="item"/>
       </div>
     </article>
   </section>

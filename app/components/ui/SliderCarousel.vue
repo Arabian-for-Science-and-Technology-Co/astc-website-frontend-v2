@@ -18,7 +18,7 @@
       v-if="showPrev"
       @click="scrollBy(-1)"
       :disabled="atStart"
-      class="absolute start-0 top-1/2 z-10 hidden h-[80px] w-[80px] -translate-y-1/2 place-items-center rounded-full bg-white/70 p-2 shadow backdrop-blur-sm transition-colors hover:bg-white lg:grid"
+      class="absolute start-0 top-1/2 z-10 hidden h-[60px] w-[60px] -translate-y-1/2 place-items-center rounded-full bg-white/70 p-2 shadow backdrop-blur-sm transition-colors hover:bg-white lg:grid xl:h-[80px] xl:w-[80px]"
     >
       <ArrowIcon ltrLeft />
     </button>
@@ -28,7 +28,7 @@
       v-if="showNext"
       @click="scrollBy(1)"
       :disabled="atEnd"
-      class="absolute end-0 top-1/2 z-10 hidden h-[80px] w-[80px] -translate-y-1/2 place-items-center rounded-full bg-white/70 p-2 shadow backdrop-blur-sm transition-colors hover:bg-white lg:grid"
+      class="absolute end-0 top-1/2 z-10 hidden h-[60px] w-[60px] -translate-y-1/2 place-items-center rounded-full bg-white/70 p-2 shadow backdrop-blur-sm transition-colors hover:bg-white lg:grid xl:h-[80px] xl:w-[80px]"
     >
       <span v-if="isLoading" class="animate-spin">⟳</span>
       <span v-else>

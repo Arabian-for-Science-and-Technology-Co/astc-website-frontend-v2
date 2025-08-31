@@ -3,7 +3,8 @@
     :class="[
       // your base rhythm
       'space-y-[30px] text-[20px] font-[300] leading-[105%] tracking-[0.2px] rtl:leading-[130%]',
-      'lg:space-y-[38px] lg:text-[30px] lg:leading-[110%] lg:tracking-[0.3px]',
+      'lg:space-y-[38px] lg:text-[24.5px] lg:leading-[107.4%] lg:tracking-[0.245px]',
+      'xl:text-[30px] xl:leading-[110%] xl:tracking-[0.3px]',
       // lists
       '[&_:is(ul,ol)]:w-[90%] [&_:is(ul,ol)]:list-outside [&_:is(ul,ol)]:space-y-4 [&_:is(ul,ol)]:ps-6',
       '[&_ol]:list-decimal [&_ul]:list-disc',

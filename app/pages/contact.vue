@@ -10,7 +10,8 @@
         <h2
           :class="[
             'mb-[20px] text-[18px] font-[500] leading-[normal] tracking-[0.18px] !no-underline',
-            'lg:mb-0 lg:text-[30px] lg:font-[600] lg:leading-[33px] lg:tracking-[0.3px]'
+            'lg:mb-0 lg:text-[23.24px] lg:leading-[26.34px] lg:tracking-[0.232px]',
+            'xl:text-[30px] xl:font-[600] xl:leading-[33px] xl:tracking-[0.3px]'
           ]"
         >
           {{ info.title }}
@@ -20,7 +21,8 @@
             v-for="item in info.items"
             :class="[
               'text-[36px] font-[300] not-italic leading-[48.6px] tracking-[0.36px] text-[#18264A] !no-underline',
-              'lg:font-[200]',
+              'lg:text-[56.92px] lg:leading-[64.46px] lg:tracking-[0.569px]',
+              'xl:font-[200]',
               'xl:text-[90px] xl:leading-[85.5px] xl:tracking-[0.9px]'
             ]"
           >

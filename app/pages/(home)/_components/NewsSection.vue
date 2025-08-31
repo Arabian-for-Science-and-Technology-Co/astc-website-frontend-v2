@@ -14,7 +14,8 @@
             <h4
               :class="[
                 'main-title mb-[14px] text-[16px] font-[500] uppercase leading-[19.2px] tracking-[0.16px]',
-                'lg:mb-[2px] lg:text-[32px] lg:font-[700] lg:leading-[38.4px] lg:tracking-[0.32px]'
+                'lg:mb-[2px] lg:text-[22px] lg:font-[600] lg:leading-[27px] lg:tracking-[0.23px]',
+                'xl:text-[32px] xl:font-[700] xl:leading-[38.4px] xl:tracking-[0.32px]'
               ]"
             >
               {{ $fd(item.updated_at, 'll') }}
@@ -22,7 +23,8 @@
             <h4
               :class="[
                 'text-truncate-multi w-[220px] text-[20px] font-[200] leading-[21px] tracking-[0.32px]',
-                'lg:w-[580px] lg:pe-[10%] lg:text-[32px] lg:font-[300] lg:leading-[30.4px] rtl:lg:leading-[34px]'
+                'lg:w-[580px] lg:pe-[10%] lg:text-[25px] lg:font-[300] lg:leading-[25px] lg:tracking-[0.32px]',
+                'xl:text-[32px] xl:font-[300] xl:leading-[30.4px] rtl:xl:leading-[34px]'
               ]"
             >
               {{ item?.[`title_${locale}`] }}
@@ -37,7 +39,7 @@
             :alt="`video`"
           />
           <div
-            class="absolute bottom-0 end-0 flex flex-col items-start justify-start text-[40px] font-[200] not-italic leading-[49.4px] tracking-[0.52px] text-[#0ADF0A] group-last-of-type:hidden lg:text-[52px]"
+            class="absolute bottom-0 end-0 flex flex-col items-start justify-start text-[40px] font-[200] not-italic leading-[49.4px] tracking-[0.52px] text-[#0ADF0A] group-last-of-type:hidden lg:text-[46px] xl:text-[52px]"
           >
             <span>#</span>
             <span>#</span>
@@ -46,7 +48,7 @@
         </NuxtLink>
         <button
           @click="navigateTo('/news')"
-          class="my-auto whitespace-nowrap pe-[50px] text-center align-middle font-durke text-[20px] font-medium uppercase not-italic leading-[120%] tracking-[0.32px] text-[#0ADF0A] hover:text-white lg:pe-[151px] lg:text-[32px] rtl:font-[800]"
+          class="my-auto whitespace-nowrap pe-[50px] text-center align-middle font-durke text-[20px] font-medium uppercase not-italic leading-[120%] tracking-[0.32px] text-[#0ADF0A] hover:text-white lg:pe-[151px] lg:text-[25px] xl:text-[32px] rtl:font-[800]"
         >
           {{ $t('all_news') }} /
         </button>

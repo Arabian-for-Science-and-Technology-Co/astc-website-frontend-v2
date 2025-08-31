@@ -9,7 +9,8 @@
     <h2
       :class="[
         'mb-[47.43px] w-full text-[52px] font-[200] not-italic leading-[49.4px] tracking-[0.52px] text-[#18264A]',
-        'lg:mb-[64px] lg:max-w-[90%] lg:text-[90px] lg:leading-[85.5px] lg:tracking-[0.9px]',
+        'lg:mb-[64px] lg:max-w-[90%] lg:text-[68px] lg:leading-[65px] lg:tracking-[0.68px]',
+        'xl:text-[90px] xl:leading-[85.5px] xl:tracking-[0.9px]',
         '3xl:mb-[87px] 3xl:max-w-[350px]'
       ]"
     >
