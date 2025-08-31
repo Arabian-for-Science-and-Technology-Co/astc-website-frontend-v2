@@ -52,21 +52,22 @@
         <h2
           :class="[
             'mt-0 flex flex-col items-center gap-0 text-center text-[20px] font-normal leading-[105%] tracking-[0.3px] text-[#18264a]',
-            'lg:items-start lg:self-end lg:text-start lg:text-[52px] lg:font-light lg:leading-[95%] lg:tracking-[0.52px]'
+            'lg:items-start lg:self-end lg:text-[32px] lg:font-[350] lg:leading-[100%] lg:tracking-[0.4px]',
+            'xl:text-start xl:text-[52px] xl:font-light xl:leading-[95%] xl:tracking-[0.52px]'
           ]"
         >
-          <span :class="['inline-block font-[400]', 'lg:font-[300]']">
+          <span :class="['inline-block font-[400]', 'xl:font-[300]']">
             {{ settings?.[`title_${locale}`] }}
           </span>
 
-          <span :class="['inline-block font-[600]', 'lg:font-[500]']">
+          <span :class="['inline-block font-[600]', 'xl:font-[500]']">
             {{ settings?.[`description_${locale}`] }}
           </span>
         </h2>
       </div>
     </article>
 
-    <article class="content-transition relative z-10 h-[415.7px] lg:h-[580px]">
+    <article class="content-transition relative z-10 h-[415.7px] xl:h-[580px]">
       <ServicesSlider />
     </article>
   </section>

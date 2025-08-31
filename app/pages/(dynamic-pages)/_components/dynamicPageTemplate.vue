@@ -4,7 +4,8 @@
       v-if="data?.[`title_${locale}`]"
       :class="[
         'text-[52px] font-[200] leading-[49.4px] tracking-[0.52px]',
-        'lg:text-[90px] lg:leading-[85.5px] lg:tracking-[0.9px]'
+        'lg:text-[68px] lg:leading-[65px] lg:tracking-[0.68px]',
+        'xl:text-[90px] xl:leading-[85.5px] xl:tracking-[0.9px]'
       ]"
     >
       {{ data?.[`title_${locale}`] }}
@@ -15,7 +16,8 @@
       @click="navigateTo(`/contact`)"
       :class="[
         'font-section mt-[40px] h-[68px] max-w-[295px] text-[16px] font-[500] leading-[normal] lg:mt-[95px]',
-        'lg:text-[20px] lg:font-[400] lg:leading-[21px] lg:tracking-[0.2px]'
+        'lg:text-[18px] lg:font-[500] lg:leading-[20px]',
+        'xl:text-[20px] xl:font-[400] xl:leading-[21px] xl:tracking-[0.2px]'
       ]"
     >
       {{ data?.[`cta_text_${locale}`] }}

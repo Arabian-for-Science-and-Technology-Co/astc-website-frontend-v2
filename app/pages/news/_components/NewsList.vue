@@ -15,8 +15,9 @@
       </h4>
       <p
         :class="[
-          'mt-[8px] text-[30px] font-[400] leading-[110%] transition-colors group-hover:text-[#0ADF0A] lg:tracking-[0.3px]',
-          'lg:mt-[6px] lg:text-[52px] lg:font-[200] lg:leading-[95%] lg:tracking-[0.52px]'
+          'mt-[8px] text-[30px] font-[400] leading-[110%] transition-colors group-hover:text-[#0ADF0A]',
+          'lg:mt-[7px] lg:text-[40px] lg:font-[300] lg:leading-[102%] lg:tracking-[0.4px]',
+          'xl:mt-[6px] xl:text-[52px] xl:font-[200] xl:leading-[95%] xl:tracking-[0.52px]'
         ]"
       >
         {{ item?.[`title_${locale}`] }}
@@ -32,7 +33,8 @@
       <div
         :class="[
           'mt-[56px] flex w-full max-w-[308px] items-center justify-start overflow-x-hidden text-[20px] font-[300] leading-[110%] tracking-[19.8px] text-[#0ADF0A] group-last-of-type:hidden',
-          'lg:mt-[88px] lg:max-w-full lg:text-[30px]'
+          'lg:mt-[72px] lg:max-w-[75%] lg:text-[24px]',
+          'xl:mt-[88px] xl:max-w-full xl:text-[30px]'
         ]"
       >
         #####################
@@ -50,7 +52,7 @@
       }"
       :class="[
         'relative mx-auto mt-[28px] self-center text-[22px] font-[500] leading-[120%] tracking-[0.22px] text-[#0ADF0A] transition-all hover:opacity-80',
-        'font-durke lg:mt-[43px] lg:text-[28px] lg:tracking-[0.28px]'
+        'font-durke lg:mt-[43px] xl:text-[28px] xl:tracking-[0.28px]'
       ]"
     >
       <SlashSvg />
