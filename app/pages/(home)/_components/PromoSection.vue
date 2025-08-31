@@ -1,6 +1,6 @@
 <template>
   <section
-    class="flex max-h-[820px] flex-col items-stretch overflow-hidden bg-[#0D1667] font-zarid lg:max-h-[auto] lg:min-h-screen lg:flex-row"
+    class="flex max-h-[820px] flex-col items-stretch overflow-hidden bg-[#0D1667] font-zarid lg:max-h-fit  lg:flex-row"
   >
     <article
       :class="[
@@ -12,7 +12,8 @@
       <h2
         :class="[
           'text-[52px] font-[200] not-italic leading-[49.4px] tracking-[0.52px] text-white',
-          'lg:text-[90px] lg:leading-[85.5px] lg:tracking-[0.9px]',
+          'lg:text-[68px] lg:leading-[65px] lg:tracking-[0.68px]',
+          'xl:text-[90px] xl:leading-[85.5px] xl:tracking-[0.9px]',
           '3xl:text-[140px] 3xl:leading-[133px] 3xl:tracking-[1.4px]'
         ]"
       >
@@ -21,7 +22,8 @@
       <p
         :class="[
           'mt-[37px] w-[70%] text-[20px] font-[200] not-italic leading-[21px] tracking-[0.2px] text-white',
-          'lg:mt-[80px] lg:w-[90%] lg:text-[52px] lg:leading-[49.4px] lg:tracking-[0.52px] rtl:lg:leading-[60px]'
+          'lg:mt-[80px] lg:w-[90%] lg:text-[32px] lg:leading-[32px] lg:tracking-[0.32px]',
+          'xl:text-[52px] xl:leading-[49.4px] xl:tracking-[0.52px] rtl:xl:leading-[60px]'
         ]"
       >
         {{ sectionData?.[`content_${locale}`] }}

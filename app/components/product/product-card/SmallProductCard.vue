@@ -63,7 +63,8 @@ const { locale } = useI18n()
 }
 .imgs-contianer__card__title {
   @apply w-full text-center text-[16px] font-[500] uppercase not-italic leading-[normal] tracking-[1.28px];
-  @apply lg:text-xl lg:font-[500] lg:tracking-[1.6px];
+  @apply lg:text-[17.89px] lg:tracking-[1.431px];
+  @apply xl:text-xl xl:font-[500] xl:tracking-[1.6px];
 }
 /*------------------* */
 .imgs-contianer__card__desc {

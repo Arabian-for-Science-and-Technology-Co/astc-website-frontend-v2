@@ -13,12 +13,12 @@
         backgroundRepeat: 'no-repeat'
       }"
     >
-      <header class="app-container text-white sm:mt-0 lg:mt-16 xl:mt-0">
+      <header class="app-container text-white  ">
         <h6
           v-if="productData?.category?.[`title_${locale}`]"
           :class="[
             'text-[20px] font-[600] leading-[normal] tracking-[0.2px]',
-            'lg:text-[30px] lg:leading-[33px] lg:tracking-[0.3px]'
+            'xl:text-[30px] xl:leading-[33px] xl:tracking-[0.3px]'
           ]"
         >
           {{ productData?.category?.[`title_${locale}`] }}
@@ -68,7 +68,7 @@
           @click="modalOpen = true"
           :class="[
             'font-section mt-[40px] h-[68px] max-w-[295px] text-[16px] font-[500] leading-[normal] lg:mt-[95px]',
-            'lg:text-[20px] lg:font-[400] lg:leading-[21px] lg:tracking-[0.2px]'
+            'xl:text-[20px] xl:font-[400] xl:leading-[21px] xl:tracking-[0.2px]'
           ]"
         >
           {{ $t('lets_talk') }}
@@ -112,9 +112,9 @@ useCustomHead(() => ({
 <style scoped>
 .head-title {
   @apply text-[52px] font-[200] leading-[49.4px] tracking-[0.52px];
-  @apply lg:text-[140px] lg:leading-[133px] lg:tracking-[1.4px];
+  @apply lg:text-[85px] lg:leading-[81px] lg:tracking-[0.85px];
+  @apply xl:text-[140px] xl:leading-[133px] xl:tracking-[1.4px];
 }
-
 .font-section {
   font-family: Roboto !important;
 }

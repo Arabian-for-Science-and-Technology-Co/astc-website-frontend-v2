@@ -12,7 +12,8 @@
       <h2
         :class="[
           'mb-[23px] text-[48px] font-[200] not-italic leading-[normal] tracking-[0.48px] text-white',
-          'lg:mb-[37px] lg:text-[90px] lg:leading-[85.5px] lg:tracking-[0.9px]',
+          'lg:mb-[37px] lg:text-[66px] lg:leading-[70px] lg:tracking-[0.66px]',
+          'xl:text-[90px] xl:leading-[85.5px] xl:tracking-[0.9px]',
           '3xl:mb-[43px] 3xl:text-[140px] 3xl:leading-[133px] 3xl:tracking-[1.4px]'
         ]"
       >
@@ -21,7 +22,8 @@
       <p
         :class="[
           'mb-[61px] w-[70%] text-[20px] font-[200] not-italic leading-[24px] tracking-[0.2px] text-white',
-          'lg:mb-[145px] lg:w-[85%] lg:text-[52px] lg:leading-[49.4px] lg:tracking-[0.52px]',
+          'lg:mb-[145px] lg:w-[85%] lg:text-[32px] lg:leading-[34px] lg:tracking-[0.32px]',
+          'xl:text-[52px] xl:leading-[49.4px] xl:tracking-[0.52px]',
           '3xl:mb-[141px]'
         ]"
       >

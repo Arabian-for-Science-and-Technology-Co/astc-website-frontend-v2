@@ -19,7 +19,8 @@
     />
     <h3
       :class="[
-        'hidden max-w-[210px] text-xl font-[300] not-italic leading-[100%] tracking-[0.2px] text-[#A9AEB8]',
+        'hidden max-w-[190px] text-lg font-[300] not-italic leading-[100%] tracking-[0.2px] text-[#A9AEB8]',
+        'xl:text-xl xl:max-w-[210px]',
         showLeftLogo ? '3xl:block' : 'lg:block',
         enableHover
           ? isWhiteLogo

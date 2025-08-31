@@ -12,14 +12,14 @@
     >
       <article>
         <h2 class="main-title">{{ products?.[`title_${locale}`] }}</h2>
-        <div class="imgs-contianer mt-[74.47px]">
+        <div class="imgs-contianer mt-[43px] lg:mt-[71.47px] 3xl:mt-[74.47px]">
           <ProductCard v-for="(item, i) in products?.items || []" :data="item" />
         </div>
       </article>
       <article>
         <h2 class="main-title">{{ solutions?.[`title_${locale}`] }}</h2>
-        <div class="imgs-contianer mt-[29px]">
-          <ProductCard v-for="(item, i) in solutions?.items || []" :data="item"/>
+        <div class="imgs-contianer mt-[43px] lg:mt-[71.47px] 3xl:mt-[74.47px]">
+          <ProductCard v-for="(item, i) in solutions?.items || []" :data="item" />
         </div>
       </article>
     </section>
@@ -45,7 +45,8 @@ const solutions = computed(() =>
 <style scoped>
 .head-title {
   @apply text-[52px] font-[200] not-italic leading-[49.4px] tracking-[0.52px] text-[#465AE5];
-  @apply lg:text-[90px] lg:leading-[85.5px] lg:tracking-[0.9px];
+  @apply lg:text-[68px] lg:leading-[65px] lg:tracking-[0.68px];
+  @apply xl:text-[90px] xl:leading-[85.5px] xl:tracking-[0.9px];
   @apply 3xl:text-[140px] 3xl:leading-[133px] 3xl:tracking-[1.4px];
 }
 .main-title {
