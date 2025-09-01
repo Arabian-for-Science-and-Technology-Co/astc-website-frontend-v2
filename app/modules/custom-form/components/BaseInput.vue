@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, ref, toRef } from 'vue' // ⬅️ added ref, toRef
 import type { InputHTMLAttributes } from 'vue'
-import type { Rule } from '~/components/ui/form/AppForm.vue'
-import { useFormField } from '~/composables/useFormField' // ⬅️ new
+import type { Rule } from '~/modules/custom-form/types'
+import { useFormField } from '~/modules/custom-form/composables/useFormField' // ⬅️ new
 
 type Size = 'sm' | 'md' | 'lg' | 'xl'
 type LabelPlacement = 'above' | 'inside' | 'none'
@@ -10,13 +10,14 @@ type LabelPlacement = 'above' | 'inside' | 'none'
 const props = withDefaults(
   defineProps<{
     id?: string
+    name?: string
     modelValue?: string | number | null
     type?: string
     minlength?: number | string
     maxlength?: number | string
     step?: number | string
     pattern?: string
-    rules?: (Rule | ((v: any) => true | string))[] // ← already present
+    rules?: (Rule | ((v: any) => true | string))[]
     inputmode?: InputHTMLAttributes['inputmode']
     title?: string
     placeholder?: string
@@ -45,27 +46,23 @@ const emit = defineEmits<{
   (e: 'blur', ev: FocusEvent): void
   (e: 'focus', ev: FocusEvent): void
 }>()
-
-const baseId = computed(() => props.id ?? `ui-input-${Math.random().toString(36).slice(2)}`)
+const uid = Math.random().toString(36).slice(2) // once, stable for component lifetime
+const baseId = computed(() => props.id ?? `${props.name ?? 'ui-input'}-${uid}`)
 const errorId = computed(() => `${baseId.value}-error`)
 const descId = computed(() => `${baseId.value}-desc`)
 
-// ⬇️ NEW: hook into AppForm (if present). If no AppForm provides a context, nothing changes.
 const el = ref<HTMLInputElement | null>(null)
-const { error: ruleError } = useFormField(
-  baseId.value, // use stable id as field name
-  toRef(props, 'modelValue'), // observe v-model
-  props.rules, // your rules composable (true|string)
-  { nativeEl: el, nativeMessages: true } // also honor native constraints
-)
+const { error: ruleError } = useFormField(baseId.value, toRef(props, 'modelValue'), props.rules, {
+  nativeEl: el,
+  nativeMessages: true
+})
 
-// ⬇️ NEW: external error still wins, then rule error
 const computedError = computed<string | null>(() => props.error ?? ruleError.value ?? null)
 
 const describedBy = computed(() => {
   const ids: string[] = []
   if (props.description) ids.push(descId.value)
-  if (computedError.value) ids.push(errorId.value) // ← use merged error
+  if (computedError.value) ids.push(errorId.value)
   return ids.join(' ') || undefined
 })
 

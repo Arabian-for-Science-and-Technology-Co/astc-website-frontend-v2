@@ -1,14 +1,11 @@
 <template>
-  <form novalidate @submit="onSubmit"><slot /></form>
+  <form novalidate><slot /></form>
 </template>
 
 <script setup lang="ts">
 import { provide } from 'vue'
-
-export type Rule = (
-  value: unknown,
-  ctx: { form: Record<string, unknown>; name: string }
-) => true | string | Promise<true | string>
+import type { Rule } from '~/modules/custom-form/types'
+import { FKEY } from '~/modules/custom-form/constants' // see §5
 
 type Field = {
   name: string
@@ -19,7 +16,6 @@ type Field = {
   el?: () => HTMLElement | null // optional: for focusing first invalid
 }
 
-const FKEY = Symbol('app-form')
 const fields = new Map<string, Field>()
 
 function register(field: Field) {
@@ -71,10 +67,6 @@ function focusFirstInvalid() {
       break
     }
   }
-}
-
-function onSubmit(e: Event) {
-  e.preventDefault()
 }
 
 provide(FKEY, { register, unregister })

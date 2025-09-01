@@ -1,56 +1,60 @@
 <template>
-  <AppForm
+  <CfAppForm
+    ref="formRef"
+    @submit.prevent="handleSubmit"
     class="h-[70vh] max-h-[500px] overflow-y-auto px-[27px] pt-[19px] lg:h-fit lg:max-h-[80vh] lg:px-[40px] lg:pt-[32px]"
   >
     <div class="grid grid-cols-1 gap-x-[16px] gap-y-[12px] lg:grid-cols-2 lg:gap-y-[17px]">
-      <BaseInput
+      <CfBaseInput
         size="xl"
         id="email"
         v-model="formData.email"
         :label="$t('email')"
         type="email"
+        :rules="[inptRules.required, inptRules.email]"
         required
         labelPlacement="inside"
         placeholder="you@example.com"
       />
-      <BaseInput
+      <CfBaseInput
         size="xl"
         id="phone"
         v-model="formData.phone"
         :label="$t('phone')"
         type="tel"
+        :rules="[inptRules.required, inptRules.phoneDigits]"
         inputmode="numeric"
         maxlength="20"
-        pattern="^\+?[0-9]{1,20}$"
-        title="Digits only, optionally starting with +. Up to 20 digits."
         required
         labelPlacement="inside"
-        error="adsasddddddddd"
       />
-      <BaseInput
+      <CfBaseInput
         size="xl"
         id="name"
         v-model="formData.name"
+        :rules="[inptRules.required]"
         :label="$t('name')"
         required
         type="text"
         labelPlacement="inside"
       />
-      <BaseInput
+      <CfBaseInput
         size="xl"
         id="positionInCompany"
         v-model="formData.positionInCompany"
+        :rules="[inptRules.required]"
         :label="$t('position_in_the_company')"
         required
         type="text"
         labelPlacement="inside"
       />
-      <BaseInput
+      <CfBaseInput
         size="xl"
         class="lg:col-span-2"
         required
         id="CompanyName"
         v-model="formData.companyName"
+        :rules="[inptRules.required]"
         :label="$t('company_name')"
         type="text"
         labelPlacement="inside"
@@ -61,7 +65,6 @@
     >
       <button
         type="submit"
-        :disabled="!canSubmit"
         :class="[
           'w-full max-w-[275px] rounded-3xl bg-[#0D1667] pb-[18.3px] pt-[17.2px] text-center text-[30px] font-[300] leading-[105%] tracking-[0.3px] text-white lg:pb-[19px] lg:pt-[18px]',
           'disabled:bg-[#DADADA]'
@@ -69,36 +72,24 @@
       >
         {{ $t('get_the_files') }} {{ isLoading ? '...' : '' }}
       </button>
-      <p class="text-center text-[16px] font-[300] leading-[18px] text-[#64696D]">
-        {{ $t('by_submitting_your_data_you_agree') }}
-        <br />
-        {{ $t('to_the') }}
-        <NuxtLink :to="`/${privacyPolicyPage?.slug}`" class="inline text-[#0D1667] no-underline">
-          {{ privacyPolicyPage?.[`title_${locale}`] }}
-        </NuxtLink>
-        &
-        <NuxtLink
-          :to="`/${termsAndConditionsPage?.slug}`"
-          class="inline text-[#0D1667] no-underline"
-        >
-          {{ termsAndConditionsPage?.[`title_${locale}`] }}
-        </NuxtLink>
-      </p>
+
+      <button type="button" @click="handelReset">reset</button>
     </div>
-  </AppForm>
+  </CfAppForm>
 </template>
 
 <script setup lang="ts">
+import type { AppFormExpose } from '~/modules/custom-form/types'
+import { useInputRules } from '~/modules/custom-form/composables/useInputRules'
+const inptRules = useInputRules()
+
 const props = defineProps({
   open: { type: Boolean },
   itemId: { type: [String, Number] }
 })
 const emits = defineEmits(['update:open'])
-const { locale } = useI18n()
 const { $toast } = useNuxtApp()
-const { getPage } = usePages()
-const privacyPolicyPage = getPage('privacy-policy')
-const termsAndConditionsPage = getPage('terms-and-conditions')
+const formRef = ref<AppFormExpose | null>(null)
 
 type FormData = {
   email: string
@@ -116,13 +107,14 @@ const formData = reactive<FormData>({
 })
 const isLoading = ref(false)
 
-const canSubmit = computed(() =>
-  (Object.keys(formData) as (keyof FormData)[]).every((k) => !!formData[k])
-)
 const resetFormData = () =>
   (Object.keys(formData) as (keyof FormData)[]).forEach((k) => (formData[k] = ''))
 const { apiFetch } = useApi()
-async function submit() {
+async function handleSubmit() {
+  const res = await formRef.value?.validate()
+  console.log('res', res)
+
+  if (!res?.valid) return formRef.value?.focusFirstInvalid()
   if (isLoading.value) return
   isLoading.value = true
 
@@ -149,6 +141,9 @@ async function submit() {
   } finally {
     isLoading.value = false
   }
+}
+function handelReset() {
+  formRef.value?.reset()
 }
 watch(
   () => props.open,

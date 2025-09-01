@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { computed, ref, toRef } from 'vue' // ⬅️ added ref, toRef
+import { computed } from 'vue'
 import type { InputHTMLAttributes } from 'vue'
-import type { Rule } from '~/components/ui/form/AppForm.vue'
-import { useFormField } from '~/composables/useFormField' // ⬅️ new
 
 type Size = 'sm' | 'md' | 'lg' | 'xl'
 type LabelPlacement = 'above' | 'inside' | 'none'
@@ -16,7 +14,6 @@ const props = withDefaults(
     maxlength?: number | string
     step?: number | string
     pattern?: string
-    rules?: (Rule | ((v: any) => true | string))[] // ← already present
     inputmode?: InputHTMLAttributes['inputmode']
     title?: string
     placeholder?: string
@@ -35,8 +32,7 @@ const props = withDefaults(
     type: 'text',
     size: 'md',
     modelValue: '',
-    labelPlacement: 'above',
-    rules: () => []
+    labelPlacement: 'above'
   }
 )
 
@@ -49,23 +45,10 @@ const emit = defineEmits<{
 const baseId = computed(() => props.id ?? `ui-input-${Math.random().toString(36).slice(2)}`)
 const errorId = computed(() => `${baseId.value}-error`)
 const descId = computed(() => `${baseId.value}-desc`)
-
-// ⬇️ NEW: hook into AppForm (if present). If no AppForm provides a context, nothing changes.
-const el = ref<HTMLInputElement | null>(null)
-const { error: ruleError } = useFormField(
-  baseId.value, // use stable id as field name
-  toRef(props, 'modelValue'), // observe v-model
-  props.rules, // your rules composable (true|string)
-  { nativeEl: el, nativeMessages: true } // also honor native constraints
-)
-
-// ⬇️ NEW: external error still wins, then rule error
-const computedError = computed<string | null>(() => props.error ?? ruleError.value ?? null)
-
 const describedBy = computed(() => {
   const ids: string[] = []
   if (props.description) ids.push(descId.value)
-  if (computedError.value) ids.push(errorId.value) // ← use merged error
+  if (props.error) ids.push(errorId.value)
   return ids.join(' ') || undefined
 })
 
@@ -98,7 +81,6 @@ const sizeCls = computed(() => {
       }
   }
 })
-
 const inputBase = [
   'block w-full rounded-[12px] bg-[#F1F4F7] border border-transparent text-[#000000] ',
   'placeholder:text-[#999FA3]',
@@ -111,7 +93,7 @@ const inputBase = [
 const inputCls = computed(() => [
   inputBase,
   sizeCls.value.input,
-  computedError.value ? 'border-red-500 focus:ring-red-500 focus:border-red-500' : 'border-gray-300' // ← use merged error
+  props.error ? 'border-red-500 focus:ring-red-500 focus:border-red-500' : 'border-gray-300'
 ])
 
 function onInput(e: Event) {
@@ -132,7 +114,12 @@ function onInput(e: Event) {
     </label>
 
     <!-- INPUT WRAPPER -->
-    <div class="relative" :class="{}">
+    <div
+      class="relative"
+      :class="{
+        // reserve space for the inside label when used
+      }"
+    >
       <!-- LEADING SLOT -->
       <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
         <slot name="leading" />
@@ -140,7 +127,6 @@ function onInput(e: Event) {
 
       <!-- INPUT (peer for floating label) -->
       <input
-        ref="el"
         :id="baseId"
         class="base-input peer"
         :class="['', inputCls, $slots.leading ? 'pl-9' : '', $slots.trailing ? 'pr-9' : '']"
@@ -158,7 +144,7 @@ function onInput(e: Event) {
         :required="required"
         :autocomplete="autocomplete"
         :aria-label="labelPlacement === 'none' ? ariaLabel : undefined"
-        :aria-invalid="computedError ? 'true' : undefined"
+        :aria-invalid="error ? 'true' : undefined"
         :aria-describedby="describedBy"
         @input="onInput"
         @blur="$emit('blur', $event)"
@@ -186,6 +172,7 @@ function onInput(e: Event) {
         ]"
       >
         {{ label }}
+        <!-- <span v-if="required" aria-hidden="true" class="text-red-600">*</span> -->
       </label>
     </div>
 
@@ -195,12 +182,11 @@ function onInput(e: Event) {
     </p>
 
     <!-- ERROR -->
-    <p v-if="computedError" :id="errorId" class="mt-1 text-xs text-red-600">
-      {{ computedError }}
+    <p v-if="error" :id="errorId" class="mt-1 text-xs text-red-600">
+      {{ error }}
     </p>
   </div>
 </template>
-
 <style scoped>
 /* Hide number input arrows in Chrome, Edge, Safari (WebKit) */
 .base-input[type='number']::-webkit-outer-spin-button,

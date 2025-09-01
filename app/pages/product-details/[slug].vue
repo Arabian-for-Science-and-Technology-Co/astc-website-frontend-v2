@@ -75,10 +75,7 @@
           {{ $t('lets_talk') }}
         </BaseButton>
       </div>
-      <label for="">FormTest</label>
-      <FormTest />
-      <label for="">FormTestNative</label>
-      <FormTestNative />
+     <CfFormTest/>
     </div>
     <RequestDocumentModal :itemId="productData?.id" v-model:open="modalOpen" />
   </div>
@@ -87,9 +84,7 @@
 <script setup lang="ts">
 import RequestDocumentModal from '~/pages/product-details/_components/RequestDocumentModal.vue'
 import ProductDetailsTemplate from '~/pages/product-details/_components/ProductDetailsTemplate.vue'
-import FormTest from './_components/FormTest.vue'
-import FormTestNative from './_components/FormTestNative.vue'
-
+ 
 const route = useRoute()
 definePageMeta({
   layoutProps: {

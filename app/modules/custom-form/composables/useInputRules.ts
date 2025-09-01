@@ -1,4 +1,4 @@
-import type { Rule } from '~/components/ui/form/AppForm.vue'
+import type { Rule } from '~/modules/custom-form/types'
 
 export function useInputRules() {
   const required: Rule = v => (v != null && String(v).trim() !== '') || 'Required'
