@@ -1,19 +1,19 @@
 <template>
-  <form novalidate><slot /></form>
+  <form novalidate @submit.prevent="$emit('submit', $event)"><slot /></form>
 </template>
 
 <script setup lang="ts">
 import { provide } from 'vue'
 import type { Rule } from '~/modules/custom-form/types'
-import { FKEY } from '~/modules/custom-form/constants' // see §5
+import { FKEY } from '~/modules/custom-form/constants'
 
 type Field = {
   name: string
   getValue: () => unknown
   setError: (msg?: string | null) => void
   rules: Rule[]
-  nativeCheck?: () => string | null // optional: HTML validity
-  el?: () => HTMLElement | null // optional: for focusing first invalid
+  nativeCheck?: () => string | null
+  el?: () => HTMLElement | null
 }
 
 const fields = new Map<string, Field>()
@@ -21,17 +21,20 @@ const fields = new Map<string, Field>()
 function register(field: Field) {
   fields.set(field.name, field)
 }
-function unregister(name: string) {
+function unregister(name: Field['name']) {
   fields.delete(name)
+}
+function snapshot() {
+  const formValues: Record<string, unknown> = {}
+  fields.forEach((f, n) => (formValues[n] = f.getValue()))
+  return formValues
 }
 
 async function validate() {
-  const formValues: Record<string, unknown> = {}
-  fields.forEach((f, name) => (formValues[name] = f.getValue()))
+  const formValues = snapshot()
   const errors: Record<string, string> = {}
 
   for (const [name, field] of fields) {
-    // 1) native HTML validity first (if provided)
     const nativeMsg = field.nativeCheck?.() ?? null
     if (nativeMsg) {
       field.setError(nativeMsg)
@@ -39,7 +42,6 @@ async function validate() {
       continue
     }
 
-    // 2) custom rules
     let message: string | null = null
     for (const rule of field.rules || []) {
       const res = await rule(formValues[name], { form: formValues, name })
@@ -51,14 +53,12 @@ async function validate() {
     field.setError(message)
     if (message) errors[name] = message
   }
-
   return { valid: Object.keys(errors).length === 0, errors }
 }
 
 function reset() {
   fields.forEach((f) => f.setError(null))
 }
-
 function focusFirstInvalid() {
   for (const [, f] of fields) {
     const el = f.el?.()
@@ -69,6 +69,6 @@ function focusFirstInvalid() {
   }
 }
 
-provide(FKEY, { register, unregister })
+provide(FKEY, { register, unregister, snapshot })
 defineExpose({ validate, reset, focusFirstInvalid })
 </script>

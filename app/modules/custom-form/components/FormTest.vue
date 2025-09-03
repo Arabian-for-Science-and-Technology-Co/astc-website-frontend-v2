@@ -1,7 +1,7 @@
 <template>
   <CfAppForm
     ref="formRef"
-    @submit.prevent="handleSubmit"
+    @submit="handleSubmit"
     class="h-[70vh] max-h-[500px] overflow-y-auto px-[27px] pt-[19px] lg:h-fit lg:max-h-[80vh] lg:px-[40px] lg:pt-[32px]"
   >
     <div class="grid grid-cols-1 gap-x-[16px] gap-y-[12px] lg:grid-cols-2 lg:gap-y-[17px]">

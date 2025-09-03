@@ -19,6 +19,7 @@ const props = withDefaults(
     pattern?: string
     rules?: (Rule | ((v: any) => true | string))[]
     inputmode?: InputHTMLAttributes['inputmode']
+    validateOn?: 'submit' | 'blur' | 'input' | 'touched'
     title?: string
     placeholder?: string
     size?: Size
@@ -37,24 +38,31 @@ const props = withDefaults(
     size: 'md',
     modelValue: '',
     labelPlacement: 'above',
-    rules: () => []
+    rules: () => [],
+    validateOn: 'touched'
   }
 )
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: string | number | null): void
+  (e: 'update:modelValue', v: string | number | null): void
   (e: 'blur', ev: FocusEvent): void
   (e: 'focus', ev: FocusEvent): void
 }>()
-const uid = Math.random().toString(36).slice(2) // once, stable for component lifetime
+
+const uid = Math.random().toString(36).slice(2)
 const baseId = computed(() => props.id ?? `${props.name ?? 'ui-input'}-${uid}`)
 const errorId = computed(() => `${baseId.value}-error`)
 const descId = computed(() => `${baseId.value}-desc`)
 
 const el = ref<HTMLInputElement | null>(null)
-const { error: ruleError } = useFormField(baseId.value, toRef(props, 'modelValue'), props.rules, {
+const {
+  error: ruleError,
+  touched,
+  validateSelf
+} = useFormField(baseId.value, toRef(props, 'modelValue'), props.rules, {
   nativeEl: el,
-  nativeMessages: true
+  nativeMessages: true,
+  validateOn: props.validateOn
 })
 
 const computedError = computed<string | null>(() => props.error ?? ruleError.value ?? null)
@@ -114,6 +122,15 @@ const inputCls = computed(() => [
 function onInput(e: Event) {
   const target = e.target as HTMLInputElement
   emit('update:modelValue', target.value)
+  // live-validate if configured
+  if (props.validateOn === 'input' || (props.validateOn === 'touched' && touched.value)) {
+    // fire & forget; we don’t need to await here
+    validateSelf('input')
+  }
+}
+function onBlur(e: FocusEvent) {
+  validateSelf('blur') // first reveal on blur
+  emit('blur', e)
 }
 </script>
 
@@ -158,7 +175,7 @@ function onInput(e: Event) {
         :aria-invalid="computedError ? 'true' : undefined"
         :aria-describedby="describedBy"
         @input="onInput"
-        @blur="$emit('blur', $event)"
+        @blur="onBlur"
         @focus="$emit('focus', $event)"
       />
 
