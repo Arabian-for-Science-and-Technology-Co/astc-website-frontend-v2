@@ -101,7 +101,7 @@ const isTabSelected = (tab: TabType): boolean => {
     return getTabValue(tab) === props.modelValue
   }
 }
-
+let resizeObserver: ResizeObserver | undefined
 const updateWidth = () => {
   if (containerRef.value) {
     containerWidth.value = containerRef.value.offsetWidth
@@ -110,9 +110,13 @@ const updateWidth = () => {
 
 onMounted(() => {
   updateWidth()
-  const resizeObserver = new ResizeObserver(updateWidth)
-  if (containerRef.value) resizeObserver.observe(containerRef.value)
-  onBeforeUnmount(() => resizeObserver.disconnect())
+  if (typeof ResizeObserver !== 'undefined') {
+    resizeObserver = new ResizeObserver(updateWidth)
+    if (containerRef.value) resizeObserver.observe(containerRef.value)
+  }
+})
+onBeforeUnmount(() => {
+  resizeObserver?.disconnect()
 })
 
 defineExpose<TabsExpose>({ containerWidth })
