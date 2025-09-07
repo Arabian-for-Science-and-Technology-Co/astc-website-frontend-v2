@@ -207,7 +207,7 @@ function applyMapAction(type?: string): void {
       break
 
     case 'nearest-metro-station':
-      searchNearby('subway_station')
+      multiSearchNearby(['metro', 'subway_station'])
       break
 
     default:
@@ -317,6 +317,10 @@ function searchNearby(keyword: string): void {
   const g = (window as unknown as { google?: typeof google }).google
   if (!g || !placesService) return
 
+  // // Remove existing markers
+  // markerRefs.forEach((m) => m.setMap(null))
+  // markerRefs = []
+
   const request: PlaceSearchRequest = {
     location: props.center as LatLngLike,
     radius: 3000,
@@ -335,7 +339,8 @@ function searchNearby(keyword: string): void {
           const marker = new g.maps.Marker({
             map: mapInstance.value as google.maps.Map,
             position: place?.geometry?.location,
-            title: place.name
+            title: place.name,
+            icon: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'
           })
           return marker as Marker
         })
@@ -346,7 +351,12 @@ function searchNearby(keyword: string): void {
     }
   )
 }
-
+function multiSearchNearby(keywordOrKeywords: string | string[]): void {
+  const keywords = Array.isArray(keywordOrKeywords) ? keywordOrKeywords : [keywordOrKeywords]
+  keywords.forEach((kw) => {
+    searchNearby(kw)
+  })
+}
 /* ---------------- Cleanup ---------------- */
 onBeforeUnmount(() => {
   if (directionsRenderer.value) {
