@@ -183,3 +183,4 @@ function onBlur(e: FocusEvent) {
     <p v-if="computedError" :id="errorId" class="mt-1 text-xs text-red-600">{{ computedError }}</p>
   </div>
 </template>
+<style src="~/modules/custom-form/ui/field-colors.css"></style>

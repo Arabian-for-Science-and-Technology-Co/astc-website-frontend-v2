@@ -186,7 +186,7 @@ function onChange(e: Event) {
   </div>
 </template>
 
-<style scoped>
+<style src="~/modules/custom-form/ui/field-colors.css" scoped>
 /* custom dropdown arrow if desired:
 .base-select {
   background-image: url('data:image/svg+xml;utf8,<svg .../>');

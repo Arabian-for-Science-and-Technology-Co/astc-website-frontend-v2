@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full font-zarid">
+  <div class="cf-theme w-full font-zarid">
     <label v-if="label && labelPlacement === 'above'" :for="baseId" :class="LABEL_ABOVE">
       {{ label }} <span v-if="required" aria-hidden="true" class="text-red-600">*</span>
     </label>
@@ -160,3 +160,4 @@ const floatLabelCls = computed(() =>
 export default {}
 export { LABEL_ABOVE, DESC, ERR } from '~/modules/custom-form/ui/fieldTokens'
 </script>
+<style src="~/modules/custom-form/ui/field-colors.css"></style>
