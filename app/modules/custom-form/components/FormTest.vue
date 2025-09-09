@@ -11,11 +11,12 @@
         v-model="formData.email"
         :label="$t('email')"
         type="email"
-        :rules="[inptRules.required, inptRules.email]"
+        :rules="[inptRules.email]"
         required
         labelPlacement="inside"
         placeholder="you@example.com"
       />
+
       <CfBaseInput
         size="xl"
         id="phone"
@@ -28,6 +29,7 @@
         required
         labelPlacement="inside"
       />
+
       <CfBaseInput
         size="xl"
         id="name"
@@ -38,6 +40,7 @@
         type="text"
         labelPlacement="inside"
       />
+
       <CfBaseInput
         size="xl"
         id="positionInCompany"
@@ -48,18 +51,48 @@
         type="text"
         labelPlacement="inside"
       />
+
       <CfBaseInput
         size="xl"
         class="lg:col-span-2"
         required
-        id="CompanyName"
+        id="companyName"
         v-model="formData.companyName"
         :rules="[inptRules.required]"
         :label="$t('company_name')"
         type="text"
         labelPlacement="inside"
       />
+
+      <!-- NEW: Select -->
+      <CfBaseSelect
+        size="xl"
+        id="companySize"
+        v-model="formData.companySize"
+        :options="companySizes"
+        :rules="[inptRules.required]"
+        :label="$t('company_size')"
+        placeholder="—"
+        labelPlacement="inside"
+        valueType="string"
+        required
+      />
+
+      <!-- NEW: Textarea -->
+      <CfBaseTextarea
+        size="xl"
+        class="lg:col-span-2"
+        id="message"
+        v-model="formData.message"
+        :label="$t('message')"
+        :rules="[inptRules.required, inptRules.minLength(10)]"
+        labelPlacement="inside"
+        :rows="5"
+        :realtimeMs="120"
+        placeholder=" "
+      />
     </div>
+
     <div
       class="mb-[22.1px] mt-[24.5px] flex flex-col items-center gap-[16.32px] lg:mb-[25px] lg:mt-[38px] lg:gap-[17px]"
     >
@@ -79,7 +112,7 @@
 </template>
 
 <script setup lang="ts">
-import type { AppFormExpose } from '~/modules/custom-form/types'
+import type { AppFormExpose } from '~/modules/custom-form/components/AppForm.vue'
 import { useInputRules } from '~/modules/custom-form/composables/useInputRules'
 const inptRules = useInputRules()
 
@@ -97,24 +130,39 @@ type FormData = {
   name: string
   positionInCompany: string
   companyName: string
+  companySize: string | null // NEW
+  message: string // NEW
 }
+
 const formData = reactive<FormData>({
   email: '',
   phone: '',
   name: '',
   positionInCompany: '',
-  companyName: ''
+  companyName: '',
+  companySize: null,
+  message: ''
 })
+
+const companySizes = [
+  { label: '1–10', value: '1-10' },
+  { label: '11–50', value: '11-50' },
+  { label: '51–200', value: '51-200' },
+  { label: '200+', value: '200+' }
+]
+
 const isLoading = ref(false)
 
 const resetFormData = () =>
-  (Object.keys(formData) as (keyof FormData)[]).forEach((k) => (formData[k] = ''))
+  (Object.keys(formData) as (keyof FormData)[]).forEach(
+    (k) => (formData[k] = (k === 'companySize' ? null : '') as any)
+  )
+
 const { apiFetch } = useApi()
+
 async function handleSubmit() {
   const res = await formRef.value?.validate()
-  console.log('res', res)
-
-  if (!res?.valid) return formRef.value?.focusFirstInvalid()
+  if (!res?.valid) return formRef.value?.focusFirstInvalid(res?.firstInvalidEl || null)
   if (isLoading.value) return
   isLoading.value = true
 
@@ -124,7 +172,10 @@ async function handleSubmit() {
     email: formData?.email,
     phone: formData?.phone,
     position: formData?.positionInCompany,
-    company_name: formData?.companyName
+    company_name: formData?.companyName,
+    // Uncomment if your backend accepts them:
+    company_size: formData?.companySize,
+    message: formData?.message
   }
 
   try {
@@ -135,6 +186,7 @@ async function handleSubmit() {
     $toast.success(response?.message, { duration: 4000 })
     emits('update:open', false)
     resetFormData()
+    formRef.value?.resetValidation()
   } catch (err) {
     console.error(err)
     useHandleErrorMsg(err)
@@ -142,13 +194,15 @@ async function handleSubmit() {
     isLoading.value = false
   }
 }
+
 function handelReset() {
   formRef.value?.reset()
 }
+
 watch(
   () => props.open,
   (val) => {
-    val && resetFormData()
+    if (val) resetFormData()
   }
 )
 </script>

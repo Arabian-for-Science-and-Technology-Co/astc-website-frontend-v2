@@ -1,9 +1,4 @@
 import type { InjectionKey } from 'vue'
-
-export interface FormCtx {
-  register: (f: any) => void
-  unregister: (name: string) => void
-  snapshot: () => Record<string, unknown> // <-- NEW
-}
+import { type FormCtx } from '~/modules/custom-form/components/AppForm.vue'
 
 export const FKEY: InjectionKey<FormCtx> = Symbol('app-form')
