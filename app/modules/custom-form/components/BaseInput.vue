@@ -1,5 +1,6 @@
 <template>
   <div class="cf-theme w-full font-zarid">
+    <!-- ABOVE LABEL -->
     <label v-if="label && labelPlacement === 'above'" :for="baseId" :class="LABEL_ABOVE">
       {{ label }} <span v-if="required" aria-hidden="true" class="text-red-600">*</span>
     </label>
@@ -43,7 +44,7 @@
         @focus="$emit('focus', $event)"
       />
       <slot name="trailing" />
-
+      <!-- INSIDE LABEL -->
       <label v-if="label && labelPlacement === 'inside'" :for="baseId" :class="floatLabelCls">
         {{ label }}
       </label>
@@ -69,10 +70,9 @@ import {
   SIZES,
   DESC,
   ERR,
-  type FieldSize
+  type FieldSize,
+  type LabelPlacement
 } from '~/modules/custom-form/ui/fieldTokens'
-
-type LabelPlacement = 'above' | 'inside' | 'none'
 
 const props = withDefaults(
   defineProps<{

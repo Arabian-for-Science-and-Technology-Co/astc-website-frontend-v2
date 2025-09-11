@@ -1,4 +1,3 @@
-/* Scope vars to this class so you can theme per section */
 .cf-theme {
   --cf-bg: #f1f4f7;
   --cf-fg: #000000;
@@ -16,7 +15,6 @@
   --cf-err: #dc2626;
 }
 
-/* Optional dark skin (opt-in by class) */
 .cf-theme--dark {
   --cf-bg: #0b1220;
   --cf-fg: #f8fafc;

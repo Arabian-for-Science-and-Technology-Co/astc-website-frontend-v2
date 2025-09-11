@@ -1,4 +1,3 @@
-// ~/modules/custom-form/types.ts
 export type RuleCtx = { form: Record<string, unknown>; name: string }
 export type Rule = (value: unknown, ctx: RuleCtx) => true | string | Promise<true | string>
 

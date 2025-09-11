@@ -1,4 +1,3 @@
-// modules/custom-form/index.ts
 import { defineNuxtModule, createResolver, addComponentsDir, addImportsDir } from '@nuxt/kit'
 
 export interface CustomFormModuleOptions {
@@ -19,11 +18,11 @@ export default defineNuxtModule<CustomFormModuleOptions>({
 
     if (options.autoImportComponents)
       addComponentsDir({
-        path: resolve('./components'), // your modules/custom-form/components/
-        prefix: options.prefix, // '' -> <FormTest/>, 'Cf' -> <CfFormTest/>
-        pathPrefix: false // don’t add folder names to the tag
+        path: resolve('./components'),
+        prefix: options.prefix,
+        pathPrefix: false
       })
 
-    if (options.autoImportComposables) addImportsDir(resolve('./composables')) // for TS/JS composables only
+    if (options.autoImportComposables) addImportsDir(resolve('./composables'))
   }
 })
