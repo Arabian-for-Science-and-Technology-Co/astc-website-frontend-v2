@@ -2,7 +2,7 @@
   <div
     :style="{ '--container-pe-lg-screens': '26.5vw' }"
     :class="[
-      'bg flex min-h-screen flex-col bg-[#0D1667] pb-[209px] pt-[--header-height] font-zarid text-white lg:pb-[300px] 3xl:pb-[280px]'
+      'about-bg flex min-h-screen flex-col bg-[#0D1667] pb-[209px] pt-[--header-height] font-zarid text-white lg:pb-[300px] 3xl:pb-[280px]'
     ]"
   >
     <NuxtImg
@@ -97,11 +97,11 @@ const certificatesSlider = computed(() =>
 )
 </script>
 <style scoped>
-.bg {
+.about-bg {
   background-image: url('~/assets/images/about/background.jpg');
   background-color: #000e69;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
 }
 
 .font-section {
