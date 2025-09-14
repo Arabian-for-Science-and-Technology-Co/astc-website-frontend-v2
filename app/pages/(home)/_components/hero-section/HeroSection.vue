@@ -49,7 +49,7 @@
           />
         </div>
 
-        <h2
+        <h1
           :class="[
             'mt-0 flex flex-col items-center gap-0 text-center text-[20px] font-normal leading-[105%] tracking-[0.3px] text-[#18264a]',
             'lg:items-start lg:self-end lg:text-[32px] lg:font-[350] lg:leading-[100%] lg:tracking-[0.4px]',
@@ -63,7 +63,7 @@
           <span :class="['inline-block font-[600]', 'xl:font-[500]']">
             {{ settings?.[`description_${locale}`] }}
           </span>
-        </h2>
+        </h1>
       </div>
     </article>
 
