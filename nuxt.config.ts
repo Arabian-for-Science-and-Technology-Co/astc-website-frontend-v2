@@ -2,8 +2,16 @@
 export default defineNuxtConfig({
   ssr: true, // SSR is default, but be explicit
   compatibilityDate: '2024-05-07', // unlock Netlify Functions v2 features in Nitro
-
+  runtimeConfig: {
+    public: {},
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000'
+  },
   // Nitro will auto-detect Netlify, no preset required for serverless
+  nitro: {
+    routeRules: {
+      '/sitemap.xml': { proxy: `${process.env.BASE_URL}/website/general/sitemap` }
+    }
+  },
   app: {
     pageTransition: {
       name: 'page',
