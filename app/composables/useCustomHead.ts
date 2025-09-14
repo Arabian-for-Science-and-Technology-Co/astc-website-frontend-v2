@@ -12,8 +12,16 @@ export default function useCustomHead(
   }>
 ) {
   const metaRef = toRef(metadata)
+
+  const route = useRoute()
+  const url = useRequestURL()
+
+  const baseUrl = `${url.protocol}//${url.host}`
+  const fullUrl = computed(() => metaRef.value.url ?? `${baseUrl}${route.fullPath}`)
+
   return useHead({
     title: () => metaRef.value.title,
+    link: [{ rel: 'canonical', href: fullUrl.value }],
     meta: () => [
       { hid: 'charset', name: 'charset', content: 'utf-8' },
       {
@@ -54,7 +62,7 @@ export default function useCustomHead(
       {
         hid: 'og:url',
         property: 'og:url',
-        content: metaRef.value.url
+        content: fullUrl.value
       }
     ]
   })

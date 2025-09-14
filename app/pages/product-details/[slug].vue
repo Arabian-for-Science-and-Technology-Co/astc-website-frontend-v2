@@ -83,7 +83,7 @@
 <script setup lang="ts">
 import RequestDocumentModal from '~/pages/product-details/_components/RequestDocumentModal.vue'
 import ProductDetailsTemplate from '~/pages/product-details/_components/ProductDetailsTemplate.vue'
- 
+
 const route = useRoute()
 definePageMeta({
   layoutProps: {
@@ -107,7 +107,8 @@ useCustomHead(() => ({
     productData.value?.[`meta_description_${locale.value}`] ??
     productData.value?.[`meta_desc_${locale.value}`] ??
     productData.value?.[`description_${locale.value}`],
-  keywords: productData.value?.[`meta_keywords_${locale.value}`]
+  keywords: productData.value?.[`meta_keywords_${locale.value}`],
+  image: productData.value?.cover_image
 }))
 </script>
 <style scoped>
