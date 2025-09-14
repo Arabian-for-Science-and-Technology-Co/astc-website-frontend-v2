@@ -9,6 +9,16 @@ export default defineNuxtConfig({
     }
   },
   // Nitro will auto-detect Netlify, no preset required for serverless
+  nitro: {
+   routeRules: {
+    '/ar/raad-superapp': { redirect: { to: '/product-details/raad-superapp-1', statusCode: 301 } },
+    '/en/raad-superapp': { redirect: { to: '/product-details/raad-superapp-1', statusCode: 301 } },
+    '/raad-superapp':    { redirect: { to: '/product-details/raad-superapp-1', statusCode: 301 } },
+    // optional: generic strip of locale prefixes
+    '/ar/**': { redirect: '/**' },
+    '/en/**': { redirect: '/**' }
+  }
+  },
   app: {
     pageTransition: {
       name: 'page',
