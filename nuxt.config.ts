@@ -3,8 +3,10 @@ export default defineNuxtConfig({
   ssr: true, // SSR is default, but be explicit
   compatibilityDate: '2024-05-07', // unlock Netlify Functions v2 features in Nitro
   runtimeConfig: {
-    public: {},
-    baseUrl: process.env.BASE_URL || 'http://localhost:3000'
+    public: {
+      BASE_URL: process.env.BASE_URL,
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+    }
   },
   // Nitro will auto-detect Netlify, no preset required for serverless
   nitro: {
@@ -51,6 +53,7 @@ export default defineNuxtConfig({
   // },
   vueSonner: { css: true },
   i18n: {
+    baseUrl: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000',
     locales: [
       { code: 'en', iso: 'en-US', file: 'en.ts', name: 'English' },
       { code: 'ar', iso: 'ar-AR', file: 'ar.ts', name: 'العربية', dir: 'rtl' }
@@ -61,7 +64,9 @@ export default defineNuxtConfig({
     langDir: 'locales',
     detectBrowserLanguage: {
       useCookie: true,
-      cookieKey: 'i18n_redirected'
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',
+      alwaysRedirect: false
     }
   },
   tailwindcss: {
@@ -107,11 +112,7 @@ export default defineNuxtConfig({
       isCustomElement: (tag) => tag.includes('-')
     }
   },
-  runtimeConfig: {
-    public: {
-      BASE_URL: process.env.BASE_URL
-    }
-  },
+
   // Add this typescript configuration
   typescript: {
     shim: false,
