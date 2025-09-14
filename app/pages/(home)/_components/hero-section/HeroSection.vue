@@ -46,6 +46,7 @@
             :src="settings?.logo_dark || ASC_Logo_Main"
             :class="['h-full w-full']"
             :fallback="ASC_Logo_Main"
+            alt="ASTC Logo Main"
           />
         </div>
 

@@ -39,6 +39,7 @@
               :src="settings?.logo_light"
               class="h-full w-full"
               :fallback="ASC_Logo_Main"
+               alt="ASC Logo Main"
             />
           </div>
         </ClientOnly>
