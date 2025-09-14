@@ -40,6 +40,11 @@ useHead({
   meta: () => [
     { hid: 'charset', name: 'charset', content: 'utf-8' },
     {
+      hid: 'google-site-verification',
+      name: 'google-site-verification',
+      content: 'H8voC-L5KI15dtVu1tZZDkI6lTkW9BI77FhZCJgM_q8'
+    },
+    {
       hid: 'description',
       name: 'description',
       content: staticMetaData.value.description
