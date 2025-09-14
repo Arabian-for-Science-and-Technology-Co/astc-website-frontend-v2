@@ -63,6 +63,31 @@ export default function useCustomHead(
         hid: 'og:url',
         property: 'og:url',
         content: fullUrl.value
+      },
+      {
+        hid: 'twitter:title',
+        name: 'twitter:title',
+        content: metaRef.value.title
+      },
+      {
+        hid: 'twitter:description',
+        name: 'twitter:description',
+        content: metaRef.value.description
+      },
+      {
+        hid: 'twitter:image',
+        name: 'twitter:image',
+        content: metaRef.value.image
+      },
+      {
+        hid: 'twitter:url',
+        name: 'twitter:url',
+        content: fullUrl.value
+      },
+      {
+        hid: 'twitter:card',
+        name: 'twitter:card',
+        content: metaRef.value.image
       }
     ]
   })
