@@ -1,3 +1,6 @@
+# Example usage
+
+```vue
 <template>
   <CfAppForm
     ref="formRef"
@@ -208,3 +211,4 @@ watch(
   }
 )
 </script>
+```
