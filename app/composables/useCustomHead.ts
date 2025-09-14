@@ -21,7 +21,10 @@ export default function useCustomHead(
 
   return useHead({
     title: () => metaRef.value.title,
-    link: [{ rel: 'canonical', href: fullUrl.value }],
+    link: [
+      { rel: 'canonical', href: fullUrl.value },
+      { rel: 'alternate', hreflang: 'x-default', href: fullUrl.value }
+    ],
     meta: () => [
       { hid: 'charset', name: 'charset', content: 'utf-8' },
       {
