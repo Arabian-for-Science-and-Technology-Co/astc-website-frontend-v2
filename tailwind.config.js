@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   // prefix: 'tw-', // Add a 'tw-' prefix to all TailwindCSS classes
   content: [
@@ -6,7 +8,13 @@ module.exports = {
     './pages/**/*.vue',
     './plugins/**/*.{js,ts}',
     './app.vue',
-    './error.vue'
+    './error.vue',
+
+    // 👇 include local Nuxt modules
+    path.join(__dirname, 'modules/**/*.{vue,js,ts}'),
+
+    // if you actually put it under app/modules/, include this too:
+    path.join(__dirname, 'app/modules/**/*.{vue,js,ts}')
   ],
   darkMode: 'class', //  disables automatic media-based dark mode
   theme: {

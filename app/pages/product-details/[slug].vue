@@ -83,7 +83,7 @@
 <script setup lang="ts">
 import RequestDocumentModal from '~/pages/product-details/_components/RequestDocumentModal.vue'
 import ProductDetailsTemplate from '~/pages/product-details/_components/ProductDetailsTemplate.vue'
-
+ 
 const route = useRoute()
 definePageMeta({
   layoutProps: {
