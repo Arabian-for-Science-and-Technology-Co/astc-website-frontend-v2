@@ -12,7 +12,7 @@
         'lg:mx-[80px] lg:mt-[43px] lg:min-h-[50vh]',
         '3xl:mx-[247px] 3xl:mt-[69px]'
       ]"
-      alt="..."
+      alt="about intro image "
       format="webp"
       priority
     />

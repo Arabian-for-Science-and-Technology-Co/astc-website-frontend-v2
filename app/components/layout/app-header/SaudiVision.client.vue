@@ -16,6 +16,7 @@
             : 'filter-none'
       ]"
       :fallback="saudi_vision"
+      alt="saudi vision"
     />
     <h3
       :class="[

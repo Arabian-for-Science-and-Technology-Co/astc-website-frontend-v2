@@ -18,6 +18,7 @@
         :src="isWhiteLogo ? settings?.logo_light : settings?.logo_dark"
         :class="['mb-[7px] h-[68px] w-[130px] self-start hover:cursor-pointer']"
         :fallback="ASC_Logo_Main"
+        alt="Left ASTC Logo Main"
       />
       <h3
         v-if="settings?.[`title_${locale}`]"
@@ -50,6 +51,7 @@
           :src="isWhiteLogo ? settings?.logo_light : settings?.logo_dark"
           class="h-full w-full"
           :fallback="ASC_Logo_Main"
+          alt="Left ASTC Logo Main"
         />
       </div>
     </ClientOnly>

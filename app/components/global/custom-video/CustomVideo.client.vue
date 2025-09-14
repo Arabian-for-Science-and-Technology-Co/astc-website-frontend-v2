@@ -43,7 +43,7 @@
       <img
         v-if="posterToShow"
         :src="posterToShow"
-        alt=""
+        alt="poster"
         aria-hidden="true"
         class="absolute inset-0 h-full w-full object-cover"
       />
