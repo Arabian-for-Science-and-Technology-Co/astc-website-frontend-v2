@@ -1,4 +1,3 @@
-// composables/useBreakpoint.js
 import { ref, onMounted, onUnmounted } from 'vue'
 const ORDER = ['sm', 'md', 'lg', 'xl', '2xl'] as const
 export type Breakpoint = (typeof ORDER)[number]
