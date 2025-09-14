@@ -47,7 +47,7 @@
             densities="x1 x2"
             format="webp"
             :src="newsData?.image"
-            class="h-full w-full object-cover"
+            class="h-full w-full object-cover rounded-[10px] "
             :alt="`video`"
           />
         </div>
