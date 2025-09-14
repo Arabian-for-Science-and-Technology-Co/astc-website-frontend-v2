@@ -6,6 +6,7 @@
     ]"
   >
     <NuxtImg
+      v-if="aboutIntro?.image"
       :src="aboutIntro?.image ?? ''"
       :class="[
         'mx-[7px] mt-[73px] min-h-[30vh] object-contain',
