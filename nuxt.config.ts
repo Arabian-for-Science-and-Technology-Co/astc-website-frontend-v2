@@ -1,4 +1,3 @@
-// nuxt.config.ts
 export default defineNuxtConfig({
   ssr: true, // SSR is default, but be explicit
   compatibilityDate: '2024-05-07', // unlock Netlify Functions v2 features in Nitro
@@ -11,7 +10,10 @@ export default defineNuxtConfig({
   // Nitro will auto-detect Netlify, no preset required for serverless
   nitro: {
     routeRules: {
-      '/sitemap.xml': { proxy: `${process.env.BASE_URL}/website/general/sitemap` }
+      '/sitemap.xml': {
+        proxy: `${process.env.NUXT_PUBLIC_SITE_URL}/__mock_sitemap.xml`
+        //  `${process.env.BASE_URL}/website/general/sitemap`
+      }
     }
   },
   app: {
