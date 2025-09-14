@@ -19,7 +19,7 @@
       class="h-[70vh] max-h-[500px] overflow-y-auto px-[27px] pt-[19px] lg:h-fit lg:max-h-[80vh] lg:px-[40px] lg:pt-[32px]"
     >
       <div class="grid grid-cols-1 gap-x-[16px] gap-y-[12px] lg:grid-cols-2 lg:gap-y-[17px]">
-        <BaseInput
+        <CfBaseInput
           size="xl"
           id="email"
           v-model="formData.email"
@@ -29,7 +29,7 @@
           labelPlacement="inside"
           placeholder="you@example.com"
         />
-        <BaseInput
+        <CfBaseInput
           size="xl"
           id="phone"
           v-model="formData.phone"
@@ -42,7 +42,7 @@
           required
           labelPlacement="inside"
         />
-        <BaseInput
+        <CfBaseInput
           size="xl"
           id="name"
           v-model="formData.name"
@@ -51,7 +51,7 @@
           type="text"
           labelPlacement="inside"
         />
-        <BaseInput
+        <CfBaseInput
           size="xl"
           id="positionInCompany"
           v-model="formData.positionInCompany"
@@ -60,7 +60,7 @@
           type="text"
           labelPlacement="inside"
         />
-        <BaseInput
+        <CfBaseInput
           size="xl"
           class="lg:col-span-2"
           required

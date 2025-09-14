@@ -30,6 +30,8 @@ export default defineNuxtConfig({
   //----------------------for modules----------------------
   modules: [
     '~/modules/api',
+    '~/modules/custom-form',
+    // '~/modules/lib-form',
     '@nuxt/image',
     '@nuxtjs/tailwindcss',
     'nuxt-svgo',
