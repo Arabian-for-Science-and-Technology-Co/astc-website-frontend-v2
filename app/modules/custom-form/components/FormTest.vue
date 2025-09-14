@@ -130,8 +130,8 @@ type FormData = {
   name: string
   positionInCompany: string
   companyName: string
-  companySize: string | null // NEW
-  message: string // NEW
+  companySize: string | null
+  message: string
 }
 
 const formData = reactive<FormData>({
@@ -179,12 +179,14 @@ async function handleSubmit() {
   }
 
   try {
-    const response = await apiFetch('/website/home/request-files', {
-      method: 'POST',
-      body: payload
-    })
-    $toast.success(response?.message, { duration: 4000 })
-    emits('update:open', false)
+    // const response = await apiFetch('/website/home/request-files', {
+    //   method: 'POST',
+    //   body: payload
+    // })
+    console.log('payload', payload)
+
+    // $toast.success(response?.message, { duration: 4000 })
+    // emits('update:open', false)
     resetFormData()
     formRef.value?.resetValidation()
   } catch (err) {

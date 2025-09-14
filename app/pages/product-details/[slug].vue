@@ -75,7 +75,6 @@
           {{ $t('lets_talk') }}
         </BaseButton>
       </div>
-     <CfFormTest/>
     </div>
     <RequestDocumentModal :itemId="productData?.id" v-model:open="modalOpen" />
   </div>
