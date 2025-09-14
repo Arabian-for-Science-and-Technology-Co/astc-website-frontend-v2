@@ -51,7 +51,7 @@ export default defineNuxtConfig({
     baseUrl: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000',
     locales: [
       { code: 'en', iso: 'en-US', file: 'en.ts', name: 'English' },
-      { code: 'ar', iso: 'ar-AR', file: 'ar.ts', name: 'العربية', dir: 'rtl' }
+      { code: 'ar', iso: 'ar-SA', file: 'ar.ts', name: 'العربية', dir: 'rtl' }
     ],
     defaultLocale: 'en',
     strategy: 'no_prefix',
