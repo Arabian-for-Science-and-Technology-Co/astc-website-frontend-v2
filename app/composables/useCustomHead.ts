@@ -12,7 +12,7 @@ export default function useCustomHead(
   }>
 ) {
   const metaRef = toRef(metadata)
-
+  const { locale } = useI18n()
   const route = useRoute()
   const url = useRequestURL()
 
@@ -38,6 +38,11 @@ export default function useCustomHead(
         hid: 'keywords',
         name: 'keywords',
         content: metaRef.value.keywords
+      },
+      {
+        hid: 'og:locale',
+        property: 'og:locale',
+        content: locale.value === 'ar' ? 'ar_AR' : 'en_US'
       },
       {
         hid: 'og:title',

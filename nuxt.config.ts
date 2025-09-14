@@ -43,6 +43,7 @@ export default defineNuxtConfig({
   // },
   vueSonner: { css: true },
   i18n: {
+    baseUrl: 'https://astc.com.sa',
     locales: [
       { code: 'en', iso: 'en-US', file: 'en.ts', name: 'English' },
       { code: 'ar', iso: 'ar-AR', file: 'ar.ts', name: 'العربية', dir: 'rtl' }
@@ -53,7 +54,9 @@ export default defineNuxtConfig({
     langDir: 'locales',
     detectBrowserLanguage: {
       useCookie: true,
-      cookieKey: 'i18n_redirected'
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',
+      alwaysRedirect: false
     }
   },
   tailwindcss: {
