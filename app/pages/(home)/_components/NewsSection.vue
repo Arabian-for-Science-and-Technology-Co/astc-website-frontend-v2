@@ -11,7 +11,7 @@
           :to="`/news/${item.slug}`"
         >
           <div class="not-italic text-white transition-colors hover:text-[#0ADF0A]">
-            <h4
+            <h3
               :class="[
                 'main-title mb-[14px] text-[16px] font-[500] uppercase leading-[19.2px] tracking-[0.16px]',
                 'lg:mb-[2px] lg:text-[22px] lg:font-[600] lg:leading-[27px] lg:tracking-[0.23px]',
@@ -19,7 +19,7 @@
               ]"
             >
               {{ $fd(item.updated_at, 'll') }}
-            </h4>
+            </h3>
             <h4
               :class="[
                 'text-truncate-multi w-[220px] text-[20px] font-[200] leading-[21px] tracking-[0.32px]',

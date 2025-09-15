@@ -25,11 +25,11 @@
           'xl:px-[40px] xl:pb-[40px] xl:pt-[45px]'
         ]"
       >
-        <h3
+        <h2
           :class="['text-[52px] font-[300] not-italic leading-[95%] tracking-[0.52px] text-white']"
         >
           {{ category?.[`title_${locale}`] }}
-        </h3>
+        </h2>
         <button
           @click="navigateTo(`categories-details/${category.id}`)"
           :class="[
