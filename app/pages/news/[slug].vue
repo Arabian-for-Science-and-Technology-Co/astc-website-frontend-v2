@@ -14,15 +14,15 @@
         {{ $t('news') }} /
       </h1>
       <article :class="['mt-[64px]', 'lg:mt-[84px]']">
-        <h4
+        <h2
           :class="[
             'text-black transition-colors',
             'text-[30px] font-[600] leading-[110%] tracking-[0.3px]'
           ]"
         >
           {{ $fd(newsData?.updated_at, 'll') }}
-        </h4>
-        <h5
+        </h2>
+        <h3
           :class="[
             'mt-[18px] text-[52px] font-[200] leading-[95%] tracking-[0.52px] transition-colors group-hover:text-[#0ADF0A]',
             'lg:mt-[12px] lg:text-[68px] lg:tracking-[0.68px]',
@@ -30,7 +30,7 @@
           ]"
         >
           {{ newsData?.[`title_${locale}`] }}
-        </h5>
+        </h3>
 
         <div
           v-if="newsData?.video_url || newsData?.image"
@@ -62,7 +62,7 @@
             'lg:ms-[86px] lg:mt-[97.5px] lg:gap-x-[62px]'
           ]"
         >
-          <h3
+          <h4
             :class="[
               'col-span-2 col-start-1 row-start-1 text-[30px] font-[200] leading-[110%] tracking-[0.3px]',
               'lg:col-span-1 lg:text-[40px] lg:leading-[102%] lg:tracking-[0.4px]',
@@ -70,7 +70,7 @@
             ]"
           >
             {{ newsData?.testimonial?.[`content_${locale}`] }}
-          </h3>
+          </h4>
           <BaseImg
             densities="x1 x2"
             format="webp"

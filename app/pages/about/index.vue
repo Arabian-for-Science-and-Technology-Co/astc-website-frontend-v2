@@ -19,14 +19,14 @@
     />
     <template v-for="item in aboutData" :key="item?.id">
       <div v-if="item.code == 'certificates_slider'" class="mt-[100px] lg:mt-[180px]">
-        <h2
+        <h1
           :class="[
             'app-container-small max-w-[282px] !pe-0 text-[30px] font-[600] leading-[110%] tracking-[0.3px]',
             'lg:max-w-full'
           ]"
         >
           {{ certificatesSlider?.[`title_${locale}`] }}
-        </h2>
+        </h1>
         <ScrollWithDragWrapper
           class="mt-[49px] pe-[--container-pe] ps-[--container-ps] lg:mt-[53px] lg:pe-0 lg:ps-0"
         >
