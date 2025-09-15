@@ -51,7 +51,7 @@
         >
           <template #tab="{ tab }">
             <h2 v-if="tab.value == 'nearest-metro-station'" class="flex items-center gap-[8px]">
-              <NearestIcon />
+              <NearestIcon :color="mapType == tab.value ? 'white' : 'black'" />
               {{ tab.label }}
             </h2>
             <h2 v-else>{{ tab.label }}</h2>
