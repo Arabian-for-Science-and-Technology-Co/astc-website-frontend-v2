@@ -15,24 +15,28 @@
 
     <!-- Prev Button -->
     <button
+      role="button"
       v-if="showPrev"
       @click="scrollBy(-1)"
       :disabled="atStart"
+      aria-label="Previous slide"
       class="absolute start-0 top-1/2 z-10 hidden h-[60px] w-[60px] -translate-y-1/2 place-items-center rounded-full bg-white/70 p-2 shadow backdrop-blur-sm transition-colors hover:bg-white lg:grid xl:h-[80px] xl:w-[80px]"
     >
-      <ArrowIcon ltrLeft />
+      <ArrowIcon aria-hidden="true" ltrLeft />
     </button>
 
     <!-- Next Button -->
     <button
+      role="button"
       v-if="showNext"
       @click="scrollBy(1)"
       :disabled="atEnd"
+      aria-label="Next slide"
       class="absolute end-0 top-1/2 z-10 hidden h-[60px] w-[60px] -translate-y-1/2 place-items-center rounded-full bg-white/70 p-2 shadow backdrop-blur-sm transition-colors hover:bg-white lg:grid xl:h-[80px] xl:w-[80px]"
     >
       <span v-if="isLoading" class="animate-spin">⟳</span>
       <span v-else>
-        <ArrowIcon ltrRight />
+        <ArrowIcon aria-hidden="true" ltrRight />
       </span>
     </button>
   </div>
