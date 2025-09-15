@@ -156,7 +156,7 @@ useCustomHead(() => ({
   keywords:
     newsData.value?.[`meta_keywords_${locale.value}`] ??
     newsData.value?.[`meta_title_${locale.value}`],
-  image: newsData.value?.image ?? newsData.value?.testimonial?.image
+  image: newsData.value?.image?.webp ?? newsData.value?.testimonial?.image?.webp
 }))
 </script>
 <style></style>

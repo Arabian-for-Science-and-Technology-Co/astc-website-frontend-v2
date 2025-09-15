@@ -22,5 +22,7 @@ const resolvedSrc = computed(() => fallbackSrc.value || props.src)
 <style scoped>
 .custom {
   object-fit: cover;
+  /* filter: blur(1px); */
+  /* backdrop-filter:blur(10px) ; */
 }
 </style>
