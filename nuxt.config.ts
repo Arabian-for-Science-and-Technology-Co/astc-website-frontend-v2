@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       BASE_URL: process.env.BASE_URL,
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+      SITE_URL: process.env.NUXT_PUBLIC_SITE_URL
     }
   },
   // Nitro will auto-detect Netlify, no preset required for serverless
@@ -21,8 +21,8 @@ export default defineNuxtConfig({
       '/ar/**': { redirect: '/**' },
       '/en/**': { redirect: '/**' },
       '/sitemap.xml': {
-        proxy: `${process.env.NUXT_PUBLIC_SITE_URL}/__mock_sitemap.xml`
-        //  `${process.env.BASE_URL}/website/general/sitemap`
+        // proxy: `${process.env.NUXT_PUBLIC_SITE_URL}/__mock_sitemap.xml`
+        proxy: `${process.env.BASE_URL}/website/general/sitemap`
       }
     }
   },
