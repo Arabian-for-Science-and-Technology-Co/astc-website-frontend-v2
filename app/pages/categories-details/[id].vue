@@ -8,7 +8,7 @@
       class="mt-[80px] flex flex-col justify-start gap-[83px] lg:mt-[97px] lg:gap-[126px] 3xl:mt-[123px] 3xl:gap-[166px]"
     >
       <article>
-        <h2 class="main-title">{{ title }}</h2>
+        <h1 class="main-title">{{ title }}</h1>
         <div class="imgs-contianer mt-[74.47px]">
           <ProductCard v-for="(item, i) in categoryItems || []" :data="item" />
         </div>

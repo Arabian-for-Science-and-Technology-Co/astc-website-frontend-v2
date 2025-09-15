@@ -15,7 +15,7 @@
     >
       <div class="min-h-[--header-height]"></div>
       <header class="app-container text-white">
-        <h6
+        <p
           v-if="productData?.category?.[`title_${locale}`]"
           :class="[
             'text-[20px] font-[600] leading-[normal] tracking-[0.2px]',
@@ -23,10 +23,10 @@
           ]"
         >
           {{ productData?.category?.[`title_${locale}`] }}
-        </h6>
-        <h4 :class="['head-title mt-[22px]', 'lg:mt-[15px]']">
+        </p>
+        <h1 :class="['head-title mt-[22px]', 'lg:mt-[15px]']">
           {{ productData?.[`title_${locale}`] }}
-        </h4>
+        </h1>
       </header>
     </div>
     <div :class="['min-h-screen pb-[60px] text-[#18264A]', 'lg:pb-[228px]', '3xl:pb-[235px]']">
