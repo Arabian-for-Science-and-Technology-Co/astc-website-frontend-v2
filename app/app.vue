@@ -13,8 +13,6 @@
 </template>
 <script setup>
 const config = useRuntimeConfig()
-const siteUrl = config?.public?.siteUrl || 'https://astc.com.sa'
-
 const { locale } = useI18n()
 
 const { fetchPages } = usePages()
@@ -34,8 +32,7 @@ const staticMetaData = computed(() => ({
     settings?.value?.[`meta_description_${locale.value}`] ||
     'ASTC has been a trusted contractor in Saudi Arabia since 2007, delivering expert-level Project Management, Telecom Engineering, and IT services.',
   type: 'website',
-  image: settings.value?.favicon || `${siteUrl}/favicon.ico`,
-  // url: `${siteUrl}/astc/`,
+  image: settings.value?.favicon || `${config?.public?.SITE_URL}/favicon.ico`,
   keywords:
     settings?.value?.[`keywords_${locale.value}`] ||
     'ASTC, Arabian for Science and Technology Co., Saudi contractor, project management, telecom, IT services',

@@ -1,23 +1,30 @@
-// nuxt.config.ts
 export default defineNuxtConfig({
   ssr: true, // SSR is default, but be explicit
   compatibilityDate: '2024-05-07', // unlock Netlify Functions v2 features in Nitro
   runtimeConfig: {
     public: {
       BASE_URL: process.env.BASE_URL,
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+      SITE_URL: process.env.NUXT_PUBLIC_SITE_URL
     }
   },
   // Nitro will auto-detect Netlify, no preset required for serverless
   nitro: {
-   routeRules: {
-    '/ar/raad-superapp': { redirect: { to: '/product-details/raad-superapp-1', statusCode: 301 } },
-    '/en/raad-superapp': { redirect: { to: '/product-details/raad-superapp-1', statusCode: 301 } },
-    '/raad-superapp':    { redirect: { to: '/product-details/raad-superapp-1', statusCode: 301 } },
-    // optional: generic strip of locale prefixes
-    '/ar/**': { redirect: '/**' },
-    '/en/**': { redirect: '/**' }
-  }
+    routeRules: {
+      '/ar/raad-superapp': {
+        redirect: { to: '/product-details/raad-superapp-1', statusCode: 301 }
+      },
+      '/en/raad-superapp': {
+        redirect: { to: '/product-details/raad-superapp-1', statusCode: 301 }
+      },
+      '/raad-superapp': { redirect: { to: '/product-details/raad-superapp-1', statusCode: 301 } },
+      // optional: generic strip of locale prefixes
+      '/ar/**': { redirect: '/**' },
+      '/en/**': { redirect: '/**' },
+      '/sitemap.xml': {
+        // proxy: `${process.env.NUXT_PUBLIC_SITE_URL}/__mock_sitemap.xml`
+        proxy: `${process.env.BASE_URL}/website/general/sitemap`
+      }
+    }
   },
   app: {
     pageTransition: {
