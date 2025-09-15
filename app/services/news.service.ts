@@ -16,6 +16,8 @@ export type NewsItem = {
   meta_title_ar?: string
   meta_desc_en?: string
   meta_desc_ar?: string
+  meta_keywords_ar?: string
+  meta_keywords_en?: string
   created_at?: string
   updated_at?: string
 }

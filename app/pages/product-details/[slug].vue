@@ -107,7 +107,9 @@ useCustomHead(() => ({
     productData.value?.[`meta_description_${locale.value}`] ??
     productData.value?.[`meta_desc_${locale.value}`] ??
     productData.value?.[`description_${locale.value}`],
-  keywords: productData.value?.[`meta_keywords_${locale.value}`],
+  keywords:
+    productData.value?.[`meta_keywords_${locale.value}`] ??
+    productData.value?.[`meta_title_${locale.value}`],
   image: productData.value?.cover_image
 }))
 </script>

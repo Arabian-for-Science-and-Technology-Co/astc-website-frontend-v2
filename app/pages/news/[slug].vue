@@ -47,7 +47,7 @@
             densities="x1 x2"
             format="webp"
             :src="newsData?.image"
-            class="h-full w-full object-cover rounded-[10px] "
+            class="h-full w-full rounded-[10px] object-cover"
             :alt="`video`"
           />
         </div>
@@ -150,7 +150,11 @@ const {
 
 useCustomHead(() => ({
   title: newsData.value?.[`meta_title_${locale.value}`],
-  description: newsData.value?.[`meta_desc_${locale.value}`]
+  description: newsData.value?.[`meta_desc_${locale.value}`],
+  keywords:
+    newsData.value?.[`meta_keywords_${locale.value}`] ??
+    newsData.value?.[`meta_title_${locale.value}`],
+  image: newsData.value?.image ?? newsData.value?.testimonial?.image
 }))
 </script>
 <style></style>

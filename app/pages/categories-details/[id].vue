@@ -37,7 +37,9 @@ const title = computed(
   () => categoryItems.value?.[0]?.category?.[`title_${locale.value}`] || t('category')
 )
 useCustomHead(() => ({
-  title: title.value
+  title: title.value,
+  description: title.value,
+  keywords: title.value
 }))
 </script>
 <style scoped>

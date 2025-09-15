@@ -7,6 +7,7 @@ export default function usePageHead(pageSlug?: string) {
   useCustomHead(() => ({
     title: PageInfo?.[`meta_title_${locale.value}`],
     description: PageInfo?.[`meta_description_${locale.value}`],
-    keywords: PageInfo?.[`meta_keywords_${locale.value}`]
+    keywords:
+      PageInfo?.[`meta_keywords_${locale.value}`] ?? PageInfo?.[`meta_title_${locale.value}`]
   }))
 }
