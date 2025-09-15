@@ -5,7 +5,7 @@
       'about-bg flex min-h-screen flex-col bg-[#0D1667] pb-[209px] pt-[--header-height] font-zarid text-white lg:pb-[300px] 3xl:pb-[280px]'
     ]"
   >
-    <NuxtImg
+    <BaseImg
       v-if="aboutIntro?.image"
       :src="aboutIntro?.image ?? ''"
       :class="[
@@ -33,7 +33,7 @@
           <div
             class="grid auto-cols-max grid-flow-col grid-rows-2 items-end gap-[30px] lg:grid-rows-1"
           >
-            <img
+            <BaseImg
               v-for="certificate in certificates"
               @click="
                 () => {
@@ -44,7 +44,8 @@
               :key="certificate.id"
               :src="certificate?.image ?? ''"
               class="inline-block h-auto w-auto max-w-[205px] object-contain align-bottom"
-              alt=""
+              loading="lazy"
+              :alt="`certificates ${certificate.id}`"
             />
           </div>
         </ScrollWithDragWrapper>

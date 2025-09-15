@@ -16,6 +16,7 @@
         ,
         imgClass
       ]"
+      :loading="loading"
       :style="imgBaseStyle"
       @load="onLoad"
       @pointerdown="onPointerDown"
@@ -40,13 +41,15 @@ const props = withDefaults(
     wheelZoom?: boolean
     maxHeight?: string | number
     imgClass?: string
+    loading?: string
   }>(),
   {
     maxScale: 5,
     initialScale: 1,
     tapZoom: 2.5,
     wheelZoom: true,
-    maxHeight: '100%'
+    maxHeight: '100%',
+    loading: 'lazy'
   }
 )
 

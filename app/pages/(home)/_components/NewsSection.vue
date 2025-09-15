@@ -36,7 +36,8 @@
             v-if="item.image?.webp"
             :src="item.image?.webp"
             class="mb-[17px] h-[87px] w-[133.912px] self-end rounded-[10px] object-cover lg:mb-0 lg:h-[102px] lg:w-[157px]"
-            :alt="`video`"
+            :alt="`news ${item.slug}`"
+            loading="lazy"
           />
           <div
             class="absolute bottom-0 end-0 flex flex-col items-start justify-start text-[40px] font-[200] not-italic leading-[49.4px] tracking-[0.52px] text-[#0ADF0A] group-last-of-type:hidden lg:text-[46px] xl:text-[52px]"
