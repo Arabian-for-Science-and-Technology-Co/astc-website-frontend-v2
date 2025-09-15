@@ -38,7 +38,7 @@
         >
           <CustomVideo
             v-if="newsData?.video_url"
-            :poster="newsData?.image"
+            :poster="newsData?.image?.webp"
             :src="newsData?.video_url"
           />
 
@@ -46,7 +46,7 @@
             v-else
             densities="x1 x2"
             format="webp"
-            :src="newsData?.image"
+            :src="newsData?.image?.webp"
             class="h-full w-full rounded-[10px] object-cover"
             :alt="`video`"
           />
@@ -74,8 +74,8 @@
           <BaseImg
             densities="x1 x2"
             format="webp"
-            v-if="newsData?.testimonial?.image"
-            :src="newsData?.testimonial?.image"
+            v-if="newsData?.testimonial?.image?.webp"
+            :src="newsData?.testimonial?.image?.webp"
             :class="[
               'col-start-2 row-start-2 aspect-square w-[89px] rounded-full object-cover object-top',
               'lg:col-start-2 lg:row-start-1 lg:w-[130px]'
