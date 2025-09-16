@@ -26,9 +26,11 @@
         densities="x1 x2"
         format="webp"
         v-if="item?.image?.webp"
-        :src="item.image.webp"
+        :src="item?.image?.webp"
+        :placeholder="item?.image?.avif"
         class="mt-[24px] aspect-[180/103] w-[279.623px] self-end rounded-[10px] object-cover lg:mt-[42px] lg:aspect-[7/4] lg:w-[280px]"
         :alt="`video`"
+        loading="lazy"
       />
       <div
         :class="[

@@ -1,4 +1,6 @@
 import type { ApiResponse } from '~/modules/api/types'
+import type { ImageType } from '~/types/utils'
+
 export const SectionCodes = [
   'hero_tiles',
   'news_bar',
@@ -21,7 +23,7 @@ export type PageSectionItem = {
   title_ar: string | null
   content_en: HtmlString | null
   content_ar: HtmlString | null
-  image: string | null
+  image: ImageType | null
   cta_text_en: string | null
   cta_text_ar: string | null
   cta_link: string | null

@@ -1,11 +1,12 @@
 import type { ApiResponse } from '~/modules/api/types'
+import type { ImageType } from '~/types/utils'
 
 export type Category = {
   id: number
   title_en: string
   title_ar: string
   code: string
-  image: string
+  image: ImageType
   status: number
   sort_order: number
   created_by_id: number | null

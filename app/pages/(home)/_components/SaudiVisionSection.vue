@@ -50,7 +50,8 @@
     <BaseImg
       densities="x1 x2"
       format="webp"
-      :src="sectionData?.image || saudiVisionImg"
+      :src="sectionData?.image?.webp"
+      :placeholder="sectionData?.image?.avif"
       class="absolute start-0 top-0 -z-0 h-full w-full object-cover"
       :alt="`Image representing saudiVisionImg`"
       loading="lazy"

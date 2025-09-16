@@ -4,6 +4,7 @@
     v-bind="$attrs"
     :src="resolvedSrc"
     @error="handleImageError"
+    placeholder-class="custom"
   />
 </template>
 
@@ -18,3 +19,10 @@ function handleImageError() {
 }
 const resolvedSrc = computed(() => fallbackSrc.value || props.src)
 </script>
+<style scoped>
+.custom {
+  object-fit: cover;
+  /* filter: blur(1px); */
+  /* backdrop-filter:blur(10px) ; */
+}
+</style>
