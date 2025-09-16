@@ -7,7 +7,8 @@
       densities="x1 x2"
       format="webp"
       :key="data?.id"
-      :src="data?.image"
+      :src="data?.image?.webp"
+      :placeholder="data?.image?.avif"
       :class="[
         'imgs-contianer__card__img',
         wide && 'imgs-contianer__card__img--wide'
@@ -26,11 +27,10 @@
 </template>
 
 <script setup lang="ts">
-import type { IntegratedItem } from '~/services/products.service'
 import type { ProductSolutionItem } from '~/composables/useProductsAndSolutions'
 withDefaults(
   defineProps<{
-    data: IntegratedItem | ProductSolutionItem
+    data: ProductSolutionItem
     wide?: boolean
   }>(),
   {

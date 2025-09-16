@@ -7,7 +7,7 @@
         '3xl:min-h-[95.36vh] 3xl:pb-[147px]'
       ]"
       :style="{
-        backgroundImage: `url(${productData?.cover_image})`,
+        backgroundImage: `url(${productData?.cover_image?.webp})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'
@@ -31,15 +31,9 @@
     </div>
     <div :class="['min-h-screen pb-[60px] text-[#18264A]', 'lg:pb-[228px]', '3xl:pb-[235px]']">
       <ProductDetailsTemplate
+        v-for="item in productData?.item_sections"
         class="app-container-small"
-        v-if="productData?.item_sections?.[0]"
-        :data="productData?.item_sections?.[0]"
-      />
-
-      <ProductDetailsTemplate
-        v-for="item in productData?.item_sections?.slice?.(1)"
         :key="item?.id"
-        class="app-container-small"
         :data="item"
       />
       <div v-if="productData?.integrated_items?.length" :class="['mt-[59px]', 'lg:mt-[82px]']">
@@ -110,7 +104,7 @@ useCustomHead(() => ({
   keywords:
     productData.value?.[`meta_keywords_${locale.value}`] ??
     productData.value?.[`meta_title_${locale.value}`],
-  image: productData.value?.cover_image
+  image: productData.value?.cover_image?.webp
 }))
 </script>
 <style scoped>

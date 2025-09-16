@@ -49,7 +49,6 @@
 <script setup lang="ts">
 import { getCategories } from '~/services/categories.service'
 
-const { apiFetch } = useApi()
 const { locale } = useI18n()
 const { data: categories } = await useApiAsyncData(getCategories)
 </script>

@@ -30,7 +30,7 @@ export type CategoryItem = {
   category_id: number
   title_en: string
   title_ar: string
-  image: string
+  image: ImageType
   cover_image: string
   meta_title_en: string | null
   meta_title_ar: string | null
