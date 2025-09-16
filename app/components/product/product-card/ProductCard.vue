@@ -7,7 +7,8 @@
       densities="x1 x2"
       format="webp"
       :key="data?.id"
-      :src="data?.image || data?.image_url"
+      :src="data?.image?.webp"
+      :placeholder="data?.image?.avif"
       :class="[
         'imgs-contianer__card__img',
         wide && 'imgs-contianer__card__img--wide'
@@ -74,7 +75,7 @@ const { locale } = useI18n()
 }
 .imgs-contianer__card__img--wide {
   @apply !aspect-[521/260] !w-full;
- }
+}
 /*------------------* */
 .imgs-contianer__card__title {
   @apply w-full text-center text-xl font-[500] uppercase not-italic leading-[normal] tracking-[1.6px];

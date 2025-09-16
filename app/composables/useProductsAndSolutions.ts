@@ -1,9 +1,11 @@
 import type { ApiResponse, LocalizedPartial } from '~/modules/api/types'
+import type { ImageType } from '~/types/utils'
+
 export interface ProductSolutionItem extends LocalizedPartial<'title'> {
   id: number
   category_id: number
   slug: string
-  image: string
+  image: ImageType
 }
 export interface ProductSolutionCategory extends LocalizedPartial<'title'> {
   id: number
