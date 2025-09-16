@@ -1,6 +1,6 @@
 <template>
   <section
-    class="flex max-h-[820px] flex-col items-stretch overflow-hidden bg-[#0D1667] font-zarid lg:max-h-fit  lg:flex-row"
+    class="flex max-h-[820px] flex-col items-stretch overflow-hidden bg-[#0D1667] font-zarid lg:max-h-fit lg:flex-row"
   >
     <article
       :class="[
@@ -41,7 +41,8 @@
     <BaseImg
       densities="x1 x2"
       format="webp"
-      :src="sectionData?.image || promoImg"
+      :src="sectionData?.image?.webp"
+      :placeholder="sectionData?.image?.avif"
       :class="['max-h-[312px] w-full object-cover', 'lg:max-h-full lg:w-1/3', '3xl:w-1/2']"
       :alt="`Image representing promoImg`"
       loading="lazy"

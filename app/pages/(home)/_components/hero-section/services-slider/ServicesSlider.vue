@@ -14,7 +14,8 @@
       <BaseImg
         densities="x1 x2"
         format="webp"
-        :src="category.image"
+        :src="category?.image?.webp"
+        :placeholder="category?.image?.avif"
         class="h-full w-full object-cover transition-transform group-hover:scale-110"
         :alt="`Image representing service`"
         loading="eager"
@@ -34,7 +35,7 @@
           @click="navigateTo(`categories-details/${category.id}`)"
           :class="[
             'w-full rounded-[17.201px] bg-[#FFFFFF1A] pb-[15.25px] pt-[12.48px] text-center text-[18px] font-normal not-italic leading-[105%] tracking-[0.2px] text-white backdrop-blur-[17px]',
-            'xl:rounded-3xl xl:pb-[24px] xl:pt-[23px] lg:text-[19px]',
+            'lg:text-[19px] xl:rounded-3xl xl:pb-[24px] xl:pt-[23px]',
             'xl:text-[20px]'
           ]"
         >
