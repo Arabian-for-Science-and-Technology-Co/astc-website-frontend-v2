@@ -10,6 +10,8 @@ export default defineNuxtConfig({
   // Nitro will auto-detect Netlify, no preset required for serverless
   nitro: {
     routeRules: {
+      '/_nuxt/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+
       '/ar/raad-superapp': {
         redirect: { to: '/product-details/raad-superapp-1', statusCode: 301 }
       },
