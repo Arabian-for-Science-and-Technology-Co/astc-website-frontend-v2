@@ -55,14 +55,12 @@
       class="absolute start-0 top-0 -z-0 h-full w-full object-cover"
       :alt="`Image representing saudiVisionImg`"
       loading="lazy"
-      decoding="async"
-      :fallback="saudiVisionImg"
+      fetchpriority="low"
     />
   </section>
 </template>
 
 <script setup lang="ts">
-const saudiVisionImg = '/Images/main/saudi_vision.png'
 import type { PageSectionItem } from '~/services/pages-section.service'
 defineProps<{ sectionData: PageSectionItem }>()
 const { locale } = useI18n()
