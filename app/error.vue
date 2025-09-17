@@ -13,7 +13,7 @@
       id="myVideo"
       class="absolute left-1/2 top-0 -z-10 max-h-screen w-[150%] -translate-x-1/2 xl:w-full"
     >
-      <source src="~/assets/animation/main_head.mp4" type="video/mp4" />
+      <source src="/videos/main_head.mp4" type="video/mp4" />
     </video>
 
     <div

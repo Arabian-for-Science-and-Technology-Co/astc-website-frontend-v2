@@ -16,7 +16,8 @@ export default defineNuxtConfig({
     compressPublicAssets: true,
     routeRules: {
       '/_nuxt/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
-
+      '/videos/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+      '/images/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
       '/ar/raad-superapp': {
         redirect: { to: '/product-details/raad-superapp-1', statusCode: 301 }
       },
