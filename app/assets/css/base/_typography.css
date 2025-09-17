@@ -1,35 +1,3 @@
-/* assets/css/base/_typography.css */
-
-/* Variable Font (Main) */
-/* @font-face {
-  font-family: 'Zarid';
-  src: url('../../fonts/29LT Zarid Sans AL-Desktop-VAR-WOFF2-OTF/29LTZaridSansALVF.woff2')
-    format('woff2-variations');
-  font-weight: 100 900;
-  font-stretch: 75% 125%;
-  font-style: normal;
-  font-display: swap;
-} */
-
-/* Variable Slanted */
-/* @font-face {
-  font-family: 'Zarid';
-  src: url('../../fonts/29LT Zarid Sans AL-Desktop-VAR-WOFF2-OTF/29LTZaridSansALVF-Slanted.woff2')
-    format('woff2-variations');
-  font-weight: 100 900;
-  font-style: italic;
-  font-display: swap;
-} */
-
-/* Static Fallback (Optional) */
-/* @font-face {
-  font-family: 'Zarid-Fallback';
-  src: url('../../fonts/29LT Zarid Sans AL-Desktop-VAR-WOFF2-OTF/29LTZaridSansAL-Regular.woff2')
-    format('woff2');
-  font-weight: 400;
-  font-display: swap;
-} */
-/* MAIN FONT WITH TECH ENHANCEMENTS */
 @font-face {
   font-family: '29LT Zarid Sans AL';
   src:
@@ -61,16 +29,17 @@
   src: url('../../fonts/Druk Wide/Druk Wide Medium.otf') format('opentype');
   font-weight: 500;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: 'Roboto';
   src: url('../../fonts/Roboto/Roboto-VariableFont_wdth,wght.ttf') format('truetype');
-   font-weight: 100 900;
+  font-weight: 100 900;
   font-style: normal;
+  font-display: swap;
 }
 html {
   font-family: '29LT Zarid Sans AL', 'Zarid-Fallback', system-ui, sans-serif;
-  /* @apply font-zarid; */
   /* Better Arabic rendering */
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
