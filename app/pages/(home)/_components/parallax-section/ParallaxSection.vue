@@ -6,7 +6,8 @@
       :placeholder="sectionData?.image?.avif"
       class="h-full w-full flex-1 object-cover"
       :alt="`sky_parallax_1`"
-      :fallback="sky1"
+      loading="lazy"
+      fetchpriority="low"
     />
     <div
       ref="maskEl"
@@ -16,6 +17,8 @@
         ref="fgImg"
         :src="sky2"
         alt="sky2"
+        loading="lazy"
+        fetchpriority="low"
         class="absolute inset-0 h-full w-full object-cover object-center will-change-transform"
       />
     </div>
@@ -23,7 +26,6 @@
 </template>
 
 <script setup lang="ts">
-const sky1 = '/Images/main/sky_parallax_1.png'
 import sky2 from '~/assets/images/main/sky_parallax_2.png?url'
 import type { PageSectionItem } from '~/services/pages-section.service'
 defineProps<{ sectionData: PageSectionItem }>()
