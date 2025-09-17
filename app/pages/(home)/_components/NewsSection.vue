@@ -3,7 +3,7 @@
     id="NewsSection"
     class="h-[200px] bg-[#465AE6] pb-[36px] pt-[30px] font-zarid rtl:lg:h-[205px]"
   >
-    <ScrollWithDragWrapper class="app-container h-full !overflow-y-visible">
+    <LazyScrollWithDragWrapper class="app-container h-full !overflow-y-visible">
       <div class="flex h-full items-start justify-start gap-[70px] lg:gap-[95px]">
         <NuxtLink
           class="group relative flex h-full flex-shrink-0 items-start justify-start pe-[100px] last-of-type:pe-0"
@@ -55,7 +55,7 @@
           {{ $t('all_news') }} /
         </button>
       </div>
-    </ScrollWithDragWrapper>
+    </LazyScrollWithDragWrapper>
   </section>
 </template>
 
