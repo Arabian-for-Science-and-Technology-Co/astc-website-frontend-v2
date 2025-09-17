@@ -7,7 +7,8 @@
   >
     <BaseImg
       v-if="aboutIntro?.image"
-      :src="aboutIntro?.image ?? ''"
+      :src="aboutIntro?.image.webp ?? ''"
+      :placeholder="aboutIntro?.image.avif ?? ''"
       :class="[
         'mx-[7px] mt-[73px] min-h-[30vh] object-contain',
         'lg:mx-[80px] lg:mt-[43px] lg:min-h-[50vh]',
@@ -15,7 +16,6 @@
       ]"
       alt="about intro image "
       format="webp"
-      priority
     />
     <template v-for="item in aboutData" :key="item?.id">
       <div v-if="item.code == 'certificates_slider'" class="mt-[100px] lg:mt-[180px]">
@@ -27,7 +27,7 @@
         >
           {{ certificatesSlider?.[`title_${locale}`] }}
         </h1>
-        <ScrollWithDragWrapper
+        <LazyScrollWithDragWrapper
           class="mt-[49px] pe-[--container-pe] ps-[--container-ps] lg:mt-[53px] lg:pe-0 lg:ps-0"
         >
           <div
@@ -48,7 +48,7 @@
               :alt="`certificates ${certificate.id}`"
             />
           </div>
-        </ScrollWithDragWrapper>
+        </LazyScrollWithDragWrapper>
       </div>
       <AboutTemplate
         v-else

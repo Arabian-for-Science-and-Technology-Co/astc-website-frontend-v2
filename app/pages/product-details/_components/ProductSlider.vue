@@ -12,7 +12,7 @@
     />
 
     <!-- Thumbs -->
-    <ScrollWithDragWrapper class="mt-[21px] !cursor-pointer">
+    <LazyScrollWithDragWrapper class="mt-[21px] !cursor-pointer">
       <div class="flex gap-[10px]">
         <BaseImg
           v-for="(item, index) in images"
@@ -29,7 +29,7 @@
           ]"
         />
       </div>
-    </ScrollWithDragWrapper>
+    </LazyScrollWithDragWrapper>
 
     <BaseModal
       v-model:open="modalOpen"

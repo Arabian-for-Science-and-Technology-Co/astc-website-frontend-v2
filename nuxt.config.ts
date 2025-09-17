@@ -1,5 +1,9 @@
 export default defineNuxtConfig({
   ssr: true, // SSR is default, but be explicit
+  experimental: {
+    inlineSSRStyles: true, // inline critical CSS from SSR → removes render-blocking for above-the-fold
+    componentIslands: true // keep your setting
+  },
   compatibilityDate: '2024-05-07', // unlock Netlify Functions v2 features in Nitro
   runtimeConfig: {
     public: {
@@ -9,6 +13,7 @@ export default defineNuxtConfig({
   },
   // Nitro will auto-detect Netlify, no preset required for serverless
   nitro: {
+    compressPublicAssets: true,
     routeRules: {
       '/_nuxt/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
 
@@ -26,6 +31,12 @@ export default defineNuxtConfig({
         // proxy: `${process.env.NUXT_PUBLIC_SITE_URL}/__mock_sitemap.xml`
         proxy: `${process.env.BASE_URL}/website/general/sitemap`
       }
+    }
+  },
+  // Merge small CSS files into one to remove multiple render-blocking requests
+  vite: {
+    build: {
+      cssCodeSplit: false
     }
   },
   app: {
