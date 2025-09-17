@@ -1,7 +1,7 @@
 <template>
   <div class="relative w-full">
     <!-- Main image -->
-    <img
+    <BaseImg
       @click="modalOpen = true"
       :src="currentImg?.image_url"
       :alt="currentImg ? currentImg.alt || `Image ${currentIndex + 1}` : 'Image'"
@@ -14,7 +14,7 @@
     <!-- Thumbs -->
     <ScrollWithDragWrapper class="mt-[21px] !cursor-pointer">
       <div class="flex gap-[10px]">
-        <img
+        <BaseImg
           v-for="(item, index) in images"
           :key="`list-${index}`"
           @click.stop="goToSlide(index)"
@@ -56,7 +56,7 @@
           <ChevronIcon ltrRight />
         </button>
       </template>
-      <img
+      <BaseImg
         @click="modalOpen = true"
         :src="currentImg?.image_url"
         :alt="currentImg?.alt || `Image`"

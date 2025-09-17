@@ -1,4 +1,5 @@
 import type { PaginatedResponse, ApiResponse } from '~/modules/api/types'
+import type { ImageType } from '~/types/utils'
 
 export type NewsItem = {
   id: number
@@ -8,7 +9,7 @@ export type NewsItem = {
   slug: string
   content_en: string
   content_ar: string
-  image: string
+  image: ImageType
   video_url: string | null
   status: string
   published_at: string // ISO date, e.g. "2025-08-18"
@@ -32,7 +33,7 @@ export async function getNews(params?: Record<string, any>) {
 
 type Testimonial = {
   id: number
-  image: string
+  image: ImageType
   name_en: string
   name_ar: string
   position_en: string

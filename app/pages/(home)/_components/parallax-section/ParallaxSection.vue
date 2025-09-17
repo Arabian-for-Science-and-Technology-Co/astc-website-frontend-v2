@@ -2,7 +2,8 @@
   <section ref="sectionEl" class="relative h-screen w-screen overflow-hidden bg-[#0D1667]">
     <BaseImg
       format="webp"
-      :src="sectionData?.image || sky1"
+      :src="sectionData?.image?.webp"
+      :placeholder="sectionData?.image?.avif"
       class="h-full w-full flex-1 object-cover"
       :alt="`sky_parallax_1`"
       :fallback="sky1"

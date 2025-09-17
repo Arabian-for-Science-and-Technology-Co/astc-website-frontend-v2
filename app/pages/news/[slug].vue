@@ -33,7 +33,7 @@
         </h3>
 
         <div
-          v-if="newsData?.video_url || newsData?.image"
+          v-if="newsData?.video_url || newsData?.image?.webp"
           class="mt-[50px] aspect-[180/103] w-full self-end rounded-[10px] object-cover lg:mt-[133px] lg:aspect-[173/99]"
         >
           <CustomVideo
@@ -46,7 +46,9 @@
             v-else
             densities="x1 x2"
             format="webp"
+            loading="lazy"
             :src="newsData?.image?.webp"
+            :placeholder="newsData?.image?.avif"
             class="h-full w-full rounded-[10px] object-cover"
             :alt="`video`"
           />
@@ -154,7 +156,7 @@ useCustomHead(() => ({
   keywords:
     newsData.value?.[`meta_keywords_${locale.value}`] ??
     newsData.value?.[`meta_title_${locale.value}`],
-  image: newsData.value?.image ?? newsData.value?.testimonial?.image
+  image: newsData.value?.image?.webp ?? newsData.value?.testimonial?.image?.webp
 }))
 </script>
 <style></style>

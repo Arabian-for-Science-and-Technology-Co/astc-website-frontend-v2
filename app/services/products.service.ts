@@ -1,4 +1,6 @@
 import type { ApiResponse, LocalizedPartial } from '~/modules/api/types'
+import type { ImageType } from '~/types/utils'
+
 export interface ProductCategory {
   id: number
   title_en: string
@@ -14,8 +16,7 @@ export interface IntegratedItem {
   title_en: string
   title_ar: string
   slug: string
-  image: string
-  image_url: string
+  image: ImageType
   pivot: IntegratedPivot
 }
 
@@ -48,8 +49,8 @@ export interface Product
   > {
   id: number
   category_id: number
-  image: string
-  cover_image: string
+  image: ImageType
+  cover_image: ImageType
   document: string
   slug: string
   status: number

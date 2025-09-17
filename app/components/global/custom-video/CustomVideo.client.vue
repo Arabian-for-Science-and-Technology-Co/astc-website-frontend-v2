@@ -40,7 +40,7 @@
       :class="{ 'pointer-events-none': isYouTube && iframeActive }"
       aria-label="Play video"
     >
-      <img
+      <BaseImg
         v-if="posterToShow"
         :src="posterToShow"
         alt="poster"
@@ -49,7 +49,7 @@
       />
       <span
         :class="[
-          'w-[40px]-translate-x-1/2 absolute left-1/2 top-1/2 inline-flex h-[40px] -translate-y-1/2 items-center justify-center rounded-full bg-[#F1F1F1B2] text-2xl text-black transition-colors hover:bg-[#F1F1F1]',
+          'w-[40px] -translate-x-1/2 absolute left-1/2 top-1/2 inline-flex h-[40px] -translate-y-1/2 items-center justify-center rounded-full bg-[#F1F1F1B2] text-2xl text-black transition-colors hover:bg-[#F1F1F1]',
           'lg:h-[80px] lg:w-[80px]'
         ]"
         aria-hidden="true"
