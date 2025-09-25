@@ -38,7 +38,7 @@
           format="webp"
           :src="partner.logo"
           :alt="`logo ${i + 1}`"
-          class="h-full object-contain grayscale filter transition duration-300 hover:filter-none"
+          class="max-h-full max-w-full object-contain grayscale transition duration-300 hover:grayscale-0"
           loading="lazy"
           decoding="async"
         />

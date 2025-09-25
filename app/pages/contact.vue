@@ -70,11 +70,12 @@ usePageHead()
 
 const { t, locale } = useI18n()
 const { settings } = useWebsiteSettings()
+const phonesWithLRM = computed(() => settings.value?.phones?.map((p) => `\u200E${p}\u200E`))
 const informations = computed(() => [
   {
     id: 'contact',
     title: t('contact'),
-    items: [...(settings.value?.phones ?? []), settings.value?.mail]
+    items: [...(phonesWithLRM.value ?? []), settings.value?.mail]
   },
   {
     id: 'address',

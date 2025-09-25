@@ -73,7 +73,7 @@
       <div class="mobileMenu-placeholder block lg:hidden">
         <slot
           name="mobileMenu"
-          :floatingClass="'fixed end-[--container-pe] top-[--header-pt] z-[100]'"
+          :floatingClass="'absolute end-[--container-pe] top-[--header-pt] z-[100]'"
         />
       </div>
     </article>
