@@ -33,7 +33,13 @@
           {{ category?.[`title_${locale}`] }}
         </h2>
         <button
-          @click="navigateTo(`categories-details/${category.id}`)"
+          @click="
+            navigateTo(
+              category?.single_item_slug
+                ? `/product-details/${category?.single_item_slug}`
+                : `categories-details/${category.id}`
+            )
+          "
           :class="[
             'w-full rounded-[17.201px] bg-[#FFFFFF1A] pb-[15.25px] pt-[12.48px] text-center text-[18px] font-normal not-italic leading-[105%] tracking-[0.2px] text-white backdrop-blur-[17px]',
             'lg:text-[19px] xl:rounded-3xl xl:pb-[24px] xl:pt-[23px]',

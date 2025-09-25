@@ -13,6 +13,7 @@ export type Category = {
   created_at: string
   updated_at: string
   deleted_at: string | null
+  single_item_slug?: string | null
 }
 
 export async function getCategories() {
