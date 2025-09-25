@@ -8,10 +8,10 @@
   >
     <h2
       :class="[
-        'main-text-color max-w-[85%] text-[52px] font-[200] not-italic leading-[49.4px] tracking-[0.52px]',
-        'lg:max-w-[75%] lg:text-[68px] lg:leading-[65px] lg:tracking-[0.68px]',
-        'xl:text-[90px] xl:leading-[85.5px] xl:tracking-[0.9px]',
-        '3xl:max-w-[80%] 3xl:text-[140px] 3xl:leading-[133px] 3xl:tracking-[1.4px]'
+        'main-text-color max-w-[85%] text-xl-heading font-[200] not-italic leading-[49.4px] tracking-[0.52px]',
+        'lg:max-w-[75%] lg:text-2xl-heading lg:leading-[65px] lg:tracking-[0.68px]',
+        'xl:text-3xl-heading xl:leading-[85.5px] xl:tracking-[0.9px]',
+        '3xl:max-w-[80%] 3xl:text-4xl-heading 3xl:leading-[133px] 3xl:tracking-[1.4px]'
       ]"
     >
       {{ sectionData?.[`title_${locale}`] }}

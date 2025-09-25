@@ -41,7 +41,7 @@
             loading="lazy"
           />
           <div
-            class="absolute bottom-0 end-0 flex flex-col items-start justify-start text-[40px] font-[200] not-italic leading-[49.4px] tracking-[0.52px] text-[#0ADF0A] group-last-of-type:hidden lg:text-[46px] xl:text-[52px]"
+            class="absolute bottom-0 end-0 flex flex-col items-start justify-start text-[40px] font-[200] not-italic leading-[49.4px] tracking-[0.52px] text-[#0ADF0A] group-last-of-type:hidden lg:text-[46px] xl:text-xl-heading"
           >
             <span>#</span>
             <span>#</span>

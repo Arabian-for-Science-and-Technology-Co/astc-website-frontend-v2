@@ -24,9 +24,9 @@
         </h2>
         <h3
           :class="[
-            'mt-[18px] text-[52px] font-[200] leading-[95%] tracking-[0.52px] transition-colors group-hover:text-[#0ADF0A]',
-            'lg:mt-[12px] lg:text-[68px] lg:tracking-[0.68px]',
-            'xl:mt-[8px] xl:text-[90px] xl:tracking-[0.9px]'
+            'mt-[18px] text-xl-heading font-[200] leading-[95%] tracking-[0.52px] transition-colors group-hover:text-[#0ADF0A]',
+            'lg:mt-[12px] lg:text-2xl-heading lg:tracking-[0.68px]',
+            'xl:mt-[8px] xl:text-3xl-heading xl:tracking-[0.9px]'
           ]"
         >
           {{ newsData?.[`title_${locale}`] }}
@@ -68,7 +68,7 @@
             :class="[
               'col-span-2 col-start-1 row-start-1 text-[30px] font-[200] leading-[110%] tracking-[0.3px]',
               'lg:col-span-1 lg:text-[40px] lg:leading-[102%] lg:tracking-[0.4px]',
-              'xl:text-[52px] xl:leading-[95%] xl:tracking-[0.52px]'
+              'xl:text-xl-heading xl:leading-[95%] xl:tracking-[0.52px]'
             ]"
           >
             {{ newsData?.testimonial?.[`content_${locale}`] }}

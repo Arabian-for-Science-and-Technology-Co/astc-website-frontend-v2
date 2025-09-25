@@ -64,7 +64,7 @@
             }
           "
           :class="[
-            'relative w-fit text-[52px] font-[200] not-italic leading-[49.4px] tracking-[0.52px]'
+            'relative w-fit text-xl-heading font-[200] not-italic leading-[49.4px] tracking-[0.52px]'
           ]"
         >
           {{ tab.label }}

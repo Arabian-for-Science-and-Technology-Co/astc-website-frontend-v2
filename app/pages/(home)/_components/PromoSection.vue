@@ -11,10 +11,10 @@
     >
       <h2
         :class="[
-          'text-[52px] font-[200] not-italic leading-[49.4px] tracking-[0.52px] text-white',
-          'lg:text-[68px] lg:leading-[65px] lg:tracking-[0.68px]',
-          'xl:text-[90px] xl:leading-[85.5px] xl:tracking-[0.9px]',
-          '3xl:text-[140px] 3xl:leading-[133px] 3xl:tracking-[1.4px]'
+          'text-xl-heading font-[200] not-italic leading-[49.4px] tracking-[0.52px] text-white',
+          'lg:text-2xl-heading lg:leading-[65px] lg:tracking-[0.68px]',
+          'xl:text-3xl-heading xl:leading-[85.5px] xl:tracking-[0.9px]',
+          '3xl:text-4xl-heading 3xl:leading-[133px] 3xl:tracking-[1.4px]'
         ]"
       >
         {{ sectionData?.[`title_${locale}`] }}
@@ -23,7 +23,7 @@
         :class="[
           'mt-[37px] w-[70%] text-[20px] font-[200] not-italic leading-[21px] tracking-[0.2px] text-white',
           'lg:mt-[80px] lg:w-[90%] lg:text-[32px] lg:leading-[32px] lg:tracking-[0.32px]',
-          'xl:text-[52px] xl:leading-[49.4px] xl:tracking-[0.52px] rtl:xl:leading-[60px]'
+          'xl:text-xl-heading xl:leading-[49.4px] xl:tracking-[0.52px] rtl:xl:leading-[60px]'
         ]"
       >
         {{ sectionData?.[`content_${locale}`] }}

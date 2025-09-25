@@ -28,7 +28,7 @@
         ]"
       >
         <h2
-          :class="['text-[52px] font-[300] not-italic leading-[95%] tracking-[0.52px] text-white']"
+          :class="['text-xl-heading font-[300] not-italic leading-[95%] tracking-[0.52px] text-white']"
         >
           {{ category?.[`title_${locale}`] }}
         </h2>

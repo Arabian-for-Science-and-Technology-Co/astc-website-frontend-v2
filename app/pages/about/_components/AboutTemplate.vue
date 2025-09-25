@@ -3,9 +3,9 @@
     <h2
       v-if="data?.[`title_${locale}`]"
       :class="[
-        'text-[52px] font-[200] leading-[49.4px] tracking-[0.52px]',
-        'lg:text-[68px] lg:leading-[65px] lg:tracking-[0.68px]',
-        'xl:text-[90px] xl:leading-[85.5px] xl:tracking-[0.9px]'
+        'text-xl-heading font-[200] leading-[49.4px] tracking-[0.52px]',
+        'lg:text-2xl-heading lg:leading-[65px] lg:tracking-[0.68px]',
+        'xl:text-3xl-heading xl:leading-[85.5px] xl:tracking-[0.9px]'
       ]"
     >
       {{ data?.[`title_${locale}`] }}

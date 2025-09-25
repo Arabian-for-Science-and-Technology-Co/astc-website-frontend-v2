@@ -44,8 +44,8 @@ useCustomHead(() => ({
 </script>
 <style scoped>
 .main-title {
-  @apply text-[52px] font-[200] not-italic leading-[49.4px] tracking-[0.52px] text-[#18264A];
-  @apply 3xl:text-[90px] 3xl:leading-[85.5px] 3xl:tracking-[0.9px];
+  @apply text-xl-heading font-[200] not-italic leading-[49.4px] tracking-[0.52px] text-[#18264A];
+  @apply 3xl:text-3xl-heading 3xl:leading-[85.5px] 3xl:tracking-[0.9px];
 }
 .imgs-contianer {
   @apply flex w-full max-w-full flex-wrap justify-center gap-x-[14px] gap-y-[28.5px];
