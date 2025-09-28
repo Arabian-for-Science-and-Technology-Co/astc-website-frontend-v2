@@ -44,14 +44,14 @@ const solutions = computed(() =>
 </script>
 <style scoped>
 .head-title {
-  @apply text-[52px] font-[200] not-italic leading-[49.4px] tracking-[0.52px] text-[#465AE5];
-  @apply lg:text-[68px] lg:leading-[65px] lg:tracking-[0.68px];
-  @apply xl:text-[90px] xl:leading-[85.5px] xl:tracking-[0.9px];
-  @apply 3xl:text-[140px] 3xl:leading-[133px] 3xl:tracking-[1.4px];
+  @apply text-xl-heading font-[200] not-italic leading-[49.4px] tracking-[0.52px] text-[#465AE5];
+  @apply lg:text-2xl-heading lg:leading-[65px] lg:tracking-[0.68px];
+  @apply xl:text-3xl-heading xl:leading-[85.5px] xl:tracking-[0.9px];
+  @apply 3xl:text-4xl-heading 3xl:leading-[133px] 3xl:tracking-[1.4px];
 }
 .main-title {
-  @apply text-[52px] font-[200] not-italic leading-[49.4px] tracking-[0.52px] text-[#18264A];
-  @apply 3xl:text-[90px] 3xl:leading-[85.5px] 3xl:tracking-[0.9px];
+  @apply text-xl-heading font-[200] not-italic leading-[49.4px] tracking-[0.52px] text-[#18264A];
+  @apply 3xl:text-3xl-heading 3xl:leading-[85.5px] 3xl:tracking-[0.9px];
 }
 /*------------------* */
 .imgs-contianer {

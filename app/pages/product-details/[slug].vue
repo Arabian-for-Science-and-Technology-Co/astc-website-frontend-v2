@@ -109,9 +109,9 @@ useCustomHead(() => ({
 </script>
 <style scoped>
 .head-title {
-  @apply text-[52px] font-[200] leading-[49.4px] tracking-[0.52px];
+  @apply text-xl-heading font-[200] leading-[49.4px] tracking-[0.52px];
   @apply lg:text-[85px] lg:leading-[81px] lg:tracking-[0.85px];
-  @apply xl:text-[140px] xl:leading-[133px] xl:tracking-[1.4px];
+  @apply xl:text-4xl-heading xl:leading-[133px] xl:tracking-[1.4px];
 }
 .font-section {
   font-family: Roboto !important;

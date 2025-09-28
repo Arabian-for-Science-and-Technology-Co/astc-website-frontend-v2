@@ -25,6 +25,25 @@ module.exports = {
       roboto: ['Roboto']
     },
     extend: {
+      fontSize: {
+        'xl-heading': [
+          '52px'
+          //'52px'
+        ],
+        '2xl-heading': [
+          '64px'
+          //'68px'
+        ],
+        '3xl-heading': [
+          '68px'
+          //'90px'
+        ],
+        '4xl-heading': [
+          '90px'
+          //'140px'
+          //  { lineHeight: '85.5px', letterSpacing: '0.9px' }
+        ]
+      },
       colors: {
         'theme-light': {
           background: 'rgb(var(--background) / <alpha-value>)',
@@ -48,7 +67,7 @@ module.exports = {
         md: 'var(--radius-md)'
       },
       screens: {
-        'xs':'375px',
+        xs: '375px',
         '3xl': '1600px' // or any value > 1536px
       }
     }

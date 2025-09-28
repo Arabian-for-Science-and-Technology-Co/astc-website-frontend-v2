@@ -23,7 +23,7 @@
               'text-[36px] font-[300] not-italic leading-[48.6px] tracking-[0.36px] text-[#18264A] !no-underline',
               'lg:text-[56.92px] lg:leading-[64.46px] lg:tracking-[0.569px]',
               'xl:font-[200]',
-              'xl:text-[90px] xl:leading-[85.5px] xl:tracking-[0.9px]'
+              'xl:text-3xl-heading xl:leading-[85.5px] xl:tracking-[0.9px]'
             ]"
           >
             {{ item }}

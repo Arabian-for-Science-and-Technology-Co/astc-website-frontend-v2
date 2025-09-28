@@ -1,9 +1,9 @@
 <template>
   <article
     :class="[
-      'app-container flex w-full flex-col text-[52px] font-[200] not-italic leading-[49.4px] tracking-[0.52px] text-black',
+      'app-container flex w-full flex-col text-xl-heading font-[200] not-italic leading-[49.4px] tracking-[0.52px] text-black',
       'lg:grid lg:grid-cols-12 lg:gap-y-[20px]',
-      '3xl:text-[90px] 3xl:leading-[85.5px] 3xl:tracking-[0.9px]'
+      '3xl:text-3xl-heading 3xl:leading-[85.5px] 3xl:tracking-[0.9px]'
     ]"
   >
     <a

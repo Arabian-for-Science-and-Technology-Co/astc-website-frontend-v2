@@ -42,7 +42,7 @@
           :key="item.id"
           @click="navigateTo(item.value)"
           :class="[
-            'text-start text-[52px] font-[200] not-italic leading-[49.4px] tracking-[0.52px]',
+            'text-start text-xl-heading font-[200] not-italic leading-[49.4px] tracking-[0.52px]',
             'lg:whitespace-nowrap lg:text-[32.25px] lg:leading-[100%] lg:tracking-[0.322px]',
             'xl:text-xl xl:font-normal xl:leading-[105%] xl:tracking-[0.2px]'
           ]"

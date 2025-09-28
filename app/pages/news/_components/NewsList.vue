@@ -17,7 +17,7 @@
         :class="[
           'mt-[8px] text-[30px] font-[400] leading-[110%] transition-colors group-hover:text-[#0ADF0A]',
           'lg:mt-[7px] lg:text-[40px] lg:font-[300] lg:leading-[102%] lg:tracking-[0.4px]',
-          'xl:mt-[6px] xl:text-[52px] xl:font-[200] xl:leading-[95%] xl:tracking-[0.52px]'
+          'xl:mt-[6px] xl:text-xl-heading xl:font-[200] xl:leading-[95%] xl:tracking-[0.52px]'
         ]"
       >
         {{ item?.[`title_${locale}`] }}
