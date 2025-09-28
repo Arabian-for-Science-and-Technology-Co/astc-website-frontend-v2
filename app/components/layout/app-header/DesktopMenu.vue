@@ -33,32 +33,42 @@
         </span>
       </template>
     </Tabs>
-    <div v-show="isHovering" class="fixed start-0 top-0 z-[50] flex h-[100vh] w-full flex-col">
-      <div
-        @mouseover="isHovering = true"
-        @mouseleave="isHovering = false"
-        class="h-[90vh] max-h-[900px] overflow-y-auto bg-white"
-      >
-        <BaseAppHeader
-          class="!static"
-          :desktopMenuWidth="tabsRef?.containerWidth"
-          :showLeftLogo="true"
+    <Transition
+      appear
+      :enter-active-class="'transition ease-out duration-150'"
+      :enter-from-class="'opacity-0 -translate-y-2'"
+      :enter-to-class="'opacity-100 translate-y-0'"
+      :leave-active-class="'transition ease-in duration-150'"
+      :leave-from-class="'opacity-100 translate-y-0'"
+      :leave-to-class="'opacity-0 -translate-y-1'"
+    >
+      <div v-if="isHovering" class="fixed start-0 top-0 z-[50] flex h-[100vh] w-full flex-col">
+        <div
+          @mouseover="isHovering = true"
+          @mouseleave="isHovering = false"
+          class="h-[90vh] max-h-[900px] overflow-y-auto bg-white"
         >
-          <template #languageSwitcher>
-            <LanguageSwitcher />
-          </template>
-        </BaseAppHeader>
-        <ProductsSection class="!pb-[74px] !pt-[60px]" />
+          <BaseAppHeader
+            class="!static"
+            :desktopMenuWidth="tabsRef?.containerWidth"
+            :showLeftLogo="true"
+          >
+            <template #languageSwitcher>
+              <LanguageSwitcher />
+            </template>
+          </BaseAppHeader>
+          <ProductsSection class="!pb-[74px] !pt-[60px]" />
+        </div>
+        <div class="backdrop flex-1 bg-blue-900/40"></div>
       </div>
-      <div class="backdrop flex-1 bg-blue-900/40"></div>
-    </div>
+    </Transition>
   </teleport>
 </template>
 
 <script setup lang="ts">
 import type { Tab } from '~/components/layout/app-header/AppHeader.vue'
 import Tabs, { type TabsExpose } from '~/components/ui/tabs.vue'
- 
+
 withDefaults(
   defineProps<{
     tabs: Tab[]
@@ -75,36 +85,26 @@ const route = useRoute()
 
 const isHovering = ref(false)
 const disableHoverOnTab = ref(false)
-watch(isHovering, (val) => {
-  if (val) {
-    document.body.style.overflow = 'hidden'
-  } else {
-    document.body.style.overflow = ''
-  }
-})
-let timeoutId: ReturnType<typeof setTimeout> | null = null
+watch(isHovering, (val) => (document.body.style.overflow = val ? 'hidden' : ''))
 
+let routeTimer: ReturnType<typeof setTimeout> | null = null
 watch(
   route,
   () => {
     disableHoverOnTab.value = true
     isHovering.value = false
-    if (timeoutId) {
-      clearTimeout(timeoutId)
+    if (routeTimer) {
+      clearTimeout(routeTimer)
     }
-    timeoutId = setTimeout(() => {
+    routeTimer = setTimeout(() => {
       disableHoverOnTab.value = false
-      timeoutId = null
+      routeTimer = null
     }, 1000)
   },
   { deep: true, immediate: true }
 )
 
-onBeforeUnmount(() => {
-  if (timeoutId) {
-    clearTimeout(timeoutId)
-  }
-})
+onBeforeUnmount(() => routeTimer && clearTimeout(routeTimer))
 
 defineExpose({
   width: computed(() => tabsRef.value?.containerWidth)
