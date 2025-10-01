@@ -19,13 +19,15 @@
 <script setup lang="ts">
 import dynamicPageTemplate from '~/pages/(dynamic-pages)/_components/dynamicPageTemplate.vue'
 const route = useRoute()
-const { data: pageDetailsData } = await useApiAsyncData(
+const { data: pageDetailsData, error } = await useAsyncData(
   () => `dynamic-pages:${route.params.slug}`,
   () => getPageSection(route.params.slug as string),
   {
     watch: [() => route.params.slug]
   }
 )
+if (error.value?.statusCode == 404) navigateTo('/')
+
 usePageHead(route.params.slug as string)
 </script>
 <style scoped></style>
