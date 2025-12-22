@@ -1,18 +1,31 @@
 <template>
-  <div class="">
-    <HeroSection />
-    <component
+  <div class="relative">
+    <!-- Hero Section (First Scroll Item) -->
+    <div class="relative z-20 bg-white">
+      <HeroSection />
+    </div>
+
+    <!-- Dynamic Parallax Sections -->
+    <StickyParallaxSection
       v-for="section in sections"
       :key="section.id"
-      :is="componentMap[section.code] || null"
-      :section-data="section"
-    />
+      :bg-image="section.image?.webp"
+      :bg-video="section.video"
+    >
+      <component
+        v-if="componentMap[section.code]"
+        :is="componentMap[section.code]"
+        :section-data="section"
+        class="w-full"
+      />
+    </StickyParallaxSection>
   </div>
 </template>
 
 <script setup lang="ts">
 import type { SectionCode } from '~/services/pages-section.service'
 
+// Components
 import HeroSection from '~/pages/(home)/_components/hero-section/HeroSection.vue'
 import NewsSection from '~/pages/(home)/_components/NewsSection.vue'
 import AnnouncementSection from '~/pages/(home)/_components/AnnouncementSection.vue'
@@ -21,6 +34,7 @@ import CustomersSection from '~/pages/(home)/_components/CustomersSection.vue'
 import ParallaxSection from '~/pages/(home)/_components/parallax-section/ParallaxSection.vue'
 import PartnersSection from '~/pages/(home)/_components/PartnersSection.vue'
 import SaudiVisionSection from '~/pages/(home)/_components/SaudiVisionSection.vue'
+
 definePageMeta({
   layoutProps: {
     showLeftLogo: false,
