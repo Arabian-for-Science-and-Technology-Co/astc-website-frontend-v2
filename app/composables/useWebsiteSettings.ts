@@ -7,6 +7,10 @@ interface SiteSettings
     'title' | 'description' | 'keywords' | 'saudi_vision_title' | 'address' | 'footer'
   > {
   id: number
+  company_profile_en: string | null
+  company_profile_ar: string | null
+  managed_services_en: string | null
+  managed_services_ar: string | null
   mail: string
   url: string
   logo_light: string
