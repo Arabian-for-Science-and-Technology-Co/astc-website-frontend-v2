@@ -4,7 +4,8 @@
 
 <script setup lang="ts">
 definePageMeta({
-  layout: 'blank'
+  layout: 'blank',
+  alias: ['/msa_a']
 })
 
 useHead({
@@ -16,17 +17,17 @@ const { settings, fetchSettings } = useWebsiteSettings()
 
 await fetchSettings()
 
-const profileUrl = settings.value?.company_profile_ar
+const managedServicesUrl = settings.value?.managed_services_ar
 
-if (!profileUrl) {
+if (!managedServicesUrl) {
   throw createError({
     statusCode: 404,
-    statusMessage: 'Company profile was not found.'
+    statusMessage: 'Managed services document was not found.'
   })
 }
 
 await nuxtApp.runWithContext(() =>
-  navigateTo(profileUrl, {
+  navigateTo(managedServicesUrl, {
     external: true,
     redirectCode: 302,
     replace: true
